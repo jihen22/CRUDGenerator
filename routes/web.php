@@ -31,3 +31,7 @@ Route::get('/d', function () {
 Route::get('/settings', function () {
     return view('admin.settings');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
