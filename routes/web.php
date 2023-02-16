@@ -24,10 +24,10 @@ Route::get('/Interfaces/Tables',[InterfacesController::class,'Tables'])->name('I
 Route::get('/Interfaces/smth',[InterfacesController::class,'smth'])->name('Intefaces.smth');
 Route::get('/Interfaces/smth2',[InterfacesController::class,'smth2'])->name('Intefaces.smth2');
 
-Route::get('/dashboard', function () {
+Route::get('/d', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/forgotpassword', function () {
+Route::get('/menu', function () {
     return view('admin.forgotpassword');
 });

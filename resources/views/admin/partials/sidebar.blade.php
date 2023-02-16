@@ -4,7 +4,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">name of project</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="{{ url('/menu') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-bars"></i></div>
                                 Menus
                             </a>
