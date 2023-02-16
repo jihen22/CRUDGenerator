@@ -28,6 +28,6 @@ Route::get('/d', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/menu', function () {
-    return view('admin.forgotpassword');
+Route::get('/settings', function () {
+    return view('admin.settings');
 });

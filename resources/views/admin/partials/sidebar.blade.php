@@ -4,11 +4,11 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">name of project</div>
-                            <a class="nav-link" href="{{ url('/menu') }}">
+                            <a class="nav-link" href="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-bars"></i></div>
                                 Menus
                             </a>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="{{ url('/settings') }}">
                                 <div class="sb-nav-link-icon"><i class="fa fa-cog"></i></div>
                                 Settings
                             </a>
