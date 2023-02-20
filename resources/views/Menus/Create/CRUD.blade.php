@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   
   </head>
   <body>
   
@@ -73,6 +74,72 @@
           </tr>
         </thead>
         <tbody>
+          <tr>
+<th>auto_increment</th>
+
+<th>id</th>
+<th>ID</th>
+<th>yes</th>
+<th>-</th>
+<th>-</th>
+<th>yes</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+<tr>
+<th>datetime</th>
+
+<th>created_at</th>
+<th>Created at </th>
+<th>yes</th>
+<th>-</th>
+<th>-</th>
+<th>yes</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+<tr>
+<th>datetime</th>
+<th>updated_at</th>
+
+<th>Updated at</th>
+<th>ID</th>
+<th>yes</th>
+<th>-</th>
+<th>-</th>
+<th>yes</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+<tr>
+<th>datetime</th>
+<th>deleted_at</th>
+
+<th>Deleted at</th>
+<th>ID</th>
+<th>yes</th>
+<th>-</th>
+<th>-</th>
+<th>yes</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
           <!-- Empty table rows, will be populated with new data -->
         </tbody>
       </table>
@@ -91,11 +158,37 @@
                   <label for="FeildType">Feild Type</label>
                  
 <select id="FeildType" name="field-type">
-  <option value="number-field">Number Field</option>
-  <option value="choice-field">Choice Field</option>
-  <option value="text-field">Text Field</option>
-  <option value="date-time-field">Date/Time Field</option>
-  <option value="file-upload-field">File/Upload Field</option>
+  <optgroup label="number-field">Number Field</optgroup>
+  <option value ="Text">Text</option>
+  <option value ="Email">Email</option>
+  <option value ="Textarea">Textarea</option>
+  <option value ="Password">Password</option>
+  </optgrpoup>
+  <optgroup label="choice-field">Choice Field</optgroup>
+  <option value ="Radio">Radio</option>
+  <option value ="Select">Select</option>
+  <option value ="Checkbox">Checkbox</option>
+</optgrpoup>
+<optgroup label="text-field">
+  <option value ="Integer">Integer</option>
+  <option value ="Float">Float</option>
+  <option value ="money">money</option>
+</optgroup>
+<optgroup label="date-time-field">
+<option value ="DatePicker">DatePicker</option>
+<option value ="Date/TimePicker">Date/TimePicker</option>
+<option value ="Time Picker">Time Picker</option>
+</optgroup>
+
+<optgroup label="file-upload-field">
+  <option value ="File">File</option>
+  <option value ="Photo">Photo</option>
+</optgroup>
+
+<optgroup label ="RelationshipFeilds">
+  <option value ="Belongstorelationship">Belongs to relationship</option>
+  <option value ="BelongsMany">Belongs to many relationships</option>
+</optgroup>
 </select>
                 </div>
                 <div class="form-group">
