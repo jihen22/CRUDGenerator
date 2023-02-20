@@ -32,11 +32,11 @@
                          
                             <div class="sb-sidenav-menu-heading">My profile</div>
                             
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="{{ url('/myproject') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 My project
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
                             </a>
@@ -54,7 +54,7 @@
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
                                           
-                                            <a class="nav-link" href="{{ url('/forgot') }}">Forgot Password</a>
+                                            <a class="nav-link" href="{{ url('/forgot') }}">change password</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"><i class="fas fa-exclamation-circle"></i> 

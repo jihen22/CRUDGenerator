@@ -45,17 +45,12 @@
 					</div>
 					<form>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Text</label>
+							<label class="col-sm-12 col-md-2 col-form-label">project name</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control" type="text" placeholder="Johnny Brown">
 							</div>
 						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Search</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" placeholder="Search Here" type="search">
-							</div>
-						</div>
+						
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Email</label>
 							<div class="col-sm-12 col-md-10">
@@ -69,70 +64,38 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Telephone</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="1-(111)-111-1111" type="tel">
-							</div>
-						</div>
+    <label class="col-sm-12 col-md-2 col-form-label">Language</label>
+    <div class="col-sm-12 col-md-10">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="lang[]" id="lang-fr" value="fr">
+            <label class="form-check-label" for="lang-fr">Français</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="lang[]" id="lang-en" value="en">
+            <label class="form-check-label" for="lang-en">Anglais</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="lang[]" id="lang-es" value="es">
+            <label class="form-check-label" for="lang-es">Espagnol</label>
+        </div>
+    </div>
+</div>
+						
+						
+						
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Password</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="password" type="password">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Number</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="100" type="number">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Date and time</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control datetimepicker" placeholder="Choose Date anf time" type="text">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Date</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control date-picker" placeholder="Select Date" type="text">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Month</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control month-picker" placeholder="Select Month" type="text">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Time</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control time-picker" placeholder="Select time" type="text">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Select</label>
-							<div class="col-sm-12 col-md-10">
+							<label class="col-sm-12 col-md-2 col-form-label">Date format</label>
+							<div class="col-sm-12 col-md-10"  placeholder="Choose Date " type="text">
 								<select class="custom-select col-12">
 									<option selected="">Choose...</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+									<option value="1">y-m-d</option>
+									<option value="2">m/d/y</option>
+									<option value="3">d-m-y</option>
 								</select>
 							</div>
 						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Color</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="#563d7c" type="color">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Input Range</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="50" type="range">
-							</div>
-						</div>
+						
+						
 					</form>
 					<div class="collapse collapse-box" id="basic-form1" >
 						<div class="code-box">
