@@ -32,11 +32,16 @@ Route::get('/d', function () {
 Route::get('/settings', function () {
     return view('admin.settings');
 });
+//Menus routes
 Route::get('/CRUD', function () {
     return view('Menus.Create.CRUD');
+});
+Route::get('/nonCrud', function () {
+    return view('Menus.Create.NonCRUD');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::post('/create-table', [App\Http\Controllers\Menus\CrudTablesController::class, 'createTable']);
