@@ -45,12 +45,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-<<<<<<< HEAD
 
 Route::get('/myproject', function () {
     return view('admin.myproject');
 });
 
-=======
-Route::post('/create-table', [App\Http\Controllers\Menus\CrudTablesController::class, 'createTable']);
->>>>>>> b7e4123d02793da7fa109f73e1e672b5841a16b5

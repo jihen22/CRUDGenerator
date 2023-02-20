@@ -36,9 +36,9 @@
 <button class="btn btn-primary" id="newProjectButton">New Project</button>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-<form class="row g-3" id="newProjectForm" style="display:;">
+<form class="row g-3" id="newProjectForm" style="display:none;">
   <div class="col-md-6">
     <label for="projectId" class="form-label">Project ID</label>
     <input type="text" class="form-control" id="projectId" required>
@@ -80,7 +80,9 @@
     <input type="date" class="form-control" id="projectDate" required>
   </div>
   <div class="col-12">
-    <button class="btn btn-primary" type="submit">Add Project</button>
+    <a class="nav-link" href="{{ url('/monCrud') }}">
+    <button class="btn btn-primary" type="submit"  >Add Project</button>
+</a>
   </div>
 </form> 
 </div>
