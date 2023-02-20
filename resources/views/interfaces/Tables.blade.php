@@ -1,143 +1,70 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Generator</title>
-  </head>
-  <body>
-  <div class="container-fluid">
-  <header class="bg-dark py-3">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand text-white">Generator</a>
-      <ul class="navbar-nav">
-        <!-- Menu items go here -->
-      </ul>
-    </nav>
-  </header>
-  <main class="d-flex">
-    <nav class="bg-dark h-100 col-2 p-0">
-      <ul class="navbar-nav flex-column">
-        <!-- Menu items go here -->
-      </ul>
-    </nav>
-    <section class="col-10">
-      <div class="container-fluid py-3">
-        <form class="form-group d-flex align-items-center">
-          <div class="mr-3">
-            <label for="controller-name">Controller Name:</label>
-            <input type="text" id="controller-name" class="form-control form-control-sm" placeholder="Enter controller name">
-          </div>
-          <div class="ml-3">
-            <label for="table-name">Table Name:</label>
-            <input type="text" id="table-name" class="form-control form-control-sm" placeholder="Enter table name">
-          </div>
-        </form>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Field Name</th>
-              <th>Field Description</th>
-              <th>Field Type</th>
-              <th>IDX</th>
-              <th>Mandatory</th>
-              <th>Rel. Table</th>
-              <th>Rel. Field ID</th>
-              <th>Rel. Field Text</th>
-            </tr>
-          </thead>
-          <tbody id="field-list">
-            <!-- Field rows go here -->
-            <tr>
-              <td><input type="text" class="form-control form-control-sm field-name"></td>
-              <td><input type="text" class="form-control form-control-sm field-desc"></td>
-              <td><input type="text" class="form-control form-control-sm field-type"></td>
-              <td>
-                <select class="form-control form-control-sm idx-select">
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </td>
-              <td>
-                <select class="form-control form-control-sm mandatory-select">
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </td>
-              <td><input type="text" class="form-control form-control-sm rel-table"></td>
-              <td><input type="text" class="form-control form-control-sm rel-field-id"></td>
-              <td><input type="text" class="form-control form-control-sm rel-field-text"></td>
-
-    <td><button class="btn btn-sm btn-danger remove-field-btn" id="deleteButton1">x</button></td>
-  </tr>
-</tbody>
-        </table>
-
-        <div class="d-flex justify-content-end mt-3">
-          <button id="add-field-btn" class="btn btn-sm btn-primary mr-3">Add Field</button>
-          <button id="generate-code-btn" class="btn btn-sm btn-success">Generate Code</button>
-        </div>
-        <table id="myTable">
+<table>
   <tr>
-    <td>Field 1</td>
-    <td>Field 2</td>
-    <td><button class="deleteBtn">x</button></td>
+    <td style="vertical-align: top;">
+      <form action="submit-project.php" method="POST" id="my-form">
+        <fieldset>
+          <legend>Ajouter un projet</legend>
+          <table>
+            <tr>
+              <td><label for="project-id">ID :</label></td>
+              <td><input type="text" id="project-id" name="project-id" required></td>
+            </tr>
+            <tr>
+              <td><label for="project-name">Nom du projet :</label></td>
+              <td><input type="text" id="project-name" name="project-name" required></td>
+            </tr>
+            <tr>
+              <td><label for="type-de-projet">Type de projet :</label></td>
+              <td><input type="text" id="type-de-projet" name="type-de-projet" required></td>
+            </tr>
+            <tr>
+              <td><label for="laravel">Laravel :</label></td>
+              <td><input type="text" id="laravel" name="laravel"></td>
+            </tr>
+            <tr>
+              <td><label for="cruds">CRUDs :</label></td>
+              <td><input type="text" id="cruds" name="cruds" required></td>
+            </tr>
+            <tr>
+              <td><label for="project-create">Créé le :</label></td>
+              <td><input type="text" id="project-create" name="project-create" required></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button type="submit">Ajouter projet</button></td>
+            </tr>
+          </table>
+        </fieldset>
+      </form>
+    </td>
+    <td style="padding-left: 20px; vertical-align: top;">
+      <table id="my-table" style="border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="border: 1px solid black; padding: 5px;">ID</th>
+            <th style="border: 1px solid black; padding: 5px;">Nom du projet</th>
+            <th style="border: 1px solid black; padding: 5px;">Type de projet</th>
+            <th style="border: 1px solid black; padding: 5px;">Laravel</th>
+            <th style="border: 1px solid black; padding: 5px;">CRUDs</th>
+            <th style="border: 1px solid black; padding: 5px;">Créé le</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </td>
   </tr>
 </table>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  const table = document.querySelector("#myTable");
-  table.addEventListener("click", function(event) {
-    if (event.target.className === "deleteBtn") {
-      let row = event.target.parentNode.parentNode;
-      table.deleteRow(row.rowIndex);
-    }
-  });
-</script>
-
-
-  
-   <script>
-  const fieldList = document.getElementById("field-list");
-  const addFieldBtn = document.getElementById("add-field-btn");
-
-  addFieldBtn.addEventListener("click", function() {
-    const newRow = document.createElement("tr");
-
-    newRow.innerHTML = `
-      <td><input type="text" class="form-control form-control-sm field-name"></td>
-      <td><input type="text" class="form-control form-control-sm field-desc"></td>
-      <td><input type="text" class="form-control form-control-sm field-type"></td>
-      <td>
-        <select class="form-control form-control-sm idx-select">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-      </td>
-      <td>
-        <select class="form-control form-control-sm mandatory-select">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-      </td>
-      <td><input type="text" class="form-control form-control-sm rel-table"></td>
-      <td><input type="text" class="form-control form-control-sm rel-field-id"></td>
-      <td><input type="text" class="form-control form-control-sm rel-field-text"></td>
-      <td><button class="btn btn-sm btn-danger remove-field-btn">x</button></td>
-    `;
-
-    fieldList.appendChild(newRow);
-  });
-
-</script>
-  
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
-</body>
-
-</html>
-
-
+  $(function() {
+    $("#my-form").on("submit", function(event) {
+      event.preventDefault();
+      var projectId = $("#project-id").val();
+      var projectName = $("#project-name").val();
+      var projectType = $("#type-de-projet").val();
+      var laravel = $("#laravel").val();
+      var cruds = $("#cruds").val();
+      var projectCreate = $("#project-create").val();
+      var row = "<tr><td style='border: 1px solid black; padding: 5px

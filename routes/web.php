@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InterfacesController;
+use App\Http\Controllers\Menus\CrudTablesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,9 @@ Route::get('/d', function () {
 
 Route::get('/settings', function () {
     return view('admin.settings');
+});
+Route::get('/CRUD', function () {
+    return view('Menus.Create.CRUD');
 });
 
 Auth::routes();

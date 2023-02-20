@@ -2,133 +2,220 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Welcome Page</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{{asset('assets/favicon.ico')}}" />
-        <!-- Font Awesome icons (free version)-->
+        
+        
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+        
+
+
+
 
         <style>
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
+     
 
-th, td {
-  text-align: left;
-  padding: 8px;
-}
 
-th {
-  background-color: #dddddd;
-}
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-td button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-td button:hover {
-  background-color: #da190b;
-}
-
-            </style>
-        
+</style>
     </head>
-    <body>
-    <table id="table">
-  <thead>
-    <tr>
-      <th>En-tête de colonne 1</th>
-      <th>En-tête de colonne 2</th>
-      <th>En-tête de colonne 3</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
 
-<form id="form">
-  <label for="colonne1">Colonne 1:</label>
-  <input type="text" id="colonne1" name="colonne1" required pattern="[a-zA-Z0-9\s]{1,50}"><br>
+<body>
 
-  <label for="colonne2">Colonne 2:</label>
-  <input type="number" id="colonne2" name="colonne2" required min="0"><br>
+<!-- Button for adding new project -->
+<button class="btn btn-primary" id="newProjectButton">New Project</button>
 
-  <label for="colonne3">Colonne 3:</label>
-  <input type="text" id="colonne3" name="colonne3" required><br>
 
-  <input type="submit" value="Ajouter">
-</form>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 
+<form class="row g-3" id="newProjectForm" style="display:;">
+  <div class="col-md-6">
+    <label for="projectId" class="form-label">Project ID</label>
+    <input type="text" class="form-control" id="projectId" required>
+  </div>
+  <div class="col-md-6">
+    <label for="projectName" class="form-label">Project Name</label>
+    <input type="text" class="form-control" id="projectName" required>
+  </div>
+  <div class="col-md-4">
+    <label for="Laravelversion" class="form-label">Laravel version</label>
+    <select class="form-select" id="Laravelversion" required>
+      <option selected disabled value="">version</option>
+      <option value="Laravel 9(PHP=>8.0.2)">Laravel 9(PHP=>8.0.2)</option>
+      <option value="Laravel 8(PHP=>7.4)">Laravel 8(PHP=>7.4)</option>
+      <option value="Laravel 7(PHP=>7.2.5)">Laravel 7(PHP=>7.2.5)</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="projectLanguage" class="form-label">Language</label>
+    <select class="form-select" id="projectLanguage" required>
+      <option selected disabled value="">Choose...</option>
+      <option value="english">English</option>
+      <option value="french">French</option>
+      <option value="spanish">Spanish</option>
+      <option value="german">German</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="projectDateFormat" class="form-label">Date Format</label>
+    <select class="form-select" id="projectDateFormat" required>
+      <option selected disabled value="">Choose...</option>
+      <option value="dd/mm/yyyy">dd/mm/yyyy</option>
+      <option value="mm/dd/yyyy">mm/dd/yyyy</option>
+      <option value="yyyy-mm-dd">yyyy-mm-dd</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="projectDate" class="form-label">Date of Creation</label>
+    <input type="date" class="form-control" id="projectDate" required>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Add Project</button>
+  </div>
+</form> 
+</div>
 
 
 
 
 <script>
-  function ajouterLigne() {
-  // Récupérer les données saisies dans les champs de formulaire
-  const colonne1 = document.getElementById("colonne1").value;
-  const colonne2 = document.getElementById("colonne2").value;
-  const colonne3 = document.getElementById("colonne3").value;
-
-  // Créer une nouvelle ligne pour le tableau avec les données saisies
-  const table = document.getElementById("table");
-  const tbody = table.querySelector("tbody");
-
-  const ligne = document.createElement("tr");
-
-  const cellule1 = document.createElement("td");
-  cellule1.textContent = colonne1;
-  ligne.appendChild(cellule1);
-
-  const cellule2 = document.createElement("td");
-  cellule2.textContent = colonne2;
-  ligne.appendChild(cellule2);
-
-  const cellule3 = document.createElement("td");
-  cellule3.textContent = colonne3;
-  ligne.appendChild(cellule3);
-
-  const celluleAction = document.createElement("td");
-  const boutonSupprimer = document.createElement("button");
-  boutonSupprimer.textContent = "Supprimer";
-  boutonSupprimer.addEventListener("click", function () {
-    ligne.parentNode.removeChild(ligne);
+  $(document).ready(function() {
+    $("#newProjectButton").click(function() {
+      $("#exampleModal").modal("show");
+    });
   });
-  celluleAction.appendChild(boutonSupprimer);
-  ligne.appendChild(celluleAction);
+</script>
 
-  // Ajouter la nouvelle ligne au tableau
-  tbody.appendChild(ligne);
+<!-- Table for displaying added projects -->
 
-  // Vider les champs de formulaire pour permettre l'ajout d'une nouvelle ligne
-  document.getElementById("form").reset();
+
+
+<script>
+  // Define an array to hold the project data
+  let projects = [];
+
+  // Get references to the button and form
+  const newProjectButton = document.getElementById('newProjectButton');
+  const newProjectForm = document.getElementById('newProjectForm');
+  const projectTableBody = document.getElementById('projectTableBody');
+
+  // Add click event listener to button to toggle display of form
+  newProjectButton.addEventListener('click', function() {
+    newProjectForm.style.display = (newProjectForm.style.display === 'none') ? 'block' : 'none';
+  });
+  
+  // Add submit event listener to form to handle adding new project
+  newProjectForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get values from form and create a new project object
+    const projectId = document.getElementById('projectId').value;
+    const projectName = document.getElementById('projectName').value;
+    const laravelVersion = document.getElementById('Laravelversion').value;
+    const projectLanguage = document.getElementById('projectLanguage').value;
+    const projectDateFormat = document.getElementById('projectDateFormat').value;
+    const projectDate = document.getElementById('projectDate').value;
+
+    const newProject = {
+      id: projectId,
+      name: projectName,
+      level: laravelVersion,
+      language: projectLanguage,
+      dateFormat: projectDateFormat,
+      dateCreated: projectDate
+    };
+    
+    // Add the new project to the projects array and reset the form
+    projects.push(newProject);
+    newProjectForm.reset();
+    newProjectForm.style.display = 'none';
+    
+    // Call the function to display the updated projects table
+    displayProjectsTable();
+  });
+
+  // Function to display the projects table
+  function displayProjectsTable() {
+    // Clear the existing table body content
+    projectTableBody.innerHTML = '';
+    
+    // Loop through the projects array and create a new table row for each project
+    for (let i = 0; i < projects.length; i++) {
+      const project = projects[i];
+      
+      const tableRow = document.createElement('tr');
+      tableRow.innerHTML = `
+        <td>${project.id}</td>
+        <td>${project.name}</td>
+        <td>${project.level}</td>
+        <td>${project.language}</td>
+        <td>${project.dateFormat}</td>
+        <td>${project.dateCreated}</td>
+      `;
+      
+      projectTableBody.appendChild(tableRow);
+    }
+  }
+</script>
+
+<table class="table" id="projectTable">
+  <thead>
+    <tr>
+      <th>Project ID</th>
+      <th>Project Name</th>
+      <th>Laravel version</th>
+      <th>Language</th>
+      <th>Date Format</th>
+      <th>Date of Creation</th>
+    </tr>
+  </thead>
+  <tbody id="projectTableBody">
+  </tbody>
+</table>
+<script>
+function displayProjectsTable() {
+  // Get a reference to the table body
+  const projectTableBody = document.getElementById('projectTableBody');
+
+  // Clear the existing table body content
+  projectTableBody.innerHTML = '';
+
+  // Loop through the projects array and create a new table row for each project
+  for (let i = 0; i < projects.length; i++) {
+    const project = projects[i];
+
+    const tableRow = document.createElement('tr');
+    tableRow.innerHTML = `
+      <td>${project.id}</td>
+      <td>${project.name}</td>
+      <td>${project.level}</td>
+      <td>${project.language}</td>
+      <td>${project.dateFormat}</td>
+      <td>${project.dateCreated}</td>
+    `;
+
+    projectTableBody.appendChild(tableRow);
+  }
+
+  // Show the table if it was hidden
+  const projectTable = document.getElementById('projectTable');
+  projectTable.style.display = 'table';
 }
+
+
+
 
 </script>
 </body>
-</html>
+
+<html>

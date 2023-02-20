@@ -31,7 +31,7 @@
                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                        <button type="button" >Login</button>
+                        <button type="button" id ="submit">Login</button>
 
                         
                     </ul>
@@ -500,6 +500,13 @@
                 </div>
             </div>
         </div>
+        <script>
+  document.getElementById("submit").addEventListener("click", function() {
+    
+      window.location.href = "/home";
+    
+  });
+</script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
