@@ -11,6 +11,22 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-        
+        <link href="{{asset('css/styles.css')}}" rel="stylesheet" />   
+        <style>
+           
+       
+#layoutSidenav {
+  display: flex;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+#layoutSidenav_content {
+  flex: 1;
+  margin-left: 300px; /* Width of the sidebar */
+  grid-column: 2 / 3;
+}
+
+ </style>       
     </head>
-    <body class="sb-nav-fixed">
+    <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;">

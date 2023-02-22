@@ -16,16 +16,42 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+       
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/core.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/icon-font.min.css')}}">
-	
 
+		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+		
+
+	
+	
+<style> .flex-container {
+	display: flex;
+}
+
+.content-warper {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+#monDiv {
+	min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
+	margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
+	margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
+	width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
+}
+
+.small-sidebar {
+	width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
+}
+.container-fluide {
+    margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
+}
+
+	</style>
 
         
     </head>
@@ -36,76 +62,89 @@
 
 
 
-<body>
+<body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
+	<div id="app" class="warpper">
+	@include('admin.partials.topbar')
+	<div id="layoutSidenav" class="flex-container">
+       @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
 
 
-<div class="pd-20 card-box mb-30">
-					<div class="clearfix">
-						
-					</div>
+
+<div class="content-warper" id="monDiv" style="">
+	<div class="content-header">
+		<div class="container-fluid p-0">
+			<div class ="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-drak">Crud Genertor Settings </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+      <section class="content">
+	     <div class="container-fluide p-0">
+           <div class="card card-default">
+
+            <div class="card-body">
+               
 					<form>
-						<div class="form-group row">
+						<div class="form-group ">
 							<label class="col-sm-12 col-md-2 col-form-label">project name</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control" type="text" placeholder="Johnny Brown">
 							</div>
 						</div>
 						
-						<div class="form-group row">
+						<div class="form-group ">
 							<label class="col-sm-12 col-md-2 col-form-label">Email</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control" value="bootstrap@example.com" type="email">
 							</div>
 						</div>
-						<div class="form-group row">
+						<div class="form-group ">
 							<label class="col-sm-12 col-md-2 col-form-label">URL</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control" value="https://getbootstrap.com" type="url">
 							</div>
 						</div>
-						<div class="form-group row">
-    <label class="col-sm-12 col-md-2 col-form-label">Language</label>
-    <div class="col-sm-12 col-md-10">
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="lang[]" id="lang-fr" value="fr">
-            <label class="form-check-label" for="lang-fr">Français</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="lang[]" id="lang-en" value="en">
-            <label class="form-check-label" for="lang-en">Anglais</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="lang[]" id="lang-es" value="es">
-            <label class="form-check-label" for="lang-es">Espagnol</label>
-        </div>
-    </div>
-</div>
+						<div class="form-group ">
+                           <label class="col-sm-12 col-md-2 col-form-label">Language</label>
+                            <div class="col-sm-12 col-md-10">
+	                        <select class="form-select" id="projectLanguage" required>
+                              <option selected disabled value="">Language</option>
+                              <option value="english">English</option>
+                              <option value="french">French</option>
+                              <option value="spanish">Spanish</option>
+                              <option value="german">German</option>
+                             </select>
+                            </div>
+                        </div>
 						
 						
 						
-						<div class="form-group row">
+						<div class="form-group ">
 							<label class="col-sm-12 col-md-2 col-form-label">Date format</label>
 							<div class="col-sm-12 col-md-10"  placeholder="Choose Date " type="text">
-								<select class="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="1">y-m-d</option>
-									<option value="2">m/d/y</option>
-									<option value="3">d-m-y</option>
-								</select>
+							<select class="form-select" id="projectDateFormat" required>
+                                       <option selected disabled value="">dd/mm/yyyy</option>
+                                               <option value="dd/mm/yyyy">dd/mm/yyyy</option>
+                                                <option value="mm/dd/yyyy">mm/dd/yyyy</option>
+                                                 <option value="yyyy-mm-dd">yyyy-mm-dd</option>
+                            </select>
 							</div>
 						</div>
+						 
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">update </button>
 						
 						
 					</form>
-					<div class="collapse collapse-box" id="basic-form1" >
-						<div class="code-box">
-							<div class="clearfix">
-								<a href="javascript:;" class="btn btn-primary btn-sm code-copy pull-left"  data-clipboard-target="#copy-pre"><i class="fa fa-clipboard"></i> Copy Code</a>
-								<a href="#basic-form1" class="btn btn-primary btn-sm pull-right" rel="content-y"  data-toggle="collapse" role="button"><i class="fa fa-eye-slash"></i> Hide Code</a>
-							</div>
-							<pre><code class="xml copy-pre" id="copy-pre">
-
-
+			        </div>
+		        </div>
+	      </div>
+       </section>
+ </div>
+								</div>
+								</div>
 							<!-- Bootstrap core JS-->
 							<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
@@ -115,5 +154,7 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+		@include('admin.partials.footer')
+   
                                 </body>
                                 </html>

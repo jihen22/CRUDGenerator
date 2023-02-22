@@ -6,16 +6,15 @@
 @include('admin.partials.header')
 
 
-<body>
+<body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;">
+<div id="app" class="wrapper">
 
 @include('admin.partials.topbar')
 <div id="layoutSidenav">
        @include('admin.partials.sidebar')
+       <div id="layoutSidenav_content">
 
 
-
-
-<div id="layoutSidenav_content">
 
     <main>
     <div class="card-header">
@@ -61,6 +60,7 @@ Create Parent menu item
                     </div>
                 </footer>
             </div>
+</div>
 </div>
 </div>
 <script>

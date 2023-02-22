@@ -2,26 +2,69 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Settings</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{{asset('assets/favicon.ico')}}" />
+        <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script> 
+
+
+        <!-- CSS pour Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Fichier JavaScript pour Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+		
+
         
 
 
 
 
-        <style>
+        
+          <style> .flex-container {
+	display: flex;
+}
+
+.content-warper {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+#monDiv {
+	min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
+	margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
+	margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
+	width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
+}
+
+.small-sidebar {
+	width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
+}
+.container-fluide {
+    margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
+}
+
+	
 
      
 
@@ -30,62 +73,137 @@
 </style>
     </head>
 
-<body>
 
-<!-- Button for adding new project -->
-<button class="btn btn-primary" id="newProjectButton">New Project</button>
+  <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-<form class="row g-3" id="newProjectForm" style="display:none;">
-  <div class="col-md-6">
-    <label for="projectId" class="form-label">Project ID</label>
-    <input type="text" class="form-control" id="projectId" required>
-  </div>
-  <div class="col-md-6">
-    <label for="projectName" class="form-label">Project Name</label>
-    <input type="text" class="form-control" id="projectName" required>
-  </div>
-  <div class="col-md-4">
-    <label for="Laravelversion" class="form-label">Laravel version</label>
-    <select class="form-select" id="Laravelversion" required>
-      <option selected disabled value="">version</option>
-      <option value="Laravel 9(PHP=>8.0.2)">Laravel 9(PHP=>8.0.2)</option>
-      <option value="Laravel 8(PHP=>7.4)">Laravel 8(PHP=>7.4)</option>
-      <option value="Laravel 7(PHP=>7.2.5)">Laravel 7(PHP=>7.2.5)</option>
-    </select>
-  </div>
-  <div class="col-md-4">
-    <label for="projectLanguage" class="form-label">Language</label>
-    <select class="form-select" id="projectLanguage" required>
-      <option selected disabled value="">Choose...</option>
-      <option value="english">English</option>
-      <option value="french">French</option>
-      <option value="spanish">Spanish</option>
-      <option value="german">German</option>
-    </select>
-  </div>
-  <div class="col-md-4">
-    <label for="projectDateFormat" class="form-label">Date Format</label>
-    <select class="form-select" id="projectDateFormat" required>
-      <option selected disabled value="">Choose...</option>
-      <option value="dd/mm/yyyy">dd/mm/yyyy</option>
-      <option value="mm/dd/yyyy">mm/dd/yyyy</option>
-      <option value="yyyy-mm-dd">yyyy-mm-dd</option>
-    </select>
-  </div>
-  <div class="col-md-4">
-    <label for="projectDate" class="form-label">Date of Creation</label>
-    <input type="date" class="form-control" id="projectDate" required>
-  </div>
-  <div class="col-12">
-    <a class="nav-link" href="{{ url('/monCrud') }}">
-    <button class="btn btn-primary" type="submit"  >Add Project</button>
-</a>
-  </div>
-</form> 
+
+<div id="app" class="wrapper">
+  @include('admin.partials.topbar')
+	  <div id="layoutSidenav" class="flex-container">
+       @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
+
+       <div class="content-warper" id="monDiv" style="">
+
+                 <div class="content-header">
+		               <div class="container-fluid p-0">
+		                  <div class ="row mb-2">
+			                	<div class="col-sm-6">
+				                  	<h1 class="m-0 text-drak">My projects </h1>
+                       </div>
+                     </div>
+                  </div>
+                </div>  
+
+                <section class="content">
+                <div class="container-fluide p-0">
+           <div class="card card-default">
+
+            <div class="card-body">
+
+
+
+
+
+           <!-- Button for adding new project -->
+           <div date-v-cd083fee>
+    <button data-v-cd083fee type="button" class="btn btn-primary" id="newProjectButton"><i data-v-cd083fee class="fas fa-plus mr-1"></i> New Project
+    </button>
+    
+
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">New Projects</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                     </div>
+                                    <div class="modal-body">
+
+          <form class="row g-3" id="newProjectForm" style="display:none;">
+                <div class="col-md-6">
+                 <label for="projectId" class="form-label">Project ID</label>
+                 <input type="text" class="form-control" id="projectId" required>
+                 </div>
+                 <div class="col-md-6">
+                  <label for="projectName" class="form-label">Project Name</label>
+                   <input type="text" class="form-control" id="projectName" required>
+                 </div>
+                <div class="col-md-4">
+                  <label for="Laravelversion" class="form-label">Laravel version</label>
+                      <select class="form-select" id="Laravelversion" required>
+                      <option selected disabled value="">version</option>
+                      <option value="Laravel 9(PHP=>8.0.2)">Laravel 9(PHP=>8.0.2)</option>
+                      <option value="Laravel 8(PHP=>7.4)">Laravel 8(PHP=>7.4)</option>
+                      <option value="Laravel 7(PHP=>7.2.5)">Laravel 7(PHP=>7.2.5)</option>
+                      </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="projectLanguage" class="form-label">Language</label>
+                      <select class="form-select" id="projectLanguage" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option value="english">English</option>
+                      <option value="french">French</option>
+                      <option value="spanish">Spanish</option>
+                      <option value="german">German</option>
+                      </select>
+                </div>
+              <div class="col-md-4">
+                <label for="projectDateFormat" class="form-label">Date Format</label>
+                   <select class="form-select" id="projectDateFormat" required>
+                   <option selected disabled value="">Choose...</option>
+                   <option value="dd/mm/yyyy">dd/mm/yyyy</option>
+                   <option value="mm/dd/yyyy">mm/dd/yyyy</option>
+                   <option value="yyyy-mm-dd">yyyy-mm-dd</option>
+                  </select>
+              </div>
+              <div class="col-md-4">
+                <label for="projectDate" class="form-label">Date of Creation</label>
+                  <input type="date" class="form-control" id="projectDate" required>
+              </div>
+              <div class="col-12">
+                 <a class="nav-link" href="{{ url('/monCrud') }}">
+                 <button class="btn btn-primary" type="submit"  >Add Project</button>
+              </a>
+             </div>
+       </form>  </div> </div> </div> </div>
+       </div>
 </div>
+</div>
+</div>
+</section> 
+<div class="card-body p-0" >
+<table class="table table-sm table-striped table-hover" id="projectTable">
+  <thead>
+    <tr>
+      <th scope="col" width="">Project ID</th>
+      <th  scope="col" >Project Name</th>
+      <th scope="col" width="160">Type</th>
+
+
+      <th  scope="col" width="130" class="text-center">Laravel version</th>
+      <th  scope="col" width="">Language</th>
+      <th scope="col" width="">Date Format</th>
+      <th scope="col" width="160">Date of Creation</th>
+      <th scope="col" ></th>
+
+
+    </tr>
+  </thead>
+  <tbody id="projectTableBody">
+  </tbody>
+</table>
+</div>
+     </div>
+<div>
+
+</div>
+
+
+
 
 
 
@@ -170,20 +288,7 @@
   }
 </script>
 
-<table class="table" id="projectTable">
-  <thead>
-    <tr>
-      <th>Project ID</th>
-      <th>Project Name</th>
-      <th>Laravel version</th>
-      <th>Language</th>
-      <th>Date Format</th>
-      <th>Date of Creation</th>
-    </tr>
-  </thead>
-  <tbody id="projectTableBody">
-  </tbody>
-</table>
+
 <script>
 function displayProjectsTable() {
   // Get a reference to the table body
