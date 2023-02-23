@@ -323,6 +323,8 @@ function displayProjectsTable() {
 
 
 </script>
+
+@include('admin.partials.footer')
 </body>
 
 <html>

@@ -50,3 +50,9 @@ Route::get('/myproject', function () {
     return view('admin.myproject');
 });
 
+
+Route::get('/myprofil', function () {
+    return view('admin.editmyprofil');
+});
+
+
