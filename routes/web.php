@@ -56,3 +56,9 @@ Route::get('/myprofil', function () {
 });
 
 
+Route::get('/password', function () {
+    return view('admin.changepassword');
+});
+
+
+

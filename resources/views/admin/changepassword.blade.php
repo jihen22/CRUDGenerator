@@ -1,4 +1,4 @@
- 
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,8 +24,11 @@
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+		
 
-        <style>
+	
+	
+<style>
 .card {
   border: 2px solid #ddd;
   border-radius: 10px;
@@ -54,73 +57,78 @@
 .container-fluide {
     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
 }
+	</style>
 
-</style>
-		  
-
+        
     </head>
-    
+
+
+
+
+
+
+
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
 	<div id="app" class="warpper">
 	@include('admin.partials.topbar')
 	<div id="layoutSidenav" class="flex-container">
        @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
 
-       
+
+
 <div class="content-warper" id="monDiv" style="">
-
-       <div class="content-header" >
-        <div class="container-fluid p-0">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark"> Edit profile </h1>
+	<div class="content-header">
+		<div class="container-fluid p-0">
+			<div class ="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-drak">Change your password </h1>
                 </div>
-            </div>    
-        </div>
-        </div>
-
-        <section class="content">
-            <div class="container-fluid p-0">
-                <div class="card card-default">
-                <div class="card-body">     
-                    <div class="row">
-                  <div class="col-md-6 offset-md-3">
-                    <form method="POST" action ="">
-                        <div class="form-group">
-                            <label for="name" class="form-label required-1">Name</label>
-                            <input type="text" id="name" name="name" value autocompletet="name" required="required" class="form-control">
-                            
-                             </div>
-                             <div class="form-group">
-                                <label for="email" class="form-label required-1"> Email </label>
-                                <input type="email" id="email" name="email" value="" autocomplete="email" required="required" class="form-control">
-                             </div>
-                            <div classs="form-group mt-5">
-                                <button type="submit" class="btn btn-primary rounded-0 text-bold"> save profil</button>
-</div>        
-                     </form>
-                  </div>
-</div>
-
             </div>
-           </div>
-            </div>    
-        <section>    
-
-
-
-</div>
+        </div>
     </div>
-    </div>     
-    @include('admin.partials.footer')
+      <section class="content">
+	     <div class="container-fluide p-0">
+           <div class="card card-default">
+
+            <div class="card-body">
+                <div class="row"> 
+                    <div class="col-md-offset-3 mx-auto">
+                        <form method="POST" action="">
+                            <input type="hidden" name ="_token" value="">
+                            <div class="form-group">
+                                <label for="current_password" class="form-label required-1">Current password</label>
+                                <input type="password" id="current paswword" autocomplete="current_password" class="form-control" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label required-1">New password</label>
+                        <input type="password" id="password" name="password" autocomplete="new-password" required="required" class="form-control">
+                        <div class="mt-3">
+                            <ul>
+                                <li>
+                                    At least 8 characters
+                                </li>
+                            </ul>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label for="password_confirmation" class="form-label required-1" > Repeat new password </label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" autocomplete="new-password" required="required" class="form-control">
+                        </div>
+                    <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-primary rounded-0 text-blod"> Save password </button> 
+                    </div>
+                     </form>
+                    </div>
+           </div>
+        </div>
+        </div>
+        </div>  
+</section>       
+</div>
+</div>
+</div>  
+
+@include('admin.partials.footer')
    
    </body>
    </html>
-
-
-
-
-
-
-
-
