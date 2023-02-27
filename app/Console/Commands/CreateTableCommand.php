@@ -28,11 +28,7 @@ class CreateTableCommand extends Command
             $columns[$name] = $type;
         }
     
-        Schema::create($table, function (Blueprint $table) use ($columns) {
-            foreach ($columns as $name => $type) {
-                $table->$type($name);
-            }
-        });
+       
     
         $this->info("Table '$table' created successfully with fields: " . implode(', ', array_keys($columns)));
         
@@ -59,7 +55,7 @@ class CreateTableCommand extends Command
     
         Artisan::call('migrate');
     
-        $this->info("Migration run successfully.");
+       $this->info("Migration run successfully.");
     }
     
 }

@@ -1,8 +1,15 @@
 <?php
+namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InterfacesController;
 use App\Http\Controllers\Menus\CrudTablesController;
+use App\Http\Controllers\CrudController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +50,7 @@ Route::get('/nonCrud', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/myproject', function () {
@@ -54,5 +61,12 @@ Route::get('/myproject', function () {
 Route::get('/myprofil', function () {
     return view('admin.editmyprofil');
 });
+Route::get('/tableinput', function () {
+    return view('Test.tableinput');
+});
+Route::post('/generate-crud', [CrudController::class, 'generateCrud'])->name('generate-crud');
+
+
+  
 
 
