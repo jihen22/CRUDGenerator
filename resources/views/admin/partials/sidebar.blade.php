@@ -49,21 +49,16 @@
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     
                             <a class="nav-link" href="{{ url('/myprofil') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
                                 Edit my profil
                             </a>
+
+                                  
+                            <a class="nav-link" href="{{ url('/password') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-lock"></i></div>
+                                Change password
+                            </a>
                                     
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"><i class="fas fa-exclamation-circle"></i> 
-                                        Change Password
-                                        <div class="sb-sidenav-collapse-arrow"></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
                                 </nav>
                             </div>
                         </div>

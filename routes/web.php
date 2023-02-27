@@ -70,3 +70,9 @@ Route::post('/generate-crud', [CrudController::class, 'generateCrud'])->name('ge
   
 
 
+Route::get('/password', function () {
+    return view('admin.changepassword');
+});
+
+
+
