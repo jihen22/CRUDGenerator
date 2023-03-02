@@ -34,10 +34,10 @@ class Kernel extends ConsoleKernel
 
     }
     protected $commands = [
-        // \App\Console\Commands\CreateMigration::class,
-        \App\Console\Commands\CreateTableCommand::class,
+     
+        \App\Console\Tablescommands\CreateTable::class,
     
-        \App\Console\Commands\GenerateCrudCommand::class
+        \App\Console\Tablescommands\Generatemodelcontfiles::class
     ];
    
 }
