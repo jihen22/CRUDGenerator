@@ -76,3 +76,9 @@ Route::get('/password', function () {
 
 
 
+Route::get('/merrry', function () {
+    return view('admin.merry');
+});
+
+
+
