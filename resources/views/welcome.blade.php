@@ -43,7 +43,7 @@
             <div class="container">
                 <div class="masthead-subheading">Welcome to our CRUD generator !</div>
                 <div class="">Create, read, update, and delete data in your database. Whether you're a developer, a data analyst, or a business owner, our app is designed to help you manage your data with ease. So go ahead, create a new record, update an existing one, or delete an old entry. We hope our app makes your work simpler and more efficient.</div>
-                <a class="btn btn-primary btn-xl " href="{{ route('configurationpage') }}">Start Project</a>
+                <a class="btn btn-primary btn-xl " href="{{ route('register') }}">Start Project</a>
 <a class="btn btn-secondary btn-xl " href="#about">Know More</a>
             </div>
         </header>

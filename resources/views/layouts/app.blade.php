@@ -15,6 +15,28 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+   
+    @push('styles')
+    
+    <style>
+        /* Change the background color of the login form */
+        .login-form {
+            background-color: #f2f2f2;
+        }
+
+        /* Change the font size of the input fields */
+        .login-form input {
+            font-size: 16px;
+        }
+
+        /* Change the color of the login button */
+        .login-form button {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+    @endpush
+
 </head>
 <body>
     <div id="app">

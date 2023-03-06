@@ -1,0 +1,17 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Feild;
+
+class Table extends Model
+{
+    protected $table = 'tableslist';
+    public function fields()
+    {
+        return $this->hasMany(Field::class);
+    }
+    use HasFactory;
+}
