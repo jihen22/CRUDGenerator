@@ -36,28 +36,24 @@
                     @csrf
                     <div class="form-group">
                         <label for="table-name">Table Name:</label>
-                        <input type="text" class="form-control" id="table-name" name="table_name">
+                        <input type="text" class="form-control" id="table-name" name="table-name">
                     </div>
 
                     <div class="form-group">
                         <label for="field-list">Field List:</label>
-                        <textarea class="form-control" id="field-list" name="field_list"></textarea>
+                        <textarea class="form-control" id="field-list" name="field-list"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="model-name">Model Name:</label>
-                        <input type="text" class="form-control" id="model-name" name="model_name">
+                        <input type="text" class="form-control" id="model-name" name="model-name">
                     </div>
 
                     <div class="form-group">
                         <label for="controller-name">Controller Name:</label>
-                        <input type="text" class="form-control" id="controller-name" name="controller_name">
+                        <input type="text" class="form-control" id="controller-name" name="controller-name">
                     </div>
 
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="use-soft-deletes" name="use_soft_deletes" value="1">
-                        <label class="form-check-label" for="use-soft-deletes">Use Soft Deletes</label>
-                    </div>
 
                     <button type="submit" class="btn btn-primary">Generate CRUD</button>
                 </form>

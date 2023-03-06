@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Tablescommands;
 
 use Illuminate\Console\Command;
 
-class GenerateCrudCommand extends Command
+class Generatemodelcontfiles extends Command
 {
-    protected $signature = 'generate:crud {table : The name of the table} {--model= : The name of the model} {--controller= : The name of the controller} {--soft-deletes}';
+    protected $signature = 'generate:crud {table : The name of the table} {--model= : The name of the model} {--controller= : The name of the controller} ';
 
     /**
      * The console command description.
@@ -40,8 +40,7 @@ class GenerateCrudCommand extends Command
 
         $this->call('make:migration', [
             'name' => "create_{$tableName}_table",
-            '--create' => $tableName,
-            '--' . ($this->option('soft-deletes') ? '' : 'no-') . 'timestamps' => true,
+            '--create' => $tableName
         ]);
 
         $this->info('CRUD generated successfully!');

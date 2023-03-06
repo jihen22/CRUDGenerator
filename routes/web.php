@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\CrudController;
@@ -64,7 +65,7 @@ Route::get('/myprofil', function () {
 Route::get('/tableinput', function () {
     return view('Test.tableinput');
 });
-Route::post('/generate-crud', [CrudController::class, 'generateCrud'])->name('generate-crud');
+Route::post('/generate-crud', [tablefilesController::class, 'generateFiles'])->name('generate-crud');
 
 
   

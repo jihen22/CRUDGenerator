@@ -66,9 +66,34 @@
     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
 }
 	</style>
+<style>
+.intro {
+  height: 100%;
+}
+
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card {
+  border-radius: .5rem;
+}
+
+.mask-custom {
+  background: rgba(24, 24, 16, .2);
+  border-radius: 2em;
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}</style>
 
         
     </head>
+   
 
 
   
@@ -80,63 +105,78 @@
 
   
     
-<div class="content-warper" id="monDiv" style="">
+  <div class="content-warper" id="monDiv" style="">
 	<div class="content-header">
-		<div class="container-fluid p-0">
-			<div class ="row mb-2">
-				<div class="col-sm-6">
-					<h1 class="m-0 text-drak">Settings </h1>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <section class="content">
+	<section class="content">
             <div class="container-fluid p-0">
                 <div class="card card-default">
+                <div class="card-header"class="col-sm-6"><h3>Settings</h3></div>
                 <div class="card-body">     
                     <div class="row">
                   <div class="col-md-6 offset-md-3">
-                        <form method="POST" action="/create-table">
+                        <form method="POST" action="/generate-crud">
             <div class="form-group">
                 <label for="tableName">Table Name:</label>
                 <input type="text" id="tableName" name="tableName" required>
             </div>
             <div class="form-group">
-                <label for="parentTable">Parent Table:</label>
-                <input type="text" id="parentTable" name="parentTable">
+                <label for="ModelName">Model name</label>
+                <input type="text" id="ModelName" name="ModelName">
+            </div>
+            <div class="form-group">
+                <label for="ControllerName">Controller name</label>
+                <input type="text" id="ControllerName" name="ControllerName">
             </div>
             <div class="form-group">
                 <label>Which CRUD operations do you want to perform?</label>
                 <div class="checkbox-group">
                     <input type="checkbox" id="createCheckbox" name="createCheckbox" value="create">
                     <label for="createCheckbox">Create</label>
-                </div>
+                </div></br>
                 <div class="checkbox-group">
                     <input type="checkbox" id="readCheckbox" name="readCheckbox" value="read">
                     <label for="readCheckbox">Read</label>
-                </div>
+                </div></br>
                 <div class="checkbox-group">
                     <input type="checkbox" id="UpdateCheckBox" name="UpdateCheckBox" value="read">
                     <label for="UpdateCheckBox">Update</label>
-                </div>
+                </div></br>
                 <div class="checkbox-group">
                     <input type="checkbox" id="DeleteCheckbox" name="DeleteCheckbox" value="read">
                     <label for="DeleteCheckbox">Delete</label>
-                </div>
+                </div></br>
             </div>
          
         
     </div>
 </div>
-</div>
-
-
-      <table class="table" id="table">
-        <thead>
-          <tr>
-            <th>Feild Type</th>
+</div></div></div>
+<div class="content-warper" id="monDiv" style="">
+	<div class="content-header">
+	<section class="content">
+            <div class="container-fluid p-0">
+                <div class="card ">
+                <div class="card-header"class="col-sm-6"><h3>TableFeilds</h3></div>
+                <div class="card-body">     
+                    <div class="row">
+  <section class="intro">
+  <div class="bg-image h-100" >
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-borderless mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                          </div>
+                        </th>
+                       <th>Feild Type</th>
             <th>Database Column name</th>
             <th>Visual title</th>
             <th>In List</th>
@@ -150,10 +190,16 @@
             <th>Default Value</th>
             <th>edit</th>
             <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" checked/>
+                          </div>
+                        </th>
+                        
 <th>auto_increment</th>
 
 <th>id</th>
@@ -168,9 +214,20 @@
 <th>-</th>
 <th>-</th>
 <th>-</th>
-</tr>
-<tr>
-<th>datetime</th>
+
+                        <td>
+                          <button type="button" class="btn btn-danger btn-sm px-3">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
+                          </div>
+                        </th>
+                        <th>datetime</th>
 
 <th>created_at</th>
 <th>Created at </th>
@@ -184,9 +241,19 @@
 <th>-</th>
 <th>-</th>
 <th>-</th>
-</tr>
-<tr>
-<th>datetime</th>
+                        <td>
+                          <button type="button" class="btn btn-danger btn-sm px-3">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" checked/>
+                          </div>
+                        </th>
+                        <th>datetime</th>
 <th>updated_at</th>
 
 <th>Updated at</th>
@@ -201,9 +268,19 @@
 <th>-</th>
 <th>-</th>
 <th>-</th>
-</tr>
-<tr>
-<th>datetime</th>
+                        <td>
+                          <button type="button" class="btn btn-danger btn-sm px-3">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4" checked/>
+                          </div>
+                        </th>
+                        <th>datetime</th>
 <th>deleted_at</th>
 
 <th>Deleted at</th>
@@ -218,12 +295,30 @@
 <th>-</th>
 <th>-</th>
 <th>-</th>
-</tr>
+                        <td>
+                          <button type="button" class="btn btn-danger btn-sm px-3">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </td>
+                      </tr>
+                     
           <!-- Empty table rows, will be populated with new data -->
-        </tbody>
-      </table>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       <div class="form-group mt-4">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFeildModal">Add a Feild</button>
+</div>
+</div>
 </div>
       <!-- Add Feild modal -->
       <div class="modal fade" id="addFeildModal" tabindex="-1" role="dialog" aria-labelledby="addFeildModalLabel">
@@ -342,15 +437,19 @@
 </div>
 </div></div>
 <div class="form-group mt-4">
-<button type="submit" class="btn btn-primary rounded-0 text-blod" > Save Crud</button>
+
 </div>
 </form>
+
 </div>
            </div>
+           <button type="submit" class="btn btn-primary rounded-0 text-blod" > Save Crud</button>
         </div>
         </div>
         </div>  
+        
 </section>
+
 
 </div>
 </div>
