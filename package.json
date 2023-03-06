@@ -13,8 +13,12 @@
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "sass": "^1.56.1",
+<<<<<<< HEAD
+        "vite": "^4.1.4"
+=======
         "vite": "^4.0.0",
         "vue": "^3.2.37"
+>>>>>>> 01700e4e7e29efc948b9faf91c5aec42221b29f4
     },
     "dependencies": {
         "sweetalert2": "^11.7.1"
