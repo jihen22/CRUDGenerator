@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('model144s', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('table1577777751111557777777777555', function (Blueprint $table) {
+                                    $table->string('name:string');
+                        $table->string('email:string');
+                        $table->timestamps();
         });
     }
 
@@ -26,6 +27,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model144s');
+        Schema::dropIfExists('table1577777751111557777777777555');
     }
 };
+
