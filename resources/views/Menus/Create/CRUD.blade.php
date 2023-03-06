@@ -38,9 +38,11 @@
 	
 <style>
 .card {
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  padding: 30px;
+  margin: 0 auto;
+  max-width: 1000px; /* ou la valeur de votre choix */
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem;
 }
 
 .flex-container {
@@ -54,8 +56,8 @@
 }
 #monDiv {
 	min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
-	margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
-	margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
+	margin-right: 80px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
+	margin-left: 80px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
 	width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
 }
 
@@ -79,8 +81,11 @@ table th {
 }
 
 .card {
-  border-radius: .5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
 
 .mask-custom {
   background: rgba(24, 24, 16, .2);
@@ -107,68 +112,70 @@ table th {
     
   <div class="content-warper" id="monDiv" style="">
 	<div class="content-header">
-	<section class="content">
-            <div class="container-fluid p-0">
-                <div class="card card-default">
+    <section class="content">
+        <div class="container-fluid p-0">
+            <div class="card card-default">
                 <div class="card-header"class="col-sm-6"><h3>Settings</h3></div>
                 <div class="card-body">     
                     <div class="row">
-                  <div class="col-md-6 offset-md-3">
-                        <form method="POST" action="/generate-crud">
-            <div class="form-group">
-                <label for="tableName">Table Name:</label>
-                <input type="text" id="tableName" name="tableName" required>
+                        <div class="col-md-6 offset-md-3">
+                            <form method="POST" action="/generate-crud">
+                                <div class="form-group">
+                                    <label for="tableName">Table Name:</label>
+                                    <input type="text" id="tableName" name="tableName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ModelName">Model name</label>
+                                    <input type="text" id="ModelName" name="ModelName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ControllerName">Controller name</label>
+                                    <input type="text" id="ControllerName" name="ControllerName">
+                                </div>
+                                <div class="form-group">
+                                    <label>Which CRUD operations do you want to perform?</label>
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="createCheckbox" name="createCheckbox" value="create">
+                                        <label for="createCheckbox">Create</label>
+                                    </div></br>
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="readCheckbox" name="readCheckbox" value="read">
+                                        <label for="readCheckbox">Read</label>
+                                    </div></br>
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="UpdateCheckBox" name="UpdateCheckBox" value="read">
+                                        <label for="UpdateCheckBox">Update</label>
+                                    </div></br>
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="DeleteCheckbox" name="DeleteCheckbox" value="read">
+                                        <label for="DeleteCheckbox">Delete</label>
+                                    </div></br>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="ModelName">Model name</label>
-                <input type="text" id="ModelName" name="ModelName">
-            </div>
-            <div class="form-group">
-                <label for="ControllerName">Controller name</label>
-                <input type="text" id="ControllerName" name="ControllerName">
-            </div>
-            <div class="form-group">
-                <label>Which CRUD operations do you want to perform?</label>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="createCheckbox" name="createCheckbox" value="create">
-                    <label for="createCheckbox">Create</label>
-                </div></br>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="readCheckbox" name="readCheckbox" value="read">
-                    <label for="readCheckbox">Read</label>
-                </div></br>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="UpdateCheckBox" name="UpdateCheckBox" value="read">
-                    <label for="UpdateCheckBox">Update</label>
-                </div></br>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="DeleteCheckbox" name="DeleteCheckbox" value="read">
-                    <label for="DeleteCheckbox">Delete</label>
-                </div></br>
-            </div>
-         
+        </div>
         
-    </div>
-</div>
-</div></div></div>
-<div class="content-warper" id="monDiv" style="">
-	<div class="content-header">
-	<section class="content">
-            <div class="container-fluid p-0">
-                <div class="card ">
-                <div class="card-header"class="col-sm-6"><h3>TableFeilds</h3></div>
+        <div class="container-fluid p-0">
+            <div class="card">
+                <div class="card-header"class="col-sm-6"><h3>TableFields</h3></div>
                 <div class="card-body">     
                     <div class="row">
-  <section class="intro">
-  <div class="bg-image h-100" >
-    <div class="mask d-flex align-items-center h-100">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-borderless mb-0">
+                        <section class="intro">
+                            <div class="bg-image h-100" >
+                                <div class="mask d-flex align-items-center h-100">
+                                    <div class="container">
+                                        <div class="row justify-content-center">
+                                            <div class="col-12">
+                                                <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-borderless mb-0">
+                                                               
+                                                                               
+
                     <thead>
                       <tr>
                         <th scope="col">
@@ -313,13 +320,11 @@ table th {
       </div>
     </div>
   </div>
-</section>
 
       <div class="form-group mt-4">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFeildModal">Add a Feild</button>
 </div>
-</div>
-</div>
+
       <!-- Add Feild modal -->
       <div class="modal fade" id="addFeildModal" tabindex="-1" role="dialog" aria-labelledby="addFeildModalLabel">
         <div class="modal-dialog" role="document">
@@ -443,13 +448,14 @@ table th {
 
 </div>
            </div>
-           <button type="submit" class="btn btn-primary rounded-0 text-blod" > Save Crud</button>
-        </div>
+           
         </div>
         </div>  
         
 </section>
-
+<div class="form-group mt-4">
+           <button type="submit" class="btn btn-primary rounded-0 text-blod" > Save Crud</button></div>
+        </div>
 
 </div>
 </div>

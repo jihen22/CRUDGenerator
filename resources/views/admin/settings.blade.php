@@ -28,7 +28,15 @@
 
 	
 	
-<style> .flex-container {
+<style> 
+.card {
+  margin: 0 auto;
+  max-width: 1000px; /* ou la valeur de votre choix */
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.flex-container {
 	display: flex;
 }
 

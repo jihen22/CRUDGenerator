@@ -4,7 +4,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">name of project</div>
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ url('/d') }}">
                                 <div class="sb-nav-link-icon" ><i class="fas fa-bars"></i></div>
                                 Menus
                             </a>
@@ -36,10 +36,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 My project
                             </a>
-                            <a class="nav-link" href="">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
+                            
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                  My profile
