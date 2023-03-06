@@ -49,9 +49,7 @@ Route::get('/nonCrud', function () {
     return view('Menus.Create.NonCRUD');
 });
 
-Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/myproject', function () {
@@ -83,3 +81,7 @@ Route::get('/merrry', function () {
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');

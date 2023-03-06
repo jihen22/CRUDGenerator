@@ -38,10 +38,7 @@ class Generatemodelcontfiles extends Command
             '--model' => $modelName,
         ]);
 
-        $this->call('make:migration', [
-            'name' => "create_{$tableName}_table",
-            '--create' => $tableName
-        ]);
+       
 
         $this->info('CRUD generated successfully!');
     }

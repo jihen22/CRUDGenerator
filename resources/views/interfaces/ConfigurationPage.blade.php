@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
     
-    <title>Admin Panel Configuration</title>
+    <title>Project Settings</title>
 
     <style>
       .form-group {
@@ -31,8 +31,28 @@
   <body>
 
 <div class="container my-5">
-  <h1 class="text-center">Admin Panel configuration</h1>
+  <h1 class="text-center">Start project</h1>
   <form>
+   
+    <div class="card my-3">
+      <div class="card-header">
+        Admin Login
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+        <div class="form-group">
+          <label for="email">Email Adresse</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter email address" required>
+        </div>
+          <label for="adminUsername">Username</label>
+          <input type="text" class="form-control" id="adminUsername" placeholder="Enter admin username" required>
+        </div>
+        <div class="form-group">
+          <label for="adminPassword">Password</label>
+          <input type="password" class="form-control" id="adminPassword" placeholder="Enter admin password" required>
+        </div>
+      </div>
+    </div>
     <div class="card my-3">
       <div class="card-header">
         Database Connection
@@ -50,42 +70,10 @@
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" placeholder="Enter password" required>
         </div>
-        <div class="form-group">
-          <label for="database">Database</label>
-          <input type="text" class="form-control" id="database" placeholder="Enter database name" required>
-        </div>
+     
       </div>
     </div>
-    <div class="card my-3">
-      <div class="card-header">
-        Admin Login
-      </div>
-      <div class="card-body">
-        <div class="form-group">
-          <label for="adminUsername">Username</label>
-          <input type="text" class="form-control" id="adminUsername" placeholder="Enter admin username" required>
-        </div>
-        <div class="form-group">
-          <label for="adminPassword">Password</label>
-          <input type="password" class="form-control" id="adminPassword" placeholder="Enter admin password" required>
-        </div>
-      </div>
-    </div>
-    <div class="card my-3">
-      <div class="card-header">
-        Email Settings
-      </div>
-      <div class="card-body">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter email address" required>
-        </div>
-        <div class="form-group">
-          <label for="emailPassword">Password</label>
-          <input type="password" class="form-control" id="emailPassword" placeholder="Enter email password" required>
-        </div>
-      </div>
-    </div>
+
     <div class="card my-3">
       <div class="card-header">
         Application Settings
@@ -107,7 +95,7 @@
 </div>
 </div>
 </div>
-  <button type="submit" class="btn btn-primary" id="submitButton">Create Admin panel</button>
+  <button type="submit" class="btn btn-primary" id="submitButton">Start project</button>
 
 
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Table;
+use App\Table;
 
-class feild extends Model
+class Field extends Model
 {
-    protected $table = 'feilds_list';
+    protected $table = 'feildslist';
     public function tables()
     {
         return $this->belongsTo(Table::class);

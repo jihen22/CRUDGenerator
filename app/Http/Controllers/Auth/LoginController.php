@@ -20,13 +20,17 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+    /**
+     * Override the username method to use the 'email' field instead of 'username'
+     */
+  
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/d';
+
 
     /**
      * Create a new controller instance.
@@ -37,4 +41,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function username()
+    { return 'username';
+    }
+    protected function authenticated($request, $user)
+{
+   return redirect('http://localhost:8000/d');
+}
+
+
 }

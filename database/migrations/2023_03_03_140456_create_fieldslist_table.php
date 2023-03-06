@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fields_list', function (Blueprint $table) {
+        Schema::create('fieldslist', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('table_id');
             $table->string('field_type');
