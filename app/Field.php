@@ -8,7 +8,7 @@ use App\Table;
 
 class Field extends Model
 {
-    protected $table = 'feildslist';
+    protected $table = 'fieldslist';
     public function tables()
     {
         return $this->belongsTo(Table::class);

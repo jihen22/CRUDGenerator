@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jane231;
+use App\Models\Sales1model2;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class cont1444 extends Controller
+class sales1controller2 extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class cont1444 extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\jane231  $jane231
+     * @param  \App\Models\Sales1model2  $sales1model2
      * @return \Illuminate\Http\Response
      */
-    public function show(jane231 $jane231)
+    public function show(Sales1model2 $sales1model2)
     {
         //
     }
@@ -53,10 +53,10 @@ class cont1444 extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\jane231  $jane231
+     * @param  \App\Models\Sales1model2  $sales1model2
      * @return \Illuminate\Http\Response
      */
-    public function edit(jane231 $jane231)
+    public function edit(Sales1model2 $sales1model2)
     {
         //
     }
@@ -65,10 +65,10 @@ class cont1444 extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\jane231  $jane231
+     * @param  \App\Models\Sales1model2  $sales1model2
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, jane231 $jane231)
+    public function update(Request $request, Sales1model2 $sales1model2)
     {
         //
     }
@@ -76,10 +76,10 @@ class cont1444 extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\jane231  $jane231
+     * @param  \App\Models\Sales1model2  $sales1model2
      * @return \Illuminate\Http\Response
      */
-    public function destroy(jane231 $jane231)
+    public function destroy(Sales1model2 $sales1model2)
     {
         //
     }
