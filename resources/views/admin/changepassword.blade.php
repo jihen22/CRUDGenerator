@@ -30,9 +30,11 @@
 	
 <style>
 .card {
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  padding: 30px;
+  margin: 0 auto;
+  max-width: 1000px; /* ou la valeur de votre choix */
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem;
 }
 
 .flex-container {
