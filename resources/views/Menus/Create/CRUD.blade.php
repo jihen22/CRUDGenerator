@@ -326,15 +326,23 @@ table th {
 </div>
 
       <!-- Add Feild modal -->
+      <form method="POST" action="{{ route('tablefiles.generate') }}">
+    @csrf
       <div class="modal fade" id="addFeildModal" tabindex="-1" role="dialog" aria-labelledby="addFeildModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
+
               <h4 class="modal-title" id="addProjectModalLabel">Feild Settings</h4>
             </div>
             <div class="modal-body">
               <form id ="add-Feild-form">
                 <div class="form-group">
+
+
+
+
+                
                   <label for="FeildType">Feild Type</label>
                  
 <select id="FeildType" name="field-type">

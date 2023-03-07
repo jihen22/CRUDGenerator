@@ -2,8 +2,10 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">name of project</div>
+                  
+                    <div class="nav">
+             <div class="sb-sidenav-menu-heading">{{ $nameproject }}</div>
+
                             <a class="nav-link" href="{{ url('/d') }}">
                                 <div class="sb-nav-link-icon" ><i class="fas fa-bars"></i></div>
                                 Menus

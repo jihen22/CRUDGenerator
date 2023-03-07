@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -52,7 +53,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string',  'max:255', 'unique:users'],
+            'nameproject' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            
         ]);
     }
 
@@ -68,12 +71,17 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
+            'nameproject' => $data['nameproject'],
             'password' => Hash::make($data['password']),
+            
         ]);
     }
     protected function authenticated($request, $user)
     {
+       
+       
        return redirect('/login');
+
     }
-    
+   
 }

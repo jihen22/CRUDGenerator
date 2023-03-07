@@ -34,9 +34,7 @@ Route::get('/Interfaces/Tables',[InterfacesController::class,'Tables'])->name('I
 Route::get('/Interfaces/smth',[InterfacesController::class,'smth'])->name('Intefaces.smth');
 Route::get('/Interfaces/smth2',[InterfacesController::class,'smth2'])->name('Intefaces.smth2');
 
-Route::get('/d', function () {
-    return view('admin.dashboard');
-});
+
 
 Route::get('/settings', function () {
     return view('admin.settings');
@@ -85,3 +83,7 @@ Route::get('/merrry', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+Route::get('/d', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
+
