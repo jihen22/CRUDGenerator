@@ -67,7 +67,9 @@ protected function buildColumns(array $columns)
         $method = "{$column['type']}('{$column['name']}')";
 
         return sprintf("%s%s", str_repeat(' ', 12), "            \$table->{$method};");
-    }, $columns);
+    }, array_filter($columns, function($column) {
+        return isset($column['name']) && isset($column['type']);
+    }));
 
     if (!empty($columnStatements)) {
         $columnStatements[] = str_repeat(' ', 12) . '            $table->timestamps();';

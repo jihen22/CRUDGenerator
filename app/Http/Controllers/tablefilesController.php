@@ -45,25 +45,27 @@ class tablefilesController extends Controller{
                 if ($value === "true" || $value === "false") {
                     $value = filter_var($value, FILTER_VALIDATE_BOOLEAN);
                 }
-
+if($key == "Name" || $key=="Type"){
                 $fieldArray[$key] = $value;
             }
-
+            $fieldArray2[$key] = $value;
+            }
+           
             $newField = new Field();
             $newField->table_id = $table->id;
             $newField->field_type = $fieldArray['Type'];
             $newField->database_column_name = $fieldArray['Name'];
-            $newField->visual_title = $fieldArray['Title'];
-            $newField->in_list = $fieldArray['In List'];
-            $newField->in_create = $fieldArray['In Create'];
-            $newField->in_show = $fieldArray['In Show'];
-            $newField->in_edit = $fieldArray['In Edit'];
-            $newField->required = $fieldArray['Required'];
-            $newField->max = isset($fieldArray['Max']) ? $fieldArray['Max'] : null;
-            $newField->min = isset($fieldArray['Min']) ? $fieldArray['Min'] : null;
-            $newField->default_value = isset($fieldArray['Default']) ? $fieldArray['Default'] : null;
-            $newField->edit = isset($fieldArray['Edit']) ? $fieldArray['Edit'] : true;
-            $newField->delete = isset($fieldArray['Delete']) ? $fieldArray['Delete']:true;
+            $newField->visual_title = $fieldArray2['Title'];
+            $newField->in_list = $fieldArray2['In List'];
+            $newField->in_create = $fieldArray2['In Create'];
+            $newField->in_show = $fieldArray2['In Show'];
+            $newField->in_edit = $fieldArray2['In Edit'];
+            $newField->required = $fieldArray2['Required'];
+            $newField->max = isset($fieldArray2['Max']) ? $fieldArray2['Max'] : null;
+            $newField->min = isset($fieldArray2['Min']) ? $fieldArray2['Min'] : null;
+            $newField->default_value = isset($fieldArray2['Default']) ? $fieldArray2['Default'] : null;
+            $newField->edit = isset($fieldArray2['Edit']) ? $fieldArray2['Edit'] : true;
+            $newField->delete = isset($fieldArray2['Delete']) ? $fieldArray2['Delete']:true;
 
             $newField->save();
         }

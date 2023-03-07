@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jane124', function (Blueprint $table) {
+        Schema::create('jane12223', function (Blueprint $table) {
                                     $table->string('Type: "text"');
                         $table->string('Name: "name"');
                         $table->string('Title: "Name"');
@@ -50,7 +50,7 @@ Type: "password"');
      */
     public function down()
     {
-        Schema::dropIfExists('jane124');
+        Schema::dropIfExists('jane12223');
     }
 };
 
