@@ -36,9 +36,7 @@ Route::get('/Interfaces/smth2',[InterfacesController::class,'smth2'])->name('Int
 
 
 
-Route::get('/settings', function () {
-    return view('admin.settings');
-});
+
 //Menus routes
 Route::get('/CRUD', function () {
     return view('Menus.Create.CRUD');
@@ -50,14 +48,10 @@ Route::get('/nonCrud', function () {
 
 
 
-Route::get('/myproject', function () {
-    return view('admin.myproject');
-});
 
 
-Route::get('/myprofil', function () {
-    return view('admin.editmyprofil');
-});
+
+
 Route::get('/tableinput', function () {
     return view('Test.tableinput');
 });
@@ -86,4 +80,26 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/d', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
+
+Route::get('/settings', [SettingsController::class, 'settings'])->name('admin.settings');
+
+Route::get('/myproject', [MyprojectController::class, 'myproject'])->name('admin.myproject');
+
+
+
+Route::get('/password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'password'])
+    ->name('admin.changepassword')
+    ->middleware('auth');
+
+    Route::post('/password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'changePassword'])
+    ->name('admin.changepassword')
+    ->middleware('auth');
+
+
+
+    Route::post('/myprofil', [ProfileController::class, 'updateName'])->name('admin.editmyprofil');
+
+    Route::get('/myprofil', [ProfileController::class, 'editmyprofil'])->name('admin.editmyprofil');
+
+
 

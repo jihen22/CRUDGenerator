@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {  
-     public function dashboard()
-    {
-        $user = Auth::user();
-        $nameproject = $user->nameproject;
+    public function dashboard()
+   {
+       $user = Auth::user();
+       $nameproject = $user->nameproject;
 
-        return view('admin.dashboard', compact('nameproject'));
-    }
+       return view('admin.dashboard')->with('nameproject', $nameproject);
+   }
     
 }
