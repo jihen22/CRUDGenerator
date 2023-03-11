@@ -13,22 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fieldslist', function (Blueprint $table) {
+        Schema::create('fieldslist3', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('table_id');
             $table->string('field_type');
             $table->string('database_column_name');
+            $table->string('validation');
             $table->string('visual_title');
-            $table->boolean('in_list');
-            $table->boolean('in_create');
-            $table->boolean('in_show');
-            $table->boolean('in_edit');
-            $table->boolean('required');
+            $table->string('in_list');
+            $table->string('in_create');
+            $table->string('in_show');
+            $table->string('in_edit');
             $table->integer('max')->nullable();
             $table->integer('min')->nullable();
-            $table->string('default_value')->nullable();
-            $table->boolean('edit')->default(true);
-            $table->boolean('delete')->default(true);
+            $table->integer('default_value')->nullable();
+       
             $table->timestamps();
 
             $table->foreign('table_id')->references('id')->on('tableslist');
@@ -42,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feildslist');
+        Schema::dropIfExists('feildslist3');
     }
 };

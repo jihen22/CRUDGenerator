@@ -11,83 +11,67 @@ class tablefilesController extends Controller{
     
 
     public function generateFiles(Request $request)
-    {
-        $validatedData = $request->validate([
-            'table-name' => 'required|string|max:255',
-            'field-list' => 'required|string', 
-            'model-name' => 'nullable|string|max:255',
-            'controller-name' => 'nullable|string|max:255'
-        ]);
+{ 
+    $rules = [
+        'table-name' => 'required|string|max:255',
+        'model-name' => 'required|string|max:255',
+        'controller-name' => 'required|string|max:255',
+        'field_type' => 'required|string|max:255',
+        'DBCName' => 'required|string|max:255',
+        'Validation' => 'required|string|max:255',
+        'VisualTitle' => 'required|string|max:255',
+        'inlist' => 'required|string|max:255',
+        'increate' => 'required|string|max:255',
+        'inedit' => 'required|string|max:255',
+        'inshow' => 'required|string|max:255',
+        'field-max-limit' => 'nullable|integer',
+        'field-min-limit' => 'nullable|integer',
+        'field-default-value' => 'nullable|string|max:255',
+    ];
 
-        //Save table name in tables_list table
-       
-        // Save table name in tables_list table
-        $table = new Table();
-        $table->name = $validatedData['table-name'];
-        $table->save();
-       
-        
-        //Save fields in fieldslist table
-        $fields = explode("\n", $validatedData['field-list']);
+    $validatedData = $request->validate($rules);
 
-        foreach ($fields as $field) {
-            // Parse the field data into an array
-            $fieldArray = [];
-            $fieldData = explode(',', $field);
+    // Save table name in tables_list table
+    $table = Table::create(['name' => $validatedData['table-name']]);
 
-            foreach ($fieldData as $data) {
-                $data = trim($data);
-                $keyValue = explode(':', $data);
-                $key = trim($keyValue[0]);
-                $value = trim($keyValue[1], ' "');
+    // Save fields in fields table
+    $fieldsData = [
+        'table_id' => $table->id,
+        'field_type' => $validatedData['field_type'],
+        'database_column_name' => $validatedData['DBCName'],
+        'validation' => $validatedData['Validation'],
+        'visual_title' => $validatedData['VisualTitle'],
+        'in_list' => $validatedData['inlist'],
+        'in_create' => $validatedData['increate'],
+        'in_edit' => $validatedData['inedit'],
+        'in_show' => $validatedData['inshow'],
+        'max' => $validatedData['field-max-limit'],
+        'min' => $validatedData['field-min-limit'],
+        'default_value' => $validatedData['field-default-value'],
+    ];
 
-                // If the value is "true" or "false", convert it to a boolean
-                if ($value === "true" || $value === "false") {
-                    $value = filter_var($value, FILTER_VALIDATE_BOOLEAN);
-                }
-if($key == "Name" || $key=="Type"){
-                $fieldArray[$key] = $value;
-            }
-            $fieldArray2[$key] = $value;
-            }
-           
-            $newField = new Field();
-            $newField->table_id = $table->id;
-            $newField->field_type = $fieldArray['Type'];
-            $newField->database_column_name = $fieldArray['Name'];
-            $newField->visual_title = $fieldArray2['Title'];
-            $newField->in_list = $fieldArray2['In List'];
-            $newField->in_create = $fieldArray2['In Create'];
-            $newField->in_show = $fieldArray2['In Show'];
-            $newField->in_edit = $fieldArray2['In Edit'];
-            $newField->required = $fieldArray2['Required'];
-            $newField->max = isset($fieldArray2['Max']) ? $fieldArray2['Max'] : null;
-            $newField->min = isset($fieldArray2['Min']) ? $fieldArray2['Min'] : null;
-            $newField->default_value = isset($fieldArray2['Default']) ? $fieldArray2['Default'] : null;
-            $newField->edit = isset($fieldArray2['Edit']) ? $fieldArray2['Edit'] : true;
-            $newField->delete = isset($fieldArray2['Delete']) ? $fieldArray2['Delete']:true;
+    Field::create($fieldsData);
 
-            $newField->save();
-        }
+    // Call artisan command to generate files
+    $modelName = $validatedData['model-name'] ?? Str::studly($table->name);
+    $controllerName = $validatedData['controller-name'] ?? "{$modelName}Controller";
+    $fieldsOption = $validatedData['DBCName'] . ',' . $validatedData['field_type'];
+  
 
+    $options = [
+        'table' => $table->name,
+        '--model' => $modelName,
+        '--controller' => $controllerName,
+        '--fields' => [$fieldsOption],
+    ];
 
-        // Call artisan command to generate files
-        $modelName = $validatedData['model-name'] ?? Str::studly($table->name);
-        $controllerName = $validatedData['controller-name'] ?? "{$modelName}Controller";
-        $options = [
-            'table' => $table->name,
-            'fields' => $validatedData['field-list'], 
-            '--model' => $modelName,
-            '--controller' => $controllerName,
-        ];
-        Artisan::call('create:table', $options);
+    Artisan::call('create:table', $options);
 
-        
-    }
+    return redirect('/CRUD')->with('success', 'Files generated successfully!');
+}
+
+    
     
     
 }
-//line to try 
-//Type: "text", Name: "name", Title: "Name", In List: true, In Create: true, In Show: true, In Edit: true, Required: true
-//Type: "email", Name: "email", Title: "Email", In List: true, In Create: true, In Show: true, In Edit: true, Required: true
-//Type: "password", Name: "password", Title: "Password", In List: false, In Create: true, In Show: false, In Edit: true, Required: true, Min: 6
+

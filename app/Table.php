@@ -11,6 +11,9 @@ use App\Feild;
 class Table extends Model
 {
     protected $table = 'tableslist';
+    protected $fillable = [
+        'name',
+    ];
     public function fields()
     {
         return $this->hasMany(Field::class);

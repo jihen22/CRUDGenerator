@@ -27,14 +27,8 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/',function(){
     return view('welcome');
 });
-Route::get('/Interfaces/loging',[InterfacesController::class,'loging'])->name('Interfaces.loging');
-Route::get('/interfaces/configurationpage', [\App\Http\Controllers\InterfacesController::class, 'ConfigurationPage'])->name('configurationpage');
 
-Route::get('/Interfaces/Tables',[InterfacesController::class,'Tables'])->name('Intefaces.Tables');
-Route::get('/Interfaces/smth',[InterfacesController::class,'smth'])->name('Intefaces.smth');
-Route::get('/Interfaces/smth2',[InterfacesController::class,'smth2'])->name('Intefaces.smth2');
-
-Route::get('/d', function () {
+Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
 
@@ -60,10 +54,11 @@ Route::get('/myproject', function () {
 Route::get('/myprofil', function () {
     return view('admin.editmyprofil');
 });
-Route::get('/tableinput', function () {
-    return view('Test.tableinput');
-});
+
+
 Route::post('/generate-crud', [tablefilesController::class, 'generateFiles'])->name('generate-crud');
+//Route::post('/SaveFields', [tablefilesController::class, 'SaveFields'])->name('SaveFields');
+
 
 
   
@@ -73,11 +68,6 @@ Route::get('/password', function () {
     return view('admin.changepassword');
 });
 
-
-
-Route::get('/merrry', function () {
-    return view('admin.merry');
-});
 
 
 

@@ -13,7 +13,7 @@ class Generatemodelcontfiles extends Command
      *
      * @var string
      */
-    protected $description = 'Generate CRUD operations for a given table';
+    protected $description = 'Generate Model and controller for a given table';
 
     /**
      * Execute the console command.
@@ -39,7 +39,6 @@ class Generatemodelcontfiles extends Command
         ]);
 
        
-
-        $this->info('CRUD generated successfully!');
+        $this->info('Model and controller generated successfully!');
     }
 }

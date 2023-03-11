@@ -46,7 +46,7 @@ class LoginController extends Controller
     }
     protected function authenticated($request, $user)
 {
-   return redirect('http://localhost:8000/d');
+   return redirect('http://localhost:8000/dashboard');
 }
 
 

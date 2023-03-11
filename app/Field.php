@@ -8,9 +8,14 @@ use App\Table;
 
 class Field extends Model
 {
-    protected $table = 'fieldslist';
+    protected $table = 'fieldslist3';
+    protected $fillable = [
+        'table_id','field_type', 'database_column_name', 'validation' ,'visual_title', 'in_list', 'in_create' , 'in_edit' , 'in_show','max','min','default_value'
+
+    ];
     public function tables()
     {
+
         return $this->belongsTo(Table::class);
     }
 
