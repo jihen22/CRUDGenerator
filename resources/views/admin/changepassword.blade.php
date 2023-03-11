@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
         <title>Settings</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{asset('assets/favicon.ico')}}" />
@@ -17,8 +20,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
        
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
@@ -95,11 +97,13 @@
             <div class="card-body">
                 <div class="row"> 
                     <div class="col-md-offset-3 mx-auto">
-                        <form method="POST" action="">
-                            <input type="hidden" name ="_token" value="">
+                        <form method="POST" action="{{ route('admin.changepassword') }}">
+                        @csrf 
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            
                             <div class="form-group">
                                 <label for="current_password" class="form-label required-1">Current password</label>
-                                <input type="password" id="current paswword" autocomplete="current_password" class="form-control" required="required">
+                                <input type="password" id="current_paswword" name="current_password"  autocomplete="current_password" class="form-control" required="required">
                     </div>
                     <div class="form-group">
                         <label for="password" class="form-label required-1">New password</label>
@@ -120,6 +124,18 @@
                         <button type="submit" class="btn btn-primary rounded-0 text-blod"> Save password </button> 
                     </div>
                      </form>
+                     @if(session('successMsg'))
+                <div class="alert alert-success">
+                    {{ session('successMsg') }}
+                </div>
+            @endif
+
+            @if(session('errorMsg'))
+                <div class="alert alert-danger">
+                    {{ session('errorMsg') }}
+                </div>
+            @endif
+                     
                     </div>
            </div>
         </div>
@@ -129,6 +145,7 @@
 </div>
 </div>
 </div>  
+
 
 @include('admin.partials.footer')
    

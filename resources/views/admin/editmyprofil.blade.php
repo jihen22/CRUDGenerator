@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>Settings</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{asset('assets/favicon.ico')}}" />
@@ -87,8 +89,9 @@
                 <div class="card-body">     
                     <div class="row">
                   <div class="col-md-6 offset-md-3">
-                    <form method="POST" action ="">
-                        <div class="form-group">
+                  <form method="POST" action="{{ route('admin.editmyprofil') }}">
+                          @csrf                       
+                                  <div class="form-group">
                             <label for="name" class="form-label required-1">Name</label>
                             <input type="text" id="name" name="name" value autocompletet="name" required="required" class="form-control">
                             
@@ -101,6 +104,15 @@
                                 <button type="submit" class="btn btn-primary rounded-0 text-bold"> save profil</button>
 </div>        
                      </form>
+                     @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                   </div>
 </div>
 

@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +25,10 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        //
+    { 
+         if (auth()->check()) {
+        $nameproject = auth()->user()->nameproject;
+        View::share('nameproject', $nameproject);
+    }
     }
 }
