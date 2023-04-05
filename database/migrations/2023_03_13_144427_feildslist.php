@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fieldslist3', function (Blueprint $table) {
+        Schema::create('fieldslist4', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('table_id');
             $table->string('field_type');
@@ -41,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feildslist3');
+        Schema::dropIfExists('feildslist4');
     }
 };

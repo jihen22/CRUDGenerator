@@ -175,6 +175,63 @@
                                 </button>
                             </div>
                         </div>
+<<<<<<< HEAD
     </form>
 
 @endsection
+=======
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@endsection
+
+
+  
+    
+   
+
+  
+
+
+
+
+
+</body>
+<script>
+  document.getElementById("submitButton").addEventListener("click", function() {
+    // Get all the input fields
+    const hostname = document.getElementById("hostname").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const database = document.getElementById("database").value;
+    const adminUsername = document.getElementById("adminUsername").value;
+    const adminPassword = document.getElementById("adminPassword").value;
+    const email = document.getElementById("email").value;
+    const appname = document.getElementById("appName").value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Validate the input fields
+    if (hostname === '' || username === '' || password === '' || database === '' || adminUsername === '' || appname === ''|| email === '' ) {
+      alert('Please fill all the required fields.');
+      return;
+      
+      if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    }
+
+
+
+  
+  });
+</script>
+
+</html>
+>>>>>>> 306231112456bc8a55ec95e18190491846c6620a

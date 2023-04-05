@@ -103,37 +103,7 @@ Create Parent menu item
 </a>
 <br>
 <br>
-<div class="row">
-    <div class="col-6">
-          <ul class="todo-list crud-menu ui-sortable">
-          
-    <li class="parent">
-        <span>Parent 1</span>
-        <small>parent</small>
-        <div class="form-group mt-4">
-        <a href="" class="btn btn-warning d-block"><i class="fas fa-edit"></i> Edit</a>
-        </div>
-<button type="button" data-url="" class="btn btn-danger delete-crud"><i class="fas fa-trash"></i> Delete</button>
-<a href="" class="btn btn-primary d-block"><i class="fas fa-clone"></i> Clone</a>
-        <ul class="children">
-            <li class="child">
-                <span>Child 1</span>
-                <small>child</small>
-                <a href="" class="btn btn-warning d-block"><i class="fas fa-edit"></i> Edit</a>
-<button type="button" data-url="" class="btn btn-danger delete-crud"><i class="fas fa-trash"></i> Delete</button>
-<a href="" class="btn btn-primary d-block"><i class="fas fa-clone"></i> Clone</a>
-            </li>
-            <li class="child">
-                <span>Child 2</span>
-                <small>child</small>
-                <a href="" class="btn btn-warning d-block"><i class="fas fa-edit"></i> Edit</a>
-              <button type="button" data-url="" class="btn btn-danger delete-crud"><i class="fas fa-trash"></i> Delete</button>
-               <a href="" class="btn btn-primary d-block"><i class="fas fa-clone"></i> Clone</a>
-            </li>
-        </ul>
-    </li>
-  
-</ul>
+
 
                 
 

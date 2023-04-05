@@ -12,59 +12,75 @@ class CreateTable extends Command
 
     protected $description = 'Create a new migration file for a specified table with given fields and generate model and controller.';
     public function handle()
-    {
-        $table = $this->argument('table');
-        $fields =  $this->option('fields');
+{
+    $table = $this->argument('table');
+    $fields =  explode(',', $this->option('fields'));
+    
 
-        $stubPath = database_path('stubs/migration.stub');
-        $stub = file_get_contents($stubPath);
+    $stubPath = database_path('stubs/migration.stub');
+    $stub = file_get_contents($stubPath);
 
-        Artisan::call('make:migration', [
-            'name' => "create_{$table}_table",
-            '--create' => $table,
-            '--path' => 'database/migrations',
-        ]);
+    Artisan::call('make:migration', [
+        'name' => "create_{$table}_table",
+        '--create' => $table,
+        '--path' => 'database/migrations',
+    ]);
 
-        preg_match('/Migration \[(.+)\] created successfully\./', Artisan::output(), $matches);
-        $path = base_path($matches[1]);
+    preg_match('/Migration \[(.+)\] created successfully\./', Artisan::output(), $matches);
+   
 
-        $this->replaceMigration($path, $table, $fields, true, $stub);
+    $path = base_path($matches[1]);
 
-        Artisan::call('migrate', [
-            '--force' => true,
-        ]);
+    $this->replaceMigration($path, $table, $fields, true, $stub);
 
-        // Call GenerateModelContFiles command to generate model and controller
-        Artisan::call('generate:crud', [
-            'table' => $table,
-            '--model' => $this->option('model'),
-            '--controller' => $this->option('controller'),
-        ]);
+    Artisan::call('migrate', [
+        '--force' => true,
+    ]);
 
-        $this->info('Migration, Model and Controller generated successfully!');
+    // Call GenerateModelContFiles command to generate model and controller
+    Artisan::call('generate:crud', [
+        'table' => $table,
+        '--model' => $this->option('model'),
+        '--controller' => $this->option('controller'),
+    ]);
+
+    $this->info('Migration, Model and Controller generated successfully!');
+}
+
+protected function replaceMigration($path, $table, $fields, $timestamps, $stub)
+{ 
+    $columns = [];
+
+    foreach ($fields as $field) {
+        list($name, $type) = explode(',', $field);
+
+        $columns[] = [
+            'name' => $name,
+            'type' => $type,
+        ];
     }
 
-    protected function replaceMigration($path, $table, $fields, $timestamps, $stub)
-    { 
-        $columns = [];
+    $content = str_replace(
+        ['{{table}}', '{{columns}}', '{{timestamps}}'],
+        [$table, $this->buildColumns($columns), $timestamps ? 'true' : 'false'],
+        $stub
+    );
 
-        foreach ($fields as $field) {
-            list($name, $type) = explode(',', $field);
+    file_put_contents($path, $content);
 
-            $columns[] = [
-                'name' => $name,
-                'type' => $type,
-            ];
+    preg_match('/Created Migration: (.+)$/m', Artisan::output(), $matches);
+
+    if (!empty($matches)) {
+        $path = base_path(trim($matches[1]));
+
+        if (file_exists($path)) {
+            return $path;
         }
-
-        $content = str_replace(
-            ['{{table}}', '{{columns}}', '{{timestamps}}'],
-            [$table, $this->buildColumns($columns), $timestamps ? 'true' : 'false'],
-            $stub
-        );
-
-        file_put_contents($path, $content);
     }
+
+    throw new \Exception('Could not determine migration file path.');
+}
+
 
     protected function buildColumns(array $columns)
     {
