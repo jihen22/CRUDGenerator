@@ -61,6 +61,18 @@
 .container-fluide {
     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
 }
+.content {
+  max-height: 500px;
+  padding: 20px;
+}
+
+.content-header {
+  margin-bottom: 20px;
+}
+.content-header h1 {
+  padding: 42px 57px;
+  display: inline-block;
+}
 	</style>
 
         

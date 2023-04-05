@@ -58,6 +58,18 @@
 .container-fluide {
     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
 }
+.content {
+  max-height: 500px;
+  padding: 20px;
+}
+
+.content-header {
+  margin-bottom: 20px;
+}
+.content-header h1 {
+  padding: 42px 57px;
+  display: inline-block;
+}
 
 	</style>
 
@@ -83,7 +95,7 @@
 		<div class="container-fluid p-0">
 			<div class ="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0 text-drak">Crud Genertor Settings </h1>
+					<h1 class="m-0 text-drak" style="">Crud Genertor Settings </h1>
                 </div>
             </div>
         </div>
@@ -94,30 +106,26 @@
 
             <div class="card-body">
                
-					<form>
+			<form method="POST" action="{{ route('admin.settings') }}">
+                      @csrf
 						<div class="form-group ">
 							<label class="col-sm-12 col-md-2 col-form-label">project name</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="Johnny Brown">
+								<input class="form-control" type="text" placeholder="Johnny Brown" id="nameproject" name="nameproject">
 							</div>
 						</div>
 						
 						<div class="form-group ">
 							<label class="col-sm-12 col-md-2 col-form-label">Email</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="bootstrap@example.com" type="email">
+								<input class="form-control" value="bootstrap@example.com" type="email" id="email" name="email">
 							</div>
 						</div>
-						<div class="form-group ">
-							<label class="col-sm-12 col-md-2 col-form-label">URL</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="https://getbootstrap.com" type="url">
-							</div>
-						</div>
+						
 						<div class="form-group ">
                            <label class="col-sm-12 col-md-2 col-form-label">Language</label>
                             <div class="col-sm-12 col-md-10">
-	                        <select class="form-select" id="projectLanguage" required>
+	                        <select class="form-select" id="language" name="language" required>
                               <option selected disabled value="">Language</option>
                               <option value="english">English</option>
                               <option value="french">French</option>
@@ -132,7 +140,7 @@
 						<div class="form-group ">
 							<label class="col-sm-12 col-md-2 col-form-label">Date format</label>
 							<div class="col-sm-12 col-md-10"  placeholder="Choose Date " type="text">
-							<select class="form-select" id="projectDateFormat" required>
+							<select class="form-select" id="date_format" name="date_format" required>
                                        <option selected disabled value="">dd/mm/yyyy</option>
                                                <option value="dd/mm/yyyy">dd/mm/yyyy</option>
                                                 <option value="mm/dd/yyyy">mm/dd/yyyy</option>
@@ -146,6 +154,20 @@
 						
 						
 					</form>
+					@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 			        </div>
 		        </div>
 	      </div>

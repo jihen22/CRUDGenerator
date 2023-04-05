@@ -28,16 +28,9 @@ Route::get('/',function(){
     return view('welcome');
 });
 
-<<<<<<< HEAD
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
-=======
-Route::get('/Interfaces/Tables',[InterfacesController::class,'Tables'])->name('Intefaces.Tables');
-Route::get('/Interfaces/smth',[InterfacesController::class,'smth'])->name('Intefaces.smth');
-Route::get('/Interfaces/smth2',[InterfacesController::class,'smth2'])->name('Intefaces.smth2');
-
->>>>>>> 0b13b1b0f931f3b0bdaab29dc07688d8b9309888
 
 
 
@@ -54,19 +47,11 @@ Route::get('/nonCrud', function () {
 
 
 
-<<<<<<< HEAD
 Route::get('/myprofil', function () {
     return view('admin.editmyprofil');
 });
 
 
-=======
-
-
-Route::get('/tableinput', function () {
-    return view('Test.tableinput');
-});
->>>>>>> 0b13b1b0f931f3b0bdaab29dc07688d8b9309888
 Route::post('/generate-crud', [tablefilesController::class, 'generateFiles'])->name('generate-crud');
 //Route::post('/SaveFields', [tablefilesController::class, 'SaveFields'])->name('SaveFields');
 
@@ -88,11 +73,10 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('/d', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::get('/settings', [SettingsController::class, 'settings'])->name('admin.settings');
 
-Route::get('/myproject', [MyprojectController::class, 'myproject'])->name('admin.myproject');
 
 
 
@@ -109,6 +93,18 @@ Route::get('/password', [\App\Http\Controllers\Auth\ResetPasswordController::cla
     Route::post('/myprofil', [ProfileController::class, 'updateName'])->name('admin.editmyprofil');
 
     Route::get('/myprofil', [ProfileController::class, 'editmyprofil'])->name('admin.editmyprofil');
+
+
+   //Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'create1'])->name('auth.register');
+
+
+   Route::get('/myproject', [MyprojectController::class, 'index'])->name('admin.myproject');
+
+
+   Route::post('/settings', [SettingsController::class, 'update'])->name('admin.settings');
+
+
+
 
 
 

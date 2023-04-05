@@ -128,52 +128,7 @@
 
         <!-- Table Fields -->  
 
-<<<<<<< HEAD
         <h4>Add Fields to Your Table</h4>
-=======
-      <!-- Add Feild modal -->
-      <form method="POST" action="{{ route('tablefiles.generate') }}">
-    @csrf
-      <div class="modal fade" id="addFeildModal" tabindex="-1" role="dialog" aria-labelledby="addFeildModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-
-              <h4 class="modal-title" id="addProjectModalLabel">Feild Settings</h4>
-            </div>
-            <div class="modal-body">
-              <form id ="add-Feild-form">
-                <div class="form-group">
-
-
-
-
-                
-                  <label for="FeildType">Feild Type</label>
-                 
-<select id="FeildType" name="field-type">
-  <optgroup label="number-field">Number Field</optgroup>
-  <option value ="Text">Text</option>
-  <option value ="Email">Email</option>
-  <option value ="Textarea">Textarea</option>
-  <option value ="Password">Password</option>
-  </optgrpoup>
-  <optgroup label="choice-field">Choice Field</optgroup>
-  <option value ="Radio">Radio</option>
-  <option value ="Select">Select</option>
-  <option value ="Checkbox">Checkbox</option>
-</optgrpoup>
-<optgroup label="text-field">
-  <option value ="Integer">Integer</option>
-  <option value ="Float">Float</option>
-  <option value ="money">money</option>
-</optgroup>
-<optgroup label="date-time-field">
-<option value ="DatePicker">DatePicker</option>
-<option value ="Date/TimePicker">Date/TimePicker</option>
-<option value ="Time Picker">Time Picker</option>
-</optgroup>
->>>>>>> 0b13b1b0f931f3b0bdaab29dc07688d8b9309888
 
         <div class="form-group">
             <label for="field_type">Field Type</label>

@@ -29,10 +29,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                <div  class="py-56">
+                    <img src="{{ asset('logo.png') }}" style="height:180px;">
+                  </div>
+                    
+                    <form id="form1" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -109,119 +112,69 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-                        <div class="container my-5">
-  <h1 class="text-left">Additionnal Settings</h1>
-  <form>
-   
+  
+
     
-    <div class="card my-3">
-      <div class="card-header">
-        Database Connection
-      </div>
-      <div class="card-body">
-        <div class="form-group">
-          <label for="hostname">Hostname</label>
-          <input type="text" class="form-control" id="hostname" placeholder="Enter hostname" required>
-        </div>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" placeholder="Enter username" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Enter password" required>
-        </div>
-     
-      </div>
+   
+    <div class="row mb-3">
+    <label for="language" class="col-md-4 col-form-label text-md-end">{{ __('Language') }}</label>
+
+    <div class="col-md-6">
+        <select id="language" class="form-control @error('language') is-invalid @enderror" name="language" required>
+            <option value="en" @if(old('language') == 'en') selected @endif>English</option>
+            <option value="fr" @if(old('language') == 'fr') selected @endif>Français</option>
+            <!-- Ajouter d'autres langues si nécessaire -->
+        </select>
+
+        @error('language')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+</div>
+
+<div class="row mb-3">
+    <label for="date_format" class="col-md-4 col-form-label text-md-end">{{ __('Date Format') }}</label>
+      <div class="col-md-6">
+        <select id="date_format" class="form-control @error('date_format') is-invalid @enderror" name="date_format" required>
+        <option value="dd/mm/yyyy">dd/mm/yyyy</option>
+        <option value="mm/dd/yyyy">mm/dd/yyyy</option>
+        <option value="yyyy-mm-dd">yyyy-mm-dd</option>
+        </select>
+
+        @error('date_format')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+</div>
+  
+
+    <div class="row mb-3">
+                  <label for="laravel_version" class="col-md-4 col-form-label text-md-end">Laravel version</label>
+                  <div class="col-md-6">
+                      <select class="form-select" id="laravel_version" name="laravel_version" required>
+                      <option selected disabled value="">version</option>
+                      <option value="Laravel 9(PHP=>8.0.2)">Laravel 9(PHP=>8.0.2)</option>
+                      <option value="Laravel 8(PHP=>7.4)">Laravel 8(PHP=>7.4)</option>
+                      <option value="Laravel 7(PHP=>7.2.5)">Laravel 7(PHP=>7.2.5)</option>
+                      </select>
+                </div>
     </div>
 
-    <div class="card my-3">
-      <div class="card-header">
-        Application Settings
-      </div>
-      <div class="card-body">
-        <div class="form-group">
-          <label for="appName">Application Name</label>
-          <input type="text" class="form-control" id="appName" placeholder="Enter application name" required>
-        </div>
-        <div class="form-group">
-          <label for="language">Select Language:</label>
-          <select class="form-control" id="language">
-            <option value="en">English</option>
-            <option value ="fr">French</option>
-    <option value="es">Spanish</option>
-    <option value="de">German</option>
-    <option value="it">Italian</option>
-  </select>
-</div>
-</div>
-</div>
- 
 
 
-
+    
 
                         <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-6 offset-md-4 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary" id="submit-btn">
                                     {{ __('Register and start new project !') }}
                                 </button>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script>
-  document.getElementById("submitButton").addEventListener("click", function() {
-    // Get all the input fields
-    const hostname = document.getElementById("hostname").value;
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const database = document.getElementById("database").value;
-    const adminUsername = document.getElementById("adminUsername").value;
-    const adminPassword = document.getElementById("adminPassword").value;
-    const email = document.getElementById("email").value;
-    const appname = document.getElementById("appName").value;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // Validate the input fields
-    if (hostname === '' || username === '' || password === '' || database === '' || adminUsername === '' || appname === ''|| email === '' ) {
-      alert('Please fill all the required fields.');
-      return;
-      
-      if (!emailRegex.test(email)) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-    }
-// Redirect to the login page
-
-
-    else if (confirm("Are you sure you want to submit the form and go to logging page?")) {
-      window.location.href = "/Interfaces/loging";
-      
-    }
-  
-  });
-</script>
+    </form>
 
 @endsection
-
-
-  
-    
-   
-
-  
-
-
-
-
-
-</body>
-</html>

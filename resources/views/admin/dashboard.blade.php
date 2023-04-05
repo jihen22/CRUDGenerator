@@ -42,6 +42,18 @@
 .delete-crud {
   margin-left: 1rem;
 }
+.content {
+  max-height: 500px;
+  padding: 20px;
+}
+
+.content-header {
+  margin-bottom: 20px;
+}
+.content-header h1 {
+  padding: 42px 57px;
+  display: inline-block;
+}
 
 	</style>
 

@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/d';
+    protected $redirectTo = '/myproject';
     /**
      * Create a new controller instance.
      *
@@ -55,6 +55,9 @@ class RegisterController extends Controller
             'email' => ['required', 'string',  'max:255', 'unique:users'],
             'nameproject' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'language' => ['required', 'string'],
+            'date_format' => ['required', 'string'],
+           'laravel_version' => ['required', 'string']
             
         ]);
     }
@@ -73,6 +76,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'nameproject' => $data['nameproject'],
             'password' => Hash::make($data['password']),
+            'language' => $data['language'],
+            'date_format' => $data['date_format'],
+            'laravel_version' => $data['laravel_version'],
+
             
         ]);
     }

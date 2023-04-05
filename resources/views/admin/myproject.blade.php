@@ -64,6 +64,19 @@
     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
 }
 
+.content {
+  max-height: 500px;
+  padding: 20px;
+}
+
+.content-header {
+  margin-bottom: 20px;
+}
+.content-header h1 {
+  padding: 42px 57px;
+  display: inline-block;
+}
+
 	
 
      
@@ -96,7 +109,6 @@
                   </div>
                 </div>  
 
-                <section class="content">
                 <div class="container-fluide p-0">
            <div class="card card-default">
 
@@ -174,19 +186,19 @@
 </div>
 </div>
 </div>
-</section> 
 <div class="card-body p-0" >
 <table class="table table-sm table-striped table-hover" id="projectTable">
   <thead>
     <tr>
       <th scope="col" width="">Project ID</th>
       <th  scope="col" >Project Name</th>
-      <th scope="col" width="160">Type</th>
+  
 
 
-      <th  scope="col" width="130" class="text-center">Laravel version</th>
+     
       <th  scope="col" width="">Language</th>
       <th scope="col" width="">Date Format</th>
+      <th  scope="col" width="130" class="text-center">Laravel version</th>
       <th scope="col" width="160">Date of Creation</th>
       <th scope="col" ></th>
 
@@ -194,6 +206,21 @@
     </tr>
   </thead>
   <tbody id="projectTableBody">
+  
+        @foreach($donnees as $donnee)
+        <tr>
+            <td>{{ $donnee->id }}</td>
+            <td><a href="{{ route('admin.dashboard') }}?nameproject={{ $donnee->nameproject }}">{{ $donnee->nameproject }}</a></td>
+            <td>{{ $donnee->language }}</td>
+            <td>{{ $donnee->date_format }}</td>
+            <td>{{ $donnee->laravel_version }}</td>
+            <td>{{ $donnee->created_at }}</td>
+
+
+
+        </tr>
+        @endforeach
+    
   </tbody>
 </table>
 </div>

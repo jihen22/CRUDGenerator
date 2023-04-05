@@ -97,6 +97,11 @@ hr {
   opacity: 0.25;
 }
 
+py-5 {
+  padding-top: -1rem ;
+  padding-bottom: 1rem ;
+}  
+
 hr:not([size]) {
   height: 1px;
 }
@@ -2002,6 +2007,7 @@ progress {
 .table-bordered > :not(caption) > * > * {
   border-width: 0 1px;
 }
+
 
 .table-borderless > :not(caption) > * > * {
   border-bottom-width: 0;
@@ -7491,9 +7497,13 @@ textarea.form-control-lg {
   padding-bottom: 1.5rem !important;
 }
 
-.py-5 {
-  padding-top: 3rem !important;
-  padding-bottom: 3rem !important;
+.py-55 {
+  padding-top: -1rem !important;
+  padding-bottom: 1rem !important;
+}
+.py-56 {
+  padding-top: -1rem !important;
+  padding-bottom: 1rem !important;
 }
 
 .pt-0 {

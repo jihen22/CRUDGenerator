@@ -21,6 +21,9 @@ return new class extends Migration
              $table->timestamp('email_verified_at')->nullable();
              $table->string('nameproject');
             $table->string('password');
+            $table->string('language');
+            $table->string('date_format');
+            $table->string('laravel_version');
             $table->rememberToken();
             $table->timestamps();
         });
