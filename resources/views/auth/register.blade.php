@@ -176,6 +176,21 @@
 </div>
 
 
+
+@endsection
+
+
+  
+    
+   
+
+  
+
+
+
+
+
+</body>
 <script>
   document.getElementById("submitButton").addEventListener("click", function() {
     // Get all the input fields
@@ -199,29 +214,11 @@
       return;
     }
     }
-// Redirect to the login page
 
 
-    else if (confirm("Are you sure you want to submit the form and go to logging page?")) {
-      window.location.href = "/Interfaces/loging";
-      
-    }
+
   
   });
 </script>
 
-@endsection
-
-
-  
-    
-   
-
-  
-
-
-
-
-
-</body>
 </html>
