@@ -7,15 +7,23 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use App\Field;
 use App\Table;
+use Illuminate\Support\Facades\Auth;
+use App\Console\Commands\CreateTable;
 
 
 class tablefilesController extends Controller{
+
+    public function crud()
+    {
+        $user = Auth::user();
+        $nameproject = $user->nameproject;
+ 
+        return view('Menus.Create.CRUD')->with('nameproject', $nameproject);
+    }
     
     public function generateFiles(Request $request)
 {
-     
-
-     if (true) {
+      if (true) {
                 $validator = Validator::make($request->all(), [
                     'tableName' => 'required|max:255',
                     'fields' => 'required|array|min:1',

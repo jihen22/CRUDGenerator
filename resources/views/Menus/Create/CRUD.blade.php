@@ -187,21 +187,9 @@
         </div>
    
 
-<<<<<<< HEAD
         <!-- Table Fields -->  
 
         <h4>Add Fields to Your Table</h4>
-=======
-      
-   
-   
- 
- 
-
-
-
-
->>>>>>> 306231112456bc8a55ec95e18190491846c6620a
 
 
  <!--add field Modal-->
