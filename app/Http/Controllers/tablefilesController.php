@@ -7,9 +7,18 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use App\Field;
 use App\Table;
+use Illuminate\Support\Facades\Auth;
 
 
 class tablefilesController extends Controller{
+
+    public function ProjectName()
+    {
+        $user = Auth::user();
+        $nameproject = $user->nameproject;
+ 
+        return view('Menus.Create.CRUD')->with('nameproject', $nameproject);
+    }
     
     public function generateFiles(Request $request)
 {
@@ -22,6 +31,7 @@ class tablefilesController extends Controller{
                     'fields.*.DBCName' => 'required|max:255',
                     'fields.*.field_type' => 'required',
                 ]);
+            
         
                 if ($validator->fails()) {
                     return response()->json(['errors' => $validator->errors()]);
@@ -69,6 +79,7 @@ class tablefilesController extends Controller{
                     '--controller' => $controllerName,
                     '--fields' => implode(',', $fieldsOption),
                 ];
+                //dd($options);
             
         
                 Artisan::call('create:table', $options);

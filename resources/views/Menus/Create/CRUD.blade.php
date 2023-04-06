@@ -119,7 +119,8 @@
 	<div id="app" class="warpper">
 	    @include('admin.partials.topbar')
 	       <div id="layoutSidenav" class="flex-container">
-                   @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
+         @include('admin.partials.sidebar')
+                  
          <div class="content-warper" id="monDiv" >
 	          <div class="content-header"></div>
                 <section class="content">
@@ -187,21 +188,9 @@
         </div>
    
 
-<<<<<<< HEAD
         <!-- Table Fields -->  
 
-        <h4>Add Fields to Your Table</h4>
-=======
-      
-   
-   
- 
- 
-
-
-
-
->>>>>>> 306231112456bc8a55ec95e18190491846c6620a
+        
 
 
  <!--add field Modal-->
@@ -212,60 +201,51 @@
                       <div class="form-group">
                              <label for="field_type">Field Type</label>
               <select id="field_type" name="field_type">
-                <optgroup label="Numeric Types">
-                    <option value="bigIncrements">bigIncrements</option>
-                    <option value="decimal">decimal</option>
-                    <option value="double">double</option>
-                    <option value="float">float</option>
-                    <option value="increments">increments</option>
-                    <option value="integer">integer</option>
-                    <option value="mediumInteger">mediumInteger</option>
-                    <option value="smallInteger">smallInteger</option>
-                  
-    <!-- Types:
-
-      char
-         string
-         text
-            mediumText
-         longText
-              Date and Time Types:
-
-                 date
-              dateTime
-             time
-              timestamp
-             Other Types:
-
-              boolean
-                   json
-         nullableTimestamps
-                  uuid-->
-
-                </optgroup>
-                <optgroup label="choice-field">
-                    <option value="Radio">Radio</option>
-                    <option value="Select">Select</option>
-                    <option value="Checkbox">Checkbox</option>
-                </optgroup>
-                <optgroup label="text-field">
-                    <option value="Integer">Integer</option>
-                    <option value="Float">Float</option>
-                    <option value="Money">Money</option>
-                </optgroup>
-                <optgroup label="date-time-field">
-                    <option value="DatePicker">DatePicker</option>
-                    <option value="Date/TimePicker">Date/TimePicker</option>
-                    <option value="Time Picker">Time Picker</option>
-                </optgroup>
-                <optgroup label="file-upload-field">
-                    <option value="File">File</option>
-                    <option value="Photo">Photo</option>
-                </optgroup>
-                <optgroup label="RelationshipFields">
-                    <option value="Belongs to relationship">Belongs to relationship</option>
-                    <option value="Belongs to many relationships">Belongs to many relationships</option>
-                </optgroup>
+              <option value="">Select a column type</option>
+    <optgroup label="Numeric">
+        <option value="bigIncrements">Big Increments</option>
+        <option value="bigInteger">Big Integer</option>
+        <option value="binary">Binary</option>
+        <option value="decimal">Decimal</option>
+        <option value="double">Double</option>
+        <option value="float">Float</option>
+        <option value="integer">Integer</option>
+        <option value="mediumInteger">Medium Integer</option>
+        <option value="smallInteger">Small Integer</option>
+        <option value="tinyInteger">Tiny Integer</option>
+        <option value="unsignedBigInteger">Unsigned Big Integer</option>
+        <option value="unsignedDecimal">Unsigned Decimal</option>
+        <option value="unsignedInteger">Unsigned Integer</option>
+        <option value="unsignedMediumInteger">Unsigned Medium Integer</option>
+        <option value="unsignedSmallInteger">Unsigned Small Integer</option>
+        <option value="unsignedTinyInteger">Unsigned Tiny Integer</option>
+    </optgroup>
+    <optgroup label="String">
+        <option value="char">Char</option>
+        <option value="string">String</option>
+        <option value="text">Text</option>
+        <option value="mediumText">Medium Text</option>
+        <option value="longText">Long Text</option>
+    </optgroup>
+    <optgroup label="Date and Time">
+        <option value="date">Date</option>
+        <option value="dateTime">Date Time</option>
+        <option value="dateTimeTz">Date Time with Timezone</option>
+        <option value="time">Time</option>
+        <option value="timeTz">Time with Timezone</option>
+        <option value="timestamp">Timestamp</option>
+        <option value="timestampTz">Timestamp with Timezone</option>
+        <option value="year">Year</option>
+    </optgroup>
+    <optgroup label="Other">
+        <option value="boolean">Boolean</option>
+        <option value="enum">Enum</option>
+        <option value="json">JSON</option>
+        <option value="jsonb">JSONB</option>
+        <option value="uuid">UUID</option>
+        <option value="ipAddress">IP Address</option>
+        <option value="macAddress">MAC Address</option>
+    </optgroup>
             </select>
         </div>
                     

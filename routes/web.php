@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MyprojectController;
+use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
 use App\Http\Controllers\CrudController;
@@ -27,22 +32,18 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
 
-<<<<<<< HEAD
 
 
 //Menus routes
-=======
-// Menus routes
->>>>>>> 306231112456bc8a55ec95e18190491846c6620a
 Route::get('/CRUD', function () {
     return view('Menus.Create.CRUD');
 });
+Route::get('/CRUD', [tablefilesController::class, 'ProjectName'])->name('Menus.Create.CRUD');
 
 Route::get('/nonCrud', function () {
     return view('Menus.Create.NonCRUD');
 });
 
-<<<<<<< HEAD
 
 
 
@@ -53,12 +54,6 @@ Route::get('/myprofil', function () {
 });
 
 
-=======
-Route::get('/tableinput', function () {
-    return view('Test.tableinput');
-});
-
->>>>>>> 306231112456bc8a55ec95e18190491846c6620a
 Route::post('/generate-crud', [tablefilesController::class, 'generateFiles'])->name('generate-crud');
 
 Route::get('/password', function () {
@@ -68,10 +63,7 @@ Route::get('/password', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
-<<<<<<< HEAD
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
-=======
->>>>>>> 306231112456bc8a55ec95e18190491846c6620a
 
 Route::get('/settings', [SettingsController::class, 'settings'])->name('admin.settings');
 
@@ -85,9 +77,9 @@ Route::middleware('auth')->group(function () {
         ->name('admin.changepassword');
 
     Route::post('/password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'changePassword'])
-<<<<<<< HEAD
     ->name('admin.changepassword')
     ->middleware('auth');
+});
 
 
 
@@ -108,9 +100,5 @@ Route::middleware('auth')->group(function () {
 
 
 
-=======
-        ->name('admin.changepassword');
-});
->>>>>>> 306231112456bc8a55ec95e18190491846c6620a
 
 Auth::routes();
