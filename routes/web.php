@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MyprojectController;
+use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
 use App\Http\Controllers\CrudController;
@@ -36,6 +41,7 @@ Route::get('/dashboard', function () {
 Route::get('/CRUD', function () {
     return view('Menus.Create.CRUD');
 });
+Route::get('/CRUD', [tablefilesController::class, 'ProjectName'])->name('Menus.Create.CRUD');
 
 Route::get('/nonCrud', function () {
     return view('Menus.Create.NonCRUD');
@@ -78,6 +84,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'changePassword'])
     ->name('admin.changepassword')
     ->middleware('auth');
+});
 
 });
 
@@ -96,5 +103,13 @@ Route::middleware('auth')->group(function () {
 
     Auth::routes();
 
+<<<<<<< HEAD
     Route::get('/CRUD', [tablefilesController::class, 'crud'])->name('Menus.Create.CRUD');
     
+=======
+
+
+
+
+Auth::routes();
+>>>>>>> 4ccd937e5d953d0c10300d9662ae2cdf715dc7bb
