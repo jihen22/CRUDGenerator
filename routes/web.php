@@ -12,10 +12,7 @@ use App\Http\Controllers\CrudController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\MyprojectController;
-use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -86,7 +83,7 @@ Route::middleware('auth')->group(function () {
     ->middleware('auth');
 });
 
-});
+
 
     Route::post('/myprofil', [ProfileController::class, 'updateName'])->name('admin.editmyprofil');
 
@@ -103,13 +100,8 @@ Route::middleware('auth')->group(function () {
 
     Auth::routes();
 
-<<<<<<< HEAD
     Route::get('/CRUD', [tablefilesController::class, 'crud'])->name('Menus.Create.CRUD');
     
-=======
-
-
-
-
-Auth::routes();
->>>>>>> 4ccd937e5d953d0c10300d9662ae2cdf715dc7bb
+    Route::get('/table', function () {
+        return view('admin.table');
+    });

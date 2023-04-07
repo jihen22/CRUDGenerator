@@ -8,19 +8,11 @@ use Illuminate\Support\Str;
 use App\Field;
 use App\Table;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-use App\Console\Commands\CreateTable;
-=======
->>>>>>> 4ccd937e5d953d0c10300d9662ae2cdf715dc7bb
 
 
 class tablefilesController extends Controller{
 
-<<<<<<< HEAD
     public function crud()
-=======
-    public function ProjectName()
->>>>>>> 4ccd937e5d953d0c10300d9662ae2cdf715dc7bb
     {
         $user = Auth::user();
         $nameproject = $user->nameproject;

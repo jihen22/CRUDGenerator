@@ -190,11 +190,8 @@
 
         <!-- Table Fields -->  
 
-<<<<<<< HEAD
         <h4>Add Fields to Your Table</h4>
-=======
         
->>>>>>> 4ccd937e5d953d0c10300d9662ae2cdf715dc7bb
 
 
  <!--add field Modal-->

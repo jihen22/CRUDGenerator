@@ -3,12 +3,8 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-<<<<<<< HEAD
-                            <div class="sb-sidenav-menu-heading">{{ $nameproject }}</div>
-=======
                         <div class="sb-sidenav-menu-heading">{{ $nameproject }}</div>
 
->>>>>>> 4ccd937e5d953d0c10300d9662ae2cdf715dc7bb
                             <a class="nav-link" href="http://localhost:8000/dashboard">
                                 <div class="sb-nav-link-icon" ><i class="fas fa-bars"></i></div>
                                 Menus

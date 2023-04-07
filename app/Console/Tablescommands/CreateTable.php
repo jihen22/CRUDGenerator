@@ -27,7 +27,7 @@ class CreateTable extends Command
 
     protected function replaceMigration($path, $table, $fields, $timestamps, $stub)
     {
-        dd($stub);
+      
         $columnsArr = explode(',', implode(',', $fields));
     
         for ($i = 0; $i < count($columnsArr); $i+=2) {
