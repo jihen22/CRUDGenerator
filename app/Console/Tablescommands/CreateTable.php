@@ -102,5 +102,13 @@ class CreateTable extends Command
         ]);
 
         $this->info('Migration, Model and Controller generated successfully!');
+
+
+        Artisan::call('create:view', [
+            'name' => 'nom_de_votre_vue', 
+            '--table' => 'nom_de_votre_table', 
+        ]);
     }
-}
+    }
+
+
