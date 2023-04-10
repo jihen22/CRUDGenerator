@@ -54,6 +54,8 @@ Route::get('/myprofil', function () {
 });
 
 
+
+
 Route::post('/generate-crud', [tablefilesController::class, 'generateFiles'])->name('generate-crud');
 
 Route::get('/password', function () {

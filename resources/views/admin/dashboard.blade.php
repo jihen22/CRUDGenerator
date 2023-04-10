@@ -56,6 +56,15 @@
 }
 
 	</style>
+    <style>
+    .btn-success {
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  margin-top: 10px;
+}
+</style>
 
 
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;">
@@ -75,6 +84,7 @@
    <i class="fas fa-table me-1"></i>
     Menu
     </div>
+    
     <div class="content-warper" id="monDiv" style="">
 	<div class="content-header">
 		<div class="container-fluid p-0">
@@ -112,6 +122,32 @@ Create Parent menu item
 
 
                 </main>
+               
+  
+ 
+                      
+
+<!-- Modal -->
+<div id="preview-modal" tabindex="-1" class="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title">Preview login credentials</h5>
+        
+      </header>
+      <div class="modal-body">
+      <div id="previewModal___BV_modal_body_" class="modal-body"><div data-v-6e79ee7f="" class="row mb-3"><div data-v-6e79ee7f="" class="col"><div data-v-6e79ee7f="" class="alert alert-danger"><i data-v-6e79ee7f="" class="fas fa-exclamation-triangle mr-1"></i>
+          Please be aware that file uploads are disabled for project preview.
+        </div> <table data-v-6e79ee7f=""><tr data-v-6e79ee7f=""><td data-v-6e79ee7f="" class="text-right">Username:</td> <td data-v-6e79ee7f=""><code data-v-6e79ee7f="">admin@admin.com</code></td></tr> <tr data-v-6e79ee7f=""><td data-v-6e79ee7f="" class="text-right">Password:</td> <td data-v-6e79ee7f=""><code data-v-6e79ee7f="">password</code></td></tr></table></div></div></div>
+      </div>
+      <footer class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-warning">Continue</button>
+      </footer>
+    </div>
+  </div>
+</div>
+
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
