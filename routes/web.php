@@ -102,7 +102,7 @@ Route::middleware('auth')->group(function () {
 
     Auth::routes();
 
-    Route::get('/CRUD', [tablefilesController::class, 'crud'])->name('Menus.Create.CRUD');
+  
     
     Route::get('/table', function () {
         return view('admin.table');
