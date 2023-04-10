@@ -78,6 +78,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'password'])
         ->name('admin.changepassword');
 
+
+
     Route::post('/password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'changePassword'])
     ->name('admin.changepassword')
     ->middleware('auth');
@@ -98,9 +100,10 @@ Route::middleware('auth')->group(function () {
 
    Route::post('/settings', [SettingsController::class, 'update'])->name('admin.settings');
 
+    Auth::routes();
 
-
-
-
-
-Auth::routes();
+    Route::get('/CRUD', [tablefilesController::class, 'crud'])->name('Menus.Create.CRUD');
+    
+    Route::get('/table', function () {
+        return view('admin.table');
+    });

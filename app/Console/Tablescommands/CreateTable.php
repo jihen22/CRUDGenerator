@@ -11,7 +11,8 @@ class CreateTable extends Command
     protected $signature = 'create:table {table : The name of the table} {--model= : The name of the model} {--controller= : The name of the controller} {--fields= : List of fields}';
 
     protected $description = 'Create a new migration file for a specified table with given fields and generate model and controller.';
-    public function handle()
+
+     public function handle()
     {
         $table = $this->argument('table');
         $fields = explode(',', $this->option('fields'));

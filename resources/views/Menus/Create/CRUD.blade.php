@@ -190,6 +190,7 @@
 
         <!-- Table Fields -->  
 
+        <h4>Add Fields to Your Table</h4>
         
 
 

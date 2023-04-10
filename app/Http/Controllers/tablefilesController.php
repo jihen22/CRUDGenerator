@@ -79,7 +79,7 @@ class tablefilesController extends Controller{
                     '--controller' => $controllerName,
                     '--fields' => implode(',', $fieldsOption),
                 ];
-                //dd($options);
+               
             
         
                 Artisan::call('create:table', $options);
