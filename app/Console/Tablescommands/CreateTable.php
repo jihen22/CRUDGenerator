@@ -49,7 +49,10 @@ class CreateTable extends Command
             '--model' => $this->option('model'),
             '--controller' => $this->option('controller'),
         ]);
-    
+        Artisan::call('create:view', [
+            'name' => 'nom_de_votre_vue', 
+            '--table' => 'nom_de_votre_table', 
+        ]);
         $this->info('Migration, Model and Controller generated successfully!');
     }
     
@@ -118,6 +121,6 @@ class CreateTable extends Command
         return implode("\n", $columnStatements);
     }
     
-
-    
 }
+
+

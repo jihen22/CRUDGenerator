@@ -12,6 +12,9 @@ use App\Http\Controllers\CrudController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\TableController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -107,3 +110,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/table', function () {
         return view('admin.table');
     });
+
+
+    Route::get('mytable588', [mytable588Controller::class, 'show']);

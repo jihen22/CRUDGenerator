@@ -39,9 +39,50 @@
 
 #layoutSidenav_content {
   flex: 1;
-  margin-left: 300px; /* Width of the sidebar */
+  margin-left: 200px; /* Width of the sidebar */
   grid-column: 2 / 3;
 }
+
+table {
+        border-collapse: collapse;
+        width: 1000px;
+        height: 56px;
+        margin: 0 auto;
+    }
+
+    th, td {
+        padding: 0px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .action-btns {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .action-btns a {
+        display: inline-block;
+        padding: 6px 12px;
+        background-color: #4CAF50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    .action-btns a:hover {
+        background-color: #3e8e41;
+    }
 
  </style>       
     </head>
@@ -62,7 +103,7 @@
                 <li class="nav-item dropdown">
                 <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    name
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -82,58 +123,38 @@
         </nav>
 
 
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
 
-                            
-                           
-                          
-                         
-                            <div class="sb-sidenav-menu-heading">My table</div>
-                            
-                         
-                                     <a herf="" class="nav-link " href="#">
-                                        <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>
-                                             tableau de bord
-                                                    </a>
-                                        
-                                    <a class="nav-link" href="#">
-                                        <div class="sb-nav-link-icon">  <i class="fa-fw fas fa-users c-sidebar-nav-icon"></i>
-                                                         </div>
-                                                         gestion des utlisateurs
+        <h1>{{ $table }}</h1>
 
-                                    </a>
-
-                                   
-                             <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-lock"></i></div>
-                                Change password
-                            </a>      
-                           
-                                    
-                                </nav>
-                            </div>
-                        </div>
+<table>
+    <thead>
+        <tr>
+            <th>Actions</th>
+            @foreach ($columns as $column)
+                <th>{{ $column }}</th>
+            @endforeach
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($data as $row)
+            <tr>
+                <td>
+                    <div class="action-btns">
+                        <a href="#">Editer</a>
+                        <form action="#" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Supprimer</button>
+                        </form>
                     </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        merrry jane
-                    </div>
-                </nav>
-            </div>
-           
-        </div>
-
-
-
-
-
-        
-
-
+                </td>
+                @foreach ($columns as $column)
+                    <td>{{ $row->{$column} }}</td>
+                @endforeach
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
 
 
