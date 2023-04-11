@@ -126,7 +126,7 @@
                 <section class="content">
     <!--table name , table controller and table model card-->
     <div class="card">
-          <h3 class="card-header">Create table</h3>
+          <h5 class="card-header">Create table</h5>
       <div class="card-body">
 <form action="/generate-crud" method="post">
                 <div class="container-fluid p-0">
@@ -154,7 +154,7 @@
    
      <!-- Table Fields card -->  
         <div class="card">
-             <h3 class="card-header">Add Fields to Your Table</h3>
+             <h5 class="card-header">Add Fields to Your Table</h5>
              <div class="card-body">
 
  
@@ -188,9 +188,8 @@
         </div>
    
 
-        <!-- Table Fields -->  
-
-        <h4>Add Fields to Your Table</h4>
+     
+     
         
 
 
@@ -333,9 +332,9 @@
            
                 
     
-   <div data-v-0f8342b7="" class="card card-default"><div data-v-0f8342b7="" class="card-header d-flex p-0"><h3 data-v-0f8342b7="" class="card-title p-3">
-      Table
-    </h3></div> <div data-v-0f8342b7="" class="card-body mb-0 pb-0"><div data-v-0f8342b7="" class="mr-2" style="display: flex; align-self: center;"><label data-v-0f8342b7="" class="form-check-label"><input data-v-0f8342b7="" type="checkbox">
+   <div data-v-0f8342b7="" class="card card-default"><div data-v-0f8342b7="" class="card-header d-flex p-0"><h5 data-v-0f8342b7="" class="card-title p-3">
+      Other Options
+    </h5></div> <div data-v-0f8342b7="" class="card-body mb-0 pb-0"><div data-v-0f8342b7="" class="mr-2" style="display: flex; align-self: center;"><label data-v-0f8342b7="" class="form-check-label"><input data-v-0f8342b7="" type="checkbox">
         Column search feature
       </label></div></div> <div data-v-0f8342b7="" class="card-body d-flex"><div data-v-0f8342b7="" class="input-group orderby-group mr-2"><div data-v-0f8342b7="" class="input-group-prepend"><label data-v-0f8342b7="" for="" class="input-group-text">
           Entries per page

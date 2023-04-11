@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('table123', function (Blueprint $table) {
-                        $table->bigIncrements('col1');
-            $table->binary('col2');
+        Schema::create('jane22331111', function (Blueprint $table) {
+                        $table->bigIncrements('1');
         });
     }
 
@@ -26,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table123');
+        Schema::dropIfExists('jane22331111');
     }
 };
 
