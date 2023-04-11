@@ -12,6 +12,102 @@ class CreateTable extends Command
 
     protected $description = 'Create a new migration file for a specified table with given fields and generate model and controller.';
 
+     public function handle()
+    {
+        $table = $this->argument('table');
+        $fields = explode(',', $this->option('fields'));
+    
+        $stubPath = database_path('stubs/migration.stub');
+        $stub = file_get_contents($stubPath);
+    
+        $migrationName = "create_{$table}_table";
+        Artisan::call('make:migration', [
+            'name' => $migrationName,
+            '--create' => $table,
+            '--path' => 'database/migrations',
+        ]);
+    
+        $migrationFileName = $this->getMigrationFileName($migrationName);
+        $migrationFilePath = database_path('migrations') . DIRECTORY_SEPARATOR . $migrationFileName;
+    
+    // Check if the migration file exists
+    if (!file_exists($migrationFilePath)) {
+        $this->error('Failed to generate migration file');
+        return;
+    }
+
+ 
+        $this->replaceMigration($migrationFilePath, $table, $fields, true, $stub);
+    
+        Artisan::call('migrate', [
+            '--force' => true,
+        ]);
+    
+        // Call GenerateModelContFiles command to generate model and controller
+        Artisan::call('generate:crud', [
+            'table' => $table,
+            '--model' => $this->option('model'),
+            '--controller' => $this->option('controller'),
+        ]);
+        Artisan::call('create:view', [
+            'name' => 'nom_de_votre_vue', 
+            '--table' => 'nom_de_votre_table', 
+        ]);
+        $this->info('Migration, Model and Controller generated successfully!');
+    }
+    
+    protected function getMigrationFileName($migrationName)
+    {
+        $timestamp = date('Y_m_d_His');
+        return "{$timestamp}_{$migrationName}.php";
+    }
+ 
+
+    protected function replaceMigration($path, $table, $fields, $timestamps, $stub)
+    {
+        // parse fields into columns array
+        $columnsArr = explode(',', implode(',', $fields));
+        $columns = array();
+        for ($i = 0; $i < count($columnsArr); $i += 2) {
+            $name = trim($columnsArr[$i]);
+            $type = trim($columnsArr[$i+1]);
+            $columns[] = [
+                'name' => $name,
+                'type' => $type,
+            ];
+        }
+    
+        // replace placeholders in the stub with actual values
+        $content = str_replace(
+            ['{{table}}', '{{columns}}', '{{timestamps}}'],
+            [$table, $this->buildColumns($columns), $timestamps ? 'true' : 'false'],
+            $stub
+        );
+      
+    
+    
+        // read existing migration file contents
+        $file_contents = file_get_contents($path);
+      
+        if ($file_contents === false) {
+            throw new \Exception('Failed to read migration file: '.$path);
+        }
+    
+       
+      
+    
+        
+    
+        // write the modified contents back to the migration file
+        $result = file_put_contents($path, $content);
+
+        if ($result === false) {
+            throw new \Exception('Failed to write migration file: '.$path);
+        }
+    
+        // return the path to the migration file
+        return $path;
+    }
     protected function buildColumns(array $columns)
     {
         $columnStatements = array_map(function ($column) {
@@ -24,91 +120,7 @@ class CreateTable extends Command
 
         return implode("\n", $columnStatements);
     }
-
-    protected function replaceMigration($path, $table, $fields, $timestamps, $stub)
-    {
-      
-        $columnsArr = explode(',', implode(',', $fields));
     
-        for ($i = 0; $i < count($columnsArr); $i+=2) {
-            $name = trim($columnsArr[$i]);
-            $type = trim($columnsArr[$i+1]);
-    
-            $columns[] = [
-                'name' => $name,
-                'type' => $type,
-            ];
-        }
-    
-        $content = str_replace(
-            ['{{table}}', '{{columns}}', '{{timestamps}}'],
-            [$table, $this->buildColumns($columns), $timestamps ? 'true' : 'false'],
-            $stub
-        );
-    
-    
-        $path = str_replace('/', '\\', $path);
-
-        file_put_contents($path, $content);
-       
-
-    
-        
-        preg_match('/Migration created successfully\!\n\s+.*\n/m', Artisan::output(), $matches);
-    
-        if (!empty($matches)) {
-            $path = base_path(trim(str_replace('Migration created successfully!', '', str_replace('/', '\\', $matches[0]))));
-            var_dump($path);
-            if (file_exists($path)) {
-                return $path;
-            }
-        }
-    
-        throw new \Exception('Could not determine migration file path.');
-    }
-
-    public function handle()
-    {
-        $table = $this->argument('table');
-        $fields = explode(',', $this->option('fields'));
-
-        $stubPath = database_path('stubs/migration.stub');
-        $stub = file_get_contents($stubPath);
-
-        Artisan::call('make:migration', [
-            'name' => "create_{$table}_table",
-            '--create' => $table,
-            '--path' => 'database/migrations',
-        ]);
-
-        preg_match('/Migration \[(.+)\] created successfully\./', Artisan::output(), $matches);
-
-
-        $path = base_path(trim($matches[1]));
-        $path = str_replace('/', '\\', $matches[1]);
-        //dd($path);
-
-        $this->replaceMigration($path, $table, $fields, true, $stub);
-
-        Artisan::call('migrate', [
-            '--force' => true,
-        ]);
-
-        // Call GenerateModelContFiles command to generate model and controller
-        Artisan::call('generate:crud', [
-            'table' => $table,
-            '--model' => $this->option('model'),
-            '--controller' => $this->option('controller'),
-        ]);
-
-        $this->info('Migration, Model and Controller generated successfully!');
-
-
-        Artisan::call('create:view', [
-            'name' => 'nom_de_votre_vue', 
-            '--table' => 'nom_de_votre_table', 
-        ]);
-    }
-    }
+}
 
 

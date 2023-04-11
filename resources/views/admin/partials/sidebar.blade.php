@@ -1,9 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    .btn-success {
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  margin-top: 10px;
+}
+</style>
+    <title>Sidebar</title>
+ 
+</head>
+<body>
 <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
+                        
                         <div class="sb-sidenav-menu-heading">{{ $nameproject }}</div>
+                        
+                      
+                        
+                        <a href="#" class="btn btn-block btn-success rounded-0 py-2 text-white text-uppercase text-bold" id="preview-btn">
+                        <i class="fas fa-eye fa-fw"></i> Preview panel
+                        </a>
+                        <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  // get the preview button and modal elements
+  const previewBtn = document.getElementById('preview-btn');
+  const previewModal = document.getElementById('preview-modal');
+
+  // listen for click event on preview button
+  previewBtn.addEventListener('click', (event) => {
+    // prevent default behavior of link click
+    event.preventDefault();
+
+    // show the modal
+    previewModal.style.display = 'block';
+    previewModal.classList.add('show');
+  });
+
+  // listen for click event on close button
+  const closeBtn = previewModal.querySelector('.close');
+  closeBtn.addEventListener('click', () => {
+    // hide the modal
+    previewModal.classList.remove('show');
+  });
+
+  // listen for click event on modal backdrop
+  previewModal.addEventListener('click', (event) => {
+    // if user clicked outside the modal content, hide the modal
+    if (event.target === previewModal) {
+      previewModal.classList.remove('show');
+    }
+  });
+
+  // listen for escape key press to hide the modal
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && previewModal.classList.contains('show')) {
+      previewModal.classList.remove('show');
+    }
+  });
+});
+
+
+</script>
+
+
 
                             <a class="nav-link" href="http://localhost:8000/dashboard">
                                 <div class="sb-nav-link-icon" ><i class="fas fa-bars"></i></div>
@@ -69,3 +138,9 @@
             </div>
            
         </div>
+
+
+    
+</body>
+
+</html>

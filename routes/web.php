@@ -57,6 +57,8 @@ Route::get('/myprofil', function () {
 });
 
 
+
+
 Route::post('/generate-crud', [tablefilesController::class, 'generateFiles'])->name('generate-crud');
 
 Route::get('/password', function () {
@@ -103,11 +105,11 @@ Route::middleware('auth')->group(function () {
 
     Auth::routes();
 
-    Route::get('/CRUD', [tablefilesController::class, 'crud'])->name('Menus.Create.CRUD');
+  
     
     Route::get('/table', function () {
         return view('admin.table');
     });
 
 
-    Route::get('/admin/table/{table}', [TableController::class, 'show']);
+    Route::get('mytable588', [mytable588Controller::class, 'show']);

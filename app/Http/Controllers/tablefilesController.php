@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class tablefilesController extends Controller{
 
-    public function crud()
+    public function ProjectName()
     {
         $user = Auth::user();
         $nameproject = $user->nameproject;
@@ -22,7 +22,9 @@ class tablefilesController extends Controller{
     
     public function generateFiles(Request $request)
 {
-      if (true) {
+     
+
+     if (true) {
                 $validator = Validator::make($request->all(), [
                     'tableName' => 'required|max:255',
                     'fields' => 'required|array|min:1',
@@ -77,7 +79,7 @@ class tablefilesController extends Controller{
                     '--controller' => $controllerName,
                     '--fields' => implode(',', $fieldsOption),
                 ];
-                //dd($options);
+               
             
         
                 Artisan::call('create:table', $options);
