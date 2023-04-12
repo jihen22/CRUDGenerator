@@ -141,9 +141,13 @@
                             <input type="text" class="form-control" name="model-name" id="model-name" placeholder="Enter Model name for your table">
                          </div>
    
-                         <div class="form-group">
+                         <div class="form-group col-md-6">
                              <label for="controller-name">Controller Name</label>
                              <input type="text" class="form-control"name="controller-name" id="controller-name" placeholder="Enter Controller name">
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="view-name">View name</label>
+                             <input type="text" class="form-control"name="view-name" id="view-name" placeholder="Enter View name">
                          </div>
 
       </div>

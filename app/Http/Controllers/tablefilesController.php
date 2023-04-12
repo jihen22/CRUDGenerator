@@ -65,6 +65,10 @@ class tablefilesController extends Controller{
         
                 // Call artisan command to generate files
                 $modelName = $request->input('model-name') ?? Str::studly($table->name);
+                $viewName= $request->input('view-name') ?? Str::studly($table->name);
+              
+                
+              
                 $controllerName = $request->input('controller-name') ?? "{$modelName}Controller";
                 $fieldsOption = [];
                 foreach ($fields as $field) {
@@ -77,8 +81,10 @@ class tablefilesController extends Controller{
                     'table' => $table->name,
                     '--model' => $modelName,
                     '--controller' => $controllerName,
+                    '--view'=>$viewName ,
                     '--fields' => implode(',', $fieldsOption),
                 ];
+                
                
             
         
