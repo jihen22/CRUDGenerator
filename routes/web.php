@@ -106,10 +106,9 @@ Route::middleware('auth')->group(function () {
     Auth::routes();
 
   
+
+
+
     
-    Route::get('/table', function () {
-        return view('admin.table');
-    });
 
-
-    Route::get('mytable588', [mytable588Controller::class, 'show']);
+Route::resource('table123', 'table123Controller');

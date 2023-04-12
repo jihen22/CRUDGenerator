@@ -146,11 +146,12 @@
                              <input type="text" class="form-control"name="controller-name" id="controller-name" placeholder="Enter Controller name">
                          </div>
                          <div class="form-group col-md-6">
-                             <label for="view-name">View name</label>
-                             <input type="text" class="form-control"name="view-name" id="view-name" placeholder="Enter View name">
+                            <label for="viewName">View Name</label>
+                            <input type="text" class="form-control" id="viewName" name="viewName" placeholder="Enter View name">
                          </div>
+                         
 
-      </div>
+                 </div>
      </div>
     </div>
  </div>
@@ -390,6 +391,8 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.js"></script>
   
 <script>
+  var viewName = $('#viewName').val();
+console.log(viewName);
 
   // Initialize an empty array to store saved fields
   var fields = [];
@@ -604,6 +607,7 @@ var data = {
   tableName: $('#table-name').val(),
   tableController: $('#controller-name').val(),
   tableModel: $('#model-name').val(),
+  tableView: $('#viewName').val(),
   _token: csrfToken // add the CSRF token to the data object
 };
 
