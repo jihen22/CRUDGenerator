@@ -21,11 +21,12 @@ class tablefilesController extends Controller{
     }
     
     public function generateFiles(Request $request)
-{
-     
+
+{ 
 
      if (true) {
                 $validator = Validator::make($request->all(), [
+                  
                     'tableName' => 'required|max:255',
                     'fields' => 'required|array|min:1',
                     'fields.*.DBCName' => 'required|max:255',
@@ -36,6 +37,9 @@ class tablefilesController extends Controller{
                 if ($validator->fails()) {
                     return response()->json(['errors' => $validator->errors()]);
                 }
+               
+              
+               
         
                 $fields = $request->input('fields');
               
@@ -65,16 +69,13 @@ class tablefilesController extends Controller{
         
                 // Call artisan command to generate files
                 $modelName = $request->input('model-name') ?? Str::studly($table->name);
-                $viewName= $request->input('view-name') ?? Str::studly($table->name);
-              
-                
-              
                 $controllerName = $request->input('controller-name') ?? "{$modelName}Controller";
                 $fieldsOption = [];
                 foreach ($fields as $field) {
                     $fieldsOption[] = $field['DBCName'] . ',' . $field['field_type'];
                 }
-                
+                $viewName = $request->input('view-name');
+               
                 
         
                 $options = [
@@ -84,6 +85,7 @@ class tablefilesController extends Controller{
                     '--view'=>$viewName ,
                     '--fields' => implode(',', $fieldsOption),
                 ];
+               
                 
                
             

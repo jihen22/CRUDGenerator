@@ -29,13 +29,11 @@ class Generatemodelcontfiles extends Command
         $this->call('make:model', [
             'name' => $modelName,
             '--migration' => true,
-            '--controller' => true,
+           
         ]);
 
-        $this->call('make:controller', [
+        $this->call('generate:controller', [
             'name' => $controllerName,
-            '--resource' => true,
-            '--model' => $modelName,
         ]);
         
 
