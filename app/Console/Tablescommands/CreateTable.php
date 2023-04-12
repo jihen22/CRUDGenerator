@@ -53,6 +53,7 @@ class CreateTable extends Command
             'name' => 'nom_de_votre_vue', 
             '--table' => 'nom_de_votre_table', 
         ]);
+
         $this->info('Migration, Model and Controller generated successfully!');
     }
     
@@ -92,11 +93,6 @@ class CreateTable extends Command
         if ($file_contents === false) {
             throw new \Exception('Failed to read migration file: '.$path);
         }
-    
-       
-      
-    
-        
     
         // write the modified contents back to the migration file
         $result = file_put_contents($path, $content);

@@ -112,4 +112,12 @@ Route::middleware('auth')->group(function () {
     });
 
 
-    Route::get('mytable588', [mytable588Controller::class, 'show']);
+   // Route::get('/table/{table}/{view}', [TableController::class, 'show']);
+
+  // Route::get('/table/{table}/{view}', function ($table, $view) {
+  //  $controller = 'App\\Http\\Controllers\\' . ucfirst($table) . 'Controller';
+  //  if (!class_exists($controller)) {
+ //       abort(404);
+  //  }
+ //   return app()->make($controller)->callAction('show', [$view]);
+//});
