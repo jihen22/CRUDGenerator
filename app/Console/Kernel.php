@@ -39,7 +39,8 @@ class Kernel extends ConsoleKernel
         \App\Console\Tablescommands\CreateTable::class,
     
         \App\Console\Tablescommands\Generatemodelcontfiles::class,
-        \App\Console\Tablescommands\CreateTableView::class
+        \App\Console\Tablescommands\CreateTableView::class,
+
 
     ];
    

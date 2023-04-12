@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\TableController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -112,12 +111,5 @@ Route::middleware('auth')->group(function () {
     });
 
 
-   // Route::get('/table/{table}/{view}', [TableController::class, 'show']);
-
-  // Route::get('/table/{table}/{view}', function ($table, $view) {
-  //  $controller = 'App\\Http\\Controllers\\' . ucfirst($table) . 'Controller';
-  //  if (!class_exists($controller)) {
- //       abort(404);
-  //  }
- //   return app()->make($controller)->callAction('show', [$view]);
-//});
+  
+    Route::get('/table/{table}/{view}',  [TableController::class, 'show']);

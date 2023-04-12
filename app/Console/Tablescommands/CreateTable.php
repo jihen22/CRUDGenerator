@@ -50,15 +50,7 @@ class CreateTable extends Command
             '--model' => $this->option('model'),
             '--controller' => $this->option('controller'),
         ]);
-<<<<<<< HEAD
-        Artisan::call('create:view', [
-            'name' => 'nom_de_votre_vue', 
-            '--table' => 'nom_de_votre_table', 
-        ]);
-
-=======
      
->>>>>>> 14bffcc79a37b69888f6ff9a13eb3a4184f60951
         $this->info('Migration, Model and Controller generated successfully!');
 
         Artisan::call('make:table', [
