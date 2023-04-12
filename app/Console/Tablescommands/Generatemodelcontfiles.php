@@ -37,6 +37,7 @@ class Generatemodelcontfiles extends Command
             '--resource' => true,
             '--model' => $modelName,
         ]);
+        
 
        
         $this->info('Model and controller generated successfully!');

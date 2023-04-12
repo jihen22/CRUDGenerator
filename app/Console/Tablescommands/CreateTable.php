@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTable extends Command
 {
-    protected $signature = 'create:table {table : The name of the table} {--model= : The name of the model} {--controller= : The name of the controller} {--fields= : List of fields}';
+    protected $signature = 'create:table {table : The name of the table} {--model= : The name of the model} {--controller= : The name of the controller} {--view= : view name}{--fields= : List of fields}';
 
     protected $description = 'Create a new migration file for a specified table with given fields and generate model and controller.';
 
      public function handle()
     {
         $table = $this->argument('table');
+      
         $fields = explode(',', $this->option('fields'));
     
         $stubPath = database_path('stubs/migration.stub');
@@ -49,12 +50,20 @@ class CreateTable extends Command
             '--model' => $this->option('model'),
             '--controller' => $this->option('controller'),
         ]);
+<<<<<<< HEAD
         Artisan::call('create:view', [
             'name' => 'nom_de_votre_vue', 
             '--table' => 'nom_de_votre_table', 
         ]);
 
+=======
+     
+>>>>>>> 14bffcc79a37b69888f6ff9a13eb3a4184f60951
         $this->info('Migration, Model and Controller generated successfully!');
+
+        Artisan::call('make:table', [
+            'name' =>$this->argument('table') 
+        ]);
     }
     
     protected function getMigrationFileName($migrationName)
