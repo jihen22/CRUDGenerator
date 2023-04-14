@@ -114,5 +114,3 @@ Route::middleware('auth')->group(function () {
   
     Route::get('/table/{table}/{view}',  [TableController::class, 'show']);
 
-//Route::resource('/modll8/{view}', [modll8Controller::class]);
-//Route::resource('/modll87/{view}', [modll87Controller::class]);
