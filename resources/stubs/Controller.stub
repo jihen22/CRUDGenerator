@@ -2,45 +2,91 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\{{modelName}};
 use Illuminate\Http\Request;
 
-class {{ class }} extends Controller
+class {{controllerName}} extends Controller
 {
     public function index()
     {
-        //
+        // Retrieve all {{modelNamePlural}} from the database
+        ${{modelNamePlural}} = {{modelName}}::all();
+
+        // Return a view with the {{modelNamePlural}} data
+        return view('{{viewFolder}}.index', ['{{modelNamePlural}}' => ${{modelNamePlural}}]);
     }
 
     public function create()
     {
-        //
+        // Return a view with a form to create a new {{modelName}}
+        return view('{{viewFolder}}.create');
     }
 
     public function store(Request $request)
     {
-        //
+        // Create a new {{modelName}} with the data from the request
+        ${{modelName}} = new {{modelName}}();
+
+        foreach($fields as $field) {
+            ${{modelName}}->{$field} = $request->input($field);
+        }
+
+        ${{modelName}}->save();
+
+        // Redirect to the index page with a success message
+        return redirect()->route('{{routePrefix}}.index')->with('success', '{{modelName}} created successfully!');
     }
 
     public function show($id)
     {
+<<<<<<< HEAD
+        // Retrieve the {{modelName}} with the given ID from the database
+        ${{modelName}} = {{modelName}}::find($id);
+
+        // Return a view with the {{modelName}} data
+        return view('{{viewFolder}}.show', ['{{modelName}}' => ${{modelName}}]);
+=======
          $columns = DB::getSchemaBuilder()->getColumnListing($table);
     $data = DB::table($table)->get();
 
     return view($view, compact('table', 'columns', 'data'));
+>>>>>>> 688412f0640e226b291ff1cb90876233c7f4b45b
     }
 
     public function edit($id)
     {
-        //
+        // Retrieve the {{modelName}} with the given ID from the database
+        ${{modelName}} = {{modelName}}::find($id);
+
+        // Return a view with a form to edit the {{modelName}}
+        return view('{{viewFolder}}.edit', ['{{modelName}}' => ${{modelName}}]);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        // Retrieve the {{modelName}} with the given ID from the database
+        ${{modelName}} = {{modelName}}::find($id);
+
+        // Update the {{modelName}} with the data from the request
+        foreach($fields as $field) {
+            ${{modelName}}->{$field} = $request->input($field);
+        }
+
+        ${{modelName}}->save();
+
+        // Redirect to the index page with a success message
+        return redirect()->route('{{routePrefix}}.index')->with('success', '{{modelName}} updated successfully!');
     }
 
     public function destroy($id)
     {
-        //
+        // Retrieve the {{modelName}} with the given ID from the database
+        ${{modelName}} = {{modelName}}::find($id);
+
+        // Delete the {{modelName}} from the database
+        ${{modelName}}->delete();
+
+        // Redirect to the index page with a success message
+        return redirect()->route('{{routePrefix}}.index')->with('success', '{{modelName}} deleted successfully!');
     }
 }
