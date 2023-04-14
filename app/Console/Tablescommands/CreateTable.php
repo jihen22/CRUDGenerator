@@ -58,7 +58,7 @@ class CreateTable extends Command
         ]);
         
         // Add a route to web.php
-    $this->appendRoute("Route::resource('$table', '${table}Controller');");
+    $this->appendRoute("Route::resource('/$table/{view}', [${table}Controller::class]);"); 
     }
 
     private function appendRoute($route)
@@ -111,11 +111,6 @@ class CreateTable extends Command
         if ($file_contents === false) {
             throw new \Exception('Failed to read migration file: '.$path);
         }
-    
-       
-      
-    
-        
     
         // write the modified contents back to the migration file
         $result = file_put_contents($path, $content);

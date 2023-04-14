@@ -26,9 +26,9 @@ class Generatemodelcontfiles extends Command
         $modelName = $this->option('model') ?: ucfirst(camel_case($tableName));
         $controllerName = $this->option('controller') ?: ucfirst(camel_case($tableName)) . 'Controller';
 
-        $this->call('make:model', [
+        $this->call('make:model-with-columns', [
             'name' => $modelName,
-            '--migration' => true,
+            
            
         ]);
 

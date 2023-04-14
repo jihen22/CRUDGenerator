@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 
+
 class Kernel extends ConsoleKernel
 {
     /**
@@ -39,8 +40,8 @@ class Kernel extends ConsoleKernel
     
         \App\Console\Tablescommands\Generatemodelcontfiles::class,
         \App\Console\Tablescommands\CreateTableView::class,
-        \App\Console\Tablescommands\GenerateController::class
-
+        \App\Console\Tablescommands\GenerateController::class,
+       \App\Console\Tablescommands\MakeModelWithColumnsCommand::class
     ];
    
 }

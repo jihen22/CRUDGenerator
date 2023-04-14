@@ -39,11 +39,18 @@ class {{controllerName}} extends Controller
 
     public function show($id)
     {
+<<<<<<< HEAD
         // Retrieve the {{modelName}} with the given ID from the database
         ${{modelName}} = {{modelName}}::find($id);
 
         // Return a view with the {{modelName}} data
         return view('{{viewFolder}}.show', ['{{modelName}}' => ${{modelName}}]);
+=======
+         $columns = DB::getSchemaBuilder()->getColumnListing($table);
+    $data = DB::table($table)->get();
+
+    return view($view, compact('table', 'columns', 'data'));
+>>>>>>> 688412f0640e226b291ff1cb90876233c7f4b45b
     }
 
     public function edit($id)
