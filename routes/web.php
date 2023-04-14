@@ -112,3 +112,6 @@ Route::middleware('auth')->group(function () {
     
 
 Route::resource('table123', 'table123Controller');
+Route::resource('jane12345', 'jane12345Controller');
+Route::resource('table104', 'table104Controller');
+Route::resource('table123456', 'table123456Controller');
