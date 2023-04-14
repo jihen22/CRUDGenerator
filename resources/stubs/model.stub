@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class {{class}} extends Model
+{
+    protected $table = '{{table}}';
+
+    protected $fillable = [
+    @foreach($columns as $column)
+        '{{ $column }}',
+    @endforeach
+    ];
+
+    protected $casts = [
+    @foreach($columns as $column)
+        '{{ $column }}' => '{{ $casts[$column] }}',
+    @endforeach
+    ];
+}

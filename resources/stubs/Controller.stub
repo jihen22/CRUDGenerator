@@ -23,7 +23,10 @@ class {{ class }} extends Controller
 
     public function show($id)
     {
-        //
+         $columns = DB::getSchemaBuilder()->getColumnListing($table);
+    $data = DB::table($table)->get();
+
+    return view($view, compact('table', 'columns', 'data'));
     }
 
     public function edit($id)

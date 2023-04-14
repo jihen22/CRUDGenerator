@@ -110,10 +110,9 @@ Route::middleware('auth')->group(function () {
 
     
 
-<<<<<<< HEAD
 
   
     Route::get('/table/{table}/{view}',  [TableController::class, 'show']);
-=======
-Route::resource('table123', 'table123Controller');
->>>>>>> 9f59d2e981522a1810b74890516893c0f126ae76
+
+//Route::resource('/modll8/{view}', [modll8Controller::class]);
+//Route::resource('/modll87/{view}', [modll87Controller::class]);

@@ -40,12 +40,8 @@ class Kernel extends ConsoleKernel
     
         \App\Console\Tablescommands\Generatemodelcontfiles::class,
         \App\Console\Tablescommands\CreateTableView::class,
-<<<<<<< HEAD
-
-=======
-        \App\Console\Tablescommands\GenerateController::class
->>>>>>> 9f59d2e981522a1810b74890516893c0f126ae76
-
+        \App\Console\Tablescommands\GenerateController::class,
+       \App\Console\Tablescommands\MakeModelWithColumnsCommand::class
     ];
    
 }
