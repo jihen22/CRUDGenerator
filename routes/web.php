@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\jane227Controller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -110,19 +112,13 @@ Route::middleware('auth')->group(function () {
 
     
 
-<<<<<<< HEAD
-Route::resource('table123', 'table123Controller');
-Route::resource('jane12345', 'jane12345Controller');
-Route::resource('table104', 'table104Controller');
-Route::resource('table123456', 'table123456Controller');
-=======
 
   
     Route::get('/table/{table}/{view}',  [TableController::class, 'show']);
 
-<<<<<<< HEAD
-=======
-//Route::resource('/modll8/{view}', [modll8Controller::class]);
-//Route::resource('/modll87/{view}', [modll87Controller::class]);
->>>>>>> 688412f0640e226b291ff1cb90876233c7f4b45b
->>>>>>> 9af7dcbbc83be0cce861a4cc6853e0c14fb2bcfc
+   Route::get('/table/{table}/{view}', [jane227Controller::class,'show']);
+   
+  Route::post('/table/{table}/{view}', 'App\Http\Controllers\jane227Controller@store');
+
+   ///Route::post('/table/{table}', [TableController::class, 'store'])->name('table.store');
+
