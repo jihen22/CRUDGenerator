@@ -58,7 +58,7 @@ class CreateTable extends Command
         ]);
         
         // Add a route to web.php
-    $this->appendRoute("Route::resource('/$table/{view}', [${table}Controller::class]);"); 
+    $this->appendRoute("Route::get('/$table', [${table}Controller::class]);"); 
     }
 
     private function appendRoute($route)
@@ -126,14 +126,28 @@ class CreateTable extends Command
     {
         $columnStatements = array_map(function ($column) {
             $method = "{$column['type']}('{$column['name']}')";
-
+    
             return sprintf("%s%s", str_repeat(' ', 12), "\$table->{$method};");
         }, array_filter($columns, function ($column) {
             return isset($column['name']) && isset($column['type']);
-    }));
-
+        }));
+    
+        // Add remember_token column
+        $columnStatements[] = sprintf("%s%s", str_repeat(' ', 12), '$table->rememberToken();');
+    
+        // Add created_at column // Add updated_at column
+        $columnStatements[] = sprintf("%s%s", str_repeat(' ', 12), '$table->timestamps();');
+    
+       
+    
+        // Add id column as primary key with auto-increment
+        $columnStatements[] = sprintf("%s%s", str_repeat(' ', 12), '$table->bigIncrements(\'id\');');
+    
         return implode("\n", $columnStatements);
     }
+    
+    
+    
     
 }
 
