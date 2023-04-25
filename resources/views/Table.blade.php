@@ -153,11 +153,59 @@ table {
                 @endforeach
             </tr>
         @endforeach
+
+        <form action="{{ route('table.store", ['table' => $table]) }}" method="POST">
+            @csrf
+            <tr>
+                <td>
+                    <div class="action-btns">
+                        <button type="submit">Ajouter</button>
+                    </div>
+                </td>
+                @foreach ($columns as $column)
+                    <td>
+                        <input type="text" name="{{ $column }}">
+                    </td>
+                @endforeach
+            </tr>
+        </form>
     </tbody>
 </table>
 
 
+<script>
+    // Récupérer le formulaire
+    const form = document.querySelector('#my-form');
 
+    // Ajouter un écouteur d'événement sur la soumission du formulaire
+    form.addEventListener('submit', (event) => {
+        // Empêcher l'envoi du formulaire par défaut
+        event.preventDefault();
+
+        // Récupérer les données du formulaire
+        const formData = new FormData(form);
+
+        // Récupérer le jeton CSRF
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        // Envoyer la requête AJAX
+        fetch('/table', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: formData
+        })
+        .then(response => {
+            // Traiter la réponse de la requête
+            console.log(response);
+        })
+        .catch(error => {
+            // Traiter les erreurs de la requête
+            console.error(error);
+        });
+    });
+</script
 
 
 
