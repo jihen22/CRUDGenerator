@@ -71,6 +71,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
 
+Route::get('/dashboard', [DashboardController::class, 'showTableNames'])->name('admin.dashboard');
+
+
 Route::get('/settings', [SettingsController::class, 'settings'])->name('admin.settings');
 
 
@@ -122,3 +125,5 @@ Route::middleware('auth')->group(function () {
 
    ///Route::post('/table/{table}', [TableController::class, 'store'])->name('table.store');
 
+//Route::resource('/tale/{table}/{view}', [productController::class]);
+//Route::resource('/tale/{table}/{view}', [table4Controller::class]);
