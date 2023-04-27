@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Jane227;
+use App\Models\table104;
 
 
 
-class Jane227Controller extends Controller
+class Table2Controller extends Controller
 {
      
 
@@ -28,10 +28,10 @@ class Jane227Controller extends Controller
     $data = $request->input('data');
 
     // Créer une nouvelle instance du modèle correspondant à votre table
-    $model = new  Jane227();
+    $model = new table2();
 
     // Définir les propriétés de la nouvelle instance du modèle
-    $model->jane69 = $data;
+    $model->col102 = $data;
 
     // Enregistrer la nouvelle instance du modèle dans la base de données
     $model->save();
@@ -45,5 +45,3 @@ class Jane227Controller extends Controller
 
 
 }
-
-

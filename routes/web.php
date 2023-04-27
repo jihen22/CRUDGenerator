@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\TableController;
-use App\Http\Controllers\jane227Controller;
+use App\Http\Controllers\Table122Controller;
 
 
 /*
@@ -110,7 +110,13 @@ Route::middleware('auth')->group(function () {
     Auth::routes();
 
   
+//Route::get('/table/{table}/{view}', [Table1Controller::class,'show']);
 
+<<<<<<< HEAD
+//Route::post('/table/{table}/{view}', 'App\Http\Controllers\Table1Controller@store');
+    //Route::resource('/table/{table}/{view}', '\App\Http\Controllers\Table122Controller');
+  Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table2Controller');
+=======
 
 
     
@@ -125,3 +131,13 @@ Route::middleware('auth')->group(function () {
 
    ///Route::post('/table/{table}', [TableController::class, 'store'])->name('table.store');
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+//Route::resource('/tale/{table}/{view}', [productController::class]);
+//Route::resource('/tale/{table}/{view}', [table4Controller::class]);
+=======
+>>>>>>> 4a8b2689f99360825dcb8174684648bda4f38714
+>>>>>>> 3f9c43ed850c1a4e3083c9f050616cad93aa6e0b
+>>>>>>> 2d7b52247eb506fc584fb00c7fdb3e43d854e938
+>>>>>>> f97f00e01741a5b16ba916257b8cecc05bb9cb8f

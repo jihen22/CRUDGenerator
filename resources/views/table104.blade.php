@@ -17,14 +17,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
        
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-		
+<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -93,13 +93,13 @@ tr:nth-child(even) {
   background-color: #006080;
 }
 
-    
+   
 
- </style>       
+ </style>      
     </head>
     <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;">
 <div id="app" class="wrapper">
-    
+   
 <nav class="main-header navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="#">name of project</a>
@@ -107,7 +107,7 @@ tr:nth-child(even) {
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                
+               
             </form>
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -149,6 +149,10 @@ tr:nth-child(even) {
 
 
 
+<<<<<<< HEAD:resources/views/table104.blade.php
+       
+=======
+>>>>>>> 2d7b52247eb506fc584fb00c7fdb3e43d854e938:resources/views/jane227.blade.php
 @php
 $hiddenColumns = [ 'created_at', 'updated_at', 'remember_token'];
 @endphp
@@ -193,10 +197,10 @@ $hiddenColumns = [ 'created_at', 'updated_at', 'remember_token'];
 
 
        
-<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> add to 
+<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> add to
                 {{ $table }}
                 </button>
-                
+               
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -223,7 +227,7 @@ $hiddenColumns = [ 'created_at', 'updated_at', 'remember_token'];
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
           <button type="submit" id="submit" class="btn btn-primary">Enregistrer</button>
         </div>
-    
+   
     </div>
   </div>
 </div>
@@ -248,7 +252,7 @@ $('.modal-footer .btn-secondary').click(function(){
 });
 
 
-</script> 
+</script>
 
 <script>
     // Récupérer la référence du formulaire d'ajout de données
@@ -261,9 +265,9 @@ $('.modal-footer .btn-secondary').click(function(){
         // Récupérer les valeurs des champs de saisie
         const dataInput = document.querySelector('#data');
         const data = dataInput.value;
-      
+     
        
-        
+       
 
         // Effectuer une requête AJAX vers le controller Laravel
         $.ajax({
@@ -319,7 +323,7 @@ $('.modal-footer .btn-secondary').click(function(){
         <script src="{{asset('Dashboardassets/assets/demo/chart-bar-demo.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="{{asset('Dashboardassets/js/datatables-simple-demo.js')}}"></script>
-        
-        
+       
+       
     </body>
 </html>
