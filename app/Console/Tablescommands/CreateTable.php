@@ -58,11 +58,7 @@ class CreateTable extends Command
         ]);
         
         // Add a route to web.php
-<<<<<<< HEAD
     $this->appendRoute("Route::get('/$table', [${table}Controller::class]);"); 
-=======
-    $this->appendRoute("Route::resource('/tale/{table}/{view}', [${table}Controller::class]);"); 
->>>>>>> 4a8b2689f99360825dcb8174684648bda4f38714
     }
 
     private function appendRoute($route)

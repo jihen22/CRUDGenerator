@@ -116,9 +116,6 @@ Route::middleware('auth')->group(function () {
     
 
 
-<<<<<<< HEAD
-Route::get('/table1', [table1Controller::class]);
-=======
   
     Route::get('/table/{table}/{view}',  [TableController::class, 'show']);
 
@@ -128,9 +125,3 @@ Route::get('/table1', [table1Controller::class]);
 
    ///Route::post('/table/{table}', [TableController::class, 'store'])->name('table.store');
 
-<<<<<<< HEAD
-//Route::resource('/tale/{table}/{view}', [productController::class]);
-//Route::resource('/tale/{table}/{view}', [table4Controller::class]);
-=======
->>>>>>> 4a8b2689f99360825dcb8174684648bda4f38714
->>>>>>> 3f9c43ed850c1a4e3083c9f050616cad93aa6e0b
