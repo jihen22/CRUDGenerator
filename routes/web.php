@@ -71,6 +71,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
 
+Route::get('/dashboard', [DashboardController::class, 'showTableNames'])->name('admin.dashboard');
+
+
 Route::get('/settings', [SettingsController::class, 'settings'])->name('admin.settings');
 
 
@@ -109,6 +112,32 @@ Route::middleware('auth')->group(function () {
   
 //Route::get('/table/{table}/{view}', [Table1Controller::class,'show']);
 
+<<<<<<< HEAD
 //Route::post('/table/{table}/{view}', 'App\Http\Controllers\Table1Controller@store');
     //Route::resource('/table/{table}/{view}', '\App\Http\Controllers\Table122Controller');
   Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table2Controller');
+=======
+
+
+    
+
+
+<<<<<<< HEAD
+Route::get('/table1', [table1Controller::class]);
+=======
+  
+    Route::get('/table/{table}/{view}',  [TableController::class, 'show']);
+
+   Route::get('/table/{table}/{view}', [jane227Controller::class,'show']);
+   
+  Route::post('/table/{table}/{view}', 'App\Http\Controllers\jane227Controller@store');
+
+   ///Route::post('/table/{table}', [TableController::class, 'store'])->name('table.store');
+
+<<<<<<< HEAD
+//Route::resource('/tale/{table}/{view}', [productController::class]);
+//Route::resource('/tale/{table}/{view}', [table4Controller::class]);
+=======
+>>>>>>> 4a8b2689f99360825dcb8174684648bda4f38714
+>>>>>>> 3f9c43ed850c1a4e3083c9f050616cad93aa6e0b
+>>>>>>> 2d7b52247eb506fc584fb00c7fdb3e43d854e938

@@ -149,14 +149,18 @@ tr:nth-child(even) {
 
 
 
+<<<<<<< HEAD:resources/views/table104.blade.php
        
+=======
+>>>>>>> 2d7b52247eb506fc584fb00c7fdb3e43d854e938:resources/views/jane227.blade.php
 @php
-    $hiddenColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
+$hiddenColumns = [ 'created_at', 'updated_at', 'remember_token'];
 @endphp
 
 <table id="myTable">
     <thead>
         <tr>
+            <th><input type="checkbox" id="select-all"></th>
             <th>Actions</th>
             @foreach ($columns as $column)
                 @if (!in_array($column, $hiddenColumns))
@@ -168,6 +172,7 @@ tr:nth-child(even) {
     <tbody>
         @foreach ($data as $row)
             <tr>
+                <td><input type="checkbox" name="selected[]" value="{{ $row->id }}"></td>
                 <td>
                     <div class="action-btns">
                         <a href="#">Editer</a>
@@ -189,6 +194,8 @@ tr:nth-child(even) {
 </table>
 
 
+
+
        
 <button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> add to
                 {{ $table }}
@@ -205,14 +212,14 @@ tr:nth-child(even) {
       </div>
       <form id="addDateForm">
       <div class="modal-body">
-                @foreach ($columns as $column)
-               @if ($column != 'id' && $column != 'remember_token' && $column != 'created_at' && $column != 'updated_at')
-                <div class="form-group">
-                <label for="{{ $column }}">{{ $column }}:</label>
-                <input type="text" class="form-control" id="data" name="data" required>
-            </div>
-        @endif
-    @endforeach
+           @foreach ($columns as $column)
+           @if ($column != 'id' && $column != 'remember_token' && $column != 'created_at' && $column != 'updated_at' && $column != 'select-id')
+         <div class="form-group">
+            <label for="{{ $column }}">{{ $column }}:</label>
+            <input type="text" class="form-control" id="data" name="data" required>
+        </div>
+    @endif
+@endforeach
 </div>
 
 

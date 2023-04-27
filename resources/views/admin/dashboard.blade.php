@@ -5,8 +5,56 @@
 
 @include('admin.partials.header')
 <style>
-    	
-    
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+thead {
+  background-color: #f7f7f7;
+  font-weight: bold;
+}
+
+th,
+td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+td:first-child,
+th:first-child {
+  padding-left: 0;
+}
+
+td:last-child,
+th:last-child {
+  padding-right: 0;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+tfoot {
+  font-weight: bold;
+  border-top: 2px solid #ddd;
+}
+
+tfoot td {
+  border-top: none;
+}
+
+
+
 
 /* Style the primary button */
 .btn-primary {
@@ -14,29 +62,7 @@
   border-color: #007bff;
 }
 
-/* Style the danger button */
-.btn-danger {
-  
-}
 
-/* Style the warning button */
-.btn-warning {
- 
-}
-
-/* Style the info button */
-.btn-info {
-}
-
-/* Style the edit button */
-.btn-warning {
- 
-}
-
-/* Style the clone button */
-.btn-primary {
-
-}
 
 /* Add some margin to the delete button */
 .delete-crud {
@@ -56,6 +82,8 @@
 }
 
 	</style>
+
+
     <style>
     .btn-success {
   margin-bottom: 10px;
@@ -82,7 +110,7 @@
     <main>
     <div class="card-header">
    <i class="fas fa-table me-1"></i>
-    Menu
+    Table
     </div>
     
     <div class="content-warper" id="monDiv" style="">
@@ -90,7 +118,7 @@
 		<div class="container-fluid p-0">
 			<div class ="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0 text-drak">Select desired menu </h1>
+					<h1 class="m-0 text-drak">Tables</h1>
                 </div>
             </div>
         </div>
@@ -106,11 +134,7 @@
 Create CRUD menu item
 </a>
    
-    <a class="btn btn-info text-bold rounded-0"id="createNonCrudTable">
-Create non-CRUD menu item
-</a> <a  class="btn btn-info text-bold rounded-0"id="createParentCrudTable">
-Create Parent menu item
-</a>
+   
 <br>
 <br>
 
@@ -123,7 +147,39 @@ Create Parent menu item
 
                 </main>
                
-  
+
+
+
+                @php
+$tables = DB::select("SHOW TABLES WHERE Tables_in_" . env('DB_DATABASE') . " NOT IN ('password_resets', 'personal_access_tokens', 'fieldslist4', 'failed_jobs', 'fieldslist3', 'myresources', 'migrations', 'project_settings', 'tableslist')");
+@endphp
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Nom de table</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($tables as $table)
+                <tr>
+                    <td><a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')}) }}">{{ $table->{'Tables_in_' . env('DB_DATABASE')} }}</a></td>
+                    <td>
+                 <a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} . '/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" class="btn btn-info"><i class="fas fa-eye"></i> Voir</a>
+                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Télécharger</a>
+                   </td>
+
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
+
+
+
  
                       
 
