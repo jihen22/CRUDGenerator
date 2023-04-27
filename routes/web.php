@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\TableController;
-use App\Http\Controllers\jane227Controller;
+use App\Http\Controllers\Table122Controller;
 
 
 /*
@@ -107,22 +107,8 @@ Route::middleware('auth')->group(function () {
     Auth::routes();
 
   
+//Route::get('/table/{table}/{view}', [Table1Controller::class,'show']);
 
-
-
-    
-
-
-<<<<<<< HEAD
-Route::get('/table1', [table1Controller::class]);
-=======
-  
-    Route::get('/table/{table}/{view}',  [TableController::class, 'show']);
-
-   Route::get('/table/{table}/{view}', [jane227Controller::class,'show']);
-   
-  Route::post('/table/{table}/{view}', 'App\Http\Controllers\jane227Controller@store');
-
-   ///Route::post('/table/{table}', [TableController::class, 'store'])->name('table.store');
-
->>>>>>> 4a8b2689f99360825dcb8174684648bda4f38714
+//Route::post('/table/{table}/{view}', 'App\Http\Controllers\Table1Controller@store');
+    //Route::resource('/table/{table}/{view}', '\App\Http\Controllers\Table122Controller');
+  Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table2Controller');

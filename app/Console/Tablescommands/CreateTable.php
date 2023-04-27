@@ -57,27 +57,25 @@ class CreateTable extends Command
             'name' =>$this->argument('table') 
         ]);
         
-        // Add a route to web.php
-<<<<<<< HEAD
-    $this->appendRoute("Route::get('/$table', [${table}Controller::class]);"); 
-=======
-    $this->appendRoute("Route::resource('/tale/{table}/{view}', [${table}Controller::class]);"); 
->>>>>>> 4a8b2689f99360825dcb8174684648bda4f38714
+        Artisan::call('create:routes', [
+            'table' => $table,
+            '--controller' => $this->option('controller'),
+        ]);
     }
 
-    private function appendRoute($route)
-{
-    $path = base_path('routes/web.php');
-    $contents = file_get_contents($path);
+   // private function appendRoute($route)
+//{
+   // $path = base_path('routes/web.php');
+   // $contents = file_get_contents($path);
 
     // Check if route already exists
-    if (strpos($contents, $route) === false) {
+   // if (strpos($contents, $route) === false) {
         // Append the route to the end of the file
-        file_put_contents($path, $route . "\n", FILE_APPEND);
-    }
+   //     file_put_contents($path, $route . "\n", FILE_APPEND);
+  //  }
 
-    $this->info("Added route: $route");
-}
+  //  $this->info("Added route: $route");
+//}
     
     protected function getMigrationFileName($migrationName)
     {
@@ -128,13 +126,17 @@ class CreateTable extends Command
     }
     protected function buildColumns(array $columns)
     {
-        $columnStatements = array_map(function ($column) {
+        
+          $columnStatements = array_map(function ($column) {
             $method = "{$column['type']}('{$column['name']}')";
     
             return sprintf("%s%s", str_repeat(' ', 12), "\$table->{$method};");
         }, array_filter($columns, function ($column) {
             return isset($column['name']) && isset($column['type']);
         }));
+          // Add id column
+          $columnStatements[] = sprintf("%s%s", str_repeat(' ', 12), '$table->id();');
+      
     
         // Add remember_token column
         $columnStatements[] = sprintf("%s%s", str_repeat(' ', 12), '$table->rememberToken();');
@@ -142,14 +144,13 @@ class CreateTable extends Command
         // Add created_at column // Add updated_at column
         $columnStatements[] = sprintf("%s%s", str_repeat(' ', 12), '$table->timestamps();');
     
-       
-    
-        // Add id column as primary key with auto-increment
-        $columnStatements[] = sprintf("%s%s", str_repeat(' ', 12), '$table->bigIncrements(\'id\');');
-    
         return implode("\n", $columnStatements);
     }
     
+    protected function setPrimaryKey()
+    {
+        return sprintf("%s%s", str_repeat(' ', 12), '$table->primary(\'id\');');
+    }
     
     
     
