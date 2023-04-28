@@ -31,26 +31,39 @@ class CreateRoutesCommand extends Command
     {
         $table = $this->argument('table');
         $controller = $this->option('controller') ?: ucfirst($table).'Controller';
-        
+            
         $controller_path = app_path('Http/Controllers/'.$controller.'.php');
         if (!File::exists($controller_path)) {
             $this->error('Controller '.$controller.' does not exist!');
             return;
         }
-
+    
         $model = $table;
         $model_path = app_path('Models/'.$model.'.php');
         if (!File::exists($model_path)) {
             $this->error('Model '.$model.' does not exist!');
             return;
         }
-
+    
+        $useStatement = "use App\\Http\\Controllers\\{$controller};\n";
+       
         $routeDefinition = "Route::resource('/table/{table}/{view}', '\\\\App\\\\Http\\\\Controllers\\\\{$controller}');";
-        File::append(base_path('routes/web.php'), $routeDefinition);
-        $this->info('Routes for '.$table.' table created successfully.');
         
-
+        $webRouteFile = base_path('routes/web.php');
+        $webRouteContents = file_get_contents($webRouteFile);
+        
+        // check if use statement already exists in the file
+        if (strpos($webRouteContents, $useStatement) === false) {
+            // append the use statement to the top of the file
+            file_put_contents($webRouteFile, $useStatement, FILE_APPEND | LOCK_EX);
+        }
+    
+        // append the route definition to the end of the file
+        file_put_contents($webRouteFile, "\n".$routeDefinition, FILE_APPEND | LOCK_EX);
+        
+        $this->info('Routes for '.$table.' table created successfully.');
     }
+    
 
     
     

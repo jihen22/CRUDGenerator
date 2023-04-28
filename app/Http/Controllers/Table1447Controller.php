@@ -5,13 +5,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\table104;
+use App\Models\table1447;
+use Illuminate\Support\Facades\Auth;
 
 
 
-class Table2Controller extends Controller
+
+class Table1447Controller extends Controller
 {
-     
+   
+
+    public function project($view, $table)
+    {
+        $user = Auth::user();
+        $nameproject = $user->nameproject;
+ 
+        return $this->show(new Request(), $table, $view)->with('nameproject', $nameproject);
+    }
 
     public function show(Request $request, $table, $view,)
     {
@@ -28,10 +38,10 @@ class Table2Controller extends Controller
     $data = $request->input('data');
 
     // Créer une nouvelle instance du modèle correspondant à votre table
-    $model = new table2();
+    $model = new table1447();
 
     // Définir les propriétés de la nouvelle instance du modèle
-    $model->col102 = $data;
+    $model->col55 = $data;
 
     // Enregistrer la nouvelle instance du modèle dans la base de données
     $model->save();
@@ -40,7 +50,17 @@ class Table2Controller extends Controller
     return response()->json(['success' => true]);
 }
 
-   
+public function destroy($id)
+{
+    // Delete the row from the database
+    Row::find($id)->delete();
+
+    // Return a response indicating success
+    return response()->json([
+        'message' => 'Row deleted successfully',
+    ]);
+}
+
    
 
 

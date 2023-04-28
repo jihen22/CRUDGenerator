@@ -25,28 +25,35 @@ class tablefilesController extends Controller{
 { 
 
      if (true) {
-                $validator = Validator::make($request->all(), [
-                  
-                    'tableName' => 'required|max:255',
-                    'fields' => 'required|array|min:1',
-                    'fields.*.DBCName' => 'required|max:255',
-                    'fields.*.field_type' => 'required',
-                ]);
-            
-        
-                if ($validator->fails()) {
-                    return response()->json(['errors' => $validator->errors()]);
-                }
-               
-              
-               
-        
-                $fields = $request->input('fields');
-              
-                // Save table name in tables_list table
-                $table = Table::create(['name' => $request->input('tableName')]);
-        
-                // Save fields in fields table
+        $validator = Validator::make($request->all(), [
+            'tableName' => 'required|max:255',
+            'tableModel' => 'required|max:255',
+            'tableController' => 'required|max:255',
+            'tableView' => 'required|max:255',
+            'fields' => 'required|array|min:1',
+            'fields.*.DBCName' => 'required|max:255',
+            'fields.*.field_type' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()]);
+        }
+    
+        $tableName = $request->input('tableName');
+        $modelName = $request->input('tableModel');
+        $viewName = $request->input('tableView');
+        $controllerName = $request->input('tableController');
+        $fields = $request->input('fields');
+    
+        // Save table name, model name, and controller name in tableslist table
+        $table = Table::create([
+            'name' => $tableName,
+            'model_name' => $modelName,
+            'controller_name' => $controllerName, 
+            'view_name' => $viewName
+        ]);
+    
+            //Save fields in fields table
                 $fieldsData = [];
                 foreach ($fields as $field) {
                     $fieldsData[] = [
@@ -97,7 +104,14 @@ class tablefilesController extends Controller{
         
             return response()->json(['success' => false]);
         }
-        
+        public function showTable($id)
+{
+    $table = Table::find($id);
+    $fields = Field::where('table_id', $id)->get();
     
+    return view('edittable')->with('table', $table)->with('fields', $fields);
 }
+
+       
+    }
 

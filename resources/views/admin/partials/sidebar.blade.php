@@ -22,11 +22,11 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                        
-                        <div class="sb-sidenav-menu-heading">{{ $nameproject }}</div>
+                        <h1>
+                        <div class="sb-sidenav-menu-heading">My project</div>
                         
                       
-                        
+</h1>
                         <a href="#" class="btn btn-block btn-success rounded-0 py-2 text-white text-uppercase text-bold" id="preview-btn">
                         <i class="fas fa-eye fa-fw"></i> Preview panel
                         </a>
@@ -74,12 +74,12 @@
 
                             <a class="nav-link" href="{{ url('/myproject') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                My project
+                                Projects List
                             </a>
 
                             <a class="nav-link" href="http://localhost:8000/dashboard">
                                 <div class="sb-nav-link-icon" ><i class="fas fa-bars"></i></div>
-                                Menus
+                              CRUD Tables
                             </a>
                             <a class="nav-link" href="{{ url('/settings') }}">
                                 <div class="sb-nav-link-icon"><i class="fa fa-cog"></i></div>
@@ -93,12 +93,12 @@
                             
                             <a class="nav-link" href="{{ url('/myproject') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                My project
+                             Projects List
                             </a>
                             
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                 My profile
+                                 Profile
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
@@ -106,13 +106,13 @@
                                     
                             <a class="nav-link" href="{{ url('/myprofil') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
-                                Edit my profil
+                                Edit  Profile
                             </a>
 
                                   
                             <a class="nav-link" href="{{ url('/password') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-lock"></i></div>
-                                Change password
+                             Password
                             </a>
                                     
                                 </nav>
@@ -121,7 +121,10 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        merrry jane
+                        <a >
+                                    {{ Auth::user()->name }}
+                                </a>
+                        
                     </div>
                 </nav>
             </div>

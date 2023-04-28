@@ -102,7 +102,7 @@ tr:nth-child(even) {
    
 <nav class="main-header navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="#">name of project</a>
+            <a class="navbar-brand ps-3" href="#">Table</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -133,7 +133,7 @@ tr:nth-child(even) {
             </ul>
         </nav>
 <div class="card">
-    <div class="card-header">{{ $table }} </div>
+  
 
 <div class="card-body">
 
@@ -149,56 +149,53 @@ tr:nth-child(even) {
 
 
 
-<<<<<<< HEAD:resources/views/table104.blade.php
        
-=======
->>>>>>> 2d7b52247eb506fc584fb00c7fdb3e43d854e938:resources/views/jane227.blade.php
 @php
-$hiddenColumns = [ 'created_at', 'updated_at', 'remember_token'];
+    $hiddenColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
 @endphp
 
 <table id="myTable">
     <thead>
         <tr>
-            <th><input type="checkbox" id="select-all"></th>
-            <th>Actions</th>
+         
             @foreach ($columns as $column)
                 @if (!in_array($column, $hiddenColumns))
                     <th>{{ $column }}</th>
                 @endif
             @endforeach
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($data as $row)
             <tr>
-                <td><input type="checkbox" name="selected[]" value="{{ $row->id }}"></td>
-                <td>
-                    <div class="action-btns">
-                        <a href="#">Editer</a>
-                        <form action="#" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Supprimer</button>
-                        </form>
-                    </div>
-                </td>
+             
                 @foreach ($columns as $column)
                     @if (!in_array($column, $hiddenColumns))
                         <td>{{ $row->{$column} }}</td>
                     @endif
                 @endforeach
+                <td>
+                    <div class="action-btns">
+                          
+<button type="button" id="Edit" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Edit Column
+                </button>
+                <form action="#" method="POST">
+    @csrf
+    @method('DELETE')
+    <button id="delete-btn-{{ $row->id }}" type="submit">Delete</button>
+</form>
+
+                    </div>
+                </td>
             </tr>
         @endforeach
     </tbody>
 </table>
 
 
-
-
        
-<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> add to
-                {{ $table }}
+<button type="button" id="Add" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Add Column
                 </button>
                
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -212,20 +209,20 @@ $hiddenColumns = [ 'created_at', 'updated_at', 'remember_token'];
       </div>
       <form id="addDateForm">
       <div class="modal-body">
-           @foreach ($columns as $column)
-           @if ($column != 'id' && $column != 'remember_token' && $column != 'created_at' && $column != 'updated_at' && $column != 'select-id')
-         <div class="form-group">
-            <label for="{{ $column }}">{{ $column }}:</label>
-            <input type="text" class="form-control" id="data" name="data" required>
-        </div>
-    @endif
-@endforeach
+                @foreach ($columns as $column)
+               @if ($column != 'id' && $column != 'remember_token' && $column != 'created_at' && $column != 'updated_at')
+                <div class="form-group">
+                <label for="{{ $column }}">{{ $column }}:</label>
+                <input type="text" class="form-control" id="data" name="data" required>
+            </div>
+        @endif
+    @endforeach
 </div>
 
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-          <button type="submit" id="submit" class="btn btn-primary">Enregistrer</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" id="submit" class="btn btn-primary">Save Column</button>
         </div>
    
     </div>
@@ -235,7 +232,7 @@ $hiddenColumns = [ 'created_at', 'updated_at', 'remember_token'];
 <script>
 
 $(document).ready(function() {
-  $("#ajouter").click(function() {
+  $("#Add").click(function() {
     $("#myModal").modal("show");
   });
 });
@@ -255,8 +252,51 @@ $('.modal-footer .btn-secondary').click(function(){
 </script>
 
 <script>
+    // get the table element
+const table = document.getElementById("myTable");
+
+// add a click event listener to the table
+table.addEventListener("click", (event) => {
+  // check if the clicked element is a delete button
+  if (event.target.classList.contains("deleteBtn")) {
+    // get the row that contains the clicked button
+    const row = event.target.parentElement.parentElement;
+    // remove the row from the table
+    row.remove();
+  }
+});
+
+    function deleteRow(button) {
+        let rowId = button.getAttribute('data-id');
+        if (confirm('Are you sure you want to delete this row?')) {
+            fetch(`/rows/${rowId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Remove the deleted row from the table
+                    let row = button.closest('tr');
+                    row.remove();
+                } else {
+                    alert('Failed to delete row');
+                }
+            })
+            .catch(error => alert(error));
+        }
+    }
+
+
+
+    </script>
+
+
+<script>
     // Récupérer la référence du formulaire d'ajout de données
-    const form = document.querySelector('#addDateForm');
+    const form = document.querySelector('#addDataForm');
 
     // Écouter l'événement de soumission du formulaire
     form.addEventListener('submit', (event) => {
@@ -292,14 +332,17 @@ $('.modal-footer .btn-secondary').click(function(){
         const actionCell = newRow.insertCell();
         const dataCell = newRow.insertCell();
         actionCell.innerHTML = `
-            <div class="action-btns">
-                <a href="#">Editer</a>
-                <form action="#" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Supprimer</button>
-                </form>
-            </div>
+        <div class="action-btns">
+                          
+                          <button type="button" id="Edit" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Edit Column
+                                          </button>
+                               
+                                                  <form action="#" method="POST">
+                                                      @csrf
+                                                      @method('DELETE')
+                                                      <button type="submit">Delete</button>
+                                                  </form>
+                                              </div>
         `;
         dataCell.textContent = data;
 

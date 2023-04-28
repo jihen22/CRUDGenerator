@@ -5,7 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MyprojectController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SettingsControllera;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
 use App\Http\Controllers\CrudController;
@@ -14,19 +14,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\TableController;
-use App\Http\Controllers\Table122Controller;
+use App\Http\Controllers\Table1447Controller;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -99,7 +90,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/myprofil', [ProfileController::class, 'editmyprofil'])->name('admin.editmyprofil');
 
 
-   //Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'create1'])->name('auth.register');
 
 
    Route::get('/myproject', [MyprojectController::class, 'index'])->name('admin.myproject');
@@ -110,34 +100,25 @@ Route::middleware('auth')->group(function () {
     Auth::routes();
 
   
-//Route::get('/table/{table}/{view}', [Table1Controller::class,'show']);
 
-<<<<<<< HEAD
-//Route::post('/table/{table}/{view}', 'App\Http\Controllers\Table1Controller@store');
-    //Route::resource('/table/{table}/{view}', '\App\Http\Controllers\Table122Controller');
-  Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table2Controller');
-=======
+   Route::post('/table/{table}/{view}', [Table1447Controller::class,'store']);
+   
+   Route::get('/table/{table}/{view}', [Table1447Controller::class,'project']);
+   Route::get('/table/{table}/{view}', [Table1447Controller::class,'show']);
+
+  
+ //Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');
+
 
 
     
 
 
-<<<<<<< HEAD
-Route::get('/table1', [table1Controller::class]);
-=======
+
+ Route::delete('/rows/{id}', 'Table1447Controller@destroy');
+
+
   
-    Route::get('/table/{table}/{view}',  [TableController::class, 'show']);
 
-   Route::get('/table/{table}/{view}', [jane227Controller::class,'show']);
-   
-  Route::post('/table/{table}/{view}', 'App\Http\Controllers\jane227Controller@store');
 
-   ///Route::post('/table/{table}', [TableController::class, 'store'])->name('table.store');
-
-<<<<<<< HEAD
-//Route::resource('/tale/{table}/{view}', [productController::class]);
-//Route::resource('/tale/{table}/{view}', [table4Controller::class]);
-=======
->>>>>>> 4a8b2689f99360825dcb8174684648bda4f38714
->>>>>>> 3f9c43ed850c1a4e3083c9f050616cad93aa6e0b
->>>>>>> 2d7b52247eb506fc584fb00c7fdb3e43d854e938
+Route::get('/table/{table}/edittable', '\\App\\Http\\Controllers\\tablefilesController@edit')->name('edittable');

@@ -110,7 +110,7 @@ tfoot td {
     <main>
     <div class="card-header">
    <i class="fas fa-table me-1"></i>
-    Table
+    Tables
     </div>
     
     <div class="content-warper" id="monDiv" style="">
@@ -118,7 +118,7 @@ tfoot td {
 		<div class="container-fluid p-0">
 			<div class ="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0 text-drak">Tables</h1>
+				
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@ tfoot td {
             <div class="card-body">
 
     <a  class="btn btn-info text-bold rounded-0" id="createCrudTable">
-Create CRUD menu item
+Create CRUD Table
 </a>
    
    
@@ -158,17 +158,18 @@ $tables = DB::select("SHOW TABLES WHERE Tables_in_" . env('DB_DATABASE') . " NOT
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Nom de table</th>
+                <th>Table</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($tables as $table)
                 <tr>
-                    <td><a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')}) }}">{{ $table->{'Tables_in_' . env('DB_DATABASE')} }}</a></td>
+                   <td><a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} . '/edittable' ) }}" >{{ $table->{'Tables_in_' . env('DB_DATABASE')} }}</a></td>
+</td>
                     <td>
-                 <a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} . '/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" class="btn btn-info"><i class="fas fa-eye"></i> Voir</a>
-                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Télécharger</a>
+                 <a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} . '/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" class="btn btn-info"><i class="fas fa-eye"></i> See</a>
+                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Download</a>
                    </td>
 
                 </tr>
@@ -232,15 +233,7 @@ $tables = DB::select("SHOW TABLES WHERE Tables_in_" . env('DB_DATABASE') . " NOT
 			console.log("Creating CRUD table...");
 		});
 
-		document.getElementById("createNonCrudTable").addEventListener("click", function() {
-			window.location.href = "/NonCRUD";
-			console.log("Creating non-CRUD table...");
-		});
-
-		document.getElementById("createParentCrudTable").addEventListener("click", function() {
-			window.location.href = "/Parent";
-			console.log("Creating parent CRUD table...");
-		});
+		
 	</script>
 
 
