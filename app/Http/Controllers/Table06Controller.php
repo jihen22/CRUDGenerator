@@ -2,24 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{{modelName}};
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
+
+use App\Models\table06;
 
 
 
-class {{controllerName}} extends Controller
+
+class Table06Controller extends Controller
 {
     
+    
+   
 
-    public function create()
-    {
-        
-    }
-
- public function index(Request $request, $table, $view)
+    public function index(Request $request, $table, $view)
     {
 
         $user = Auth::user();
@@ -52,26 +50,8 @@ class {{controllerName}} extends Controller
 
 
 
-    public function edit($id)
-    {
-       
-    }
-
-    public function update(Request $request, $id)
-    {
    
-    }
+   
 
-    public function destroy($id)
-    {
-        
-    }
 
-    public function project($view, $table)
-{
-    $user = Auth::user();
-    $nameproject = $user->nameproject;
- 
-    return $this->show(new Request(), $table, $view)->with('nameproject', $nameproject);
-}
 }

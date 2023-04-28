@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('table2', function (Blueprint $table) {
-                        $table->string('col102');
+        Schema::create('moha1', function (Blueprint $table) {
+                        $table->string('colonne5');
             $table->id();
             $table->rememberToken();
             $table->timestamps();
@@ -28,7 +28,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table2');
+        Schema::dropIfExists('moha1');
     }
 };
 

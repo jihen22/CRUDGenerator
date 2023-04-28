@@ -57,30 +57,13 @@ class CreateTable extends Command
             'name' =>$this->argument('table') 
         ]);
         
-<<<<<<< HEAD
-        // Add a route to web.php
-    $this->appendRoute("Route::get('/$table', [${table}Controller::class]);"); 
-=======
         Artisan::call('create:routes', [
             'table' => $table,
             '--controller' => $this->option('controller'),
         ]);
->>>>>>> f97f00e01741a5b16ba916257b8cecc05bb9cb8f
+        
     }
-
-   // private function appendRoute($route)
-//{
-   // $path = base_path('routes/web.php');
-   // $contents = file_get_contents($path);
-
-    // Check if route already exists
-   // if (strpos($contents, $route) === false) {
-        // Append the route to the end of the file
-   //     file_put_contents($path, $route . "\n", FILE_APPEND);
-  //  }
-
-  //  $this->info("Added route: $route");
-//}
+   
     
     protected function getMigrationFileName($migrationName)
     {
