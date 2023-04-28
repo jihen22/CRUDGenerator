@@ -67,11 +67,5 @@ class {{controllerName}} extends Controller
         
     }
 
-    public function project($view, $table)
-{
-    $user = Auth::user();
-    $nameproject = $user->nameproject;
- 
-    return $this->show(new Request(), $table, $view)->with('nameproject', $nameproject);
-}
+   
 }
