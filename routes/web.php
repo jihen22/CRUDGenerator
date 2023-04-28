@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+<<<<<<< HEAD
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\Table1447Controller;
 
+=======
+use App\Http\Controllers\Table06Controller;
+use App\Http\Controllers\Sam1Controller;
+>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7
 
 
 
@@ -100,6 +105,7 @@ Route::middleware('auth')->group(function () {
     Auth::routes();
 
   
+<<<<<<< HEAD
 
    Route::post('/table/{table}/{view}', [Table1447Controller::class,'store']);
    
@@ -109,10 +115,18 @@ Route::middleware('auth')->group(function () {
   
  //Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');
 
+=======
+   //Route::get('/table/{table}/{view}', [Table1Controller::class,'show']);
 
+   //Route::resource('/table/{table}', '\\App\\Http\\Controllers\\Table06Controller');
+>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7
 
-    
+   Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
+   Route::post('/table/{table}/{view}', [Table06Controller::class,'store']);
 
+//Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Moha1Controller');
+
+<<<<<<< HEAD
 
 
  Route::delete('/rows/{id}', 'Table1447Controller@destroy');
@@ -122,3 +136,5 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/table/{table}/edittable', '\\App\\Http\\Controllers\\tablefilesController@edit')->name('edittable');
+=======
+>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7

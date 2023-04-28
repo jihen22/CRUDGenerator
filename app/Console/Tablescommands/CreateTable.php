@@ -61,21 +61,9 @@ class CreateTable extends Command
             'table' => $table,
             '--controller' => $this->option('controller'),
         ]);
+        
     }
-
-   // private function appendRoute($route)
-//{
-   // $path = base_path('routes/web.php');
-   // $contents = file_get_contents($path);
-
-    // Check if route already exists
-   // if (strpos($contents, $route) === false) {
-        // Append the route to the end of the file
-   //     file_put_contents($path, $route . "\n", FILE_APPEND);
-  //  }
-
-  //  $this->info("Added route: $route");
-//}
+   
     
     protected function getMigrationFileName($migrationName)
     {
