@@ -48,7 +48,13 @@ class Table06Controller extends Controller
         return response()->json(['success' => true]);
     }
 
-
+    public function destroy($id)
+    {
+        $table06 = Table06::find($id);
+        $table06->delete();
+    
+        return redirect()->route('/table/{table}/{view}')->with('success', 'Row deleted successfully');
+    }
 
    
    

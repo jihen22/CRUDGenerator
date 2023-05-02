@@ -20,10 +20,52 @@
         font-weight: bold;
         font-size: 1.2rem;
       }
+      <style>
+        .dark-theme {
+  background-color: #1c1c1c;
+  color: #f2f2f2;
+}
+.card {
+  background-color: #323232;
+  color: #f2f2f2;
+}
+
+
+
+label.col-form-label {
+  color: #000000;
+}
+.form-control {
+  background-color: #4d4d4d;
+  color: #f2f2f2;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+.form-control:focus {
+  background-color: #696969;
+  color: #f2f2f2;
+}
+.logo-image {
+  height: 180px;
+  width: 180px;
+}
+</style>
     </style>
 @extends('layouts.app')
     </header>
-<body>
+<body class="dark-theme">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -180,3 +222,4 @@
     </form>
 
 @endsection
+</body>
