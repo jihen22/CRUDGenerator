@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class SettingsController extends Controller
 {
@@ -44,4 +46,30 @@ class SettingsController extends Controller
 
     return redirect()->back()->with('success', 'Mise à jour réussie.');
 }
+
+public function edit()
+{
+    $user = Auth::user();
+
+    // Récupérer le nom du projet actuel depuis la base de données
+    $nameproject = DB::table('users')->where('id', 1)->value('nameproject');
+
+    $email = $user->email;
+    $language = $user->language;
+    $date_format = $user->date_format;
+
+ 
+
+
+    return view('admin.settings')->with([
+        'user' => $user,
+        'nameproject' => $nameproject,
+        'email' => $email,
+        'language' => $language,
+        'date_format'=> $date_format
+    
+
+    ]);
+}
+
 }

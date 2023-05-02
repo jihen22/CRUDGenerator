@@ -13,19 +13,6 @@ class MyprojectController extends Controller
 {
    
 
-   // public function index()
-  //  {
-        //$donnees = User::select('id', 'nameproject','language', 'date_format','laravel_version', 'created_at')->get();
-       // return view('admin.myproject', ['donnees' => $donnees]);
-   // }
-
-    ///public function myproject()
-   // {
-      //  $user = Auth::user();
-      // $nameproject = $user->nameproject;
- 
-      // return view('admin.myproject')->with('nameproject', $nameproject);
-   // }
    public function index()
    {
        $user = Auth::user();

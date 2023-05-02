@@ -66,6 +66,9 @@ Route::get('/dashboard', [DashboardController::class, 'showTableNames'])->name('
 
 
 Route::get('/settings', [SettingsController::class, 'settings'])->name('admin.settings');
+Route::get('/settings', [SettingsController::class, 'edit'])->name('admin.settings');
+
+
 
 
 Route::post('/myprofil', [ProfileController::class, 'updateName'])->name('admin.editmyprofil');
