@@ -87,7 +87,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">About</h2>
-                    <h3 class="section-subheading text-muted">Welcome to our CRUD GENERATOR LARAVEL project! The purpose of this project is to provide developers with a tool that can generate code for CRUD (Create, Read, Update, Delete) operations in Laravel applications. With this generator, developers can save time and increase productivity by automating the tedious task of writing boilerplate code.</h3>
+                    <h3 class="section-subheading text-muted">Welcome to our CRUD GENERATOR LARAVE project! The purpose of this project is to provide developers with a tool that can generate code for CRUD (Create, Read, Update, Delete) operations in Laravel applications. With this generator, developers can save time and increase productivity by automating the tedious task of writing boilerplate code.</h3>
                 </div>
                 <ul class="timeline">
                     <li>
