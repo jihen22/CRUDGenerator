@@ -103,7 +103,7 @@
 		               <div class="container-fluid p-0">
 		                  <div class ="row mb-2">
 			                	<div class="col-sm-6">
-				                  	<h1 class="m-0 text-drak">My projects </h1>
+				            
                        </div>
                      </div>
                   </div>
@@ -130,7 +130,7 @@
         <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">New Projects</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">New Project</h5>
                             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                                      </div>
                                     <div class="modal-body">
