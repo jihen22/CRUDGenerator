@@ -91,14 +91,6 @@
                          
                             <div class="sb-sidenav-menu-heading">My profile</div>
                             
-<<<<<<< HEAD
-                           
-=======
-                            <a class="nav-link" href="{{ url('/myproject') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                             Projects List
-                            </a>
->>>>>>> 7936bb95859709904bc0d9fed874a139de36d1bd
                             
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
