@@ -5,7 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MyprojectController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SettingsControllera;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
 use App\Http\Controllers\CrudController;
