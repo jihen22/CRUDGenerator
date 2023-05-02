@@ -1,13 +1,58 @@
 @extends('layouts.app')
+<style>
+        .dark-theme {
+  background-color: #1c1c1c;
+  color: #f2f2f2;
+}
+.card {
+  background-color: #323232;
+  color: #f2f2f2;
+}
 
+
+
+label.col-form-label {
+  color: #000000;
+}
+.form-control {
+  background-color: #4d4d4d;
+  color: #f2f2f2;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+.form-control:focus {
+  background-color: #696969;
+  color: #f2f2f2;
+}
+.logo-image {
+  height: 180px;
+  width: 180px;
+}
+</style>
 @section('content')
-<div class="container">
+<body class="dark-theme">
+
+
+<div class="container" >
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-            <div  class="py-55">
-                    <img src="{{ asset('logo.png') }}" style="height:180px;">
-                  </div>
+            <div class="py-55">
+  <img src="{{ asset('logo.png') }}" class="logo-image">
+</div>
+
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -78,4 +123,5 @@
         </div>
     </div>
 </div>
+</body>
 @endsection

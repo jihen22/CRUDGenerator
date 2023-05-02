@@ -102,11 +102,11 @@ tr:nth-child(even) {
     
 <nav class="main-header navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-<<<<<<<< HEAD:resources/views/table1447.blade.php
+
             <a class="navbar-brand ps-3" href="#">Table</a>
-========
+
             <a class="navbar-brand ps-3" href="#">{{ $nameproject }}</a>
->>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7:resources/views/table06.blade.php
+
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -158,7 +158,7 @@ tr:nth-child(even) {
     $hiddenColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
 @endphp
 <table id="myTable">
-<<<<<<<< HEAD:resources/views/table1447.blade.php
+
     <thead>
         <tr>
          
@@ -173,12 +173,11 @@ tr:nth-child(even) {
     <tbody>
         @foreach ($data as $row)
             <tr>
-             
-========
+
         <thead>
             <tr>
                 <th>Actions</th>
->>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7:resources/views/table06.blade.php
+
                 @foreach ($columns as $column)
                     @if (!in_array($column, $hiddenColumns))
                         <th>{{ $column }}</th>
@@ -200,29 +199,29 @@ tr:nth-child(even) {
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $row)
-                <tr>
-                    <td>
-                        <div class="action-btns">
-                            <a href="#">Editer</a>
-                            <form action="#" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Supprimer</button>
-                            </form>
-                        </div>
-                    </td>
-                    @foreach ($columns as $column)
-                        @if (!in_array($column, $hiddenColumns))
-                            <td>{{ $row->{$column} }}</td>
-                        @endif
-                    @endforeach
-                </tr>
+    @foreach ($data as $row)
+        <tr id="row-{{ $row->id }}">
+            <td>
+                <div class="action-btns">
+                    <a href="#">Editer</a>
+                    <form action="{{ route('lines.destroy', $row->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </td>
+            @foreach ($columns as $column)
+                @if (!in_array($column, $hiddenColumns))
+                    <td>{{ $row->{$column} }}</td>
+                @endif
             @endforeach
-        </tbody>
+        </tr>
+    @endforeach
+</tbody>
+
     </table>
 
-<<<<<<<< HEAD:resources/views/table1447.blade.php
 
        
 <button type="button" id="Add" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Add Column
@@ -254,8 +253,7 @@ tr:nth-child(even) {
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="submit" id="submit" class="btn btn-primary">Save Column</button>
         </div>
-========
->>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7:resources/views/table06.blade.php
+
    
 <button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
 
@@ -313,7 +311,7 @@ $('.modal-footer .btn-secondary').click(function(){
 
 
 <script>
-<<<<<<<< HEAD:resources/views/table1447.blade.php
+
     // get the table element
 const table = document.getElementById("myTable");
 
@@ -359,11 +357,10 @@ table.addEventListener("click", (event) => {
 <script>
     // Récupérer la référence du formulaire d'ajout de données
     const form = document.querySelector('#addDataForm');
-========
- 
+
 // Récupérer la référence du formulaire d'ajout de données
 const form = document.querySelector('#addDataForm');
->>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7:resources/views/table06.blade.php
+
 
 
 // Écouter l'événement de soumission du formulaire
@@ -378,7 +375,7 @@ form.addEventListener('submit', (event) => {
         @endif
     @endforeach
 
-<<<<<<<< HEAD:resources/views/table1447.blade.php
+
         // Créer une nouvelle ligne dans le corps du tableau
         const tableBody = document.querySelector('tbody');
         const newRow = tableBody.insertRow();
@@ -406,7 +403,7 @@ form.addEventListener('submit', (event) => {
 
         // Fermer le modal
         $('#myModal').modal('hide');
-========
+
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
         url:'/table/{table}/{view}',
@@ -420,7 +417,7 @@ form.addEventListener('submit', (event) => {
             // En cas d'erreur, afficher un message d'erreur
             console.log(xhr.responseText);
         }
->>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7:resources/views/table06.blade.php
+
     });
 
     // Créer une nouvelle ligne dans le corps du tableau

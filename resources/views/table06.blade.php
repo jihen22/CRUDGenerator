@@ -17,14 +17,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
        
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-		
+        <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+        
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -102,11 +102,7 @@ tr:nth-child(even) {
     
 <nav class="main-header navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-<<<<<<<< HEAD:resources/views/table1447.blade.php
-            <a class="navbar-brand ps-3" href="#">Table</a>
-========
             <a class="navbar-brand ps-3" href="#">{{ $nameproject }}</a>
->>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7:resources/views/table06.blade.php
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -137,7 +133,7 @@ tr:nth-child(even) {
             </ul>
         </nav>
 <div class="card">
-  
+    <div class="card-header">{{ $table }} </div>
 
 <div class="card-body">
 
@@ -158,112 +154,49 @@ tr:nth-child(even) {
     $hiddenColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
 @endphp
 <table id="myTable">
-<<<<<<<< HEAD:resources/views/table1447.blade.php
-    <thead>
-        <tr>
-         
-            @foreach ($columns as $column)
-                @if (!in_array($column, $hiddenColumns))
-                    <th>{{ $column }}</th>
-                @endif
-            @endforeach
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($data as $row)
-            <tr>
-             
-========
         <thead>
             <tr>
-                <th>Actions</th>
->>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7:resources/views/table06.blade.php
+              
                 @foreach ($columns as $column)
                     @if (!in_array($column, $hiddenColumns))
                         <th>{{ $column }}</th>
                     @endif
                 @endforeach
-                <td>
-                    <div class="action-btns">
-                          
-<button type="button" id="Edit" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Edit Column
-                </button>
-                <form action="#" method="POST">
-    @csrf
-    @method('DELETE')
-    <button id="delete-btn-{{ $row->id }}" type="submit">Delete</button>
-</form>
-
-                    </div>
-                </td>
+                <th>Actions</th>
             </tr>
+           
         </thead>
         <tbody>
             @foreach ($data as $row)
-                <tr>
-                    <td>
-                        <div class="action-btns">
-                            <a href="#">Editer</a>
-                            <form action="#" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Supprimer</button>
-                            </form>
-                        </div>
-                    </td>
-                    @foreach ($columns as $column)
-                        @if (!in_array($column, $hiddenColumns))
-                            <td>{{ $row->{$column} }}</td>
-                        @endif
-                    @endforeach
-                </tr>
+            <tr id="row-{{ $row->id }}">
+            <td>
+                <div class="action-btns">
+                    <a href="#">Editer</a>
+                    <form action="{{ route('lines.destroy', $row->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </td>
+            @foreach ($columns as $column)
+                @if (!in_array($column, $hiddenColumns))
+                    <td>{{ $row->{$column} }}</td>
+                @endif
+            @endforeach
+        </tr>
             @endforeach
         </tbody>
     </table>
 
-<<<<<<<< HEAD:resources/views/table1447.blade.php
-
-       
-<button type="button" id="Add" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Add Column
-                </button>
-               
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Add data</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form id="addDateForm">
-      <div class="modal-body">
-                @foreach ($columns as $column)
-               @if ($column != 'id' && $column != 'remember_token' && $column != 'created_at' && $column != 'updated_at')
-                <div class="form-group">
-                <label for="{{ $column }}">{{ $column }}:</label>
-                <input type="text" class="form-control" id="data" name="data" required>
-            </div>
-        @endif
-    @endforeach
-</div>
-
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" id="submit" class="btn btn-primary">Save Column</button>
-        </div>
-========
->>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7:resources/views/table06.blade.php
    
-<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
+<button type="button" id="add" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Column</button>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Ajouter des données</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Column</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -280,8 +213,8 @@ tr:nth-child(even) {
                     @endforeach
                 </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
                 </form>
             </div>
@@ -292,7 +225,7 @@ tr:nth-child(even) {
 <script>
 
 $(document).ready(function() {
-  $("#Add").click(function() {
+  $("#add").click(function() {
     $("#myModal").modal("show");
   });
 });
@@ -311,9 +244,8 @@ $('.modal-footer .btn-secondary').click(function(){
 
 </script>
 
-
 <script>
-<<<<<<<< HEAD:resources/views/table1447.blade.php
+
     // get the table element
 const table = document.getElementById("myTable");
 
@@ -357,13 +289,9 @@ table.addEventListener("click", (event) => {
 
 
 <script>
-    // Récupérer la référence du formulaire d'ajout de données
-    const form = document.querySelector('#addDataForm');
-========
  
 // Récupérer la référence du formulaire d'ajout de données
 const form = document.querySelector('#addDataForm');
->>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7:resources/views/table06.blade.php
 
 
 // Écouter l'événement de soumission du formulaire
@@ -378,35 +306,6 @@ form.addEventListener('submit', (event) => {
         @endif
     @endforeach
 
-<<<<<<<< HEAD:resources/views/table1447.blade.php
-        // Créer une nouvelle ligne dans le corps du tableau
-        const tableBody = document.querySelector('tbody');
-        const newRow = tableBody.insertRow();
-
-        // Ajouter les cellules à la nouvelle ligne
-        const actionCell = newRow.insertCell();
-        const dataCell = newRow.insertCell();
-        actionCell.innerHTML = `
-        <div class="action-btns">
-                          
-                          <button type="button" id="Edit" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Edit Column
-                                          </button>
-                               
-                                                  <form action="#" method="POST">
-                                                      @csrf
-                                                      @method('DELETE')
-                                                      <button type="submit">Delete</button>
-                                                  </form>
-                                              </div>
-        `;
-        dataCell.textContent = data;
-
-        // Réinitialiser les champs de saisie
-        dataInput.value = '';
-
-        // Fermer le modal
-        $('#myModal').modal('hide');
-========
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
         url:'/table/{table}/{view}',
@@ -420,7 +319,6 @@ form.addEventListener('submit', (event) => {
             // En cas d'erreur, afficher un message d'erreur
             console.log(xhr.responseText);
         }
->>>>>>>> 147d842cd0bfe9111b13334e28c18a22615541f7:resources/views/table06.blade.php
     });
 
     // Créer une nouvelle ligne dans le corps du tableau
@@ -457,6 +355,45 @@ form.addEventListener('submit', (event) => {
     // Fermer le modal
     $('#myModal').modal('hide');
 });
+  // get the table element
+  const table = document.getElementById("myTable");
+
+// add a click event listener to the table
+table.addEventListener("click", (event) => {
+  // check if the clicked element is a delete button
+  if (event.target.classList.contains("deleteBtn")) {
+    // get the row that contains the clicked button
+    const row = event.target.parentElement.parentElement;
+    // remove the row from the table
+    row.remove();
+  }
+});
+
+    function deleteRow(button) {
+        let rowId = button.getAttribute('data-id');
+        if (confirm('Are you sure you want to delete this row?')) {
+            fetch(`/rows/${rowId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Remove the deleted row from the table
+                    let row = button.closest('tr');
+                    row.remove();
+                } else {
+                    alert('Failed to delete row');
+                }
+            })
+            .catch(error => alert(error));
+        }
+    }
+
+
+
 
 </script>
 
