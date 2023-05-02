@@ -12,8 +12,9 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $nameproject = $user->nameproject;
+        $email = $user->email;
  
-        return view('admin.editmyprofil')->with('nameproject', $nameproject);
+        return view('admin.editmyprofil')->with('nameproject', $nameproject)->with('email', $email);
     }
     public function updateName(Request $request)
 {

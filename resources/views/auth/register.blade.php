@@ -121,8 +121,10 @@
 
     <div class="col-md-6">
         <select id="language" class="form-control @error('language') is-invalid @enderror" name="language" required>
-            <option value="en" @if(old('language') == 'en') selected @endif>English</option>
-            <option value="fr" @if(old('language') == 'fr') selected @endif>Français</option>
+        <option value="english">English</option>
+                              <option value="french">French</option>
+                              <option value="spanish">Spanish</option>
+                              <option value="german">German</option>
             <!-- Ajouter d'autres langues si nécessaire -->
         </select>
 

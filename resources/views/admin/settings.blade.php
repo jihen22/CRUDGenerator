@@ -111,14 +111,14 @@
 						<div class="form-group ">
 							<label class="col-sm-12 col-md-2 col-form-label">project name</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="Johnny Brown" id="nameproject" name="nameproject">
+								<input class="form-control" type="text" id="nameproject" name="nameproject"  value="{{ $nameproject }}">
 							</div>
 						</div>
 						
 						<div class="form-group ">
 							<label class="col-sm-12 col-md-2 col-form-label">Email</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="bootstrap@example.com" type="email" id="email" name="email">
+								<input class="form-control" value="{{ $email }}"  type="email" id="email" name="email">
 							</div>
 						</div>
 						
@@ -127,10 +127,10 @@
                             <div class="col-sm-12 col-md-10">
 	                        <select class="form-select" id="language" name="language" required>
                               <option selected disabled value="">Language</option>
-                              <option value="english">English</option>
-                              <option value="french">French</option>
-                              <option value="spanish">Spanish</option>
-                              <option value="german">German</option>
+                              <option value="english" {{ Auth::user()->language == 'english' ? 'selected' : '' }}>English</option>
+                              <option value="french" {{ Auth::user()->language == 'french' ? 'selected' : '' }}>French</option>
+                              <option value="spanish" {{ Auth::user()->language == 'spanish' ? 'selected' : '' }}>Spanish</option>
+                              <option value="german" {{ Auth::user()->language == 'german' ? 'selected' : '' }}>German</option>
                              </select>
                             </div>
                         </div>
@@ -141,10 +141,9 @@
 							<label class="col-sm-12 col-md-2 col-form-label">Date format</label>
 							<div class="col-sm-12 col-md-10"  placeholder="Choose Date " type="text">
 							<select class="form-select" id="date_format" name="date_format" required>
-                                       <option selected disabled value="">dd/mm/yyyy</option>
-                                               <option value="dd/mm/yyyy">dd/mm/yyyy</option>
-                                                <option value="mm/dd/yyyy">mm/dd/yyyy</option>
-                                                 <option value="yyyy-mm-dd">yyyy-mm-dd</option>
+                           <option value="dd/mm/yyyy" @if(Auth::user()->date_format == 'dd/mm/yyyy') selected @endif>dd/mm/yyyy</option>
+                           <option value="mm/dd/yyyy" @if(Auth::user()->date_format == 'mm/dd/yyyy') selected @endif>mm/dd/yyyy</option>
+                           <option value="yyyy-mm-dd" @if(Auth::user()->date_format == 'yyyy-mm-dd') selected @endif>yyyy-mm-dd</option>
                             </select>
 							</div>
 						</div>

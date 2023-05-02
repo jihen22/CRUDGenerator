@@ -110,7 +110,7 @@
                              </div>
                              <div class="form-group">
                                 <label for="email" class="form-label required-1"> Email </label>
-                                <input type="email" id="email" name="email" value="" autocomplete="email" required="required" class="form-control">
+                                <input type="email" id="email" name="email" value="{{ $email }}" autocomplete="email" required="required" class="form-control">
                              </div>
                             <div classs="form-group mt-5">
                                 <button type="submit" class="btn btn-primary rounded-0 text-bold"> save profil</button>
