@@ -150,7 +150,7 @@
         <script>
   document.getElementById("submit").addEventListener("click", function() {
     
-      window.location.href = "/home";
+      window.location.href = "/login";
     
   });
 </script>
