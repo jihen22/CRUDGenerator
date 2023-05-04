@@ -91,10 +91,7 @@
                          
                             <div class="sb-sidenav-menu-heading">My profile</div>
                             
-<<<<<<< HEAD
-=======
                            
->>>>>>> a7c2443c075bbbcfc4b3e75c40ffe32162e74f2e
                             
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>

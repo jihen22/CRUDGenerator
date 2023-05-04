@@ -48,12 +48,19 @@ class Table06Controller extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function destroy($id)
+    public function deleteData($id)
     {
-        $table06 = Table06::find($id);
-        $table06->delete();
+        // Trouver la ligne de données à supprimer
+        $data = table06::find($id);
     
-        return redirect()->route('/table/{table}/{view}')->with('success', 'Row deleted successfully');
+        if (!$data) {
+            return response()->json(['error' => 'Ligne de données introuvable'], 404);
+        }
+    
+        // Supprimer la ligne de données
+        $data->delete();
+    
+        return response()->json(['success' => 'Ligne de données supprimée avec succès']);
     }
 
    
