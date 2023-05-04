@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MyprojectController;
 use App\Http\Controllers\PasswordController;
@@ -32,9 +32,6 @@ Route::get('/CRUD', function () {
 });
 Route::get('/CRUD', [tablefilesController::class, 'ProjectName'])->name('Menus.Create.CRUD');
 
-Route::get('/nonCrud', function () {
-    return view('Menus.Create.NonCRUD');
-});
 
 
 

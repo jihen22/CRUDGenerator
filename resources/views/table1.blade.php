@@ -102,7 +102,7 @@ tr:nth-child(even) {
    
 <nav class="main-header navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="#">Project name</a>
+            <a class="navbar-brand ps-3" href="#">{{$nameproject}}</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -133,7 +133,7 @@ tr:nth-child(even) {
             </ul>
         </nav>
 <div class="card">
-    <div class="card-header">{{ $table }} </div>
+  
 
 <div class="card-body">
 
@@ -157,13 +157,14 @@ tr:nth-child(even) {
 
     <thead>
         <tr>
+        <th>Actions</th>
             <!-- display column headers -->
             @foreach ($columns as $column)
                 @if (!in_array($column, $hiddenColumns))
                     <th>{{ $column }}</th>
                 @endif
             @endforeach
-            <th>Actions</th>
+          
         </tr>
     </thead>
     <tbody>
@@ -384,28 +385,28 @@ $(document).ready(function() {
             }
         });
     }
-
     function confirmDeleteRow() {
-        // get the row ID of the row to be deleted
-        var rowId = $(this).closest('tr').data('row-id');
+    // get the row ID of the row to be deleted
+    var rowId = $(this).closest('tr').data('row-id');
 
-        // ask the user to confirm the delete action
-        if (confirm('Are you sure you want to delete this row?')) {
-            // make an AJAX request to delete the row from the database
-            $.ajax({
-                type: 'POST',
-                url: '/delete-row',
-                data: {row_id: rowId},
-                success: function(response) {
-                    // remove the row from the table
-                    $table.find('tr[data-row-id="' + rowId + '"]').remove();
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert('Error: ' + textStatus + ' - ' + errorThrown);
-                }
-            });
-        }
-    }
+    // ask the user to confirm the delete action
+    if (confirm('Are you sure you want to delete this row?')) {
+        // make an AJAX request to delete the row from the database
+        $.ajax({
+            type: 'DELETE',
+            url: '/delete-row',
+            data: {row_id: rowId},
+            success: function(response) {
+                // remove the row from the table
+                $table.find('tr[data-row-id="' + rowId + '"]').remove();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error: ' + textStatus + ' - ' + errorThrown);
+            }
+        });
+    } else {
+        return false;
+    }}
 });
 
 
