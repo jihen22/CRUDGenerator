@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\Table1Controller;
 
 
 Route::get('/', function () {
@@ -54,7 +54,7 @@ Route::get('/password', function () {
     return view('admin.changepassword');
 })->middleware('auth')->name('admin.changepassword');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
@@ -113,15 +113,17 @@ Route::middleware('auth')->group(function () {
  //Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');
 
 
-   Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
-   Route::post('/table/{table}/{view}', [Table06Controller::class,'store']);
+   Route::get('/table/{table}/{view}', [Table1Controller::class,'index']);
+   Route::post('/table/{table}/{view}', [Table1Controller::class,'store']);
+  
 
-//Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Moha1Controller');
+   Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
+   
+
 
 
 
 
 
   
-
 
