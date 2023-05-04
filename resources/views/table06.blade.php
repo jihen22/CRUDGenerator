@@ -305,7 +305,7 @@ form.addEventListener('submit', (event) => {
     @endforeach
 
     // Réinitialiser les champs de saisie
-    form.reset();
+    form.reset();                                                                                                                    
 
     // Fermer le modal
     $('#myModal').modal('hide');

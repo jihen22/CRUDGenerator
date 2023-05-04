@@ -62,6 +62,8 @@ Route::get('/password', function () {
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::get('/dashboard', [DashboardController::class, 'showTableNames'])->name('admin.dashboard');
+Route::get('/t/{table}', [DashboardController::class, 'telecharger'])->name('telecharger_controller');
+
 
 
 Route::get('/settings', [SettingsController::class, 'settings'])->name('admin.settings');
@@ -112,17 +114,11 @@ Route::middleware('auth')->group(function () {
  //Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');
 
 
-<<<<<<< HEAD
-   Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
-   Route::post('/table/{table}/{view}', [Table06Controller::class,'store'])->name('data.add');
-
-   Route::delete('/data/{id}', [Table06Controller::class, 'deleteData'])->name('data.delete');
-=======
-   Route::get('/table/{table}/{view}', [Table1Controller::class,'index']);
-   Route::post('/table/{table}/{view}', [Table1Controller::class,'store']);
+  // Route::get('/table/{table}/{view}', [Table1Controller::class,'index']);
+  // Route::post('/table/{table}/{view}', [Table1Controller::class,'store']);
   
 
-   Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
+   //Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
    
 
 
@@ -132,4 +128,3 @@ Route::middleware('auth')->group(function () {
 
   
 
->>>>>>> ff2933df56b82e4f00b9eb4069746b48a368b8eb
