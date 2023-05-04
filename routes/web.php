@@ -63,6 +63,8 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin
 
 Route::get('/dashboard', [DashboardController::class, 'showTableNames'])->name('admin.dashboard');
 Route::get('/t/{table}', [DashboardController::class, 'telecharger'])->name('telecharger_controller');
+Route::get('/d/{table}/supprimer', [DashboardController::class, 'supprimerTable'])->name('supprimer_table');
+
 
 
 

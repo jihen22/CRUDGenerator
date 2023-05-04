@@ -59,6 +59,12 @@ public function telecharger($table)
     );
 }
 
+public function supprimerTable($table)
+{
+    DB::statement('DROP TABLE '.$table);
+    return redirect()->back()->with('success', 'Table supprimée avec succès.');
+}
+
 
 
     
