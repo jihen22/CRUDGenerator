@@ -63,7 +63,28 @@ class Table1Controller extends Controller
         // Retourner une réponse JSON pour confirmer la suppression des données
         return response()->json(['success' => true]);
     }
+    public function update(Request $request, $id)
+{
+    // Récupérer l'enregistrement à mettre à jour en fonction de l'id
+    $record = table1::find($id);
     
+    // Vérifier si l'enregistrement existe
+    if (!$record) {
+        return response()->json(['error' => 'Enregistrement non trouvé.']);
+    }
+    
+    // Mettre à jour les champs de l'enregistrement avec les données envoyées dans la requête
+    $record->field1 = $request->input('field1');
+
+    // etc.
+    
+    // Sauvegarder les modifications dans la base de données
+    $record->save();
+    
+    // Retourner une réponse JSON pour confirmer la mise à jour des données
+    return response()->json(['success' => true]);
+}
+
   
 
    

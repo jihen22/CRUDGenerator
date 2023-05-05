@@ -172,26 +172,8 @@ tr:nth-child(even) {
             <tr data-row-id="{{ $row->id }}">
             <td>
                     <div class="action-btns">
-                        <a href="#" class="edit-btn">Edit</a>
-                        <form action="{{ route('delete', $row->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="delete-btn">Delete</button>
-                        </form>
-                    </div>
-                </td>
-                <!-- display row data -->
-                @foreach ($columns as $column)
-                    @if (!in_array($column, $hiddenColumns))
-                        <td class="editable">{{ $row->{$column} }}</td>
-                    @endif
-                @endforeach
-               
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-
+                        <button  class="edit-btn" data-toggle="modal" data-target="#edit-modal">Edit</button>
+                        
 <!-- Modal for editing row data -->
 <div id="edit-modal" class="modal">
     <div class="modal-content">
@@ -211,6 +193,25 @@ tr:nth-child(even) {
         </form>
     </div>
 </div>
+                        <form action="{{ route('delete', $row->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                    </div>
+                </td>
+                <!-- display row data -->
+                @foreach ($columns as $column)
+                    @if (!in_array($column, $hiddenColumns))
+                        <td class="editable">{{ $row->{$column} }}</td>
+                    @endif
+                @endforeach
+               
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
 
    
 <button type="button" id="add" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Column</button>
@@ -220,9 +221,7 @@ tr:nth-child(even) {
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">Add Column</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+               
             </div>
             <form id="addDataForm">
                 <div class="modal-body">
@@ -399,6 +398,8 @@ $(document).ready(function() {
             success: function(response) {
                 // remove the row from the table
                 $table.find('tr[data-row-id="' + rowId + '"]').remove();
+                 // reload the current page
+              location.reload();
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('Error: ' + textStatus + ' - ' + errorThrown);

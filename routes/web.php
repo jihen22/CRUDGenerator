@@ -116,7 +116,7 @@ Route::middleware('auth')->group(function () {
 
    Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
    
-
+   Route::post('/update-row', [Table1Controller::class, 'updateRow'])->name('updateRow');
 
 
 
