@@ -17,14 +17,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
        
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-        <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-        
+		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+		
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -102,7 +102,7 @@ tr:nth-child(even) {
     
 <nav class="main-header navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="#">{{ $nameproject }}</a>
+            <a class="navbar-brand ps-3" href="#">name of project</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -156,47 +156,45 @@ tr:nth-child(even) {
 <table id="myTable">
         <thead>
             <tr>
-              
+                <th>Actions</th>
                 @foreach ($columns as $column)
                     @if (!in_array($column, $hiddenColumns))
                         <th>{{ $column }}</th>
                     @endif
                 @endforeach
-                <th>Actions</th>
             </tr>
-           
         </thead>
         <tbody>
             @foreach ($data as $row)
-            <tr id="row-{{ $row->id }}">
-            <td>
-                <div class="action-btns">
-                    <a href="#">Editer</a>
-                    <form action="{{ route('lines.destroy', $row->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Delete</button>
-                    </form>
-                </div>
-            </td>
-            @foreach ($columns as $column)
-                @if (!in_array($column, $hiddenColumns))
-                    <td>{{ $row->{$column} }}</td>
-                @endif
-            @endforeach
-        </tr>
+                <tr>
+                    <td>
+                        <div class="action-btns">
+                            <a href="#">Editer</a>
+                            <form action="#" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Supprimer</button>
+                            </form>
+                        </div>
+                    </td>
+                    @foreach ($columns as $column)
+                        @if (!in_array($column, $hiddenColumns))
+                            <td>{{ $row->{$column} }}</td>
+                        @endif
+                    @endforeach
+                </tr>
             @endforeach
         </tbody>
     </table>
 
    
-<button type="button" id="add" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Column</button>
+<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Add Column</h4>
+                <h4 class="modal-title" id="myModalLabel">Ajouter des données</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -213,8 +211,8 @@ tr:nth-child(even) {
                     @endforeach
                 </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
                     </div>
                 </form>
             </div>
@@ -225,7 +223,7 @@ tr:nth-child(even) {
 <script>
 
 $(document).ready(function() {
-  $("#add").click(function() {
+  $("#ajouter").click(function() {
     $("#myModal").modal("show");
   });
 });
@@ -243,49 +241,6 @@ $('.modal-footer .btn-secondary').click(function(){
 
 
 </script>
-
-<script>
-
-    // get the table element
-const table = document.getElementById("myTable");
-
-// add a click event listener to the table
-table.addEventListener("click", (event) => {
-  // check if the clicked element is a delete button
-  if (event.target.classList.contains("deleteBtn")) {
-    // get the row that contains the clicked button
-    const row = event.target.parentElement.parentElement;
-    // remove the row from the table
-    row.remove();
-  }
-});
-
-    function deleteRow(button) {
-        let rowId = button.getAttribute('data-id');
-        if (confirm('Are you sure you want to delete this row?')) {
-            fetch(`/rows/${rowId}`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Remove the deleted row from the table
-                    let row = button.closest('tr');
-                    row.remove();
-                } else {
-                    alert('Failed to delete row');
-                }
-            })
-            .catch(error => alert(error));
-        }
-    }
-
-
-
-    </script>
 
 
 <script>
@@ -350,50 +305,11 @@ form.addEventListener('submit', (event) => {
     @endforeach
 
     // Réinitialiser les champs de saisie
-    form.reset();
+    form.reset();                                                                                                                    
 
     // Fermer le modal
     $('#myModal').modal('hide');
 });
-  // get the table element
-  const table = document.getElementById("myTable");
-
-// add a click event listener to the table
-table.addEventListener("click", (event) => {
-  // check if the clicked element is a delete button
-  if (event.target.classList.contains("deleteBtn")) {
-    // get the row that contains the clicked button
-    const row = event.target.parentElement.parentElement;
-    // remove the row from the table
-    row.remove();
-  }
-});
-
-    function deleteRow(button) {
-        let rowId = button.getAttribute('data-id');
-        if (confirm('Are you sure you want to delete this row?')) {
-            fetch(`/rows/${rowId}`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Remove the deleted row from the table
-                    let row = button.closest('tr');
-                    row.remove();
-                } else {
-                    alert('Failed to delete row');
-                }
-            })
-            .catch(error => alert(error));
-        }
-    }
-
-
-
 
 </script>
 

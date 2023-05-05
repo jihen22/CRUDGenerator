@@ -169,7 +169,11 @@ $tables = DB::select("SHOW TABLES WHERE Tables_in_" . env('DB_DATABASE') . " NOT
 </td>
                     <td>
                  <a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} . '/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" class="btn btn-info"><i class="fas fa-eye"></i> See</a>
-                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Download</a>
+                 <a href="{{ route('telecharger_controller', ['table' => $table->{'Tables_in_' . env('DB_DATABASE')}]) }}" class="btn btn-secondary" download>
+                 <i class="fas fa-download"></i> download
+                 </a>
+                 <a href="{{ route('supprimer_table', ['table' => $table->{'Tables_in_' . env('DB_DATABASE')}]) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette table?')"><i class="fas fa-trash"></i> Supprimer</a>
+
                    </td>
 
                 </tr>
