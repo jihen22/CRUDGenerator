@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Table;
-use App\Field;
+use App\Models\Table;
+use App\Models\Field;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -44,7 +44,7 @@ class editTableController extends Controller
             $tableId = Table::where('name', $tableName)->first()->id;
 
             // Mettre à jour les métadonnées de la colonne dans la table 'fieldslist4'
-            $columnsTable = 'Field';
+            $columnsTable = 'fieldslist4';
             $columnMetadata = [
                 'table_id' => $tableId,
                 'field_type' => $fieldType,
