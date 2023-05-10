@@ -8,7 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
-use App\Http\Controllers\table06Controller;
+use App\Http\Controllers\table1Controller;
 
 use App\Http\Controllers\CrudController;
 
@@ -135,26 +135,30 @@ Route::group(['middleware' => 'guest'] , function(){
 
   
 
-   Route::post('/table/{table}/{view}', [Table06Controller::class,'store']);
-   
-   Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
 
   
  //Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');
 
 
-  // Route::get('/table/{table}/{view}', [Table1Controller::class,'index']);
-  // Route::post('/table/{table}/{view}', [Table1Controller::class,'store']);
+Route::get('/table/{table}/{view}', [Table1Controller::class,'index']);
+Route::post('/table/{table}/{view}', [Table1Controller::class,'store']);
   
 
+<<<<<<< HEAD
+Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
+
+
+=======
    //Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
+>>>>>>> e87d11f8fd57348833b6ee6a25d16a70eaa93e61
 
 
 
 
 
-  ;
    Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
+<<<<<<< HEAD
+=======
 
 
 
@@ -166,5 +170,6 @@ Route::group(['middleware' => 'guest'] , function(){
 
 
 
+>>>>>>> e87d11f8fd57348833b6ee6a25d16a70eaa93e61
   
 
