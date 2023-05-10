@@ -187,37 +187,7 @@ div.row.mb-2 {
 <div class="container">
 
 
-<<<<<<< HEAD
-=======
-=======
 
-<body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
-	<div id="app" class="warpper">
-	@include('admin.partials.topbar')
-	<div id="layoutSidenav" class="flex-container">
-       @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
-
-
-
-<div class="content-warper" id="monDiv" style="">
-	<div class="content-header">
-		<div class="container-fluid p-0">
-			<div class ="row mb-2">
-				<div class="col-sm-6">
-					<h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-	     <div class="container-fluide p-0">
-           <div class="card card-default">
-
-
-            <div class="card-body">
-
->>>>>>> e87d11f8fd57348833b6ee6a25d16a70eaa93e61
->>>>>>> 2b680eab9ef9f1470106fea9fbcb692b2c1439a1
 
         <form method="POST" action="{{ route('add-column.store') }}">
             @csrf
