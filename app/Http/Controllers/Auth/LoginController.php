@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
+use App\Models\User;
+use Str;
+use Hash ;
 
 class LoginController extends Controller
 {
@@ -49,5 +53,87 @@ class LoginController extends Controller
    return redirect('http://localhost:8000/myproject');
 }
 
+public function github()
+{
+    return Socialite::driver('github')->redirect();
+}
+
+public function githubredirect()
+{
+    $user = Socialite::driver('github')->user();
+
+
+    $existingUser = User::where('email', $user->email)->first();
+
+    if ($existingUser) {
+        // Authenticate the existing user
+        auth()->login($existingUser);
+    } else {
+        // Create a new user
+        $newUser = new User();
+        $newUser->name = $user->name;
+        $newUser->email = $user->email;
+        $newUser->save();
+
+        auth()->login($newUser);
+    }
+
+    return redirect('http://localhost:8000/myproject');
+}
+public function google()
+{
+    return Socialite::driver('google')->redirect();
+}
+
+public function googleredirect()
+{
+    $user = Socialite::driver('google')->user();
+
+
+    $existingUser = User::where('email', $user->email)->first();
+
+    if ($existingUser) {
+        // Authenticate the existing user
+        auth()->login($existingUser);
+    } else {
+        // Create a new user
+        $newUser = new User();
+        $newUser->name = $user->name;
+        $newUser->email = $user->email;
+        $newUser->save();
+
+        auth()->login($newUser);
+    }
+
+    return redirect('http://localhost:8000/myproject');
+}
+
+public function facebook()
+{
+    return Socialite::driver('facebook')->redirect();
+}
+
+public function facebookredirect()
+{
+    $user = Socialite::driver('google')->user();
+
+
+    $existingUser = User::where('email', $user->email)->first();
+
+    if ($existingUser) {
+        // Authenticate the existing user
+        auth()->login($existingUser);
+    } else {
+        // Create a new user
+        $newUser = new User();
+        $newUser->name = $user->name;
+        $newUser->email = $user->email;
+        $newUser->save();
+
+        auth()->login($newUser);
+    }
+
+    return redirect('http://localhost:8000/myproject');
+}
 
 }

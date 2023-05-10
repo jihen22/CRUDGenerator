@@ -65,7 +65,7 @@ label.col-form-label {
     </style>
 @extends('layouts.app')
     </header>
-<body class="dark-theme">
+<body lass="img js-fullheight" style="background-image: url(LoginpageRessources/images/bg.jpg);">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
