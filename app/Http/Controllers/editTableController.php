@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Table;
-use App\Models\Field;
+use App\Table;
+use App\Field;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -32,13 +32,13 @@ class editTableController extends Controller
         $min = $request->input('min');
      
         $defaultValue = $request->input('default_value');
+// Vérifier si la table existe
+if (Schema::hasTable($tableName)) {
+    Schema::table($tableName, function (Blueprint $table) use ($fieldType, $databaseColumnName) {
+        // Ajouter la nouvelle colonne à la table avec la valeur par défaut NULL
+        $table->$fieldType($databaseColumnName)->nullable()->default(null);
+    });
 
-        // Vérifier si la table existe
-        if (Schema::hasTable($tableName)) {
-            Schema::table($tableName, function (Blueprint $table) use ($fieldType, $databaseColumnName, $defaultValue) {
-                // Ajouter la nouvelle colonne à la table
-                $table->$fieldType($databaseColumnName)->default($defaultValue);
-            });
 
             // Obtenir l'ID de la table à partir de la table 'tableslist'
             $tableId = Table::where('name', $tableName)->first()->id;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -30,6 +31,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
           <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="mon-script.js"></script>
+ 
         <style>
            
        
@@ -99,10 +101,11 @@ tr:nth-child(even) {
     </head>
     <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;">
 <div id="app" class="wrapper">
+
     
 <nav class="main-header navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="#">name of project</a>
+            <a class="navbar-brand ps-3" href="#"> </a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -114,7 +117,7 @@ tr:nth-child(even) {
                 <li class="nav-item dropdown">
                 <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    name
+                                {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -133,92 +136,94 @@ tr:nth-child(even) {
             </ul>
         </nav>
 <div class="card">
+
 <div class="container">
-        <h1>Ajouter une colonne à une table</h1>
+
+
 
         <form method="POST" action="{{ route('add-column.store') }}">
             @csrf
 
             <div class="form-group">
-                <label for="table_name">Nom de la table :</label>
+                <label for="table_name">Table name</label>
                 <input type="text" name="table_name" id="table_name" class="form-control" required>
             </div>
 
            
 
             <div class="form-group">
-                <label for="field_type">Type de champ :</label>
+                <label for="field_type">Field type</label>
                 <select name="field_type" id="field_type" class="form-control" required>
-                    <option value="string">Texte</option>
-                    <option value="integer">Entier</option>
-                    <option value="float">Décimal</option>
+                    <option value="string">string</option>
+                    <option value="integer">integer</option>
+                    <option value="float">float</option>
                     <option value="date">Date</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="database_column_name">Nom de la colonne dans la base de données :</label>
+                <label for="database_column_name">Column name in the database</label>
                 <input type="text" name="database_column_name" id="database_column_name" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label for="validation">Validation :</label>
+                <label for="validation">Validation </label>
                 <input type="text" name="validation" id="validation" class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="visual_title">Titre visuel :</label>
+                <label for="visual_title">Visual title</label>
                 <input type="text" name="visual_title" id="visual_title" class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="in_list">Afficher dans la liste :</label>
+                <label for="in_list">in list </label>
                 <select name="in_list" id="in_list" class="form-control">
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>
+                    <option value="1">yes</option>
+                    <option value="0">No</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="in_create">Afficher dans le formulaire de création :</label>
+                <label for="in_create">in create</label>
                 <select name="in_create" id="in_create" class="form-control">
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>
+                    <option value="1">yes</option>
+                    <option value="0">no</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="in_show">Afficher dans le détail :</label>
+                <label for="in_show">in show</label>
                 <select name="in_show" id="in_show" class="form-control">
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>
+                    <option value="1">yes</option>
+                    <option value="0">no</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="in_edit">edit :</label>
+                <label for="in_edit">in edit</label>
                 <select name="in_edit" id="in_edit" class="form-control">
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>
+                    <option value="1">yes</option>
+                    <option value="0">no</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="max">Max :</label>
+                <label for="max">Max </label>
                 <input type="text" name="max" id="max" class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="min">Min :</label>
+                <label for="min">Min </label>
                 <input type="text" name="min" id="min" class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="default_value">Valeur par défaut :</label>
+                <label for="default_value">Default Value</label>
                 <input type="text" name="default_value" id="default_value" class="form-control">
             </div>
 
-            <button type="submit" class="btn btn-primary">Ajouter la colonne</button>
+            <button type="submit" class="btn btn-primary">Add new column</button>
         </form>
     </div>
 

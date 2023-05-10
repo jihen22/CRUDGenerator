@@ -8,7 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
-use App\Http\Controllers\table06Controller;
+use App\Http\Controllers\table1Controller;
 
 use App\Http\Controllers\CrudController;
 
@@ -135,36 +135,23 @@ Route::group(['middleware' => 'guest'] , function(){
 
   
 
-   Route::post('/table/{table}/{view}', [Table06Controller::class,'store']);
-   
-   Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
 
   
  //Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');
 
 
-  // Route::get('/table/{table}/{view}', [Table1Controller::class,'index']);
-  // Route::post('/table/{table}/{view}', [Table1Controller::class,'store']);
+Route::get('/table/{table}/{view}', [Table1Controller::class,'index']);
+Route::post('/table/{table}/{view}', [Table1Controller::class,'store']);
   
 
-   //Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
-<<<<<<< HEAD
+Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
 
 
 
 
-  ;
+
+
+
    Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
-
-
-=======
-   
-   Route::post('/update-row', [Table1Controller::class, 'updateRow'])->name('updateRow');
->>>>>>> 68abf80fb82a7e4bf7f03eaee22355841573631e
-
-
-
-
-
   
 

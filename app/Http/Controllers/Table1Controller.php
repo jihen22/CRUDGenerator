@@ -49,20 +49,26 @@ class Table1Controller extends Controller
         return response()->json(['success' => true]);
     }
     public function delete($id)
-    {
-        // Récupérer l'enregistrement à supprimer en fonction de l'id
-        $record =table1::find($id);
-    
-        // Vérifier si l'enregistrement existe
-        if (!$record) {
-            return response()->json(['error' => 'Enregistrement non trouvé.']);
-        }
-    
-        // Supprimer l'enregistrement de la base de données
-        $record->delete();
-        // Retourner une réponse JSON pour confirmer la suppression des données
-        return response()->json(['success' => true]);
+{
+    // Récupérer l'enregistrement à supprimer en fonction de l'id
+    $record = table1::find($id);
+
+    // Vérifier si l'enregistrement existe
+    if (!$record) {
+        return redirect()->back()->with('error', 'Enregistrement non trouvé.');
     }
+
+    // Supprimer l'enregistrement de la base de données
+    $record->delete();
+
+    // Afficher un message de confirmation à l'utilisateur avec SweetAlert
+   // \SweetAlert::success('Enregistrement supprimé avec succès.')->persistent();
+
+    // Retourner une réponse de redirection vers la page précédente avec les paramètres dynamiques
+    return redirect()->back()->with('success', 'Enregistrement supprimé avec succès.');
+}
+
+    
     public function update(Request $request, $id)
 {
     // Récupérer l'enregistrement à mettre à jour en fonction de l'id
