@@ -138,6 +138,15 @@
             display: none;
         }
     }
+
+    section.content {
+  min-height: 1000px;
+} 
+
+div.row.mb-2 {
+  margin: 0.5rem 0;
+}
+
 </style>
 
 
@@ -166,7 +175,7 @@
             </div>
         </div>
     </div>
-      <section class="content">
+    
 	     <div class="container-fluide p-0">
            <div class="card card-default">
 
@@ -333,7 +342,6 @@
 </div>
 		        </div>
 	      </div>
-       </section>
  </div>
 								</div>
 								</div>
