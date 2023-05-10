@@ -16,7 +16,7 @@ class Field extends Model
     public function tables()
     {
 
-        return $this->belongsTo(Table::class);
+        return $this->belongsTo(Table::class ,'table_id');
     }
 
     use HasFactory;

@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Table1Controller;
+use App\Http\Controllers\editTableController;
+
 
 
 Route::get('/', function () {
@@ -104,10 +105,9 @@ Route::middleware('auth')->group(function () {
 
   
 
-   Route::post('/table/{table}/{view}', [Table1447Controller::class,'store']);
+   Route::post('/table/{table}/{view}', [Table06Controller::class,'store']);
    
-   Route::get('/table/{table}/{view}', [Table1447Controller::class,'project']);
-   Route::get('/table/{table}/{view}', [Table1447Controller::class,'show']);
+   Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
 
   
  //Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');
@@ -118,7 +118,13 @@ Route::middleware('auth')->group(function () {
   
 
    //Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
-   
+
+
+
+
+  ;
+   Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
+
 
 
 

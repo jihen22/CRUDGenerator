@@ -61,8 +61,40 @@ public function telecharger($table)
 
 public function supprimerTable($table)
 {
+    // Supprimer la table
     DB::statement('DROP TABLE '.$table);
-    return redirect()->back()->with('success', 'Table supprimée avec succès.');
+
+    // Supprimer le modèle
+    $model_file = app_path('Models/'.$table.'.php');
+    if (file_exists($model_file)) {
+        unlink($model_file);
+    }
+
+    // Supprimer le contrôleur
+    $controller_file = app_path('Http/Controllers/'.$table.'Controller.php');
+    if (file_exists($controller_file)) {
+        unlink($controller_file);
+    }
+
+    // Supprimer les vues
+    $views_directory = resource_path('views/'.$table);
+    if (file_exists($views_directory)) {
+        $files = glob($views_directory.'/*'); 
+        foreach($files as $file){ 
+            if(is_file($file)) {
+                unlink($file);
+            }
+        }
+        rmdir($views_directory);
+    }
+
+    // Supprimer la migration
+    $migration_file = database_path('migrations/*_create_'.$table.'_table.php');
+    foreach(glob($migration_file) as $file) {
+        unlink($file);
+    }
+
+    return redirect()->back()->with('success', 'Table supprimée avec succès avec son controller, model, vue et migration.');
 }
 
 
