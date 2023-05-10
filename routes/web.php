@@ -5,12 +5,14 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MyprojectController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SettingsControllera;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
 use App\Http\Controllers\table06Controller;
 
 use App\Http\Controllers\CrudController;
+
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -100,7 +102,35 @@ Route::middleware('auth')->group(function () {
 
    Route::post('/settings', [SettingsController::class, 'update'])->name('admin.settings');
 
-    Auth::routes();
+    // Generate authentication routes
+Auth::routes();
+
+// Login page route
+Route::group(['middleware' => 'guest'] , function(){
+
+    Route::get('/login/github', 'App\Http\Controllers\Auth\LoginController@github'); 
+    Route::get('/login/github/redirect', 'App\Http\Controllers\Auth\LoginController@githubredirect'); 
+   
+
+});
+// Login page route
+Route::group(['middleware' => 'guest'] , function(){
+
+    Route::get('/login/google', 'App\Http\Controllers\Auth\LoginController@google'); 
+    Route::get('/login/google/redirect', 'App\Http\Controllers\Auth\LoginController@googleredirect'); 
+   
+
+});
+// Login page route
+Route::group(['middleware' => 'guest'] , function(){
+
+    Route::get('/login/facebook', 'App\Http\Controllers\Auth\LoginController@facebook'); 
+    Route::get('/login/facebook/redirect', 'App\Http\Controllers\Auth\LoginController@facebookredirect'); 
+   
+
+});
+
+    Route::get('/table/{table}/{view}', [Table1447Controller::class,'store']);
 
   
 

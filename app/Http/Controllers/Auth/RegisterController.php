@@ -85,10 +85,7 @@ class RegisterController extends Controller
     }
     protected function authenticated($request, $user)
     {
-       
-       
-       return redirect('/login');
-
+       return redirect('http://localhost:8000/myproject');
     }
    
 }
