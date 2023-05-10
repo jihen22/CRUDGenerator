@@ -144,14 +144,32 @@ Route::get('/table/{table}/{view}', [Table1Controller::class,'index']);
 Route::post('/table/{table}/{view}', [Table1Controller::class,'store']);
   
 
+<<<<<<< HEAD
 Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
 
 
+=======
+   //Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
+>>>>>>> e87d11f8fd57348833b6ee6a25d16a70eaa93e61
 
 
 
 
 
    Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
+<<<<<<< HEAD
+=======
+
+
+
+   
+   Route::post('/update-row', [Table1Controller::class, 'updateRow'])->name('updateRow');
+
+
+
+
+
+
+>>>>>>> e87d11f8fd57348833b6ee6a25d16a70eaa93e61
   
 
