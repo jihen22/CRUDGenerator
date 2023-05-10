@@ -30,193 +30,291 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
           <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="mon-script.js"></script>
+
+
         <style>
-           
-       
-#layoutSidenav {
-  display: flex;
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  width: 1100px;
-  height: 700px;
-}
+    .card {
+        margin: 0 auto;
+        max-width: 1000px;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-#layoutSidenav_content {
-  flex: 1;
-  margin-left: 200px; /* Width of the sidebar */
-  grid-column: 2 / 3;
-}
+    .flex-container {
+        display: flex;
+    }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 800px; /* Changer selon vos besoins */
-  margin: 0 auto; /* Pour centrer le tableau horizontalement */
-}
+    .content-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
 
-th {
-  background-color: #4CAF50;
-  color: white;
-  font-weight: bold;
-  padding: 12px;
-  text-align: left;
-  border: 1px solid #ddd;
-}
+    #monDiv {
+        min-height: calc(100vh - 60px);
+        margin-right: 70px;
+        margin-left: 50px;
+        width: calc(100% - 80px);
+    }
 
-td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
-}
+    .small-sidebar {
+        width: 70px;
+    }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
+    .container-fluid {
+        margin-bottom: 50px;
+    }
 
-.action-btns {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-start;
-}
+    .content {
+        max-height: 500px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 0.5rem;
+        overflow: auto;
+    }
 
-.action-btns a, .action-btns button {
-  padding: 10px 20px;
-  background-color: #008CBA;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 14px;
-}
+    .content-header {
+        margin-bottom: 20px;
+    }
 
-.action-btns a:hover, .action-btns button:hover {
-  background-color: #006080;
-}
+    .content-header h1 {
+        padding: 42px 57px;
+        display: inline-block;
+        font-size: 28px;
+        color: #333;
+    }
 
-    
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #333;
+    }
 
- </style>       
+    input[type="text"],
+    select {
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    select option {
+        font-size: 14px;
+    }
+
+    .form-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .form-group button {
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .form-group button:hover {
+        background-color: #0069d9;
+    }
+
+    @media (max-width: 767px) {
+        #monDiv {
+            margin-right: 0;
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .small-sidebar {
+            display: none;
+        }
+    }
+</style>
+
+
+ 
     </head>
-    <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;">
-<div id="app" class="wrapper">
-    
-<nav class="main-header navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="#">name of project</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    name
-                                </a>
+        
+   
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                </li>
-            </ul>
-        </nav>
-<div class="card">
-<div class="container">
-        <h1>Ajouter une colonne à une table</h1>
+
+<body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
+	<div id="app" class="warpper">
+	@include('admin.partials.topbar')
+	<div id="layoutSidenav" class="flex-container">
+       @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
+
+
+
+<div class="content-warper" id="monDiv" style="">
+	<div class="content-header">
+		<div class="container-fluid p-0">
+			<div class ="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+      <section class="content">
+	     <div class="container-fluide p-0">
+           <div class="card card-default">
+
+
+            <div class="card-body">
+
 
         <form method="POST" action="{{ route('add-column.store') }}">
             @csrf
 
             <div class="form-group">
-                <label for="table_name">Nom de la table :</label>
+                <label for="table_name"> table Name :</label>
                 <input type="text" name="table_name" id="table_name" class="form-control" required>
             </div>
 
            
 
             <div class="form-group">
-                <label for="field_type">Type de champ :</label>
-                <select name="field_type" id="field_type" class="form-control" required>
-                    <option value="string">Texte</option>
-                    <option value="integer">Entier</option>
-                    <option value="float">Décimal</option>
-                    <option value="date">Date</option>
-                </select>
-            </div>
+                             <label for="field_type">Field Type</label>
+              <select id="field_type" name="field_type">
+              <option value="">Select a column type</option>
+    <optgroup label="Numeric">
+        <option value="bigIncrements">Big Increments</option>
+        <option value="bigInteger">Big Integer</option>
+        <option value="binary">Binary</option>
+        <option value="decimal">Decimal</option>
+        <option value="double">Double</option>
+        <option value="float">Float</option>
+        <option value="integer">Integer</option>
+        <option value="mediumInteger">Medium Integer</option>
+        <option value="smallInteger">Small Integer</option>
+        <option value="tinyInteger">Tiny Integer</option>
+        <option value="unsignedBigInteger">Unsigned Big Integer</option>
+        <option value="unsignedDecimal">Unsigned Decimal</option>
+        <option value="unsignedInteger">Unsigned Integer</option>
+        <option value="unsignedMediumInteger">Unsigned Medium Integer</option>
+        <option value="unsignedSmallInteger">Unsigned Small Integer</option>
+        <option value="unsignedTinyInteger">Unsigned Tiny Integer</option>
+    </optgroup>
+    <optgroup label="String">
+        <option value="char">Char</option>
+        <option value="string">String</option>
+        <option value="text">Text</option>
+        <option value="mediumText">Medium Text</option>
+        <option value="longText">Long Text</option>
+    </optgroup>
+    <optgroup label="Date and Time">
+        <option value="date">Date</option>
+        <option value="dateTime">Date Time</option>
+        <option value="dateTimeTz">Date Time with Timezone</option>
+        <option value="time">Time</option>
+        <option value="timeTz">Time with Timezone</option>
+        <option value="timestamp">Timestamp</option>
+        <option value="timestampTz">Timestamp with Timezone</option>
+        <option value="year">Year</option>
+    </optgroup>
+    <optgroup label="Other">
+        <option value="boolean">Boolean</option>
+        <option value="enum">Enum</option>
+        <option value="json">JSON</option>
+        <option value="jsonb">JSONB</option>
+        <option value="uuid">UUID</option>
+        <option value="ipAddress">IP Address</option>
+        <option value="macAddress">MAC Address</option>
+    </optgroup>
+            </select>
+        </div>
 
             <div class="form-group">
-                <label for="database_column_name">Nom de la colonne dans la base de données :</label>
+                <label for="database_column_name">Data base column Name: :</label>
                 <input type="text" name="database_column_name" id="database_column_name" class="form-control" required>
             </div>
 
+            <div class="form-group" >
+           <label for="Validation">Validation</label>
+            <select id="Validation" name="Validation" >
+             <option value="Required" >Required</option>
+             <option value="Optionnal" >optionnal</option>
+             <option value="Required/Unique">Required/unique</option>
+             </select>
+         </div>
+                 
             <div class="form-group">
-                <label for="validation">Validation :</label>
-                <input type="text" name="validation" id="validation" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="visual_title">Titre visuel :</label>
+                <label for="visual_title">Visual Title </label>
                 <input type="text" name="visual_title" id="visual_title" class="form-control">
             </div>
 
-            <div class="form-group">
-                <label for="in_list">Afficher dans la liste :</label>
-                <select name="in_list" id="in_list" class="form-control">
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>
-                </select>
-            </div>
+      
 
-            <div class="form-group">
-                <label for="in_create">Afficher dans le formulaire de création :</label>
-                <select name="in_create" id="in_create" class="form-control">
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>
-                </select>
-            </div>
+            <div class="form-inline">
+    <label> In List: </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_list" id="in_list_yes" value="yes">
+        <label class="form-check-label" for="in_list_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_list" id="in_list_no" value="no">
+        <label class="form-check-label" for="in_list_no">No</label>
+    </div>
 
-            <div class="form-group">
-                <label for="in_show">Afficher dans le détail :</label>
-                <select name="in_show" id="in_show" class="form-control">
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>
-                </select>
-            </div>
+    <label> In Create: </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_create" id="in_create_yes" value="yes">
+        <label class="form-check-label" for="in_create_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_create" id="in_create_no" value="no">
+        <label class="form-check-label" for="in_create_no">No</label>
+    </div>
+</div>
 
-            <div class="form-group">
-                <label for="in_edit">edit :</label>
-                <select name="in_edit" id="in_edit" class="form-control">
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>
-                </select>
-            </div>
+<div class="form-inline">
+    <label> In Show: </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_show" id="in_show_yes" value="yes">
+        <label class="form-check-label" for="in_show_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_show" id="in_show_no" value="no">
+        <label class="form-check-label" for="in_show_no">No</label>
+    </div>
 
-            <div class="form-group">
-                <label for="max">Max :</label>
-                <input type="text" name="max" id="max" class="form-control">
-            </div>
+    <label> In Edit: </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_edit" id="in_edit_yes" value="yes">
+        <label class="form-check-label" for="in_edit_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_edit" id="in_edit_no" value="no">
+        <label class="form-check-label" for="in_edit_no">No</label>
+    </div>
+</div>
 
-            <div class="form-group">
-                <label for="min">Min :</label>
-                <input type="text" name="min" id="min" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="default_value">Valeur par défaut :</label>
-                <input type="text" name="default_value" id="default_value" class="form-control">
-            </div>
+                         <div style="display: flex;">
+    <div style="margin-right: 10px;">
+        <label for="max">Max Limit:</label>
+        <input type="number" id="max" name="max">
+    </div>
+    <div style="margin-right: 10px;">
+        <label for="min">Min Limit:</label>
+        <input type="number" id="min" name="min">
+    </div>
+    <div>
+        <label for="default_value">Default value:</label>
+        <input type="number" id="default_value" name="default_value" placeholder="Enter a Default Value">
+    </div>
+</div>
+                
 
             <button type="submit" class="btn btn-primary">Ajouter la colonne</button>
         </form>
@@ -228,4 +326,21 @@ tr:nth-child(even) {
 
 
 
+
+
+
+
 </div>
+		        </div>
+	      </div>
+       </section>
+ </div>
+								</div>
+								</div>
+						
+
+		@include('admin.partials.footer')
+   
+                                </body>
+                                </html>
+

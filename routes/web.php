@@ -148,7 +148,7 @@ Route::group(['middleware' => 'guest'] , function(){
   
 
    //Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
-<<<<<<< HEAD
+
 
 
 
@@ -157,10 +157,10 @@ Route::group(['middleware' => 'guest'] , function(){
    Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
 
 
-=======
+
    
    Route::post('/update-row', [Table1Controller::class, 'updateRow'])->name('updateRow');
->>>>>>> 68abf80fb82a7e4bf7f03eaee22355841573631e
+
 
 
 
