@@ -664,26 +664,32 @@ body{
 @php
     $hiddenColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
 @endphp
-<table id="myTable">
 
+
+<table id="myTable">
     <thead>
         <tr>
-        <th>Actions</th>
-            <!-- display column headers -->
+            <th>Action</th>
             @foreach ($columns as $column)
                 @if (!in_array($column, $hiddenColumns))
-                    <th>{{ $column }}</th>
+                    <th>
+                        {{ $column }}
+                        <form action="{{ route('delete-column', [$column]) }}" method="POST" style="display: inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="delete-btn">Delete {{ $column }}</button>
+                        </form>
+                    </th>
                 @endif
             @endforeach
-          
         </tr>
     </thead>
     <tbody>
         @foreach ($data as $row)
             <tr data-row-id="{{ $row->id }}">
-            <td>
+                <td>
                     <div class="action-btns">
-                        <button  class="edit-btn" data-toggle="modal" data-target="#edit-modal">Edit</button>
+                        <button class="edit-btn" data-toggle="modal" data-target="#edit-modal">Edit</button>
                         
 <!-- Modal for editing row data -->
 <div id="edit-modal" class="modal">
@@ -707,23 +713,19 @@ body{
                         <form action="#" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="delete-btn">Delete</button>
+                            <button type="submit" class="delete-btn">Delete Row</button>
                         </form>
                     </div>
                 </td>
-                <!-- display row data -->
                 @foreach ($columns as $column)
                     @if (!in_array($column, $hiddenColumns))
                         <td class="editable">{{ $row->{$column} }}</td>
                     @endif
                 @endforeach
-               
             </tr>
         @endforeach
     </tbody>
 </table>
-
-
    
 <button type="button" id="add" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Column</button>
 

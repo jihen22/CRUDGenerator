@@ -8,6 +8,9 @@ use Illuminate\Support\Str;
 use App\Field;
 use App\Table;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
+
+
 
 
 class tablefilesController extends Controller{
@@ -104,12 +107,22 @@ class tablefilesController extends Controller{
         
             return response()->json(['success' => false]);
         }
+
         public function showTable($id)
 {
     $table = Table::find($id);
     $fields = Field::where('table_id', $id)->get();
     
     return view('edittable')->with('table', $table)->with('fields', $fields);
+}
+
+public function checkTableExists(Request $request)
+{
+    $tableName = $request->input('tableName');
+
+    $exists = Schema::hasTable($tableName);
+
+    return response()->json(['exists' => $exists]);
 }
 
        

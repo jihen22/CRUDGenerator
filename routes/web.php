@@ -8,10 +8,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
+<<<<<<< HEAD
+use App\Http\Controllers\table1Controller;
+=======
 use App\Http\Controllers\table06Controller;
 
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
 use App\Http\Controllers\CrudController;
-
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -155,5 +158,31 @@ Route::post('/add-column.store', [editTableController::class, 'add'])->name('add
 
 
 
-  
+<<<<<<< HEAD
+=======
 
+   Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
+<<<<<<< HEAD
+   Route::delete('/columns/{id}', 'App\Http\Controllers\Table1Controller@destroy')->name('delete-column');
+=======
+<<<<<<< HEAD
+
+
+
+   
+   Route::post('/update-row', [Table1Controller::class, 'updateRow'])->name('updateRow');
+
+
+
+
+
+
+=======
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
+>>>>>>> 84b1bd0cfa3eda0a7fc65805581e478b20865170
+  
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
+
+
+
+Route::post('/check-table-exists', '\\App\\Http\\Controllers\\tablefilesController@checkTableExists');
