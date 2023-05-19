@@ -47,7 +47,13 @@ class CreateRoutesCommand extends Command
     
         $useStatement = "use App\\Http\\Controllers\\{$controller};\n";
        
-        $routeDefinition = "Route::resource('/table/{table}/{view}', '\\\\App\\\\Http\\\\Controllers\\\\{$controller}');";
+        $routeDefinitions = [
+            "Route::get('/table/{table}/{view}', ['uses' => '{$controller}@store']);",
+            "Route::get('/table/{table}/{view}', ['uses' => '{$controller}@index']);",
+            "Route::post('/table/{table}/{view}', ['uses' => '{$controller}@store']);",
+            "Route::delete('/data/{id}', ['uses' => '{$controller}@deleteData']);",
+            "Route::post('/update-row/{id}', ['uses' => '{$controller}@updateRow'])->name('update.row');",
+        ];
         
         $webRouteFile = base_path('routes/web.php');
         $webRouteContents = file_get_contents($webRouteFile);
@@ -58,13 +64,11 @@ class CreateRoutesCommand extends Command
             file_put_contents($webRouteFile, $useStatement, FILE_APPEND | LOCK_EX);
         }
     
-        // append the route definition to the end of the file
-        file_put_contents($webRouteFile, "\n".$routeDefinition, FILE_APPEND | LOCK_EX);
+        // append the route definitions to the end of the file
+        foreach ($routeDefinitions as $routeDefinition) {
+            file_put_contents($webRouteFile, "\n".$routeDefinition, FILE_APPEND | LOCK_EX);
+        }
         
         $this->info('Routes for '.$table.' table created successfully.');
     }
-    
-
-    
-    
 }
