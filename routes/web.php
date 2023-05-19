@@ -9,9 +9,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
 use App\Http\Controllers\table1Controller;
-
 use App\Http\Controllers\CrudController;
-
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -153,5 +151,8 @@ Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
 
 
    Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
-  
+   Route::delete('/columns/{id}', 'App\Http\Controllers\Table1Controller@destroy')->name('delete-column');
 
+
+
+Route::post('/check-table-exists', '\\App\\Http\\Controllers\\tablefilesController@checkTableExists');

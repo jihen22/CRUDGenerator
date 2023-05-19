@@ -37,82 +37,201 @@
              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.css">
                <!-- Sweetalert-->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.js"></script>
+        <style>
+    .form-check-inline {
+        margin-left: 10px;
+    }
+
+    .card {
+        margin: 0 auto;
+        max-width: 1000px;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px; /* Additional style */
+    }
+
+    .flex-container {
+        display: flex;
+    }
+
+    .content-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .small-sidebar {
+        width: 70px;
+    }
+
+    .container-fluid {
+        margin-bottom: 50px;
+    }
+
+    .content {
+        max-height: 500px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 0.5rem;
+        overflow: auto;
+    }
+
+    .content-header {
+        margin-bottom: 20px;
+    }
+
+    .content-header h1 {
+        padding: 42px 57px;
+        display: inline-block;
+        font-size: 28px;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input[type="text"],
+    select {
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    select option {
+        font-size: 14px;
+    }
+
+    .form-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .form-group button {
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .form-group button:hover {
+        background-color: #0069d9;
+    }
+
+    @media (max-width: 767px) {
+        #monDiv {
+            margin-right: 0;
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .small-sidebar {
+            display: none;
+        }
+    }
+
+    section.content {
+        min-height: 1000px;
+    }
+
+    div.row.mb-2 {
+        margin: 0.5rem 0;
+    }
+
+    /* Additional styles */
+    .content-warper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #monDiv {
+        min-height: calc(100vh - 60px);
+        margin-right: 80px;
+        margin-left: 80px;
+        width: calc(100% - 80px);
+    }
+
+    .container-fluide {
+        margin-bottom: 50px;
+    }
+
+    .intro {
+        height: 100%;
+    }
+
+    table td,
+    table th {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .mask-custom {
+        background: rgba(24, 24, 16, .2);
+        border-radius: 2em;
+        backdrop-filter: blur(25px);
+        border: 2px solid rgba(255, 255, 255, 0.05);
+        background-clip: padding-box;
+        box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+    }
+
+    .table {
+        font-size: 14px;
+        padding: 10px;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+    }
+
+    .table th,
+    .table td {
+        padding: 2px;
+        border: 1px solid #ddd;
+    }
+
+    /* Custom Modal */
+  
+    .custom-modal-content {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+    }
+
+    .custom-modal-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .custom-modal-label {
+        font-weight: bold;
+    }
+
+    .custom-modal-footer {
+        justify-content: flex-end;
+    }
+
+    /* Add the following code to modify the input fields */
+
+    .custom-modal-input {
+        width: 200px; /* Adjust the width as per your requirement */
+        margin: 0 auto; /* Center the input fields horizontally */
+    }
+</style>
 
 
 		
-
-	
-                  <style>
-               .card {
-                     margin: 0 auto;
-             max-width: 1000px; /* ou la valeur de votre choix */
-               border: 1px solid #ccc;
-               border-radius: 0.5rem;
-               padding: 1rem;
-               margin-bottom: 20px;
-                   }
-
-                 .flex-container {
-	                   display: flex;
-                  }
-
-                .content-warper {
-	                     flex: 1;
-	                     display: flex;
-	                  flex-direction: column;
-                   }
-                                  #monDiv {
-	                      min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
-	                 margin-right: 80px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
-	             margin-left: 80px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
-	            width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
-                            }
-
-                       .small-sidebar {
-	                     width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
-                 }
-                   .container-fluide {
-                     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
-              }
-                .intro {
-                    height: 100%;
-                             }
-
-                            table td,
-                            table th {
-                  text-overflow: ellipsis;
-                           white-space: nowrap;
-                    overflow: hidden;
-                                 }
-
-              .card {
-           border: 1px solid #ccc;
-                   border-radius: 0.5rem;
-               box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-                        }
-
-
-           .mask-custom {
-                   background: rgba(24, 24, 16, .2);
-               border-radius: 2em;
-                backdrop-filter: blur(25px);
-                  border: 2px solid rgba(255, 255, 255, 0.05);
-                     background-clip: padding-box;
-                  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
-                  }
-                  .table {
-  font-size: 14px;
-  padding: 10px;
-  border-collapse: collapse;
-  border: 1px solid #ddd;
-}
-
-.table th,
-.table td {
-  padding: 2px;
-  border: 1px solid #ddd;
-}
-	              </style>
 </head>
 
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
@@ -128,32 +247,58 @@
     <div class="card">
           <h5 class="card-header">Create table</h5>
       <div class="card-body">
+   
+
 <form action="/generate-crud" method="post">
                 <div class="container-fluid p-0">
                   @csrf
                    <div class="form-row">
                          <div class="form-group col-md-6">
-                            <label for="table-name">Table Name</label>
-                            <input type="text" class="form-control" id="table-name" name="table-name" placeholder="Enter table name">
-                         </div>
+                        
+    <label for="table-name">Table Name</label>
+    <input type="text" class="form-control" id="table-name" name="table-name" placeholder="Enter table name" value="{{ old('table-name') }}">
+   
+    <div class="invalid-feedback">Table name field is required!.</div>
+
+</div>
                          <div class="form-group col-md-6">
                             <label for="model-name">Model Name</label>
                             <input type="text" class="form-control" name="model-name" id="model-name" placeholder="Enter Model name for your table">
+                        
+    <div class="invalid-feedback">Model name field is required!.</div>
                          </div>
    
                          <div class="form-group col-md-6">
                              <label for="controller-name">Controller Name</label>
                              <input type="text" class="form-control"name="controller-name" id="controller-name" placeholder="Enter Controller name">
+                            
+    <div class="invalid-feedback">Controller  name field is required!.</div>
                          </div>
                          <div class="form-group col-md-6">
                             <label for="viewName">View Name</label>
                             <input type="text" class="form-control" id="viewName" name="viewName" placeholder="Enter View name">
+                          
+    <div class="invalid-feedback">View name field is required!.</div>
                          </div>
+                         <div class="form-group">
+    <label for="view_type">View Type:</label>
+    <select id="view_type" name="view_type" class="form-control">
+        <option value="card">Card View</option>
+        <option value="list">List View</option>
+        <option value="Grid">Grid View</option>
+        <option value="gantt">Gantt Chart View</option>
+        <option value="Calendar">Map View</option>
+        <option value="Calendar">Tree View</option>
+        <option value="Calendar"> Table View</option>
+        <!-- Add more options for other view types if needed -->
+    </select>
+</div>
                          
 
-                 </div>
+                 </div> 
      </div>
     </div>
+   
  </div>
 
    
@@ -162,18 +307,19 @@
              <h5 class="card-header">Add Fields to Your Table</h5>
              <div class="card-body">
 
- 
-                     <table class="table">
+                    <div class="table-warning" id="list_of_fields">
+             
+                     <table class="table" id="list_of_fields">
                                <thead>
                                        <tr>    
                                         <th scope="col">Field Type</th>
                                         <th scope="col">DataBaseColumn</th>
                                         <th scope="col">Validation</th>
                                         <th scope="col">Visual Title</th>
-                                        <th scope="col">in list</th>
-                                        <th scope="col">in create</th>
-                                        <th scope="col">in show</th>
-                                        <th scope="col">in edit</th>
+                                        <th scope="col">In List </th>
+                                        <th scope="col">In Create</th>
+                                        <th scope="col">In Show </th>
+                                        <th scope="col">In Edit</th>
  
                                         <th scope="col">Max</th>
                                         <th scope="col">Min</th>
@@ -184,10 +330,13 @@
                                       </thead>
                                       <tbody id="savedFields"></tbody>
                      </table>
+                   </div>
+                   <div class="invalid-feedback">At least one field is required!</div>
+                
                      <div>
                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Add Field</button></div>
-                     <div class="p-2" style="border-bottom: 1px solid rgb(230, 230, 230);">
-                      Total fields: <span id="numOfFields"></span>
+                     <div class="p-2" style="border-bottom: 1px solid rgb(230, 230, 230);">Total fields: <span id="numOfFields"></span>
+                    
                      </div>
             </div>
         </div>
@@ -200,56 +349,41 @@
 
  <!--add field Modal-->
 
-          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
-                      <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
+ <div class="modal fade bd-example-modal-lg custom-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
+    <div class="modal-dialog modal-lg">
+                      <div class="modal-content custom-modal-content">
+                      <div class="modal-header">
+                    <h5 class="modal-title custom-modal-title" id="addFeildModalLabel">Add Field</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                       <div class="form-group">
-                             <label for="field_type">Field Type</label>
+                             <label class="custom-modal-label" for="field_type">Field Type</label>
               <select id="field_type" name="field_type">
               <option value="">Select a column type</option>
     <optgroup label="Numeric">
-        <option value="bigIncrements">Big Increments</option>
-        <option value="bigInteger">Big Integer</option>
-        <option value="binary">Binary</option>
-        <option value="decimal">Decimal</option>
-        <option value="double">Double</option>
-        <option value="float">Float</option>
         <option value="integer">Integer</option>
-        <option value="mediumInteger">Medium Integer</option>
-        <option value="smallInteger">Small Integer</option>
-        <option value="tinyInteger">Tiny Integer</option>
-        <option value="unsignedBigInteger">Unsigned Big Integer</option>
-        <option value="unsignedDecimal">Unsigned Decimal</option>
-        <option value="unsignedInteger">Unsigned Integer</option>
-        <option value="unsignedMediumInteger">Unsigned Medium Integer</option>
-        <option value="unsignedSmallInteger">Unsigned Small Integer</option>
-        <option value="unsignedTinyInteger">Unsigned Tiny Integer</option>
+        <option value="decimal">Decimal</option>
     </optgroup>
-    <optgroup label="String">
-        <option value="char">Char</option>
+    <optgroup label="Text">
         <option value="string">String</option>
         <option value="text">Text</option>
-        <option value="mediumText">Medium Text</option>
-        <option value="longText">Long Text</option>
+        <option value="longtext">Long Text</option>
     </optgroup>
     <optgroup label="Date and Time">
         <option value="date">Date</option>
-        <option value="dateTime">Date Time</option>
-        <option value="dateTimeTz">Date Time with Timezone</option>
+        <option value="datetime">DateTime</option>
         <option value="time">Time</option>
-        <option value="timeTz">Time with Timezone</option>
-        <option value="timestamp">Timestamp</option>
-        <option value="timestampTz">Timestamp with Timezone</option>
-        <option value="year">Year</option>
+    </optgroup>
+    <optgroup label="Boolean">
+        <option value="boolean">Boolean</option>
     </optgroup>
     <optgroup label="Other">
-        <option value="boolean">Boolean</option>
         <option value="enum">Enum</option>
         <option value="json">JSON</option>
         <option value="jsonb">JSONB</option>
-        <option value="uuid">UUID</option>
-        <option value="ipAddress">IP Address</option>
-        <option value="macAddress">MAC Address</option>
+        <option value="file">File</option>
     </optgroup>
             </select>
         </div>
@@ -272,42 +406,52 @@
                                              <label for="VisualTitle">Visual Title </label>
                                              <input type="text" class="form-control"name="VisualTitle" id="VisualTitle" placeholder="Enter Visual title">
                                     </div>
+                                    
+<div class="form-inline">
+    <label> In List </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_list" id="in_list_yes" value="yes">
+        <label class="form-check-label" for="in_list_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_list" id="in_list_no" value="no">
+        <label class="form-check-label" for="in_list_no">No</label>
+    </div>
+</div>
+<div class="form-inline">
+    <label> In Create </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_create" id="in_create_yes" value="yes">
+        <label class="form-check-label" for="in_create_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_create" id="in_create_no" value="no">
+        <label class="form-check-label" for="in_create_no">No</label>
+    </div>
+</div>
 
-                                   <div class="form-group">
-                                                        <label for="inlist">In List</label>
-                                                            <select id="inlist"name="inlist">
-                                                                    <option value="yes">yes</option>
-                                                                    <option value="no">no</option>
-                  
-                                                            </select>
-                                   </div>
-                                   <div class="form-group" >
-                                                <label for="increate">In create</label>
-                                                      <select id="increate"name="increate">
-                                                        <option value="yes">yes</option>
-                                                        <option value="no">no</option>
-  
-                                                       </select>
-                                   </div>
-                                   <div class="form-group" >
-                                     <label for="inedit">In edit</label>
-                                             <select id="inedit" name="inedit">
-                                                <option value="yes">yes</option>
-                                                <option value="no">no</option>
-  
-                                            </select>
-                                   </div>
-
-                         <div class="form-group">
-                             <label for="inshow">In show
-                             </label>
-                                    <select id="inshow" name="inshow">
-                                         <option value="yes">yes</option>
-                                         <option value="no">no</option>
-  
-                                    </select>
-                         </div>
-                
+<div class="form-inline">
+    <label> In Show: </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_show" id="in_show_yes" value="yes">
+        <label class="form-check-label" for="in_show_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_show" id="in_show_no" value="no">
+        <label class="form-check-label" for="in_show_no">No</label>
+    </div>
+</div>
+<div class="form-inline">
+    <label> In Edit: </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_edit" id="in_edit_yes" value="yes">
+        <label class="form-check-label" for="in_edit_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_edit" id="in_edit_no" value="no">
+        <label class="form-check-label" for="in_edit_no">No</label>
+    </div>
+</div>
                       <h6 id="addFeildModalLabel">Additionnal Settings</h6>
                                    <div>
                          <label for="field-max-limit">Max Limit:</label>
@@ -322,13 +466,36 @@
                           <label for="field-default-value">Default value</label>
                           <input type="number" id="field-default-value" name="field-default-value" placeholder="Enter a Default Value "></br> 
                    </div>
-                
+    
+<div>
+
+    <label for="nullable">Nullable:</label>
+    <input type="checkbox" name="nullable" id="nullable">
+</div><div>
+    <label for="unique">Unique:</label>
+    <input type="checkbox" name="unique" id="unique">
+</div><div>
+    <label for="indexing">Indexing:</label>
+    <select name="indexing" id="indexing">
+        <option value="">None</option>
+        <option value="primary">Primary Key</option>
+        <option value="unique">Unique Index</option>
+        <option value="index">Index</option>
+    </select>
+</div><div>
+    
+    <label for="foreign_key">Foreign Key:</label>
+    <input type="text" name="foreign_key" id="foreign_key">
+</div><div>
+    <label for="validation_rules">Additional Validation Rules:</label>
+    <input type="text" name="validation_rules" id="validation_rules">
+</div>
 
 
-                   <div class="modal-footer">
-                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                         <button type="submit" class="btn btn-primary btn" id="Savefield" name="Savefield">Save Field</button>  
-                   </div>
+                    <div class="modal-footer custom-modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="Savefield" name="Savefield">Save Field</button>
+                </div>
  </div>         
   </div>
  </div>
@@ -358,7 +525,7 @@
                 <button type="submit" class="btn btn-primary " id="genbutt" name="genbutt">Generate Table files</button>
 </form>
 
-  <footer class="main-footer mt-2"><strong>Copyright © 2015-2023 <a href="https://quickadminpanel.com">CRUD GENERATOR LARAVEL</a>. For all questions and support: email <a href="mailto:info@laraveldaily.com">info@laraveldaily.com</a></strong></footer>
+ 
   
               
 </body> 
@@ -400,118 +567,137 @@ console.log(viewName);
   // Initialize a variable to keep track of the index of the field being edited
   var editIndex = -1;
 
-  // Listen for the click event on the Savefield button
-  $('#Savefield').click(function(e) {
-    e.preventDefault();
+ // Listen for the click event on the Savefield button
+$('#Savefield').click(function(e) {
+  e.preventDefault();
 
-    // Retrieve the values of the form fields
-    var field_type = $('#field_type').val();
-    var DBCName = $('#DBCName').val().trim();
-    var validation = $('#Validation').val();
-    var visualTitle = $('#VisualTitle').val().trim();
-    var inList = $('#inlist').val();
-    var inCreate = $('#increate').val();
-    var inEdit = $('#inedit').val();
-    var inShow = $('#inshow').val();
-    var maxLimit = $('#field-max-limit').val();
-    var minLimit = $('#field-min-limit').val();
-    var defaultValue = $('#field-default-value').val();
+  // Retrieve the values of the form fields
+  var field_type = $('#field_type').val();
+  var DBCName = $('#DBCName').val().trim();
+  var validation = $('#Validation').val();
+  var visualTitle = $('#VisualTitle').val().trim();
 
-    // Check if the dbcName field is empty
-    if ( DBCName  === '') {
-      // Display an error message to the user under the empty field
-      $('#DBCName').addClass('is-invalid');
-      $('#DBCName').siblings('.invalid-feedback').text('DBC Name is required !');
-      return;
-    } else {
-      // Remove the error message if the field is not empty
-      $('#DBCName').removeClass('is-invalid');
-      $('#DBCName').siblings('.invalid-feedback').text('');
-    }
+  var maxLimit = $('#field-max-limit').val();
+  var minLimit = $('#field-min-limit').val();
+  var defaultValue = $('#field-default-value').val();
 
-    // Update the visualTitle field with the same value as the dbcName field
-    visualTitle =  DBCName.charAt(0).toUpperCase() +  DBCName.slice(1);
-    $('#VisualTitle').val(visualTitle);
+  // Check if the dbcName field is empty
+  if (DBCName === '') {
+    // Display an error message to the user under the empty field
+    $('#DBCName').addClass('is-invalid');
+    $('#DBCName').siblings('.invalid-feedback').text('DBC Name is required!');
+    return;
+  } else {
+    // Remove the error message if the field is not empty
+    $('#DBCName').removeClass('is-invalid');
+    $('#DBCName').siblings('.invalid-feedback').text('');
+  }
 
-    // Create an object to store the field values
-    var field = {
-      field_type: field_type,
-      DBCName : DBCName,
-      validation: validation,
-      visualTitle: visualTitle,
-      inList: inList,
-      inCreate: inCreate,
-      inEdit: inEdit,
-      inShow: inShow,
-      maxLimit: maxLimit,
-      minLimit: minLimit,
-      defaultValue: defaultValue
-    };
+  // Update the visualTitle field with the same value as the dbcName field
+  visualTitle = DBCName.charAt(0).toUpperCase() + DBCName.slice(1);
+  $('#VisualTitle').val(visualTitle);
 
-    // Add or update the field object in the array
-    if (editIndex === -1) {
-      // "Saving" mode: add a new field
-      fields.push(field);
-    } else {
-      // "Editing" mode: update an existing field
-      fields[editIndex] = field;
-      // Reset the editIndex variable to indicate that we are no longer in "Editing" mode
-      editIndex = -1;
-    }
+  // Retrieve the values of the radio buttons
+  var inList = $('input[name="in_list"]:checked').val() === 'yes' ? 'Yes' : 'No';
+  var inCreate = $('input[name="in_create"]:checked').val() === 'yes' ? 'Yes' : 'No';
+  var inEdit = $('input[name="in_edit"]:checked').val() === 'yes' ? 'Yes' : 'No';
+  var inShow = $('input[name="in_show"]:checked').val() === 'yes' ? 'Yes' : 'No';
 
-    // Display the fields variable in the console
-   // console.log(fields);
+  // Create an object to store the field values
+  var field = {
+    field_type: field_type,
+    DBCName: DBCName,
+    validation: validation,
+    visualTitle: visualTitle,
+    inList: inList,
+    inCreate: inCreate,
+    inEdit: inEdit,
+    inShow: inShow,
+    maxLimit: maxLimit,
+    minLimit: minLimit,
+    defaultValue: defaultValue
+  };
 
-    // Display all saved fields on the page
-    var html = '';
-    $.each(fields, function(index, field) {
-      html += '<tr>'+
-              '<th>' + field.field_type + '</th>' +
-              '<td>' + field.DBCName + '</td>' +
-              '<td>' + field.validation + '</td>' +
-              '<td>' + field.visualTitle + '</td>' +
-              '<td>' + field.inList + '</td>' +
-              '<td>' + field.inCreate + '</td>' +
-              '<td>' + field.inEdit + '</td>' +
-              '<td>' + field.inShow + '</td>' +
-              '<td>' + field.maxLimit + '</td>' +
-              '<td>' + field.minLimit + '</td>' +
-              '<td>' + field.defaultValue + '</td>' +
-              '<td>' +
-          '<button  type="button" class="btn btn-warning btn-sm edit"  data-index="' + index + '">Edit</button>' +   '</td>' +
-              '<td>' +
-          '<button type="button" class="btn btn-dark btn-sm delete"  data-index="' + index + '">Delete</button>' +  '</td>' +
-              '</tr>';
-    });
-    
-    $('#savedFields').html(html);
-    var numOfFields = fields.length;
-   $('#numOfFields').text(numOfFields);
+  // Add or update the field object in the array
+  if (editIndex === -1) {
+    // "Saving" mode: add a new field
+    fields.push(field);
+  } else {
+    // "Editing" mode: update an existing field
+    fields[editIndex] = field;
+    // Reset the editIndex variable to indicate that we are no longer in "Editing" mode
+    editIndex = -1;
+  }
 
+  // Display the fields variable in the console
+  // console.log(fields);
 
-    
-  
+  // Display all saved fields on the page
+  var html = '';
+  $.each(fields, function(index, field) {
+    html += '<tr>' +
+      '<th>' + field.field_type + '</th>' +
+      '<td>' + field.DBCName + '</td>' +
+      '<td>' + field.validation + '</td>' +
+      '<td>' + field.visualTitle + '</td>' +
+      '<td>' + field.inList + '</td>' +
+      '<td>' + field.inCreate + '</td>' +
+      '<td>' + field.inEdit + '</td>' +
+'<td>' + field.inShow + '</td>' +
+'<td>' + field.maxLimit + '</td>' +
+'<td>' + field.minLimit + '</td>' +
+'<td>' + field.defaultValue + '</td>' +
+'<td>' +
+'<button  type="button" class="btn btn-warning btn-sm edit"  data-index="' + index + '">Edit</button>' + '</td>' +
+'<td>' +
+'<button type="button" class="btn btn-dark btn-sm delete"  data-index="' + index + '">Delete</button>' + '</td>' +
+'</tr>';
+});
 
-    // Display a message indicating that the field has been saved
-    Swal.fire("Field saved Successfully");
-   
-    // Clear the form fields
-    $('#field_type').val('');
-    $('#DBCName').val('');
-    $('#Validation').val('');
-    $('#VisualTitle').val('');
-    $('#inlist').val('');
-    $('#increate').val('');
-    $('#inedit').val('');
-    $('#inshow').val('');
-    $('#field-max-limit').val('');
-    $('#field-min-limit').val('');
-    $('#field-default-value').val('');
+$('#savedFields').html(html);
+var numOfFields = fields.length;
+$('#numOfFields').text(numOfFields);
+
+// JavaScript code (start)
+const form = document.getElementsByClassName('form-inline');
+
+// Iterate over each form section
+Array.from(form).forEach(section => {
+// Retrieve the radio buttons within the current section
+const radioButtons = section.querySelectorAll('input[type="radio"]');
 
 
-   
+// Add event listeners to the radio buttons
+Array.from(radioButtons).forEach(radio => {
+  radio.addEventListener('change', () => {
+    const sectionName = section.querySelector('label').innerText;
+    const selectedValue = radio.value;
 
+    console.log(`${sectionName}: ${selectedValue}`);
+    // You can perform any desired logic with the selected value here
   });
+});
+});
+
+
+// Display a message indicating that the field has been saved
+Swal.fire("Field saved Successfully");
+
+// Clear the form fields
+$('#field_type').val('');
+$('#DBCName').val('');
+$('#Validation').val('');
+$('#VisualTitle').val('');
+$('input[name="inList"]').prop('checked', false);
+$('input[name="inCreate"]').prop('checked', false);
+$('input[name="inEdit"]').prop('checked', false);
+$('input[name="inShow"]').prop('checked', false);
+$('#field-max-limit').val('');
+$('#field-min-limit').val('');
+$('#field-default-value').val('');
+});
+
+  
   
 // Bind click event to edit button
 $('#savedFields').on('click', '.edit', function() {
@@ -537,8 +723,6 @@ $('#savedFields').on('click', '.edit', function() {
     // Make sure to prevent default behavior of the edit button
     event.preventDefault();
 });
-
-  
 
 $('#savedFields').on('click', '.delete', function() {
   // Retrieve the index of the clicked row
@@ -595,56 +779,147 @@ function generateTableHtml() {
   var numOfFields = fields.length;
    $('#numOfFields').text(numOfFields);
 }
-// Get the CSRF token from the meta tag in the HTML document
-var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-// Listen for the click event on the Generate files button
-$('#genbutt').click(function(e) {
-  e.preventDefault();
-  // Create an object to store the data to be sent in the AJAX request
-var data = {
-  fields: fields,
-  tableName: $('#table-name').val(),
-  tableController: $('#controller-name').val(),
-  tableModel: $('#model-name').val(),
-  tableView: $('#viewName').val(),
-  _token: csrfToken // add the CSRF token to the data object
-};
-
-console.log(data);
-
-  // Send the fields array to the tablefiles controller
-  $.ajax({
-  type: 'POST',
-  url: '/generate-crud',
-  data: data,
-  success: function(response) {
-    // Display a success message to the user
-    console.log(response);
-    Swal.fire({
-      icon: 'success',
-      title: 'Files generated successfully',
-      text: 'The files have been generated successfully.'
-    });
-  },
-  error: function(xhr, status, error) {
-    // Log the error information to the console
-    console.error("An error occurred while generating the files: ", error);
-    
-    // Display an error message to the user
-    Swal.fire({
-      icon: 'error',
-      title: 'Error',
-      text: 'An error occurred while generating the files. Please try again later.'
-    });
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
 
+$('#genbutt').click(function(e) {
+  e.preventDefault();
+
+  // Clear previous error messages and classes
+  $('.is-invalid').removeClass('is-invalid');
+  $('.invalid-feedback').text('');
+  $('.error-label').text('');
+
+  // Retrieve the field values
+  var tableName = $('#table-name').val().trim();
+  var controllerName = $('#controller-name').val().trim();
+  var modelName = $('#model-name').val().trim();
+  var viewName = $('#viewName').val().trim();
+  var viewType = $('#view_type').val().trim();
+  var hasErrors = false;
+// First AJAX request to check if table already exists
+$.ajax({
+  url: '/check-table-exists',
+  method: 'POST',
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  },
+  data: { tableName: tableName },
+  success: function(response) {
+    console.log('First AJAX call successful');
+    if (response.exists) {
+      handleTableExistsError();
+    } else if (tableName.trim() === '') {
+      handleEmptyTableNameError();
+    } else {
+      $('#table-name').removeClass('is-invalid');
+      hasErrors = false;
+
+      // Create an object to store the data to be sent in the AJAX request
+      var data = {
+        fields: fields,
+        tableName: tableName,
+        tableController: controllerName,
+        tableModel: modelName,
+        tableView: viewName,
+        viewType: viewType,
+        _token: csrfToken // add the CSRF token to the data object
+      };
+      console.log(data);
+      // Call the second AJAX request to send the data to the server
+      sendTableData(data);
+    }
+  },
+  error: function(xhr, status, error) {
+    console.log('Error in first AJAX call:', error);
+  }
 });
 
+// Function to handle the second AJAX request
+function sendTableData(data) {
+  $.ajax({
+    type: 'POST',
+    url: '/generate-crud',
+    data: data,
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function(response) {
+      console.log('Second AJAX call successful');
+      // Display a success message to the user
+      alert('Data sent to the controller file');
+    },
+    error: function(xhr, status, error) {
+      console.log('Error in second AJAX call:', error);
+      // Log the error information to the console
+      console.error("An error occurred while generating the files: ", error);
 
+      // Display the error message from the validator under the corresponding input field
+      var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while generating the files. Please try again later.';
+      $('#error-message').text(errorMessage);
+    }
+  });
+}
+function handleTableExistsError() {
+  $('#table-name').addClass('is-invalid');
+  $('#table-name').siblings('.invalid-feedback').text('Table already exists, enter another valid table name!');
+  $('#table-name').siblings('.error-label').text('Error:');
 
+  hasErrors = true;
+}
 
+function handleEmptyTableNameError() {
+  $('#table-name').addClass('is-invalid');
+  $('#table-name').siblings('.invalid-feedback').text('Table name is empty, enter a valid table name!');
+  $('#table-name').siblings('.error-label').text('Error:');
+
+  hasErrors = true;
+}
+  if (tableName === '') {
+    $('#table-name').addClass('is-invalid');
+    $('#table-name').siblings('.invalid-feedback').text('Table name field is required!');
+    $('#table-name').siblings('.error-label').text('Error:');
+    hasErrors = true;
+  }
+  if (controllerName === '') {
+    $('#controller-name').addClass('is-invalid');
+    $('#controller-name').siblings('.invalid-feedback').text('Controller name field is required!.');
+    $('#controller-name').siblings('.error-label').text('Error:');
+    hasErrors = true;
+  }
+
+  if (modelName === '') {
+    $('#model-name').addClass('is-invalid');
+    $('#model-name').siblings('.invalid-feedback').text('Model name field is required!.');
+    $('#model-name').siblings('.error-label').text('Error:');
+    hasErrors = true;
+  }
+
+  if (viewName === '') {
+    $('#viewName').addClass('is-invalid');
+    $('#viewName').siblings('.invalid-feedback').text('View name field is required!.');
+    $('#viewName').siblings('.error-label').text('Error:');
+    hasErrors = true;
+  }
+  
+  if (fields.length === 0) {
+    // Display error message for missing fields
+    $('#list_of_fields').addClass('is-invalid');
+    $('#list_of_fields').siblings('.invalid-feedback').text('At least one field is required!');
+    $('#list_of_fields').siblings('.error-label').text('Error:');
+    hasErrors = true;
+  }
+  
+
+  if (hasErrors) {
+    return; // Stop execution if any field is empty
+  }
+
+});
   </script>
 
  

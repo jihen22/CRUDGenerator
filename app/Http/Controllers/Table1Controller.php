@@ -90,6 +90,32 @@ class Table1Controller extends Controller
     // Retourner une réponse JSON pour confirmer la mise à jour des données
     return response()->json(['success' => true]);
 }
+public function destroy($id)
+{
+    // Get the name of the column to delete based on the ID
+    $row = DB::table('table1')->where('id', $id)->first();
+    if (!$row) {
+        return redirect()->back()->with('error', 'column not found');
+    }
+    $column = $row->column_name;
+
+    // Check if the column exists before dropping it
+    if (Schema::hasColumn('table1', $column)) {
+        // Remove the column from the database table
+        Schema::table('table1', function (Blueprint $table) use ($column) {
+            $table->dropColumn($column);
+        });
+    }
+
+    // Delete the column record from the 'table1_columns' table
+    DB::table('fieldslist4')->where('id', $id)->delete();
+
+    // Redirect back to the table index page
+    return redirect()->back()->with('success', 'column deleted successfully');
+}
+
+
+
 
   
 
