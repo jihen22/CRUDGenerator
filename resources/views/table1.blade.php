@@ -710,7 +710,7 @@ body{
         </form>
     </div>
 </div>
-                        <form action="{{ route('delete', $row->id) }}" method="POST">
+                        <form action="#" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="delete-btn">Delete Row</button>
@@ -771,7 +771,28 @@ $(document).ready(function() {
 });
 
 
-</script>  
+</script> 
+
+
+
+<script>
+
+$(document).ready(function() {
+  $('.edit-link').click(function() {
+    // Récupère l'ID de la ligne correspondante
+    var rowId = $(this).closest('tr').data('row-id');
+
+    // Défini l'ID de la ligne dans le champ d'entrée caché
+    $('#edit-form #row_id').val(rowId);
+
+    // Affiche le modal
+    $('#edit-modal').show();
+  });
+});
+
+    </script>
+
+
 <script>
     $('#myModal').on('hidden.bs.modal', function (e) {
   // code pour réinitialiser les valeurs de l'input

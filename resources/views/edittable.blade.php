@@ -31,8 +31,17 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
           <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="mon-script.js"></script>
+<<<<<<< HEAD
 
 
+=======
+<<<<<<< HEAD
+
+
+=======
+ 
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
         <style>
     .card {
         margin: 0 auto;
@@ -153,8 +162,45 @@ div.row.mb-2 {
 
  
     </head>
+<<<<<<< HEAD
         
    
+=======
+<<<<<<< HEAD
+        
+   
+
+
+
+<body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
+	<div id="app" class="warpper">
+	@include('admin.partials.topbar')
+	<div id="layoutSidenav" class="flex-container">
+       @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
+
+
+
+<div class="content-warper" id="monDiv" style="">
+	<div class="content-header">
+		<div class="container-fluid p-0">
+			<div class ="row mb-2">
+				<div class="col-sm-6">
+                <div class="card-header">{{ $table }} </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	     <div class="container-fluide p-0">
+           <div class="card card-default">
+
+
+            <div class="card-body">
+
+=======
+    <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;">
+<div id="app" class="wrapper">
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
 
 
 
@@ -183,18 +229,31 @@ div.row.mb-2 {
 
             <div class="card-body">
 
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
 
         <form method="POST" action="{{ route('add-column.store') }}">
             @csrf
 
             <div class="form-group">
+<<<<<<< HEAD
                 <label for="table_name"> table Name :</label>
+=======
+<<<<<<< HEAD
+                <label for="table_name"> table Name :</label>
+=======
+                <label for="table_name">Table name</label>
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
                 <input type="text" name="table_name" id="table_name" class="form-control" required>
             </div>
 
            
 
             <div class="form-group">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
                              <label for="field_type">Field Type</label>
               <select id="field_type" name="field_type">
               <option value="">Select a column type</option>
@@ -244,9 +303,28 @@ div.row.mb-2 {
     </optgroup>
             </select>
         </div>
+<<<<<<< HEAD
 
             <div class="form-group">
                 <label for="database_column_name">Data base column Name: :</label>
+=======
+
+            <div class="form-group">
+                <label for="database_column_name">Data base column Name: :</label>
+=======
+                <label for="field_type">Field type</label>
+                <select name="field_type" id="field_type" class="form-control" required>
+                    <option value="string">string</option>
+                    <option value="integer">integer</option>
+                    <option value="float">float</option>
+                    <option value="date">Date</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="database_column_name">Column name in the database</label>
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
                 <input type="text" name="database_column_name" id="database_column_name" class="form-control" required>
             </div>
 
@@ -260,6 +338,10 @@ div.row.mb-2 {
          </div>
                  
             <div class="form-group">
+<<<<<<< HEAD
+                <label for="visual_title">Visual Title </label>
+=======
+<<<<<<< HEAD
                 <label for="visual_title">Visual Title </label>
                 <input type="text" name="visual_title" id="visual_title" class="form-control">
             </div>
@@ -325,6 +407,91 @@ div.row.mb-2 {
     </div>
 </div>
                 
+=======
+                <label for="validation">Validation </label>
+                <input type="text" name="validation" id="validation" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="visual_title">Visual title</label>
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
+                <input type="text" name="visual_title" id="visual_title" class="form-control">
+            </div>
+
+      
+
+            <div class="form-inline">
+    <label> In List: </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_list" id="in_list_yes" value="yes">
+        <label class="form-check-label" for="in_list_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_list" id="in_list_no" value="no">
+        <label class="form-check-label" for="in_list_no">No</label>
+    </div>
+
+    <label> In Create: </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_create" id="in_create_yes" value="yes">
+        <label class="form-check-label" for="in_create_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_create" id="in_create_no" value="no">
+        <label class="form-check-label" for="in_create_no">No</label>
+    </div>
+</div>
+
+<div class="form-inline">
+    <label> In Show: </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_show" id="in_show_yes" value="yes">
+        <label class="form-check-label" for="in_show_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_show" id="in_show_no" value="no">
+        <label class="form-check-label" for="in_show_no">No</label>
+    </div>
+
+    <label> In Edit: </label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_edit" id="in_edit_yes" value="yes">
+        <label class="form-check-label" for="in_edit_yes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="in_edit" id="in_edit_no" value="no">
+        <label class="form-check-label" for="in_edit_no">No</label>
+    </div>
+</div>
+
+<<<<<<< HEAD
+                         <div style="display: flex;">
+    <div style="margin-right: 10px;">
+        <label for="max">Max Limit:</label>
+        <input type="number" id="max" name="max">
+    </div>
+    <div style="margin-right: 10px;">
+        <label for="min">Min Limit:</label>
+        <input type="number" id="min" name="min">
+    </div>
+    <div>
+        <label for="default_value">Default value:</label>
+        <input type="number" id="default_value" name="default_value" placeholder="Enter a Default Value">
+    </div>
+</div>
+                
+=======
+            <div class="form-group">
+                <label for="min">Min </label>
+                <input type="text" name="min" id="min" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="default_value">Default Value</label>
+                <input type="text" name="default_value" id="default_value" class="form-control">
+            </div>
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
 
             <button type="submit" class="btn btn-primary">Add new column</button>
         </form>

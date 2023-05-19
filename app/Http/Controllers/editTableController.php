@@ -22,7 +22,7 @@ class editTableController extends Controller
         $tableName = $request->input('table_name');
         $fieldType = $request->input('field_type');
         $databaseColumnName = $request->input('database_column_name');
-        $validation = $request->input('validation');
+        $validation = "test";
         $visualTitle = $request->input('visual_title');
         $inList = $request->input('in_list') ? 1 : 0;
         $inCreate = $request->input('in_create') ? 1 : 0;
@@ -62,7 +62,7 @@ if (Schema::hasTable($tableName)) {
           
                
             DB::table($columnsTable)->insert($columnMetadata);
-
+                dd($columnsTable);
             return redirect()->back()->with('success', 'La colonne a été ajoutée avec succès.');
         } else {
             return redirect()->back()->with('error', "La table $tableName n'existe pas.");

@@ -8,7 +8,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
+<<<<<<< HEAD
 use App\Http\Controllers\table1Controller;
+=======
+use App\Http\Controllers\table06Controller;
+
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +28,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/bisco', function () {
+    return view('bisco');
+});
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
@@ -138,20 +146,48 @@ Route::group(['middleware' => 'guest'] , function(){
  //Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');
 
 
-Route::get('/table/{table}/{view}', [Table1Controller::class,'index']);
-Route::post('/table/{table}/{view}', [Table1Controller::class,'store']);
+Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
+Route::post('/table/{table}/{view}', [Table06Controller::class,'store']);
+Route::delete('/data/{id}', [Table06Controller::class, 'deleteData']);
+
+
+
+Route::post('/update-row/{id}', [Table06Controller::class, 'updateRow'])->name('update.row');
+
   
 
+<<<<<<< HEAD
+   //Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
+=======
 Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
 
 
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
 
 
 
 
 
    Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
+<<<<<<< HEAD
    Route::delete('/columns/{id}', 'App\Http\Controllers\Table1Controller@destroy')->name('delete-column');
+=======
+<<<<<<< HEAD
+
+
+
+   
+   Route::post('/update-row', [Table1Controller::class, 'updateRow'])->name('updateRow');
+
+
+
+
+
+
+=======
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
+  
+>>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
 
 
 

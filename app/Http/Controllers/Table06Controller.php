@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 use App\Models\table06;
 
@@ -50,21 +51,65 @@ class Table06Controller extends Controller
 
     public function deleteData($id)
     {
-        // Trouver la ligne de données à supprimer
-        $data = table06::find($id);
+        //Trouver la ligne de données à supprimer
+       $data = table06::find($id);
+
+       
     
-        if (!$data) {
-            return response()->json(['error' => 'Ligne de données introuvable'], 404);
+       if (!$data) {
+           return response()->json(['error' => 'Ligne de données introuvable'], 404);
         }
+
+      
     
         // Supprimer la ligne de données
-        $data->delete();
+       $data->delete();
     
         return response()->json(['success' => 'Ligne de données supprimée avec succès']);
-    }
+   }
 
+  
+     
+   public function updateRow(Request $request, $id)
+   {
+     // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
+     $row = Table06::find($id);
    
+     // Vérifier si la ligne a été trouvée
+     if ($row) {
+       // Récupérer tous les attributs du formulaire
+       $input = $request->except('_token', '_method');
+   
+       // Supprimer la colonne 'row_id' de la liste des attributs à mettre à jour
+       unset($input['row_id']);
+   
+       // Mettre à jour les attributs de la ligne avec les données du formulaire
+       foreach ($input as $column => $value) {
+         // Vérifier si la colonne existe avant de la mettre à jour
+         if (Schema::hasColumn('table06', $column)) {
+           $row->{$column} = $value;
+         }
+       }
+   
+       // Sauvegarder les modifications dans la base de données
+       $row->save();
+   
+       // Rediriger ou retourner une réponse appropriée
+       return response()->json(['success' => 'Ligne de données modifiée avec succès']);
+     } else {
+       // Gérer le cas où la ligne n'a pas été trouvée
+       return response()->json(['error' => 'La ligne correspondante n\'a pas été trouvée']);
+     }
+   }
    
 
 
+
+  
 }
+
+
+   
+
+
+
