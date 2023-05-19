@@ -698,31 +698,6 @@ $('#field-default-value').val('');
 });
 
   
-  
-// Bind click event to edit button
-$('#savedFields').on('click', '.edit', function() {
-    // Retrieve the index of the clicked row
-    var index = $(this).data('index');
-    editIndex = index;
-    console.log(editIndex);
-    // Pre-populate the form fields with existing values
-    $('#field-type').val(fields[index].field_type);
-    $('#DBCName').val(fields[index].DBCName);
-    $('#Validation').val(fields[index].validation);
-    $('#VisualTitle').val(fields[index].visualTitle);
-    $('#inlist').val(fields[index].inList);
-    $('#increate').val(fields[index].inCreate);
-    $('#inedit').val(fields[index].inEdit);
-    $('#inshow').val(fields[index].inShow);
-    $('#field-max-limit').val(fields[index].maxLimit);
-    $('#field-min-limit').val(fields[index].minLimit);
-    $('#field-default-value').val(fields[index].defaultValue);
-    // Show the modal
-    $('#myModal').modal('show');
-
-    // Make sure to prevent default behavior of the edit button
-    event.preventDefault();
-});
 
 $('#savedFields').on('click', '.delete', function() {
   // Retrieve the index of the clicked row
@@ -779,6 +754,31 @@ function generateTableHtml() {
   var numOfFields = fields.length;
    $('#numOfFields').text(numOfFields);
 }
+  
+// Bind click event to edit button
+$('#savedFields').on('click', '.edit', function() {
+    // Retrieve the index of the clicked row
+    var index = $(this).data('index');
+    editIndex = index;
+    console.log(editIndex);
+    // Pre-populate the form fields with existing values
+    $('#field-type').val(fields[index].field_type);
+    $('#DBCName').val(fields[index].DBCName);
+    $('#Validation').val(fields[index].validation);
+    $('#VisualTitle').val(fields[index].visualTitle);
+    $('#inlist').val(fields[index].inList);
+    $('#increate').val(fields[index].inCreate);
+    $('#inedit').val(fields[index].inEdit);
+    $('#inshow').val(fields[index].inShow);
+    $('#field-max-limit').val(fields[index].maxLimit);
+    $('#field-min-limit').val(fields[index].minLimit);
+    $('#field-default-value').val(fields[index].defaultValue);
+    // Show the modal
+    $('#myModal').modal('show');
+
+    // Make sure to prevent default behavior of the edit button
+    event.preventDefault();
+});
 
 $.ajaxSetup({
   headers: {
@@ -800,8 +800,11 @@ $('#genbutt').click(function(e) {
   var modelName = $('#model-name').val().trim();
   var viewName = $('#viewName').val().trim();
   var viewType = $('#view_type').val().trim();
+  
+
+ 
   var hasErrors = false;
-// First AJAX request to check if table already exists
+// Check if the table exists
 $.ajax({
   url: '/check-table-exists',
   method: 'POST',
@@ -811,15 +814,14 @@ $.ajax({
   data: { tableName: tableName },
   success: function(response) {
     console.log('First AJAX call successful');
-    if (response.exists) {
+    if ( tableName.trim() === '') {
+ handleEmptyTableNameError();
+    } else if (response.exists) {
       handleTableExistsError();
-    } else if (tableName.trim() === '') {
-      handleEmptyTableNameError();
     } else {
       $('#table-name').removeClass('is-invalid');
       hasErrors = false;
 
-      // Create an object to store the data to be sent in the AJAX request
       var data = {
         fields: fields,
         tableName: tableName,
@@ -827,11 +829,28 @@ $.ajax({
         tableModel: modelName,
         tableView: viewName,
         viewType: viewType,
-        _token: csrfToken // add the CSRF token to the data object
+        _token: $('meta[name="csrf-token"]').attr('content') // get CSRF token from the meta tag
       };
-      console.log(data);
-      // Call the second AJAX request to send the data to the server
-      sendTableData(data);
+   console.log(data);
+      // Send the data to the server to generate CRUD files
+      $.ajax({
+        type: 'POST',
+        url: '/generate-crud',
+        data: data,
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+          console.log('Second AJAX call successful');
+          alert('Data sent to the controller file');
+        },
+        error: function(xhr, status, error) {
+          console.log('Error in second AJAX call:', error);
+          console.error("An error occurred while generating the files: ", error);
+          var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while generating the files. Please try again later.';
+          $('#error-message').text(errorMessage);
+        }
+      });
     }
   },
   error: function(xhr, status, error) {
@@ -839,31 +858,6 @@ $.ajax({
   }
 });
 
-// Function to handle the second AJAX request
-function sendTableData(data) {
-  $.ajax({
-    type: 'POST',
-    url: '/generate-crud',
-    data: data,
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    success: function(response) {
-      console.log('Second AJAX call successful');
-      // Display a success message to the user
-      alert('Data sent to the controller file');
-    },
-    error: function(xhr, status, error) {
-      console.log('Error in second AJAX call:', error);
-      // Log the error information to the console
-      console.error("An error occurred while generating the files: ", error);
-
-      // Display the error message from the validator under the corresponding input field
-      var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while generating the files. Please try again later.';
-      $('#error-message').text(errorMessage);
-    }
-  });
-}
 function handleTableExistsError() {
   $('#table-name').addClass('is-invalid');
   $('#table-name').siblings('.invalid-feedback').text('Table already exists, enter another valid table name!');

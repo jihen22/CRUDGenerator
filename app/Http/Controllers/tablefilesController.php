@@ -47,6 +47,8 @@ class tablefilesController extends Controller{
         $viewName = $request->input('tableView');
         $controllerName = $request->input('tableController');
         $fields = $request->input('fields');
+     
+
     
         // Save table name, model name, and controller name in tableslist table
         $table = Table::create([

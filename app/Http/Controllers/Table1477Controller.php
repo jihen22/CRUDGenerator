@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\table06;
+use App\Models\table1477;
 
 
 
 
-class Table06Controller extends Controller
+class Table1477Controller extends Controller
 {
     
     
@@ -43,7 +43,7 @@ class Table06Controller extends Controller
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-        table06::create($data);
+   table1477::create($data);
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
@@ -52,7 +52,7 @@ class Table06Controller extends Controller
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
-       $data = table06::find($id);
+       $data = table1::find($id);
 
        
     
@@ -73,7 +73,7 @@ class Table06Controller extends Controller
    public function updateRow(Request $request, $id)
    {
      // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
-     $row = Table06::find($id);
+     $row = table1477::find($id);
    
      // Vérifier si la ligne a été trouvée
      if ($row) {
@@ -86,7 +86,7 @@ class Table06Controller extends Controller
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('table06', $column)) {
+         if (Schema::hasColumn('table1477', $column)) {
            $row->{$column} = $value;
          }
        }

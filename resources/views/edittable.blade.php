@@ -32,6 +32,7 @@
           <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="mon-script.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 =======
 <<<<<<< HEAD
@@ -46,6 +47,9 @@
 >>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
 >>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
 >>>>>>> 84b1bd0cfa3eda0a7fc65805581e478b20865170
+=======
+ 
+>>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
         <style>
     .card {
         margin: 0 auto;
@@ -166,6 +170,7 @@ div.row.mb-2 {
 
  
 <<<<<<< HEAD
+<<<<<<< HEAD
 </head>
 =======
     </head>
@@ -211,20 +216,20 @@ div.row.mb-2 {
 
 
 
+=======
+</head>
+>>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
     <div id="app" class="warpper">
     @include('admin.partials.topbar')
     <div id="layoutSidenav" class="flex-container">
        @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
-
-
-
 <div class="content-warper" id="monDiv" style="">
     <div class="content-header">
         <div class="container-fluid p-0">
             <div class ="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-drak" style="">Edit Fields </h1>
+                <div class="card-header">{{ $table }} </div>
                 </div>
             </div>
         </div>
@@ -236,13 +241,17 @@ div.row.mb-2 {
 
             <div class="card-body">
 
+<<<<<<< HEAD
 >>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
 
 >>>>>>> 84b1bd0cfa3eda0a7fc65805581e478b20865170
+=======
+>>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
         <form method="POST" action="{{ route('add-column.store') }}">
             @csrf
 
             <div class="form-group">
+<<<<<<< HEAD
 <<<<<<< HEAD
                 <label for="table_name">Table name</label>
 =======
@@ -256,12 +265,16 @@ div.row.mb-2 {
 >>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
 >>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
 >>>>>>> 84b1bd0cfa3eda0a7fc65805581e478b20865170
+=======
+                <label for="table_name">Table name</label>
+>>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
                 <input type="text" name="table_name" id="table_name" class="form-control" required>
             </div>
 
            
 
             <div class="form-group">
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -327,6 +340,8 @@ div.row.mb-2 {
                 <label for="database_column_name">Data base column Name: :</label>
 =======
 >>>>>>> 84b1bd0cfa3eda0a7fc65805581e478b20865170
+=======
+>>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
                 <label for="field_type">Field type</label>
                 <select name="field_type" id="field_type" class="form-control" required>
                     <option value="string">string</option>
@@ -339,10 +354,13 @@ div.row.mb-2 {
             <div class="form-group">
                 <label for="database_column_name">Column name in the database</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
 >>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
 >>>>>>> 84b1bd0cfa3eda0a7fc65805581e478b20865170
+=======
+>>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
                 <input type="text" name="database_column_name" id="database_column_name" class="form-control" required>
             </div>
 
@@ -356,9 +374,12 @@ div.row.mb-2 {
          </div>
                  
             <div class="form-group">
+<<<<<<< HEAD
                 <label for="visual_title">Visual Title </label>
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
                 <label for="visual_title">Visual Title </label>
                 <input type="text" name="visual_title" id="visual_title" class="form-control">
             </div>
@@ -424,6 +445,7 @@ div.row.mb-2 {
     </div>
 </div>
                 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -512,6 +534,8 @@ div.row.mb-2 {
 >>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
 >>>>>>> 6ce28e3614e7f6b253f2a883ca0f2414bf5ccd55
 >>>>>>> 84b1bd0cfa3eda0a7fc65805581e478b20865170
+=======
+>>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
 
             <button type="submit" class="btn btn-primary">Add new column</button>
         </form>
