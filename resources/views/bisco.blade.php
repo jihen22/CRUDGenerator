@@ -73,8 +73,8 @@
 
 
 
-</style>     
-   
+</style>
+
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
 	<div id="app" class="warpper">
 	@include('admin.partials.topbar')
@@ -131,73 +131,29 @@
         </tr>
      
     </thead>
-
-
-
     <tbody>
-    @foreach ($data as $row)
-        <tr data-row-id="{{ $row->id }}">
-            <td><input type="checkbox" class="checkthis" /></td>
-            <td>
-  <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
-    <span class="fas fa-edit"></span> 
-  </button>
-</td>
+        <!-- display table rows -->
+        @foreach ($data as $row)
+            <tr>
+                <td><input type="checkbox" class="checkthis" /></td>
+           
+                <!-- display data for each column -->
+                @foreach ($columns as $column)
+                    @if (!in_array($column, $hiddenColumns))
+                        <td>{{ $row->$column }}</td>
+                    @endif
+                @endforeach
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+            </tr>
+        @endforeach
+    </tbody>
 
-<!-- Modal for editing row data -->
-<div id="edit-modal" class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-        <h4 class="modal-title custom-align" id="Heading">Edit Your Detail</h4>
-      </div>
-      <div class="modal-body">
-        <form id="edit-form">
-          @csrf
-          @method('POST')
-          <input type="hidden" name="row_id" id="edit-row-id">
+   
+</table>
 
-          <!-- dynamically generate input fields for editable columns -->
-          @foreach ($columns as $column)
-            @if (!in_array($column, $hiddenColumns))
-              <div class="form-group">
-                <label for="{{ $column }}">{{ $column }}</label>
-                <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
-              </div>
-            @endif
-          @endforeach
-          <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-            </td>
-            <td>
-  <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
-    <span class="fas fa-trash-alt"></span>
-  </button>
-</td>
-
-            @foreach ($columns as $column)
-                @if (!in_array($column, $hiddenColumns))
-                    <td>{{ $row->{$column} }}</td>
-                @endif
-            @endforeach
-        </tr>
-    @endforeach
-</tbody>
-
-
-
-<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
+  
+<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add to {{ $table }}</button>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -229,8 +185,6 @@
     </div>
 
 
-   
-
 <script>
 
 $(document).ready(function() {
@@ -239,64 +193,9 @@ $(document).ready(function() {
   });
 });
 
-
 </script>
 
-<script>
-  $(document).ready(function() {
-    // Ouvrir le modal de modification lors du clic sur le bouton "Edit"
-    $('.edit-btn').click(function() {
-      var rowId = $(this).data('row-id');
-      $('#edit-row-id').val(rowId); // Récupérer l'identifiant de la ligne et le stocker dans le champ masqué
-      
-      // Pré-remplir les champs de saisie du modal avec les données de la ligne correspondante
-      // Vous pouvez utiliser AJAX ici pour récupérer les données du serveur si nécessaire
-      
-      // Afficher le modal de modification
-      $('#edit-modal').modal('show');
-    });
-
-
-    // Soumettre le formulaire de modification lorsque le bouton "Save Changes" est cliqué
-    $('#edit-form').submit(function(event) {
-      event.preventDefault();
-      var rowId = $('#edit-row-id').val(); // Récupérer l'identifiant de la ligne à mettre à jour
-      var formData = $(this).serialize(); // Récupérer les données du formulaire
-
-
-      $.ajax({
-        type: 'POST',
-        url: '/update-row/' + rowId,
-        data: formData,
-        success: function(response) {
-          // Mettre à jour les données de la ligne dans le tableau
-          // Vous pouvez effectuer cette mise à jour en utilisant AJAX ou simplement recharger la page
-          location.reload();
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          alert('Error: ' + textStatus + ' - ' + errorThrown);
-        }
-      });
-
-      // Fermer le modal de modification
-      $('#edit-modal').modal('hide');
-    });
-  });
-</script>
-
-
-<script>
-    $('#myModal').on('hidden.bs.modal', function (e) {
-  // code pour réinitialiser les valeurs de l'input
-});
-
-$('.modal-footer .btn-secondary').click(function(){
-  $('#myModal').modal('hide');
-});
-
-
-</script>
-
+                            
 
 <script>
  
@@ -331,37 +230,58 @@ form.addEventListener('submit', (event) => {
         }
     });
 
-    // Créer une nouvelle ligne dans le corps du tableau
-    const tableBody = document.querySelector('tbody');
-    const newRow = tableBody.insertRow();
+   // Créer une nouvelle ligne dans le corps du tableau
+const tableBody = document.querySelector('tbody');
+const newRow = tableBody.insertRow();
 
-    // Ajouter les cellules à la nouvelle ligne
-    const selectCell = newRow.insertCell();
-        const editCell = newRow.insertCell();
-        const deleteCell = newRow.insertCell();
-        const dataCells = [];
+// Ajouter les cellules à la nouvelle ligne
+const actionCell = newRow.insertCell();
+const dataCells = [];
+
+// Ajouter la cellule pour les boutons "Edit" et "Delete"
+const editCell = newRow.insertCell();
+const deleteCell = newRow.insertCell();
+
+// Insérer les boutons dans la cellule correspondante
+actionCell.innerHTML = `
+    <input type="checkbox" class="checkthis" />
+`;
 
 
-    @foreach ($columns as $column)
-        @if (!in_array($column, $hiddenColumns))
-            dataCells.push(newRow.insertCell());
-        @endif
-    @endforeach
+// Assigner les valeurs des données aux cellules correspondantes
+@foreach ($columns as $column)
+    @if (!in_array($column, $hiddenColumns))
+        dataCells.push(newRow.insertCell());
+    @endif
+@endforeach
 
-    selectCell.innerHTML = '<input type="checkbox" class="checkthis" />';
+@foreach ($columns as $column)
+    @if (!in_array($column, $hiddenColumns))
+        dataCells.shift().textContent = data['{{ $column }}'];
+    @endif
+@endforeach
 
-// Ajouter les boutons d'action d'édition et de suppression aux cellules correspondantes
-editCell.innerHTML = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"><span class="fas fa-edit"></span></button>';
-deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}"><span class="fas fa-trash-alt"></span></button>';
+editCell.innerHTML = `
+    <p data-placement="top" data-toggle="tooltip" title="Edit">
+        <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit">
+            <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+    </p>
+`;
 
-    @foreach ($columns as $column)
-        @if (!in_array($column, $hiddenColumns))
-            dataCells.shift().textContent = data['{{ $column }}'];
-        @endif
-    @endforeach
+deleteCell.innerHTML = `
+    <p data-placement="top" data-toggle="tooltip" title="Delete">
+        <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
+            <span class="glyphicon glyphicon-trash"></span>
+        </button>
+    </p>
+`;
+    
+
+
 
     // Réinitialiser les champs de saisie
-    form.reset();
+    form.reset();                                                                                                                    
 
     // Fermer le modal
     $('#myModal').modal('hide');
@@ -369,48 +289,24 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 
 </script>
 
-<script>
-  $(document).ready(function() {
-    // Gérer le clic sur le bouton de suppression
-    $('.delete-btn').click(function() {
-      var rowId = $(this).data('row-id');
 
-      // Afficher la boîte de dialogue `prompt`
-      var confirmation = prompt('Are you sure you want to delete this row? Enter "yes" to confirm.');
-
-      // Vérifier la réponse de l'utilisateur
-      if (confirmation === 'yes') {
-        // Supprimer la ligne en utilisant une requête AJAX
-        $.ajax({
-          type: 'DELETE',
-          url: '/data/' + rowId,
-          data: { _token: '{{ csrf_token() }}' },
-          success: function(response) {
-            // Supprimer la ligne du tableau
-            $('tr[data-row-id="' + rowId + '"]').remove();
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            alert('Error: ' + textStatus + ' - ' + errorThrown);
-          }
-        });
-      }
-    });
-  });
-</script>
+</div>
+		        </div>
+	      </div>
+ </div>
+								</div>
+								</div>
+						           
+   
+    
+ 
 
 
 
 
-    </script>
+						
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="{{asset('Dashboardassets/js/scripts.js')}}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="{{asset('Dashboardassets/assets/demo/chart-area-demo.js')}}"></script>
-        <script src="{{asset('Dashboardassets/assets/demo/chart-bar-demo.js')}}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="{{asset('Dashboardassets/js/datatables-simple-demo.js')}}"></script>
-       
-       
-    </body>
-</html>
+		@include('admin.partials.footer')
+   
+                                </body>
+                                </html>
