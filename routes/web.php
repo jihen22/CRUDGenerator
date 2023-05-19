@@ -153,13 +153,20 @@ Route::post('/update-row/{id}', [Table06Controller::class, 'updateRow'])->name('
 
   
 
+<<<<<<< HEAD
    //Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
+=======
+Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
+
+
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
 
 
 
 
 
    Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
+<<<<<<< HEAD
 
 
 
@@ -171,5 +178,7 @@ Route::post('/update-row/{id}', [Table06Controller::class, 'updateRow'])->name('
 
 
 
+=======
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
   
 

@@ -31,8 +31,12 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
           <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="mon-script.js"></script>
+<<<<<<< HEAD
 
 
+=======
+ 
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
         <style>
     .card {
         margin: 0 auto;
@@ -153,6 +157,7 @@ div.row.mb-2 {
 
  
     </head>
+<<<<<<< HEAD
         
    
 
@@ -183,18 +188,61 @@ div.row.mb-2 {
 
             <div class="card-body">
 
+=======
+    <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;">
+<div id="app" class="wrapper">
+
+    
+<nav class="main-header navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="#"> </a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                                </a>
+
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                </li>
+            </ul>
+        </nav>
+<div class="card">
+
+<div class="container">
+
+
+
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
 
         <form method="POST" action="{{ route('add-column.store') }}">
             @csrf
 
             <div class="form-group">
+<<<<<<< HEAD
                 <label for="table_name"> table Name :</label>
+=======
+                <label for="table_name">Table name</label>
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
                 <input type="text" name="table_name" id="table_name" class="form-control" required>
             </div>
 
            
 
             <div class="form-group">
+<<<<<<< HEAD
                              <label for="field_type">Field Type</label>
               <select id="field_type" name="field_type">
               <option value="">Select a column type</option>
@@ -247,6 +295,19 @@ div.row.mb-2 {
 
             <div class="form-group">
                 <label for="database_column_name">Data base column Name: :</label>
+=======
+                <label for="field_type">Field type</label>
+                <select name="field_type" id="field_type" class="form-control" required>
+                    <option value="string">string</option>
+                    <option value="integer">integer</option>
+                    <option value="float">float</option>
+                    <option value="date">Date</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="database_column_name">Column name in the database</label>
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
                 <input type="text" name="database_column_name" id="database_column_name" class="form-control" required>
             </div>
 
@@ -260,6 +321,7 @@ div.row.mb-2 {
          </div>
                  
             <div class="form-group">
+<<<<<<< HEAD
                 <label for="visual_title">Visual Title </label>
                 <input type="text" name="visual_title" id="visual_title" class="form-control">
             </div>
@@ -325,6 +387,63 @@ div.row.mb-2 {
     </div>
 </div>
                 
+=======
+                <label for="validation">Validation </label>
+                <input type="text" name="validation" id="validation" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="visual_title">Visual title</label>
+                <input type="text" name="visual_title" id="visual_title" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="in_list">in list </label>
+                <select name="in_list" id="in_list" class="form-control">
+                    <option value="1">yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="in_create">in create</label>
+                <select name="in_create" id="in_create" class="form-control">
+                    <option value="1">yes</option>
+                    <option value="0">no</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="in_show">in show</label>
+                <select name="in_show" id="in_show" class="form-control">
+                    <option value="1">yes</option>
+                    <option value="0">no</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="in_edit">in edit</label>
+                <select name="in_edit" id="in_edit" class="form-control">
+                    <option value="1">yes</option>
+                    <option value="0">no</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="max">Max </label>
+                <input type="text" name="max" id="max" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="min">Min </label>
+                <input type="text" name="min" id="min" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="default_value">Default Value</label>
+                <input type="text" name="default_value" id="default_value" class="form-control">
+            </div>
+>>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
 
             <button type="submit" class="btn btn-primary">Add new column</button>
         </form>
