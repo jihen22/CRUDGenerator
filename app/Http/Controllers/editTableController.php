@@ -62,7 +62,6 @@ if (Schema::hasTable($tableName)) {
           
                
             DB::table($columnsTable)->insert($columnMetadata);
-                dd($columnsTable);
             return redirect()->back()->with('success', 'La colonne a été ajoutée avec succès.');
         } else {
             return redirect()->back()->with('error', "La table $tableName n'existe pas.");

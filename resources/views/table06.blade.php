@@ -143,43 +143,6 @@
     <span class="fas fa-edit"></span> 
   </button>
 </td>
-
-<!-- Modal for editing row data -->
-<div id="edit-modal" class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-        <h4 class="modal-title custom-align" id="Heading">Edit Your Detail</h4>
-      </div>
-      <div class="modal-body">
-        <form id="edit-form">
-          @csrf
-          @method('POST')
-          <input type="hidden" name="row_id" id="edit-row-id">
-
-          <!-- dynamically generate input fields for editable columns -->
-          @foreach ($columns as $column)
-            @if (!in_array($column, $hiddenColumns))
-              <div class="form-group">
-                <label for="{{ $column }}">{{ $column }}</label>
-                <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
-              </div>
-            @endif
-          @endforeach
-          <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-            </td>
             <td>
   <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
     <span class="fas fa-trash-alt"></span>
@@ -242,47 +205,6 @@ $(document).ready(function() {
 
 </script>
 
-<script>
-  $(document).ready(function() {
-    // Ouvrir le modal de modification lors du clic sur le bouton "Edit"
-    $('.edit-btn').click(function() {
-      var rowId = $(this).data('row-id');
-      $('#edit-row-id').val(rowId); // Récupérer l'identifiant de la ligne et le stocker dans le champ masqué
-      
-      // Pré-remplir les champs de saisie du modal avec les données de la ligne correspondante
-      // Vous pouvez utiliser AJAX ici pour récupérer les données du serveur si nécessaire
-      
-      // Afficher le modal de modification
-      $('#edit-modal').modal('show');
-    });
-
-
-    // Soumettre le formulaire de modification lorsque le bouton "Save Changes" est cliqué
-    $('#edit-form').submit(function(event) {
-      event.preventDefault();
-      var rowId = $('#edit-row-id').val(); // Récupérer l'identifiant de la ligne à mettre à jour
-      var formData = $(this).serialize(); // Récupérer les données du formulaire
-
-
-      $.ajax({
-        type: 'POST',
-        url: '/update-row/' + rowId,
-        data: formData,
-        success: function(response) {
-          // Mettre à jour les données de la ligne dans le tableau
-          // Vous pouvez effectuer cette mise à jour en utilisant AJAX ou simplement recharger la page
-          location.reload();
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          alert('Error: ' + textStatus + ' - ' + errorThrown);
-        }
-      });
-
-      // Fermer le modal de modification
-      $('#edit-modal').modal('hide');
-    });
-  });
-</script>
 
 
 <script>
@@ -368,6 +290,83 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 });
 
 </script>
+
+<!-- Modal for editing row data -->
+<div id="edit-modal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+        <h4 class="modal-title custom-align" id="Heading">Edit Your Detail</h4>
+      </div>
+      <div class="modal-body">
+        <form id="edit-form">
+          @csrf
+          @method('POST')
+          <input type="hidden" name="row_id" id="edit-row-id">
+
+          <!-- dynamically generate input fields for editable columns -->
+          @foreach ($columns as $column)
+            @if (!in_array($column, $hiddenColumns))
+              <div class="form-group">
+                <label for="{{ $column }}">{{ $column }}</label>
+                <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
+              </div>
+            @endif
+          @endforeach
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    // Ouvrir le modal de modification lors du clic sur le bouton "Edit"
+    $('.edit-btn').click(function() {
+      var rowId = $(this).data('row-id');
+      $('#edit-row-id').val(rowId); // Récupérer l'identifiant de la ligne et le stocker dans le champ masqué
+      
+      // Pré-remplir les champs de saisie du modal avec les données de la ligne correspondante
+      // Vous pouvez utiliser AJAX ici pour récupérer les données du serveur si nécessaire
+      
+      // Afficher le modal de modification
+      $('#edit-modal').modal('show');
+    });
+
+
+    // Soumettre le formulaire de modification lorsque le bouton "Save Changes" est cliqué
+    $('#edit-form').submit(function(event) {
+      event.preventDefault();
+      var rowId = $('#edit-row-id').val(); // Récupérer l'identifiant de la ligne à mettre à jour
+      var formData = $(this).serialize(); // Récupérer les données du formulaire
+
+
+      $.ajax({
+        type: 'POST',
+        url: '/update-row/' + rowId,
+        data: formData,
+        success: function(response) {
+          // Mettre à jour les données de la ligne dans le tableau
+          // Vous pouvez effectuer cette mise à jour en utilisant AJAX ou simplement recharger la page
+          location.reload();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          alert('Error: ' + textStatus + ' - ' + errorThrown);
+        }
+      });
+
+      // Fermer le modal de modification
+      $('#edit-modal').modal('hide');
+    });
+  });
+</script>
+
+
+
 
 <script>
   $(document).ready(function() {

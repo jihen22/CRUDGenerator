@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class table06 extends Model
 {
     protected $table = 'table06';
-    protected $fillable = ['colonne78','produit06'];
+    protected $fillable = ['colonne78', ''];
 }

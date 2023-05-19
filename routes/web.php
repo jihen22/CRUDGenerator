@@ -134,7 +134,6 @@ Route::group(['middleware' => 'guest'] , function(){
 
 });
 
-    Route::get('/table/{table}/{view}', [Table1447Controller::class,'store']);
 
   
 
@@ -144,41 +143,17 @@ Route::group(['middleware' => 'guest'] , function(){
 
 
 Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
-Route::post('/table/{table}/{view}', [Table06Controller::class,'store']);
+Route::post('//table/{table}/{view}', [Table06Controller::class,'store']);
 Route::delete('/data/{id}', [Table06Controller::class, 'deleteData']);
-
-
-
 Route::post('/update-row/{id}', [Table06Controller::class, 'updateRow'])->name('update.row');
 
   
 
-<<<<<<< HEAD
-   //Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
-=======
-Route::delete('/{id}', [Table1Controller::class, 'delete'])->name('delete');
 
-
->>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
+Route::post('/add-column.store', [editTableController::class, 'add'])->name('add-column.store');
 
 
 
 
-
-   Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
-<<<<<<< HEAD
-
-
-
-   
-   Route::post('/update-row', [Table1Controller::class, 'updateRow'])->name('updateRow');
-
-
-
-
-
-
-=======
->>>>>>> 0bcbf691b16bc3474af3f1895cf29a28b29b3d2d
   
 
