@@ -18,7 +18,10 @@ class Table extends Model
         'name',
         'model_name',
         'controller_name',
-        'view_name'
+        'view_name',
+        'entriesPerPage',
+        'orderBy',
+        'orderdirection'
     ];
 
     public function fields()

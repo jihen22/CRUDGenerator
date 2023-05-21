@@ -47,7 +47,14 @@ class tablefilesController extends Controller{
         $viewName = $request->input('tableView');
         $controllerName = $request->input('tableController');
         $fields = $request->input('fields');
-     
+        $viewType = $request->input('viewType');
+        $entriesPerPage= $request->input('entriesPerPage');
+        
+        $orderBy = $request->input('orderBy');
+        
+        $orderdirection = $request->input('orderdirection');
+   
+
 
     
         // Save table name, model name, and controller name in tableslist table
@@ -55,7 +62,10 @@ class tablefilesController extends Controller{
             'name' => $tableName,
             'model_name' => $modelName,
             'controller_name' => $controllerName, 
-            'view_name' => $viewName
+            'view_name' => $viewName,
+            'entriesPerPage' => $entriesPerPage,
+            'orderBy' => $orderBy,
+            'orderdirection' => $orderdirection,
         ]);
     
             //Save fields in fields table

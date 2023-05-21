@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\Jane12223Controller;
+use App\Models\GggggggggggggController;
 
 
 
 
-class Jane12223Controller extends Controller
+class GggggggggggggController extends Controller
 {
     
     
@@ -43,7 +43,7 @@ class Jane12223Controller extends Controller
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-Jane12223Controller::create($data);
+GggggggggggggController::create($data);
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
@@ -52,7 +52,7 @@ Jane12223Controller::create($data);
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
-       $data = Jane12223Controller::find($id);
+       $data = GggggggggggggController::find($id);
 
        
     
@@ -73,7 +73,7 @@ Jane12223Controller::create($data);
    public function updateRow(Request $request, $id)
    {
      // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
-     $row = Jane12223Controller::find($id);
+     $row = GggggggggggggController::find($id);
    
      // Vérifier si la ligne a été trouvée
      if ($row) {
@@ -86,7 +86,7 @@ Jane12223Controller::create($data);
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('Jane12223Controller', $column)) {
+         if (Schema::hasColumn('GggggggggggggController', $column)) {
            $row->{$column} = $value;
          }
        }

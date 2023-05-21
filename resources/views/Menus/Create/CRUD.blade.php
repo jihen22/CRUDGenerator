@@ -503,24 +503,59 @@
               
            
                 
-    
-   <div data-v-0f8342b7="" class="card card-default"><div data-v-0f8342b7="" class="card-header d-flex p-0"><h5 data-v-0f8342b7="" class="card-title p-3">
+ <div data-v-0f8342b7="" class="card card-default">
+  <div data-v-0f8342b7="" class="card-header d-flex p-0">
+    <h5 data-v-0f8342b7="" class="card-title p-3">
       Other Options
-    </h5></div> <div data-v-0f8342b7="" class="card-body mb-0 pb-0"><div data-v-0f8342b7="" class="mr-2" style="display: flex; align-self: center;"><label data-v-0f8342b7="" class="form-check-label"><input data-v-0f8342b7="" type="checkbox">
+    </h5>
+  </div>
+  <div data-v-0f8342b7="" class="card-body mb-0 pb-0">
+    <div data-v-0f8342b7="" class="mr-2" style="display: flex; align-self: center;">
+      <label data-v-0f8342b7="" class="form-check-label">
+        <input data-v-0f8342b7="" type="checkbox">
         Column search feature
-      </label></div></div> <div data-v-0f8342b7="" class="card-body d-flex"><div data-v-0f8342b7="" class="input-group orderby-group mr-2"><div data-v-0f8342b7="" class="input-group-prepend"><label data-v-0f8342b7="" for="" class="input-group-text">
+      </label>
+    </div>
+  </div>
+  <div data-v-0f8342b7="" class="card-body d-flex">
+    <div data-v-0f8342b7="" class="input-group orderby-group mr-2">
+      <div data-v-0f8342b7="" class="input-group-prepend">
+        <label data-v-0f8342b7="" for="" class="input-group-text">
           Entries per page
-        </label></div> <select data-v-0f8342b7="" class="custom-select"><option data-v-0f8342b7="" value="100">
+        </label>
+      </div>
+      <select data-v-0f8342b7="" class="custom-select" id="entries-per-page">
+        <option data-v-0f8342b7="" value="100">
           100 entries
-        </option><option data-v-0f8342b7="" value="50">
+        </option>
+        <option data-v-0f8342b7="" value="50">
           50 entries
-        </option><option data-v-0f8342b7="" value="25">
+        </option>
+        <option data-v-0f8342b7="" value="25">
           25 entries
-        </option><option data-v-0f8342b7="" value="10">
+        </option>
+        <option data-v-0f8342b7="" value="10">
           10 entries
-        </option></select></div> <div data-v-0f8342b7="" class="input-group orderby-group"><div data-v-0f8342b7="" class="input-group-prepend"><label data-v-0f8342b7="" for="" class="input-group-text">Order by</label></div> <select data-v-0f8342b7="" class="custom-select"><option data-v-0f8342b7="" value="id">
+        </option>
+      </select>
+    </div>
+    <div data-v-0f8342b7="" class="input-group orderby-group">
+      <div data-v-0f8342b7="" class="input-group-prepend">
+        <label data-v-0f8342b7="" for="" class="input-group-text">Order by</label>
+      </div>
+      <select data-v-0f8342b7="" class="custom-select" id="order-by">
+        <option data-v-0f8342b7="" value="id">
           ID
-        </option></select> <select data-v-0f8342b7="" class="custom-select"><option data-v-0f8342b7="" value="desc">DESC</option> <option data-v-0f8342b7="" value="asc">ASC</option></select></div></div></div>
+        </option>
+      </select>
+      <select data-v-0f8342b7="" class="custom-select" id="order-direction">
+        <option data-v-0f8342b7="" value="desc">DESC</option>
+        <option data-v-0f8342b7="" value="asc">ASC</option>
+      </select>
+    </div>
+  </div>
+</div>
+
              
                 <button type="submit" class="btn btn-primary " id="genbutt" name="genbutt">Generate Table files</button>
 </form>
@@ -801,8 +836,10 @@ $('#genbutt').click(function(e) {
   var viewName = $('#viewName').val().trim();
   var viewType = $('#view_type').val().trim();
   
-
- 
+// Retrieve the field values
+var entriesPerPage = $('#entries-per-page').val();
+var orderBy = $('#order-by').val();
+var orderdirection = $('#order-direction').val();
   var hasErrors = false;
 // Check if the table exists
 $.ajax({
@@ -813,7 +850,7 @@ $.ajax({
   },
   data: { tableName: tableName },
   success: function(response) {
-    console.log('First AJAX call successful');
+   
     if ( tableName.trim() === '') {
  handleEmptyTableNameError();
     } else if (response.exists) {
@@ -829,7 +866,10 @@ $.ajax({
         tableModel: modelName,
         tableView: viewName,
         viewType: viewType,
-        _token: $('meta[name="csrf-token"]').attr('content') // get CSRF token from the meta tag
+        entriesPerPage : entriesPerPage,
+        orderBy: orderBy,
+        orderdirection: orderdirection,
+         _token: $('meta[name="csrf-token"]').attr('content') // get CSRF token from the meta tag
       };
    console.log(data);
       // Send the data to the server to generate CRUD files
@@ -841,8 +881,7 @@ $.ajax({
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(response) {
-          console.log('Second AJAX call successful');
-          alert('Data sent to the controller file');
+      
         },
         error: function(xhr, status, error) {
           console.log('Error in second AJAX call:', error);
@@ -854,7 +893,7 @@ $.ajax({
     }
   },
   error: function(xhr, status, error) {
-    console.log('Error in first AJAX call:', error);
+
   }
 });
 
