@@ -46,19 +46,32 @@ if (Schema::hasTable($tableName)) {
 
     
    
-    
     $modelClassName = 'App\Models\\' . $tableName;
     if (class_exists($modelClassName)) {
         $model = new $modelClassName();
-        $fillable = $model->getFillable();
-        
-        $newColumns = explode(',', $databaseColumnName); // Convertir la chaîne en un tableau de colonnes
-        $fillable = array_merge($fillable, $newColumns);
        
-        $model->fillable($fillable);
-        $model->save(); // Enregistrer le modèle pour que la mise à jour soit persistante
+        $model->addColumn($databaseColumnName); // Ajoute la nouvelle colonne
+        if ($model->save()) {
+            // Le modèle a été enregistré avec succès
+            return response()->json([
+                'success' => true,
+                'message' => 'La colonne a été ajoutée avec succès.',
+                'columns' => $model->getFillable(),
+            ]);
+        } else {
+            $errors = $model->errors();
+            // Gérer les erreurs de validation ou de sauvegarde
+            return response()->json([
+                'success' => false,
+                'message' => 'Une erreur est survenue lors de l\'enregistrement de la colonne. Veuillez réessayer.',
+                'errors' => $errors,
+            ]);
+        }
     } else {
-        return redirect()->back()->with('error', 'Le modèle correspondant n\'existe pas.');
+        return response()->json([
+            'success' => false,
+            'message' => 'Le modèle correspondant n\'existe pas.',
+        ]);
     }
     
 
