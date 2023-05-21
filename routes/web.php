@@ -149,4 +149,14 @@ Route::group(['middleware' => 'guest'] , function(){
 Route::post('/check-table-exists', '\\App\\Http\\Controllers\\tablefilesController@checkTableExists');
 
 
+<<<<<<< HEAD
 
+=======
+Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table1477Controller');use App\Http\Controllers\GggggggggggggController;
+
+Route::get('/table/{table}/{view}', ['uses' => 'GggggggggggggController@store']);
+Route::get('/table/{table}/{view}', ['uses' => 'GggggggggggggController@index']);
+Route::post('/table/{table}/{view}', ['uses' => 'GggggggggggggController@store']);
+Route::delete('/data/{id}', ['uses' => 'GggggggggggggController@deleteData']);
+Route::post('/update-row/{id}', ['uses' => 'GggggggggggggController@updateRow'])->name('update.row');
+>>>>>>> 13ef0821c983edd82bb45445da02b5202ce4446a
