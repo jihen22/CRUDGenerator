@@ -32,12 +32,35 @@ class editTableController extends Controller
         $min = $request->input('min');
      
         $defaultValue = $request->input('default_value');
+
+
+
 // Vérifier si la table existe
 if (Schema::hasTable($tableName)) {
     Schema::table($tableName, function (Blueprint $table) use ($fieldType, $databaseColumnName) {
         // Ajouter la nouvelle colonne à la table avec la valeur par défaut NULL
         $table->$fieldType($databaseColumnName)->nullable()->default(null);
     });
+
+
+
+    
+   
+    
+    $modelClassName = 'App\Models\\' . $tableName;
+    if (class_exists($modelClassName)) {
+        $model = new $modelClassName();
+        $fillable = $model->getFillable();
+        
+        $newColumns = explode(',', $databaseColumnName); // Convertir la chaîne en un tableau de colonnes
+        $fillable = array_merge($fillable, $newColumns);
+       
+        $model->fillable($fillable);
+        $model->save(); // Enregistrer le modèle pour que la mise à jour soit persistante
+    } else {
+        return redirect()->back()->with('error', 'Le modèle correspondant n\'existe pas.');
+    }
+    
 
 
             // Obtenir l'ID de la table à partir de la table 'tableslist'
@@ -58,6 +81,7 @@ if (Schema::hasTable($tableName)) {
                 'max' => $max,
                 'min' => $min ,
                 'default_value' => $defaultValue,
+                
             ];
           
                

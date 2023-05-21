@@ -8,12 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
-<<<<<<< HEAD
-use App\Http\Controllers\table06Controller;
-
-=======
 use App\Http\Controllers\table1Controller;
->>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\editTableController;
+use App\Http\Controllers\Table08Controller;
 
 
 
@@ -134,61 +130,23 @@ Route::group(['middleware' => 'guest'] , function(){
    
 
 });
-<<<<<<< HEAD
-
-=======
-use App\Http\Controllers\Table1477Controller;
-    Route::get('/table/{table}/{view}', [Table1447Controller::class,'store']);
-    Route::get('/table/{table}/{view}', [Table1447Controller::class,'index']);
-    Route::post('/table/{table}/{view}', [Table1447Controller::class,'store']);
-    Route::delete('/data/{id}', [Table1447Controller::class, 'deleteData']);
-    Route::post('/update-row/{id}', [Table1447Controller::class, 'updateRow'])->name('update.row');
->>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
+    Route::get('/table/{table}/{view}', [Table08Controller::class,'store']);
+    Route::get('/table/{table}/{view}', [Table08Controller::class,'index']);
+    Route::post('/table/{table}/{view}', [Table08Controller::class,'store']);
+    Route::delete('/data/{id}', [Table08Controller::class, 'deleteData']);
+    Route::post('/update-row/{id}', [Table08Controller::class, 'updateRow'])->name('update.row');
 
   
 
 
-<<<<<<< HEAD
-  
- //Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table104Controller');
-
-
-Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
-Route::post('//table/{table}/{view}', [Table06Controller::class,'store']);
-Route::delete('/data/{id}', [Table06Controller::class, 'deleteData']);
-Route::post('/update-row/{id}', [Table06Controller::class, 'updateRow'])->name('update.row');
-
-  
-
-
-Route::post('/add-column.store', [editTableController::class, 'add'])->name('add-column.store');
-
-=======
->>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
 
 
 
 
-<<<<<<< HEAD
-
-
-=======
    Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
 
-   Route::delete('/columns/{id}', 'App\Http\Controllers\Table1Controller@destroy')->name('delete-column');
->>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79
 
 Route::post('/check-table-exists', '\\App\\Http\\Controllers\\tablefilesController@checkTableExists');
 
 
-Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table1477Controller');use App\Http\Controllers\Table5555555555Controller;
 
-Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table5555555555Controller');use App\Http\Controllers\Table23Controller;
-
-Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table23Controller');use App\Http\Controllers\Jane12223Controller;
-
-Route::get('/table/{table}/{view}', ['uses' => 'Jane12223Controller@store']);
-Route::get('/table/{table}/{view}', ['uses' => 'Jane12223Controller@index']);
-Route::post('/table/{table}/{view}', ['uses' => 'Jane12223Controller@store']);
-Route::delete('/data/{id}', ['uses' => 'Jane12223Controller@deleteData']);
-Route::post('/update-row/{id}', ['uses' => 'Jane12223Controller@updateRow'])->name('update.row');
