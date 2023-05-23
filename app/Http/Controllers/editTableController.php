@@ -10,7 +10,13 @@ use App\Field;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\File;
+=======
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\View;
+
+>>>>>>> 1e60b3b89c03194a5fd38cc09960b63cf3c20e60
 
 
 
@@ -44,8 +50,32 @@ if (Schema::hasTable($tableName)) {
         $table->$fieldType($databaseColumnName)->nullable()->default(null);
     });
 
+      // Mettre à jour le modèle correspondant
+      $modelClassName = (Str::camel($tableName)); // Remplacez camel_case par Str::camel si vous utilisez Laravel 6 ou supérieur
+      $modelFilePath = app_path("{$modelClassName}.php");
+  
+      // Vérifier si le fichier du modèle existe
+      if (file_exists($modelFilePath)) {
+          $modelContent = file_get_contents($modelFilePath);
+  
+          // Vérifier si la colonne est déjà ajoutée dans le modèle
+          if (strpos($modelContent, "'{$databaseColumnName}'") !== false) {
+              // La colonne est déjà ajoutée dans le modèle, vous pouvez gérer cette situation selon vos besoins
+              return;
+          }
+  
+          // Ajouter la nouvelle colonne comme attribut fillable dans le modèle
+          $fillablePattern = "/protected\s+\$fillable\s+=\s+\[[^\]]+\];/i";
+          $fillableReplacement = "\$0\n    '{$databaseColumnName}',";
+          $updatedModelContent = preg_replace($fillablePattern, $fillableReplacement, $modelContent);
+  
+          // Mettre à jour le fichier du modèle avec le contenu modifié
+          file_put_contents($modelFilePath, $updatedModelContent);
+      }
+  
 
 
+<<<<<<< HEAD
     
      // Delete the existing model file if it exists
      $modelPath = app_path("Models/$tableName.php");
@@ -56,6 +86,8 @@ if (Schema::hasTable($tableName)) {
      // Generate the new model file with updated columns
      $this->generateModelFile($tableName);
 
+=======
+>>>>>>> 1e60b3b89c03194a5fd38cc09960b63cf3c20e60
 
             // Obtenir l'ID de la table à partir de la table 'tableslist'
             $tableId = Table::where('name', $tableName)->first()->id;
@@ -91,6 +123,7 @@ if (Schema::hasTable($tableName)) {
     {
         $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
 
+<<<<<<< HEAD
         // Exclude default columns
         $excludeColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
         $fillableColumns = array_diff($columns, $excludeColumns);
@@ -113,6 +146,16 @@ if (Schema::hasTable($tableName)) {
         $modelPath = app_path("Models/$tableName.php");
         file_put_contents($modelPath, $model);
     }
+=======
+
+    
+public function showAddColumnForm()
+{
+    return View::make('edittable');
+} 
+
+
+>>>>>>> 1e60b3b89c03194a5fd38cc09960b63cf3c20e60
 }
 
 

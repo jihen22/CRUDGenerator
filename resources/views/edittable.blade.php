@@ -161,9 +161,7 @@ div.row.mb-2 {
     <div class="content-header">
         <div class="container-fluid p-0">
             <div class ="row mb-2">
-                <div class="col-sm-6">
-                <div class="card-header">{{ $table }} </div>
-                </div>
+                
             </div>
         </div>
     </div>

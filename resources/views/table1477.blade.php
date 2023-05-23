@@ -100,6 +100,14 @@
 
             <div class="card-body">
 
+
+            <script>
+        $(document).ready(function() {
+            $('#mytable').DataTable();
+        });
+    </script>
+
+
         @php
     $hiddenColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
        @endphp
@@ -396,6 +404,8 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
     });
   });
 </script>
+
+
 
 
 
