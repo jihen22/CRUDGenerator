@@ -10,13 +10,12 @@ use App\Field;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\File;
-=======
+
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
 
->>>>>>> 1e60b3b89c03194a5fd38cc09960b63cf3c20e60
+
 
 
 
@@ -75,7 +74,7 @@ if (Schema::hasTable($tableName)) {
   
 
 
-<<<<<<< HEAD
+
     
      // Delete the existing model file if it exists
      $modelPath = app_path("Models/$tableName.php");
@@ -86,8 +85,6 @@ if (Schema::hasTable($tableName)) {
      // Generate the new model file with updated columns
      $this->generateModelFile($tableName);
 
-=======
->>>>>>> 1e60b3b89c03194a5fd38cc09960b63cf3c20e60
 
             // Obtenir l'ID de la table à partir de la table 'tableslist'
             $tableId = Table::where('name', $tableName)->first()->id;
@@ -123,7 +120,7 @@ if (Schema::hasTable($tableName)) {
     {
         $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
 
-<<<<<<< HEAD
+
         // Exclude default columns
         $excludeColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
         $fillableColumns = array_diff($columns, $excludeColumns);
@@ -146,7 +143,7 @@ if (Schema::hasTable($tableName)) {
         $modelPath = app_path("Models/$tableName.php");
         file_put_contents($modelPath, $model);
     }
-=======
+
 
     
 public function showAddColumnForm()
@@ -155,7 +152,6 @@ public function showAddColumnForm()
 } 
 
 
->>>>>>> 1e60b3b89c03194a5fd38cc09960b63cf3c20e60
 }
 
 
