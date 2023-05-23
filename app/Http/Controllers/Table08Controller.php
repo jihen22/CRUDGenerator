@@ -39,7 +39,7 @@ class Table08Controller extends Controller
         return view($view, compact('table', 'data', 'columns', 'hiddenColumns', 'nameproject'));
     }
 
-    public function store(Request $request)
+  public function store(Request $request)
     {
         // Récupérer les données du formulaire
         $data = $request->get('data');
@@ -52,6 +52,7 @@ class Table08Controller extends Controller
     }
 
 
+    
 
 
     public function deleteData($id)

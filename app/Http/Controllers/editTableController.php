@@ -10,6 +10,10 @@ use App\Field;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\View;
+
+
 
 
 
@@ -42,38 +46,30 @@ if (Schema::hasTable($tableName)) {
         $table->$fieldType($databaseColumnName)->nullable()->default(null);
     });
 
+      // Mettre à jour le modèle correspondant
+      $modelClassName = (Str::camel($tableName)); // Remplacez camel_case par Str::camel si vous utilisez Laravel 6 ou supérieur
+      $modelFilePath = app_path("{$modelClassName}.php");
+  
+      // Vérifier si le fichier du modèle existe
+      if (file_exists($modelFilePath)) {
+          $modelContent = file_get_contents($modelFilePath);
+  
+          // Vérifier si la colonne est déjà ajoutée dans le modèle
+          if (strpos($modelContent, "'{$databaseColumnName}'") !== false) {
+              // La colonne est déjà ajoutée dans le modèle, vous pouvez gérer cette situation selon vos besoins
+              return;
+          }
+  
+          // Ajouter la nouvelle colonne comme attribut fillable dans le modèle
+          $fillablePattern = "/protected\s+\$fillable\s+=\s+\[[^\]]+\];/i";
+          $fillableReplacement = "\$0\n    '{$databaseColumnName}',";
+          $updatedModelContent = preg_replace($fillablePattern, $fillableReplacement, $modelContent);
+  
+          // Mettre à jour le fichier du modèle avec le contenu modifié
+          file_put_contents($modelFilePath, $updatedModelContent);
+      }
+  
 
-
-    
-   
-    $modelClassName = 'App\Models\\' . $tableName;
-    if (class_exists($modelClassName)) {
-        $model = new $modelClassName();
-       
-        $model->addColumn($databaseColumnName); // Ajoute la nouvelle colonne
-        if ($model->save()) {
-            // Le modèle a été enregistré avec succès
-            return response()->json([
-                'success' => true,
-                'message' => 'La colonne a été ajoutée avec succès.',
-                'columns' => $model->getFillable(),
-            ]);
-        } else {
-            $errors = $model->errors();
-            // Gérer les erreurs de validation ou de sauvegarde
-            return response()->json([
-                'success' => false,
-                'message' => 'Une erreur est survenue lors de l\'enregistrement de la colonne. Veuillez réessayer.',
-                'errors' => $errors,
-            ]);
-        }
-    } else {
-        return response()->json([
-            'success' => false,
-            'message' => 'Le modèle correspondant n\'existe pas.',
-        ]);
-    }
-    
 
 
             // Obtenir l'ID de la table à partir de la table 'tableslist'
@@ -104,6 +100,14 @@ if (Schema::hasTable($tableName)) {
             return redirect()->back()->with('error', "La table $tableName n'existe pas.");
         }
     }
+
+
+    
+public function showAddColumnForm()
+{
+    return View::make('edittable');
+} 
+
 
 }
 

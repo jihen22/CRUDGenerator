@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\editTableController;
 use App\Http\Controllers\Table08Controller;
+use App\Http\Controllers\ColonneController;
 
 
 
@@ -136,27 +137,17 @@ Route::group(['middleware' => 'guest'] , function(){
     Route::delete('/data/{id}', [Table08Controller::class, 'deleteData']);
     Route::post('/update-row/{id}', [Table08Controller::class, 'updateRow'])->name('update.row');
 
-  
+
+    Route::get('/table/{table}', [ColonneController::class, 'showColumns'])->name('table.columns');
+    Route::delete('/table/{table}/column/{columnName}', [ColonneController::class, 'deleteColumn'])->name('column.delete');
 
 
 
+   Route::post('/add-column', [App\Http\Controllers\editTableController::class, 'add'])->name('add-column.store');
+   Route::get('/add-column', [App\Http\Controllers\editTableController::class, 'showAddColumnForm'])->name('add-column');
 
-
-
-   Route::post('/add-column', 'App\Http\Controllers\editTableController@add')->name('add-column.store');
 
 
 Route::post('/check-table-exists', '\\App\\Http\\Controllers\\tablefilesController@checkTableExists');
 
 
-<<<<<<< HEAD
-
-=======
-Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table1477Controller');use App\Http\Controllers\GggggggggggggController;
-
-Route::get('/table/{table}/{view}', ['uses' => 'GggggggggggggController@store']);
-Route::get('/table/{table}/{view}', ['uses' => 'GggggggggggggController@index']);
-Route::post('/table/{table}/{view}', ['uses' => 'GggggggggggggController@store']);
-Route::delete('/data/{id}', ['uses' => 'GggggggggggggController@deleteData']);
-Route::post('/update-row/{id}', ['uses' => 'GggggggggggggController@updateRow'])->name('update.row');
->>>>>>> 13ef0821c983edd82bb45445da02b5202ce4446a

@@ -165,7 +165,7 @@ $tables = DB::select("SHOW TABLES WHERE Tables_in_" . env('DB_DATABASE') . " NOT
         <tbody>
             @foreach($tables as $table)
                 <tr>
-                   <td><a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} . '/edittable' ) }}" >{{ $table->{'Tables_in_' . env('DB_DATABASE')} }}</a></td>
+                   <td><a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" >{{ $table->{'Tables_in_' . env('DB_DATABASE')} }}</a></td>
 </td>
                     <td>
                  <a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} . '/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" class="btn btn-info"><i class="fas fa-eye"></i> See</a>
