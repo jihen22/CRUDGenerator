@@ -18,14 +18,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
        
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-
+		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+		
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -39,23 +39,23 @@
 
 
 <style> .flex-container {
-display: flex;
+	display: flex;
 }
 
 .content-warper {
-flex: 1;
-display: flex;
-flex-direction: column;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
 }
 #monDiv {
-min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
-margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
-margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
-width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
+	min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
+	margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
+	margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
+	width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
 }
 
 .small-sidebar {
-width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
+	width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
 }
 .container-fluide {
     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
@@ -73,28 +73,28 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
 
 
 
-</style>    
+</style>     
    
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
-<div id="app" class="warpper">
-@include('admin.partials.topbar')
-<div id="layoutSidenav" class="flex-container">
+	<div id="app" class="warpper">
+	@include('admin.partials.topbar')
+	<div id="layoutSidenav" class="flex-container">
        @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
 
 
 
 <div class="content-warper" id="monDiv" style="">
-<div class="content-header">
-<div class="container-fluid p-0">
-<div class ="row mb-2">
-<div class="col-sm-6">
-
+	<div class="content-header">
+		<div class="container-fluid p-0">
+			<div class ="row mb-2">
+				<div class="col-sm-6">
+				
                 </div>
             </div>
         </div>
     </div>
-   
-    <div class="container-fluide p-0">
+    
+	     <div class="container-fluide p-0">
            <div class="card card-default">
 
 
@@ -109,16 +109,16 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
                    
                  
                    
-                   
+                    
 
-                   
+                    
 
         <tr>
 
         <th>Actions</th>
-       
+        
         <th>Edit</th>
-                     
+                      
                       <th>Delete</th>
             <!-- display column headers -->
             @foreach ($columns as $column)
@@ -127,7 +127,7 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
                 @endif
             @endforeach
 
-         
+          
         </tr>
      
     </thead>
@@ -140,7 +140,7 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
             <td><input type="checkbox" class="checkthis" /></td>
             <td>
   <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
-    <span class="fas fa-edit"></span>
+    <span class="fas fa-edit"></span> 
   </button>
 </td>
             <td>
@@ -273,8 +273,8 @@ form.addEventListener('submit', (event) => {
     selectCell.innerHTML = '<input type="checkbox" class="checkthis" />';
 
 // Ajouter les boutons d'action d'édition et de suppression aux cellules correspondantes
-editCell.innerHTML = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"><span class="fas fa-edit"></span></button>';
-deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" "><span class="fas fa-trash-alt"></span></button>';
+editCell.innerHTML = '<button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}"><span class="fas fa-edit"></span></button>';
+deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}"><span class="fas fa-trash-alt"></span></button>';
 
     @foreach ($columns as $column)
         @if (!in_array($column, $hiddenColumns))
@@ -329,17 +329,10 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
     $('.edit-btn').click(function() {
       var rowId = $(this).data('row-id');
       $('#edit-row-id').val(rowId); // Récupérer l'identifiant de la ligne et le stocker dans le champ masqué
-<<<<<<< HEAD:resources/views/table06.blade.php
       
       // Pré-remplir les champs de saisie du modal avec les données de la ligne correspondante
       // Vous pouvez utiliser AJAX ici pour récupérer les données du serveur si nécessaire
       
-=======
-     
-      // Pré-remplir les champs de saisie du modal avec les données de la ligne correspondante
-      // Vous pouvez utiliser AJAX ici pour récupérer les données du serveur si nécessaire
-     
->>>>>>> 63079a75148e5078d4a5f3ac85c4f04bc02c4f79:resources/views/jane12223.blade.php
       // Afficher le modal de modification
       $('#edit-modal').modal('show');
     });

@@ -43,7 +43,7 @@ class Table1477Controller extends Controller
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-   table1477::create($data);
+        table1477::create($data);
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
@@ -52,7 +52,7 @@ class Table1477Controller extends Controller
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
-       $data = table1::find($id);
+       $data = table1477::find($id);
 
        
     

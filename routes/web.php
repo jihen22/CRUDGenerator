@@ -8,7 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Menus\CrudTablesController;
 use App\Http\Controllers\tablefilesController;
-use App\Http\Controllers\table1Controller;
+
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\editTableController;
-use App\Http\Controllers\Table08Controller;
+use App\Http\Controllers\table1477Controller;
+
+
+
 
 
 
@@ -130,11 +133,11 @@ Route::group(['middleware' => 'guest'] , function(){
    
 
 });
-    Route::get('/table/{table}/{view}', [Table08Controller::class,'store']);
-    Route::get('/table/{table}/{view}', [Table08Controller::class,'index']);
-    Route::post('/table/{table}/{view}', [Table08Controller::class,'store']);
-    Route::delete('/data/{id}', [Table08Controller::class, 'deleteData']);
-    Route::post('/update-row/{id}', [Table08Controller::class, 'updateRow'])->name('update.row');
+    Route::get('/table/{table}/{view}', [Table1477Controller::class,'store']);
+    Route::get('/table/{table}/{view}', [Table1477Controller::class,'index']);
+    Route::post('/table/{table}/{view}', [Table1477Controller::class,'store']);
+    Route::delete('/data/{id}', [Table1477Controller::class, 'deleteData']);
+    Route::post('/update-row/{id}', [Table1477Controller::class, 'updateRow'])->name('update.row');
 
   
 
@@ -149,14 +152,4 @@ Route::group(['middleware' => 'guest'] , function(){
 Route::post('/check-table-exists', '\\App\\Http\\Controllers\\tablefilesController@checkTableExists');
 
 
-<<<<<<< HEAD
-
-=======
-Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table1477Controller');use App\Http\Controllers\GggggggggggggController;
-
-Route::get('/table/{table}/{view}', ['uses' => 'GggggggggggggController@store']);
-Route::get('/table/{table}/{view}', ['uses' => 'GggggggggggggController@index']);
-Route::post('/table/{table}/{view}', ['uses' => 'GggggggggggggController@store']);
-Route::delete('/data/{id}', ['uses' => 'GggggggggggggController@deleteData']);
-Route::post('/update-row/{id}', ['uses' => 'GggggggggggggController@updateRow'])->name('update.row');
->>>>>>> 13ef0821c983edd82bb45445da02b5202ce4446a
+Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table1477Controller');

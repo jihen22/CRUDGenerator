@@ -10,6 +10,8 @@ use App\Field;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
 
 
 
@@ -45,35 +47,14 @@ if (Schema::hasTable($tableName)) {
 
 
     
-   
-    $modelClassName = 'App\Models\\' . $tableName;
-    if (class_exists($modelClassName)) {
-        $model = new $modelClassName();
-       
-        $model->addColumn($databaseColumnName); // Ajoute la nouvelle colonne
-        if ($model->save()) {
-            // Le modèle a été enregistré avec succès
-            return response()->json([
-                'success' => true,
-                'message' => 'La colonne a été ajoutée avec succès.',
-                'columns' => $model->getFillable(),
-            ]);
-        } else {
-            $errors = $model->errors();
-            // Gérer les erreurs de validation ou de sauvegarde
-            return response()->json([
-                'success' => false,
-                'message' => 'Une erreur est survenue lors de l\'enregistrement de la colonne. Veuillez réessayer.',
-                'errors' => $errors,
-            ]);
-        }
-    } else {
-        return response()->json([
-            'success' => false,
-            'message' => 'Le modèle correspondant n\'existe pas.',
-        ]);
-    }
-    
+     // Delete the existing model file if it exists
+     $modelPath = app_path("Models/$tableName.php");
+     if (File::exists($modelPath)) {
+         File::delete($modelPath);
+     }
+
+     // Generate the new model file with updated columns
+     $this->generateModelFile($tableName);
 
 
             // Obtenir l'ID de la table à partir de la table 'tableslist'
@@ -104,8 +85,37 @@ if (Schema::hasTable($tableName)) {
             return redirect()->back()->with('error', "La table $tableName n'existe pas.");
         }
     }
+    
+    // Helper function to generate the model file with updated columns
+    private function generateModelFile($tableName)
+    {
+        $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
 
+        // Exclude default columns
+        $excludeColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
+        $fillableColumns = array_diff($columns, $excludeColumns);
+        $fillable = implode("', '", $fillableColumns);
+
+        $model = <<<EOT
+        <?php
+
+        namespace App\Models;
+
+        use Illuminate\Database\Eloquent\Model;
+
+        class $tableName extends Model
+        {
+            protected \$table = '$tableName';
+            protected \$fillable = ['$fillable'];
+        }
+        EOT;
+
+        $modelPath = app_path("Models/$tableName.php");
+        file_put_contents($modelPath, $model);
+    }
 }
+
+
 
 
 
