@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\table1477;
+use App\Models\table06;
 
 
 
 
-class Table1477Controller extends Controller
+class Table06ontroller extends Controller
 {
     
     

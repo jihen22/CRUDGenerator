@@ -16,8 +16,17 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\editTableController;
+<<<<<<< HEAD
 use App\Http\Controllers\ColonneController;
 use App\Http\Controllers\Table1477Controller;
+=======
+
+
+use App\Http\Controllers\Table06Controller;
+use App\Http\Controllers\Table08Controller;
+use App\Http\Controllers\ColonneController;
+
+>>>>>>> abd468a1d0d60ad9a0865f0f4d3e6cdc0a70bb9b
 
 
 
@@ -131,11 +140,18 @@ Route::group(['middleware' => 'guest'] , function(){
    
 
 });
-    Route::get('/table/{table}/{view}', [Table1477Controller::class,'store']);
-    Route::get('/table/{table}/{view}', [Table1477Controller::class,'index']);
-    Route::post('/table/{table}/{view}', [Table1477Controller::class,'store']);
-    Route::delete('/data/{id}', [Table1477Controller::class, 'deleteData']);
-    Route::post('/update-row/{id}', [Table1477Controller::class, 'updateRow'])->name('update.row');
+    Route::get('/table/{table}/{view}', [Table06Controller::class,'store']);
+    Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
+    Route::post('/table/{table}/{view}', [Table06Controller::class,'store']);
+    Route::delete('/data/{id}', [Table06Controller::class, 'deleteData']);
+    Route::post('/update-row/{id}', [Table06Controller::class, 'updateRow'])->name('update.row');
+
+
+    Route::get('/table/{table}/{view}', [Table08Controller::class,'store']);
+    Route::get('/table/{table}/{view}', [Table08Controller::class,'index']);
+    Route::post('/table/{table}/{view}', [Table08Controller::class,'store']);
+    Route::delete('/data/{id}', [Table08Controller::class, 'deleteData']);
+    Route::post('/update-row/{id}', [Table0Controller::class, 'updateRow'])->name('update.row');
 
 
     Route::get('/table/{table}', [ColonneController::class, 'showColumns'])->name('table.columns');
@@ -150,4 +166,7 @@ Route::group(['middleware' => 'guest'] , function(){
 
 Route::post('/check-table-exists', '\\App\\Http\\Controllers\\tablefilesController@checkTableExists');
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> abd468a1d0d60ad9a0865f0f4d3e6cdc0a70bb9b
