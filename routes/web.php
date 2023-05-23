@@ -16,15 +16,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\editTableController;
-<<<<<<< HEAD
-use App\Http\Controllers\table1477Controller;
-
-
-
-=======
-use App\Http\Controllers\Table08Controller;
 use App\Http\Controllers\ColonneController;
->>>>>>> 1e60b3b89c03194a5fd38cc09960b63cf3c20e60
+use App\Http\Controllers\Table1477Controller;
 
 
 
@@ -158,7 +151,3 @@ Route::group(['middleware' => 'guest'] , function(){
 Route::post('/check-table-exists', '\\App\\Http\\Controllers\\tablefilesController@checkTableExists');
 
 
-<<<<<<< HEAD
-Route::resource('/table/{table}/{view}', '\\App\\Http\\Controllers\\Table1477Controller');
-=======
->>>>>>> 1e60b3b89c03194a5fd38cc09960b63cf3c20e60

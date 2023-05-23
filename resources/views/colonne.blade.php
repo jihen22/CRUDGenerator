@@ -111,7 +111,7 @@
 		<div class="container-fluid p-0">
 			<div class ="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0 text-drak" style="">Noms de colonnes de {{ $table }} </h1>
+				
                 </div>
             </div>
         </div>
@@ -133,8 +133,8 @@
             <table  class="table table-bordred table-striped">
         <thead>
             <tr>
-                <th>Nom de colonne</th>
-                <th>Action</th>
+                <th>Column name</th>
+                <th>Delete Column</th>
             </tr>
         </thead>
         <tbody>
@@ -172,7 +172,7 @@
 
 <form id="addColumnForm" action="{{ route('add-column') }}" method="POST">
     @csrf
-    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="submit" class="btn btn-primary">Add new column</button>
 </form>
 
 <script>
