@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTable extends Command
 {
-    protected $signature = 'create:table {table : The name of the table} {--model= : The name of the model} {--controller= : The name of the controller} {--view= : view name}{--fields= : List of fields}';
+    protected $signature = 'create:table {table : The name of the table} {--model= : The name of the model} {--controller= : The name of the controller} {--view= : view name}{--viewType= : view type}{--fields= : List of fields}';
 
-    protected $description = 'Create a new migration file for a specified table with given fields and generate model and controller.';
+    protected $description = 'Create a new migration file for a specified table with given fields and generate model and controller and view.';
 
      public function handle()
     {
@@ -53,8 +53,9 @@ class CreateTable extends Command
      
         $this->info('Migration, Model and Controller generated successfully!');
 
-        Artisan::call('make:table', [
-            'name' =>$this->argument('table') 
+        Artisan::call('make:view', [
+            'view' => $this->option('view'),
+            '--viewType' => $this->option('viewType'),
         ]);
         
         Artisan::call('create:routes', [

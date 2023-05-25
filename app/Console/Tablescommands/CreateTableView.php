@@ -12,7 +12,7 @@ class CreateTableView extends Command
      *
      * @var string
      */
-    protected $signature = 'make:table {name : The name of the table view to create}';
+    protected $signature = 'make:view {view : The name of the table view to create}{--viewType : The type of the table view to create}';
 
     /**
      * The console command description.
@@ -28,8 +28,10 @@ class CreateTableView extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
-
+        $name = $this->argument('view');
+       
+        $viewType = $this->option('viewType');
+      
         $file = $this->viewPath($name);
 
         if ($this->alreadyExists($file)) {
@@ -37,7 +39,7 @@ class CreateTableView extends Command
             return false;
         }
 
-        $stub = $this->getStub();
+        $stub = $this->getStub($viewType);
         $code = str_replace('{{table}}', $stub, file_get_contents($stub));
         File::put($file, $code);
 
@@ -67,13 +69,26 @@ class CreateTableView extends Command
     }
 
     /**
-     * Get the stub file for the generator.
+     * Get the stub file for the generator based on the viewType.
      *
+     * @param  string  $viewType
      * @return string
      */
-    protected function getStub()
-{
-    return base_path('vendor/laravel/framework/src/Illuminate/Database/Migrations/stubs/table.stub');
-}
-
+    protected function getStub($viewType)
+    {
+        switch ($viewType) {
+            case 'card':
+                return resource_path('stubs/card.stub');
+            case 'list':
+                return resource_path('stubs/list.stub');
+            case 'map':
+                return resource_path('stubs/map.stub');
+            case 'tree':
+                return resource_path('stubs/tree.stub');
+            case 'grid':
+                return resource_path('stubs/tree.stub');
+            default:
+                return resource_path('stubs/table.stub');
+        }
+    }
 }

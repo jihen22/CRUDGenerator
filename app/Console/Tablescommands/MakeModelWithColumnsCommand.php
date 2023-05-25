@@ -7,12 +7,17 @@ use Illuminate\Support\Facades\DB;
 
 class MakeModelWithColumnsCommand extends Command
 {
-    protected $signature = 'make:model-with-columns {table : The name of the table}';
+    protected $signature = 'make:model {table : The name of the table} {model : the model name }';
     protected $description = 'Create a new model with columns from a table';
 
     public function handle()
     {
         $table = $this->argument('table');
+     
+        $model = $this->argument('model');
+        $modelPath = app_path("Models/$model.php");
+    
+       
         $columns = DB::getSchemaBuilder()->getColumnListing($table);
 
         // Exclude default columns
@@ -34,7 +39,7 @@ class MakeModelWithColumnsCommand extends Command
         }
         EOT;
 
-        $modelPath = app_path("Models/$table.php");
+     
         file_put_contents($modelPath, $model);
 
         $this->info("Model for table '$table' created successfully.");

@@ -10,6 +10,10 @@ use App\Field;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
+
+
+
+
 use Illuminate\Support\Facades\File;
 
 use Illuminate\Support\Str;
@@ -84,6 +88,10 @@ if (Schema::hasTable($tableName)) {
 
      // Generate the new model file with updated columns
      $this->generateModelFile($tableName);
+
+
+
+
 
 
             // Obtenir l'ID de la table à partir de la table 'tableslist'

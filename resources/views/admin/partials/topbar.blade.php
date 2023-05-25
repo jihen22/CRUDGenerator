@@ -1,4 +1,3 @@
-
 <style>
 .search-form {
   display: flex;
@@ -20,11 +19,6 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
-
-
-
-
 </style>
 <nav class="main-header navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->

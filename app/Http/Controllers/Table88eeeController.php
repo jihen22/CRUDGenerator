@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\table06;
+use App\Models\table88eee;
 
 
 
 
-class Table06ontroller extends Controller
+class Table88eeeController extends Controller
 {
     
 
@@ -41,7 +41,11 @@ class Table06ontroller extends Controller
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
+<<<<<<< HEAD:app/Http/Controllers/Table06Controller.php
         table08::create($data);
+=======
+table88eee::create($data);
+>>>>>>> 1fabe54ba3c60c9822aad60e54a92f54f66cf3e4:app/Http/Controllers/Table88eeeController.php
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
@@ -54,7 +58,11 @@ class Table06ontroller extends Controller
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
+<<<<<<< HEAD:app/Http/Controllers/Table06Controller.php
        $data = table08::find($id);
+=======
+       $data = table88eee::find($id);
+>>>>>>> 1fabe54ba3c60c9822aad60e54a92f54f66cf3e4:app/Http/Controllers/Table88eeeController.php
 
        
     
@@ -72,7 +80,11 @@ class Table06ontroller extends Controller
    public function updateRow(Request $request, $id)
    {
      // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
+<<<<<<< HEAD:app/Http/Controllers/Table06Controller.php
      $row = table08::find($id);
+=======
+     $row = table88eee::find($id);
+>>>>>>> 1fabe54ba3c60c9822aad60e54a92f54f66cf3e4:app/Http/Controllers/Table88eeeController.php
    
      // Vérifier si la ligne a été trouvée
      if ($row) {
@@ -85,7 +97,11 @@ class Table06ontroller extends Controller
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
+<<<<<<< HEAD:app/Http/Controllers/Table06Controller.php
          if (Schema::hasColumn('table08', $column)) {
+=======
+         if (Schema::hasColumn('table88eee', $column)) {
+>>>>>>> 1fabe54ba3c60c9822aad60e54a92f54f66cf3e4:app/Http/Controllers/Table88eeeController.php
            $row->{$column} = $value;
          }
        }
@@ -110,6 +126,3 @@ class Table06ontroller extends Controller
 
 
    
-
-
-
