@@ -17,7 +17,9 @@ class GenerateController extends Command
         $name = $this->argument('name');
         $modelName = lcfirst($name);
         
-        $controllerName = "{$modelName}Controller";
+        $controllerName = ucfirst($modelName) . "Controller";
+
+       
         $modelNamePlural = Str::plural(lcfirst($modelName)); //products
         $viewFolder = strtolower($modelNamePlural);
         $routePrefix = strtolower($modelNamePlural);

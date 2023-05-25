@@ -55,12 +55,12 @@
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
+                    <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">Database Migration Generation</h4>
-                        <p class="text-muted">  Taking in the description of the database (tables, columns, relations) and generate the necessary migration files to create the database schema</p>
+                        <p class="text-muted">  Taking in the description of the database (table name , models , vues and columns ) and generating the necessary migration files to create the database schema</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -68,12 +68,12 @@
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">CRUD Code Generation Service</h4>
-                        <p class="text-muted"> This service would take in the database schema and user preferences for the display (tables, lists, cards, etc.) and generate the necessary Laravel models, controllers, and routes to perform CRUD operations on the database. The service could use Laravel's built-in scaffolding functionality to generate the boilerplate code and then modify it based on the user's preferences.</p>
+                        <p class="text-muted"> This service would take in the database schema and user preferences for the display (tables, lists,etc.) and generate the necessary Laravel models, controllers, and routes to perform CRUD operations on the database. </p>
                     </div>
                     <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
+                    <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">View Template Generation Service</h4>
                         <p class="text-muted">This service would take in the user preferences for the display and generate the necessary view templates using Laravel's Blade templating engine. The service could generate templates for tables, lists, cards, and any other preferred display format, and could also include pagination, filtering, and sorting functionality based on user preferences.</p>

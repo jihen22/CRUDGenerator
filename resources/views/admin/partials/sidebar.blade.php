@@ -27,9 +27,7 @@
                         
                       
 </h1>
-                        <a href="#" class="btn btn-block btn-success rounded-0 py-2 text-white text-uppercase text-bold" id="preview-btn">
-                        <i class="fas fa-eye fa-fw"></i> Preview panel
-                        </a>
+                      
                         <script>
   document.addEventListener('DOMContentLoaded', function() {
   // get the preview button and modal elements

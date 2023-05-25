@@ -24,17 +24,20 @@ class Generatemodelcontfiles extends Command
     {
         $tableName = $this->argument('table');
         $modelName = $this->option('model') ?: ucfirst(camel_case($tableName));
+        
+       
       
         $controllerName = $this->option('controller') ?: ucfirst(camel_case($tableName)) . 'Controller';
     
         // Generate the controller
         $this->call('generate:controller', [
-            'name' => $modelName,
+            'name' =>  $controllerName,
         ]);
     
         // Generate the model with columns
-        $this->call('make:model-with-columns', [
+        $this->call('make:model', [
             'table' =>$tableName,
+            'model'=>$modelName ,
         ]);
        
     

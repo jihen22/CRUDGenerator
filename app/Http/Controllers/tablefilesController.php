@@ -49,9 +49,7 @@ class tablefilesController extends Controller{
         $fields = $request->input('fields');
         $viewType = $request->input('viewType');
         $entriesPerPage= $request->input('entriesPerPage');
-        
         $orderBy = $request->input('orderBy');
-        
         $orderdirection = $request->input('orderdirection');
    
 
@@ -89,14 +87,12 @@ class tablefilesController extends Controller{
         
                 Field::insert($fieldsData);
         
-                // Call artisan command to generate files
-                $modelName = $request->input('model-name') ?? Str::studly($table->name);
-                $controllerName = $request->input('controller-name') ?? "{$modelName}Controller";
+              
                 $fieldsOption = [];
                 foreach ($fields as $field) {
                     $fieldsOption[] = $field['DBCName'] . ',' . $field['field_type'];
                 }
-                $viewName = $request->input('view-name');
+          
                
                 
         
@@ -105,8 +101,10 @@ class tablefilesController extends Controller{
                     '--model' => $modelName,
                     '--controller' => $controllerName,
                     '--view'=>$viewName ,
+                    '--viewType'=>$viewType ,
                     '--fields' => implode(',', $fieldsOption),
                 ];
+          
                
                 
                
