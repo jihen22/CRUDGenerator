@@ -15,8 +15,6 @@ use App\Models\table06;
 class Table06ontroller extends Controller
 {
     
-    
-   
 
     public function index(Request $request, $table, $view)
     {
@@ -37,22 +35,26 @@ class Table06ontroller extends Controller
         return view($view, compact('table', 'data', 'columns', 'hiddenColumns', 'nameproject'));
     }
 
-    public function store(Request $request)
+           public function store(Request $request)
     {
         // Récupérer les données du formulaire
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-        table1477::create($data);
+        table08::create($data);
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
     }
 
+
+    
+
+
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
-       $data = table1477::find($id);
+       $data = table08::find($id);
 
        
     
@@ -60,20 +62,17 @@ class Table06ontroller extends Controller
            return response()->json(['error' => 'Ligne de données introuvable'], 404);
         }
 
-      
-    
-        // Supprimer la ligne de données
+       // Supprimer la ligne de données
        $data->delete();
     
         return response()->json(['success' => 'Ligne de données supprimée avec succès']);
    }
 
-  
-     
+
    public function updateRow(Request $request, $id)
    {
      // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
-     $row = table1477::find($id);
+     $row = table08::find($id);
    
      // Vérifier si la ligne a été trouvée
      if ($row) {
@@ -86,7 +85,7 @@ class Table06ontroller extends Controller
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('table1477', $column)) {
+         if (Schema::hasColumn('table08', $column)) {
            $row->{$column} = $value;
          }
        }
@@ -102,6 +101,7 @@ class Table06ontroller extends Controller
      }
    }
    
+
 
 
 

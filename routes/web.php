@@ -135,18 +135,16 @@ Route::group(['middleware' => 'guest'] , function(){
    
 
 });
-    Route::get('/table/{table}/{view}', [Table06Controller::class,'store']);
-    Route::get('/table/{table}/{view}', [Table06Controller::class,'index']);
-    Route::post('/table/{table}/{view}', [Table06Controller::class,'store']);
-    Route::delete('/data/{id}', [Table06Controller::class, 'deleteData']);
-    Route::post('/update-row/{id}', [Table06Controller::class, 'updateRow'])->name('update.row');
+
 
 
     Route::get('/table/{table}/{view}', [Table08Controller::class,'store']);
-    Route::get('/table/{table}/{view}', [Table08Controller::class,'index']);
-    Route::post('/table/{table}/{view}', [Table08Controller::class,'store']);
+     Route::get('/table/{table}/{view}', [Table08Controller::class,'index']);
+   Route::post('/table/{table}/{view}', [Table08Controller::class,'store']);
     Route::delete('/data/{id}', [Table08Controller::class, 'deleteData']);
-    Route::post('/update-row/{id}', [Table0Controller::class, 'updateRow'])->name('update.row');
+    Route::post('/update-row/{id}', [Table08Controller::class, 'updateRow'])->name('update.row');
+
+
 
 
     Route::get('/table/{table}', [ColonneController::class, 'showColumns'])->name('table.columns');
