@@ -38,6 +38,21 @@
                <!-- Sweetalert-->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.js"></script>
         <style>
+     .checkbox-group {
+        display: flex;
+        align-items: center;
+    }
+    
+    .checkbox-group label {
+        margin-left: 5px;
+        font-size: 12px;
+        color: #999;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
     .form-check-inline {
         margin-left: 10px;
     }
@@ -103,7 +118,7 @@
         border: 1px solid #ccc;
         border-radius: 3px;
         font-size: 16px;
-        width: 100%;
+        width: 50%;
         margin-bottom: 10px;
     }
 
@@ -134,7 +149,7 @@
         #monDiv {
             margin-right: 0;
             margin-left: 0;
-            width: 100%;
+            width: 50%;
         }
 
         .small-sidebar {
@@ -225,7 +240,7 @@
     /* Add the following code to modify the input fields */
 
     .custom-modal-input {
-        width: 200px; /* Adjust the width as per your requirement */
+      width: 50%; /* Adjust the width as per your requirement */
         margin: 0 auto; /* Center the input fields horizontally */
     }
 </style>
@@ -313,6 +328,7 @@
                                <thead>
                                        <tr>    
                                         <th scope="col">Field Type</th>
+                                        
                                         <th scope="col">DataBaseColumn</th>
                                         <th scope="col">Validation</th>
                                         <th scope="col">Visual Title</th>
@@ -347,68 +363,81 @@
         
 
 
- <!--add field Modal-->
-
- <div class="modal fade bd-example-modal-lg custom-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
+        <div class="modal fade bd-example-modal-lg custom-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
     <div class="modal-dialog modal-lg">
-                      <div class="modal-content custom-modal-content">
-                      <div class="modal-header">
-                    <h5 class="modal-title custom-modal-title" id="addFeildModalLabel">Add Field</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                      <div class="form-group">
-                             <label class="custom-modal-label" for="field_type">Field Type</label>
-              <select id="field_type" name="field_type">
-              <option value="">Select a column type</option>
-    <optgroup label="Numeric">
-        <option value="integer">Integer</option>
-        <option value="decimal">Decimal</option>
-    </optgroup>
-    <optgroup label="Text">
-        <option value="string">String</option>
-        <option value="text">Text</option>
-        <option value="longtext">Long Text</option>
-    </optgroup>
-    <optgroup label="Date and Time">
-        <option value="date">Date</option>
-        <option value="datetime">DateTime</option>
-        <option value="time">Time</option>
-    </optgroup>
-    <optgroup label="Boolean">
-        <option value="boolean">Boolean</option>
-    </optgroup>
-    <optgroup label="Other">
-        <option value="enum">Enum</option>
-        <option value="json">JSON</option>
-        <option value="jsonb">JSONB</option>
-        <option value="file">File</option>
-    </optgroup>
-            </select>
-        </div>
-                    
-        <div class="form-group">
-           <label for="DBCName">Data base column Name:</label>
-           <input type="text" class="form-control" id="DBCName" name="DBCName" placeholder="Enter DBC Name">
-           <div class="invalid-feedback"></div>
-        </div>
-               
-        <div class="form-group" >
-           <label for="Validation">Validation</label>
-            <select id="Validation" name="Validation" >
-             <option value="Required" >Required</option>
-             <option value="Optionnal" >optionnal</option>
-             <option value="Required/Unique">Required/unique</option>
-             </select>
-         </div>
-                                    <div class="form-group">
-                                             <label for="VisualTitle">Visual Title </label>
-                                             <input type="text" class="form-control"name="VisualTitle" id="VisualTitle" placeholder="Enter Visual title">
-                                    </div>
-                                    
-<div class="form-inline">
-    <label> In List </label>
+        <div class="modal-content custom-modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title custom-modal-title" id="addFeildModalLabel">Add Field</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="form-group">
+                <label class="custom-modal-label"style="margin-left: 10px;" for="field_type">Field Type</label>
+                <select id="field_type" style="font-weight: bold; margin-left: 10px;" name="field_type">
+                    <option value="">Select a column type</option>
+                    <optgroup label="Numeric">
+                        <option value="integer">Integer</option>
+                        <option value="decimal">Decimal</option>
+                    </optgroup>
+                    <optgroup label="Text">
+                        <option value="string">String</option>
+                        <option value="text">Text</option>
+                        <option value="longtext">Long Text</option>
+                    </optgroup>
+                    <optgroup label="Date and Time">
+                        <option value="date">Date</option>
+                        <option value="datetime">DateTime</option>
+                        <option value="time">Time</option>
+                    </optgroup>
+                    <optgroup label="Boolean">
+                        <option value="boolean">Boolean</option>
+                    </optgroup>
+                    <optgroup label="Other">
+                        <option value="enum">Enum</option>
+                        <option value="json">JSON</option>
+                        <option value="jsonb">JSONB</option>
+                        <option value="file">File</option>
+                    </optgroup>
+                </select>
+                <div>
+                <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;"> Select the appropriate column type based on the data you want to store in the column (e.g., string, integer, text, boolean, etc.)</span></div>
+            </div>
+
+            <div class="form-group">
+                <label for="DBCName"style=" margin-left: 10px;">Database Column Name:</label>
+                <input type="text" style="margin-left: 10px;"class="form-control" id="DBCName" name="DBCName" placeholder="Enter DBC Name">
+               <div> <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;"> Enter a suitable name for the database column. </span></div>
+                <div class="invalid-feedback"></div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="VisualTitle"style=" margin-left: 10px;">Visual Title</label>
+                <input style="font-weight: bold; margin-left: 10px;" type="text" class="form-control" name="VisualTitle" id="VisualTitle" placeholder="Enter Visual title">
+               <div> <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Enter a visual title for the field, which will be displayed on the form or in the user interface.</span></div>
+            </div>
+            <h4 id="addFeildModalLabel" style=" margin-left: 10px;">Additional Settings</h4>
+            
+            <div class="form-group">
+                <label for="Validation"style="font-weight: bold; margin-left: 10px;">Validation</label>
+                <select id="Validation"style="font-weight: bold; margin-left: 10px;" name="Validation">
+                    <option value="Required">Required</option>
+                    <option value="Optional">Optional</option>
+                    <option value="Required/Unique">Required/Unique</option>
+                </select>
+               <div> <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Specify whether the field is required or not.</span></div>
+            </div>
+
+            <style>
+    .form-check-inline {
+        display: inline-block;
+        margin-right: 10px;
+    }
+</style>
+
+<div class="form-group">
+    <label for="in_list" style="margin-right: 10px;">In List:</label>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="in_list" id="in_list_yes" value="yes">
         <label class="form-check-label" for="in_list_yes">Yes</label>
@@ -418,8 +447,12 @@
         <label class="form-check-label" for="in_list_no">No</label>
     </div>
 </div>
-<div class="form-inline">
-    <label> In Create </label>
+<div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
+    Specify whether the field should be shown in the list view of the table (e.g., table listing all records).
+</div>
+
+<div class="form-group">
+    <label for="in_create" style="margin-right: 10px;">In Create:</label>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="in_create" id="in_create_yes" value="yes">
         <label class="form-check-label" for="in_create_yes">Yes</label>
@@ -429,9 +462,12 @@
         <label class="form-check-label" for="in_create_no">No</label>
     </div>
 </div>
+<div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
+    Specify whether the field should be shown in the create form for adding new records.
+</div>
 
-<div class="form-inline">
-    <label> In Show: </label>
+<div class="form-group">
+    <label for="in_show" style="margin-right: 10px;">In Show:</label>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="in_show" id="in_show_yes" value="yes">
         <label class="form-check-label" for="in_show_yes">Yes</label>
@@ -441,8 +477,12 @@
         <label class="form-check-label" for="in_show_no">No</label>
     </div>
 </div>
-<div class="form-inline">
-    <label> In Edit: </label>
+<div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
+    Specify whether the field should be shown in the detail view of a specific record.
+</div>
+
+<div class="form-group">
+    <label for="in_edit" style="margin-right: 10px;">In Edit:</label>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="in_edit" id="in_edit_yes" value="yes">
         <label class="form-check-label" for="in_edit_yes">Yes</label>
@@ -452,53 +492,92 @@
         <label class="form-check-label" for="in_edit_no">No</label>
     </div>
 </div>
-                      <h6 id="addFeildModalLabel">Additionnal Settings</h6>
-                                   <div>
-                         <label for="field-max-limit">Max Limit:</label>
-                         <input type="number" id="field-max-limit"name="field-max-limit"></br>
-                   </div>
-                   <div>
-                          <label for="field-min-limit">Min Limit:</label>
-                          <input type="number" id="field-min-limit" name="field-min-limit"></br> 
-                </div>
+<div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
+    Specify whether the field should be shown in the edit form for modifying existing records.
+</div>
 
-                   <div>
-                          <label for="field-default-value">Default value</label>
-                          <input type="number" id="field-default-value" name="field-default-value" placeholder="Enter a Default Value "></br> 
-                   </div>
-    
+
+         
+           
+         
+            <div class="form-group">
+    <div style="display: flex; align-items: center;">
+        <label for="field-max-limit" style="margin-right: 10px;">Max Limit:</label>
+        <input type="number" class="form-control" id="field-max-limit" name="field-max-limit" style="width: 150px;">
+    </div>
+    <div>
+        <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Specify the maximum limit or length of the field if applicable (e.g., maximum number of characters).</span>
+    </div>
+</div>
+
+<div class="form-group">
+    <div style="display: flex; align-items: center;">
+        <label for="field-min-limit" style="font-weight: bold; margin-right: 10px;">Min Limit:</label>
+        <input type="number" class="form-control" id="field-min-limit" name="field-min-limit" style="width: 150px;">
+    </div>
+    <div>
+        <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Specify the minimum limit or length of the field if applicable.</span>
+    </div>
+</div>
+
+<div class="form-group">
+    <div style="display: flex; align-items: center;">
+        <label for="field-default-value" style="margin-right: 10px;">Default value:</label>
+        <input type="number" class="form-control" id="field-default-value" name="field-default-value"  style="width: 150px;">
+    </div>
+    <div>
+        <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Set a default value for the field.</span>
+    </div>
+</div>
+
+
+            <div style="display: flex; align-items: center;">
+   
+            <div style="margin-right: 10px;">
+        <input type="checkbox" name="nullable" id="nullable"style="margin-left: 10px;">
+        <label for="nullable" style="margin-left: 10px;">Nullable</label>
+        <span style="font-size: 12px; color: #999; margin-left: 10px;">Check this box if the field is nullable.</span>
+    </div>
+    <div>
+        <input type="checkbox" name="unique" id="unique"style="margin-left: 10px;">
+        <label for="unique" style="margin-left: 10px;">Unique</label>
+        <span style="font-size: 12px; color: #999; margin-left:10px;">Check this box if the field must be unique.</span>
+    </div>
+</div>
 <div>
-
-    <label for="nullable">Nullable:</label>
-    <input type="checkbox" name="nullable" id="nullable">
-</div><div>
-    <label for="unique">Unique:</label>
-    <input type="checkbox" name="unique" id="unique">
-</div><div>
-    <label for="indexing">Indexing:</label>
-    <select name="indexing" id="indexing">
+    <label for="indexing" style="font-weight: bold; margin-left: 10px;">Indexing:</label>
+    <select name="indexing" id="indexing" style="margin-left: 10px;">
         <option value="">None</option>
         <option value="primary">Primary Key</option>
         <option value="unique">Unique Index</option>
         <option value="index">Index</option>
     </select>
-</div><div>
-    
-    <label for="foreign_key">Foreign Key:</label>
-    <input type="text" name="foreign_key" id="foreign_key">
-</div><div>
-    <label for="validation_rules">Additional Validation Rules:</label>
-    <input type="text" name="validation_rules" id="validation_rules">
+    <div>
+      <span style="font-size: 12px; color: #999; margin-left: 10px;">Choose the type of indexing for the field.</span></div>
+   
+</div>
+<div>
+    <label for="foreign_key" style="font-weight: bold; margin-left: 10px;">Foreign Key:</label>
+    <input type="text" name="foreign_key" id="foreign_key" style="margin-left: 10px;">
+    <div>
+    <span style="font-size: 12px; color: #999; margin-left: 10px;">Enter the foreign key value for the field.</span></div>
+</div>
+
+<div>
+    <label for="validation_rules" style="font-weight: bold; margin-left: 10px;">Additional Validation Rules:</label>
+    <input type="text" name="validation_rules" id="validation_rules" style="margin-left: 10px;">
+    <div>
+    <span style="font-size: 12px; color: #999; margin-left: 10px;">Specify any additional validation rules for the field.</span></div>
 </div>
 
 
-                    <div class="modal-footer custom-modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="Savefield" name="Savefield">Save Field</button>
-                </div>
- </div>         
-  </div>
- </div>
+            <div class="modal-footer custom-modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="Savefield" name="Savefield">Save Field</button>
+            </div>
+        </div>
+    </div>
+</div>
 
               
            
