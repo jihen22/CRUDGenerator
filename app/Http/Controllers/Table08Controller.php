@@ -7,16 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\table88eee;
+use App\Models\table08;
 
 
 
 
-class Table88eeeController extends Controller
+class Table08Controller extends Controller
 {
     
-    
-   
 
     public function index(Request $request, $table, $view)
     {
@@ -37,22 +35,26 @@ class Table88eeeController extends Controller
         return view($view, compact('table', 'data', 'columns', 'hiddenColumns', 'nameproject'));
     }
 
-    public function store(Request $request)
+           public function store(Request $request)
     {
         // Récupérer les données du formulaire
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-table88eee::create($data);
+        table08::create($data);
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
     }
 
+
+    
+
+
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
-       $data = table88eee::find($id);
+       $data = table08::find($id);
 
        
     
@@ -60,20 +62,17 @@ table88eee::create($data);
            return response()->json(['error' => 'Ligne de données introuvable'], 404);
         }
 
-      
-    
-        // Supprimer la ligne de données
+       // Supprimer la ligne de données
        $data->delete();
     
         return response()->json(['success' => 'Ligne de données supprimée avec succès']);
    }
 
-  
-     
+
    public function updateRow(Request $request, $id)
    {
      // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
-     $row = table88eee::find($id);
+     $row = table08::find($id);
    
      // Vérifier si la ligne a été trouvée
      if ($row) {
@@ -86,7 +85,7 @@ table88eee::create($data);
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('table88eee', $column)) {
+         if (Schema::hasColumn('table08', $column)) {
            $row->{$column} = $value;
          }
        }
@@ -102,6 +101,7 @@ table88eee::create($data);
      }
    }
    
+
 
 
 
