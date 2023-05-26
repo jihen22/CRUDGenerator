@@ -18,14 +18,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
        
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-
+		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+		
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -39,23 +39,23 @@
 
 
 <style> .flex-container {
-display: flex;
+	display: flex;
 }
 
 .content-warper {
-flex: 1;
-display: flex;
-flex-direction: column;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
 }
 #monDiv {
-min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
-margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
-margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
-width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
+	min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
+	margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
+	margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
+	width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
 }
 
 .small-sidebar {
-width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
+	width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
 }
 .container-fluide {
     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
@@ -73,100 +73,91 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
 
 
 
-</style>    
+</style>     
    
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
-<div id="app" class="warpper">
-@include('admin.partials.topbar')
-<div id="layoutSidenav" class="flex-container">
+	<div id="app" class="warpper">
+	@include('admin.partials.topbar')
+	<div id="layoutSidenav" class="flex-container">
        @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
 
 
 
 <div class="content-warper" id="monDiv" style="">
-<div class="content-header">
-<div class="container-fluid p-0">
-<div class ="row mb-2">
-<div class="col-sm-6">
-
+	<div class="content-header">
+		<div class="container-fluid p-0">
+			<div class ="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
                 </div>
             </div>
         </div>
     </div>
-   
-    <div class="container-fluide p-0">
+    
+	     <div class="container-fluide p-0">
            <div class="card card-default">
 
 
             <div class="card-body">
 
-        @php
-    $hiddenColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
-       @endphp
+      
               <table id="mytable" class="table table-bordred table-striped">
-                   
-                   <thead>
-                   
-                 
-                   
-                   
-
-                   
-
+              
+    <thead>
         <tr>
-
-        <th>Actions</th>
-       
-        <th>Edit</th>
-                     
-                      <th>Delete</th>
-            <!-- display column headers -->
-            @foreach ($columns as $column)
-                @if (!in_array($column, $hiddenColumns))
-                    <th>{{ $column }}</th>
+            <th>Actions</th>
+            
+            @if ($showEditButton)
+                <th>Edit</th>
                 @endif
+                <th>delete</th>
+            
+                @foreach ($columns as $column)
+             @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
+                 <th>{{ $column }}</th>
+                  @endif
             @endforeach
 
-         
         </tr>
-     
     </thead>
-
-
-
     <tbody>
-    @foreach ($data as $row)
-        <tr data-row-id="{{ $row->id }}">
-            <td><input type="checkbox" class="checkthis" /></td>
-            <td>
-  <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
-    <span class="fas fa-edit"></span>
-  </button>
-</td>
-            <td>
-  <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
-    <span class="fas fa-trash-alt"></span>
-  </button>
-</td>
-
-            @foreach ($columns as $column)
-                @if (!in_array($column, $hiddenColumns))
-                    <td>{{ $row->{$column} }}</td>
+        @foreach ($data as $row)
+            <tr data-row-id="{{ $row->id }}">
+                <td><input type="checkbox" class="checkthis" /></td>
+                
+                @if ($showEditButton)
+                    <td>
+                        <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
+                            <span class="fas fa-edit"></span>
+                        </button>
+                    </td>
                 @endif
-            @endforeach
-        </tr>
-    @endforeach
-</tbody>
+
+                <td>
+                  <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
+                   <span class="fas fa-trash-alt"></span>
+                    </button>
+                  </td>
+                
+                @foreach ($columns as $column)
+                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
+                        <td>{{ $row->{$column} }}</td>
+                    @endif
+                @endforeach
+            </tr>
+        @endforeach
+    </tbody>
 
 
 
-<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Column</button>
+
+<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Add columns</h4>
+                <h4 class="modal-title" id="myModalLabel">Ajouter des données</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -174,7 +165,7 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
             <form id="addDataForm">
                 <div class="modal-body">
                     @foreach ($columns as $column)
-                        @if (!in_array($column, $hiddenColumns))
+                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
                             <div class="form-group">
                                 <label for="{{ $column }}">{{ $column }}:</label>
                                 <input type="text" class="form-control" id="{{ $column }}" name="{{ $column }}" required>
@@ -183,8 +174,8 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
                     @endforeach
                 </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
                     </div>
                 </form>
             </div>
@@ -194,44 +185,6 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
 
    
 
-
-
-
-
-<!-- Modal for editing row data -->
-<div id="edit-modal" class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-        <h4 class="modal-title custom-align" id="Heading">Edit Your Detail</h4>
-      </div>
-      <div class="modal-body">
-        <form id="edit-form">
-          @csrf
-          @method('POST')
-          <input type="hidden" name="row_id" id="edit-row-id">
-
-          <!-- dynamically generate input fields for editable columns -->
-          @foreach ($columns as $column)
-            @if (!in_array($column, $hiddenColumns))
-              <div class="form-group">
-                <label for="{{ $column }}">{{ $column }}</label>
-                <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
-              </div>
-            @endif
-          @endforeach
-          <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-      </body>
-    
 <script>
 
 $(document).ready(function() {
@@ -256,7 +209,9 @@ $('.modal-footer .btn-secondary').click(function(){
 
 
 </script>
-    <script>
+
+
+<script>
  
 // Récupérer la référence du formulaire d'ajout de données
 const form = document.querySelector('#addDataForm');
@@ -310,7 +265,7 @@ form.addEventListener('submit', (event) => {
 
 // Ajouter les boutons d'action d'édition et de suppression aux cellules correspondantes
 editCell.innerHTML = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"><span class="fas fa-edit"></span></button>';
-deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" "><span class="fas fa-trash-alt"></span></button>';
+deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}"><span class="fas fa-trash-alt"></span></button>';
 
     @foreach ($columns as $column)
         @if (!in_array($column, $hiddenColumns))
@@ -326,16 +281,50 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 });
 
 </script>
-    <script>
+
+<!-- Modal for editing row data -->
+<div id="edit-modal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+        <h4 class="modal-title custom-align" id="Heading">Edit Your Detail</h4>
+      </div>
+      <div class="modal-body">
+        <form id="edit-form">
+          @csrf
+          @method('POST')
+          <input type="hidden" name="row_id" id="edit-row-id">
+
+          <!-- dynamically generate input fields for editable columns -->
+          
+          @foreach ($columns as $column)
+    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $editableColumns))
+        <div class="form-group">
+            <label for="{{ $column }}">{{ $column }}</label>
+            <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
+        </div>
+    @endif
+@endforeach
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
   $(document).ready(function() {
     // Ouvrir le modal de modification lors du clic sur le bouton "Edit"
     $('.edit-btn').click(function() {
       var rowId = $(this).data('row-id');
       $('#edit-row-id').val(rowId); // Récupérer l'identifiant de la ligne et le stocker dans le champ masqué
-     
+      
       // Pré-remplir les champs de saisie du modal avec les données de la ligne correspondante
       // Vous pouvez utiliser AJAX ici pour récupérer les données du serveur si nécessaire
-     
+      
       // Afficher le modal de modification
       $('#edit-modal').modal('show');
     });
@@ -368,7 +357,8 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
   });
 </script>
 
-    
+
+
 
 <script>
   $(document).ready(function() {
@@ -398,11 +388,20 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
     });
   });
 </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
+
+
+    </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('Dashboardassets/js/scripts.js')}}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('Dashboardassets/assets/demo/chart-area-demo.js')}}"></script>
         <script src="{{asset('Dashboardassets/assets/demo/chart-bar-demo.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="{{asset('Dashboardassets/js/datatables-simple-demo.js')}}"></script>
+       
+       
+    </body>
 </html>

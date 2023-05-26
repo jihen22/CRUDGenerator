@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\editTableController;
 use App\Http\Controllers\ColonneController;
-use App\Http\Controllers\Table88eeeController;
+use App\Http\Controllers\Table001Controller;
 
 
 
@@ -133,26 +133,16 @@ Route::group(['middleware' => 'guest'] , function(){
    
 
 });
-<<<<<<< HEAD
 
 
 
-    Route::get('/table/{table}/{view}', [Table08Controller::class,'store']);
-     Route::get('/table/{table}/{view}', [Table08Controller::class,'index']);
-   Route::post('/table/{table}/{view}', [Table08Controller::class,'store']);
-    Route::delete('/data/{id}', [Table08Controller::class, 'deleteData']);
-    Route::post('/update-row/{id}', [Table08Controller::class, 'updateRow'])->name('update.row');
+    Route::get('/table/{table}/{view}', [Table001Controller::class,'store']);
+     Route::get('/table/{table}/{view}', [Table001Controller::class,'index']);
+   Route::post('/table/{table}/{view}', [Table001Controller::class,'store']);
+    Route::delete('/data/{id}', [Table001Controller::class, 'deleteData']);
+    Route::post('/update-row/{id}', [Table001Controller::class, 'updateRow'])->name('update.row');
 
 
-=======
-    Route::get('/table/{table}/{view}', [Table88eeeController::class,'store']);
-    Route::get('/table/{table}/{view}', [Table88eeeController::class,'index']);
-    Route::post('/table/{table}/{view}', [Table88eeeController::class,'store']);
-    Route::delete('/data/{id}', [Table88eeeController::class, 'deleteData']);
-    Route::post('/update-row/{id}', [Table88eeeController::class, 'updateRow'])->name('update.row');
-
-
->>>>>>> 1fabe54ba3c60c9822aad60e54a92f54f66cf3e4
 
 
     Route::get('/table/{table}', [ColonneController::class, 'showColumns'])->name('table.columns');
