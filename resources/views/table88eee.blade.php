@@ -88,7 +88,7 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
 <div class="container-fluid p-0">
 <div class ="row mb-2">
 <div class="col-sm-6">
-
+<h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
                 </div>
             </div>
         </div>
@@ -100,73 +100,64 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
 
             <div class="card-body">
 
-        @php
-    $hiddenColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
-       @endphp
-              <table id="mytable" class="table table-bordred table-striped">
-                   
-                   <thead>
-                   
-                 
-                   
-                   
-
-                   
-
-        <tr>
-
-        <th>Actions</th>
-       
-        <th>Edit</th>
-                     
-                      <th>Delete</th>
-            <!-- display column headers -->
-            @foreach ($columns as $column)
-                @if (!in_array($column, $hiddenColumns))
-                    <th>{{ $column }}</th>
-                @endif
-            @endforeach
-
-         
-        </tr>
      
-    </thead>
-
-
-
-    <tbody>
-    @foreach ($data as $row)
-        <tr data-row-id="{{ $row->id }}">
-            <td><input type="checkbox" class="checkthis" /></td>
-            <td>
-  <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
-    <span class="fas fa-edit"></span>
-  </button>
-</td>
-            <td>
-  <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
-    <span class="fas fa-trash-alt"></span>
-  </button>
-</td>
-
-            @foreach ($columns as $column)
-                @if (!in_array($column, $hiddenColumns))
-                    <td>{{ $row->{$column} }}</td>
+              <table id="mytable" class="table table-bordred table-striped">
+             
+    <thead>
+        <tr>
+            <th>Actions</th>
+           
+            @if ($showEditButton)
+                <th>Edit</th>
                 @endif
+                <th>delete</th>
+           
+                @foreach ($columns as $column)
+             @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
+                 <th>{{ $column }}</th>
+                  @endif
             @endforeach
+
         </tr>
-    @endforeach
-</tbody>
+    </thead>
+    <tbody>
+        @foreach ($data as $row)
+            <tr data-row-id="{{ $row->id }}">
+                <td><input type="checkbox" class="checkthis" /></td>
+               
+                @if ($showEditButton)
+                    <td>
+                        <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
+                            <span class="fas fa-edit"></span>
+                        </button>
+                    </td>
+                @endif
+
+                <td>
+                  <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
+                   <span class="fas fa-trash-alt"></span>
+                    </button>
+                  </td>
+               
+                @foreach ($columns as $column)
+                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
+                        <td>{{ $row->{$column} }}</td>
+                    @endif
+                @endforeach
+            </tr>
+        @endforeach
+    </tbody>
 
 
 
-<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Column</button>
+
+<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Add columns</h4>
+                <h4 class="modal-title" id="myModalLabel">Ajouter des données</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -174,7 +165,7 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
             <form id="addDataForm">
                 <div class="modal-body">
                     @foreach ($columns as $column)
-                        @if (!in_array($column, $hiddenColumns))
+                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
                             <div class="form-group">
                                 <label for="{{ $column }}">{{ $column }}:</label>
                                 <input type="text" class="form-control" id="{{ $column }}" name="{{ $column }}" required>
@@ -183,8 +174,8 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
                     @endforeach
                 </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
                     </div>
                 </form>
             </div>
@@ -194,44 +185,6 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
 
    
 
-
-
-
-
-<!-- Modal for editing row data -->
-<div id="edit-modal" class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-        <h4 class="modal-title custom-align" id="Heading">Edit Your Detail</h4>
-      </div>
-      <div class="modal-body">
-        <form id="edit-form">
-          @csrf
-          @method('POST')
-          <input type="hidden" name="row_id" id="edit-row-id">
-
-          <!-- dynamically generate input fields for editable columns -->
-          @foreach ($columns as $column)
-            @if (!in_array($column, $hiddenColumns))
-              <div class="form-group">
-                <label for="{{ $column }}">{{ $column }}</label>
-                <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
-              </div>
-            @endif
-          @endforeach
-          <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-      </body>
-    
 <script>
 
 $(document).ready(function() {
@@ -256,7 +209,9 @@ $('.modal-footer .btn-secondary').click(function(){
 
 
 </script>
-    <script>
+
+
+<script>
  
 // Récupérer la référence du formulaire d'ajout de données
 const form = document.querySelector('#addDataForm');
@@ -310,7 +265,7 @@ form.addEventListener('submit', (event) => {
 
 // Ajouter les boutons d'action d'édition et de suppression aux cellules correspondantes
 editCell.innerHTML = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"><span class="fas fa-edit"></span></button>';
-deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" "><span class="fas fa-trash-alt"></span></button>';
+deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}"><span class="fas fa-trash-alt"></span></button>';
 
     @foreach ($columns as $column)
         @if (!in_array($column, $hiddenColumns))
@@ -326,7 +281,41 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 });
 
 </script>
-    <script>
+
+<!-- Modal for editing row data -->
+<div id="edit-modal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+        <h4 class="modal-title custom-align" id="Heading">Edit Your Detail</h4>
+      </div>
+      <div class="modal-body">
+        <form id="edit-form">
+          @csrf
+          @method('POST')
+          <input type="hidden" name="row_id" id="edit-row-id">
+
+          <!-- dynamically generate input fields for editable columns -->
+         
+          @foreach ($columns as $column)
+    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $editableColumns))
+        <div class="form-group">
+            <label for="{{ $column }}">{{ $column }}</label>
+            <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
+        </div>
+    @endif
+@endforeach
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
   $(document).ready(function() {
     // Ouvrir le modal de modification lors du clic sur le bouton "Edit"
     $('.edit-btn').click(function() {
@@ -368,7 +357,8 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
   });
 </script>
 
-    
+
+
 
 <script>
   $(document).ready(function() {
@@ -398,11 +388,20 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
     });
   });
 </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
+
+
+    </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('Dashboardassets/js/scripts.js')}}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('Dashboardassets/assets/demo/chart-area-demo.js')}}"></script>
         <script src="{{asset('Dashboardassets/assets/demo/chart-bar-demo.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="{{asset('Dashboardassets/js/datatables-simple-demo.js')}}"></script>
+       
+       
+    </body>
 </html>

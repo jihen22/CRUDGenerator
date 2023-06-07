@@ -104,6 +104,7 @@
       
 
 <div class="content-warper" id="monDiv" style="">
+<<<<<<< HEAD
 <a href="{{ route('admin.dashboard') }}" class="arrow-icon">
   <i class="fas fa-arrow-left"></i>
 </a>
@@ -115,11 +116,25 @@
     
     
 	     <div class="container-fluide p-0">
+=======
+<div class="content-header">
+<div class="container-fluid p-0">
+<div class ="row mb-2">
+<div class="col-sm-6">
+<h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="container-fluide p-0">
+>>>>>>> c583da0c0b897b3d3482d5b7ead1ebf26191d42f
            <div class="card card-default">
 
 
             <div class="card-body">
 
+<<<<<<< HEAD
       
               <table id="mytable" class="table table-bordred table-striped">
               
@@ -152,13 +167,51 @@
                         </button>
                     </td>
                 @endif
+=======
+     
+              <table id="mytable" class="table table-bordred table-striped">
+             
+    <thead>
+        <tr>
+            <th>Actions</th>
+           
+            @if ($showEditButton)
+                <th>Edit</th>
+                @endif
+                <th>delete</th>
+           
+                @foreach ($columns as $column)
+             @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
+                 <th>{{ $column }}</th>
+                  @endif
+            @endforeach
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($data as $row)
+            <tr data-row-id="{{ $row->id }}">
+                <td><input type="checkbox" class="checkthis" /></td>
+               
+                @if ($showEditButton)
+                    <td>
+                        <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
+                            <span class="fas fa-edit"></span>
+                        </button>
+                    </td>
+                @endif
+>>>>>>> c583da0c0b897b3d3482d5b7ead1ebf26191d42f
 
                 <td>
                   <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
                    <span class="fas fa-trash-alt"></span>
                     </button>
                   </td>
+<<<<<<< HEAD
                 
+=======
+               
+>>>>>>> c583da0c0b897b3d3482d5b7ead1ebf26191d42f
                 @foreach ($columns as $column)
                     @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
                         <td>{{ $row->{$column} }}</td>
@@ -170,6 +223,11 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
+>>>>>>> c583da0c0b897b3d3482d5b7ead1ebf26191d42f
 
 <button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -184,7 +242,11 @@
             <form id="addDataForm">
                 <div class="modal-body">
                     @foreach ($columns as $column)
+<<<<<<< HEAD
                         @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
+=======
+                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
+>>>>>>> c583da0c0b897b3d3482d5b7ead1ebf26191d42f
                             <div class="form-group">
                                 <label for="{{ $column }}">{{ $column }}:</label>
                                 <input type="text" class="form-control" id="{{ $column }}" name="{{ $column }}" required>
@@ -192,11 +254,20 @@
                         @endif
                     @endforeach
                 </div>
+<<<<<<< HEAD
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                     <button type="submit" class="btn btn-primary">Ajouter</button>
                 </div>
             </form>
+=======
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+>>>>>>> c583da0c0b897b3d3482d5b7ead1ebf26191d42f
         </div>
     </div>
 </div>
@@ -318,6 +389,7 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
           <input type="hidden" name="row_id" id="edit-row-id">
 
           <!-- dynamically generate input fields for editable columns -->
+<<<<<<< HEAD
           
           @foreach ($columns as $column)
             @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $editableColumns))
@@ -331,6 +403,18 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
           <div class="text-center">
             <button type="submit" class="btn btn-primary">Save Changes</button>
           </div>
+=======
+         
+          @foreach ($columns as $column)
+    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $editableColumns))
+        <div class="form-group">
+            <label for="{{ $column }}">{{ $column }}</label>
+            <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
+        </div>
+    @endif
+@endforeach
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+>>>>>>> c583da0c0b897b3d3482d5b7ead1ebf26191d42f
         </form>
       </div>
     </div>

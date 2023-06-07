@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\table001;
+use App\Models\table88eee;
 
 use App\Table;
 use App\Field;
 
 
 
-class Table001Controller extends Controller
+class Table88eeeController extends Controller
 {
     
     
@@ -96,7 +96,7 @@ return view($view, compact('table', 'data', 'columns', 'nameproject', 'visibleCo
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-table001::create($data);
+table88eee::create($data);
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
@@ -105,7 +105,7 @@ table001::create($data);
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
-       $data = table001::find($id);
+       $data = table88eee::find($id);
 
        
     
@@ -126,7 +126,7 @@ table001::create($data);
    public function updateRow(Request $request, $id)
    {
      // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
-     $row = table001::find($id);
+     $row = table88eee::find($id);
    
      // Vérifier si la ligne a été trouvée
      if ($row) {
@@ -139,7 +139,7 @@ table001::create($data);
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('table001', $column)) {
+         if (Schema::hasColumn('table88eee', $column)) {
            $row->{$column} = $value;
          }
        }
