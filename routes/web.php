@@ -17,16 +17,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\editTableController;
 use App\Http\Controllers\ColonneController;
-<<<<<<< HEAD
+
 use App\Http\Controllers\Table001Controller;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ListController;
-
-
-=======
-use App\Http\Controllers\Table88eeeController;
->>>>>>> c583da0c0b897b3d3482d5b7ead1ebf26191d42f
-
 
 
 
