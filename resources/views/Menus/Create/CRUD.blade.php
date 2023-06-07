@@ -16,10 +16,10 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         
-		    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-	    	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script> 
 
@@ -243,20 +243,24 @@
       width: 50%; /* Adjust the width as per your requirement */
         margin: 0 auto; /* Center the input fields horizontally */
     }
+    .form-check-inline {
+        display: inline-block;
+        margin-right: 10px;
+    }
 </style>
 
 
-		
+    
 </head>
 
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
-	<div id="app" class="warpper">
-	    @include('admin.partials.topbar')
-	       <div id="layoutSidenav" class="flex-container">
+  <div id="app" class="warpper">
+      @include('admin.partials.topbar')
+         <div id="layoutSidenav" class="flex-container">
          @include('admin.partials.sidebar')
                   
          <div class="content-warper" id="monDiv" >
-	          <div class="content-header"></div>
+            <div class="content-header"></div>
                 <section class="content">
     <!--table name , table controller and table model card-->
     <div class="card">
@@ -278,20 +282,20 @@
 </div>
                          <div class="form-group col-md-6">
                             <label for="model-name">Model Name</label>
-                            <input type="text" class="form-control" name="model-name" id="model-name" placeholder="Enter Model name for your table">
+                            <input type="text" class="form-control" name="model-name" id="model-name" placeholder="Enter Model name for your table"value="{{ old('model-name') }}">
                         
     <div class="invalid-feedback">Model name field is required!.</div>
                          </div>
    
                          <div class="form-group col-md-6">
                              <label for="controller-name">Controller Name</label>
-                             <input type="text" class="form-control"name="controller-name" id="controller-name" placeholder="Enter Controller name">
+                             <input type="text" class="form-control"name="controller-name" id="controller-name" placeholder="Enter Controller name" value="{{ old('controller-name') }}">
                             
     <div class="invalid-feedback">Controller  name field is required!.</div>
                          </div>
                          <div class="form-group col-md-6">
                             <label for="viewName">View Name</label>
-                            <input type="text" class="form-control" id="viewName" name="viewName" placeholder="Enter View name">
+                            <input type="text" class="form-control" id="viewName" name="viewName" placeholder="Enter View name" value="{{ old('viewName') }}">
                           
     <div class="invalid-feedback">View name field is required!.</div>
                          </div>
@@ -302,9 +306,9 @@
         <option value="list">List View</option>
         <option value="Grid">Grid View</option>
         <option value="gantt">Gantt Chart View</option>
-        <option value="Calendar">Map View</option>
-        <option value="Calendar">Tree View</option>
-        <option value="Calendar"> Table View</option>
+        <option value="Map">Map View</option>
+        <option value="Tree">Tree View</option>
+        <option value="Table"> Table View</option>
         <!-- Add more options for other view types if needed -->
     </select>
 </div>
@@ -328,7 +332,6 @@
                                <thead>
                                        <tr>    
                                         <th scope="col">Field Type</th>
-                                        
                                         <th scope="col">DataBaseColumn</th>
                                         <th scope="col">Validation</th>
                                         <th scope="col">Visual Title</th>
@@ -340,6 +343,10 @@
                                         <th scope="col">Max</th>
                                         <th scope="col">Min</th>
                                         <th scope="col">Default Value</th>
+                                        <th scope="col">Nullable</th>
+                                        <th scope="col">Unique</th>
+                                        <th scope="col">Indexing</th>
+                                        <th scope="col">Validation Rules</th>
                                         <th scope="col">Edit</th>
                                         <th scope="col">Delete</th>
                                       </tr>
@@ -363,18 +370,20 @@
         
 
 
-        <div class="modal fade bd-example-modal-lg custom-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
+ <!--add field Modal-->
+
+ <div class="modal fade bd-example-modal-lg custom-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content custom-modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title custom-modal-title" id="addFeildModalLabel">Add Field</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="form-group">
+                      <div class="modal-content custom-modal-content">
+                      <div class="modal-header">
+                    <h5 class="modal-title custom-modal-title" id="addFeildModalLabel">Add Field</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="form-group">
                 <label class="custom-modal-label"style="margin-left: 10px;" for="field_type">Field Type</label>
-                <select id="field_type" style="font-weight: bold; margin-left: 10px;" name="field_type">
+                <select id="field_type" style=" margin-left: 10px;" name="field_type">
                     <option value="">Select a column type</option>
                     <optgroup label="Numeric">
                         <option value="integer">Integer</option>
@@ -404,6 +413,7 @@
                 <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;"> Select the appropriate column type based on the data you want to store in the column (e.g., string, integer, text, boolean, etc.)</span></div>
             </div>
 
+                    
             <div class="form-group">
                 <label for="DBCName"style=" margin-left: 10px;">Database Column Name:</label>
                 <input type="text" style="margin-left: 10px;"class="form-control" id="DBCName" name="DBCName" placeholder="Enter DBC Name">
@@ -411,31 +421,25 @@
                 <div class="invalid-feedback"></div>
             </div>
 
-
             <div class="form-group">
                 <label for="VisualTitle"style=" margin-left: 10px;">Visual Title</label>
-                <input style="font-weight: bold; margin-left: 10px;" type="text" class="form-control" name="VisualTitle" id="VisualTitle" placeholder="Enter Visual title">
+                <input style=" margin-left: 10px;" type="text" class="form-control" name="VisualTitle" id="VisualTitle" placeholder="Enter Visual title">
                <div> <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Enter a visual title for the field, which will be displayed on the form or in the user interface.</span></div>
             </div>
-            <h4 id="addFeildModalLabel" style=" margin-left: 10px;">Additional Settings</h4>
+
+            <h4 style=" margin-left: 10px;">Additional Settings</h4>
             
             <div class="form-group">
-                <label for="Validation"style="font-weight: bold; margin-left: 10px;">Validation</label>
-                <select id="Validation"style="font-weight: bold; margin-left: 10px;" name="Validation">
+                <label for="Validation"style=" margin-left: 10px;">Validation</label>
+                <select id="Validation"style=" margin-left: 10px;" name="Validation">
                     <option value="Required">Required</option>
                     <option value="Optional">Optional</option>
                     <option value="Required/Unique">Required/Unique</option>
                 </select>
                <div> <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Specify whether the field is required or not.</span></div>
             </div>
-
-            <style>
-    .form-check-inline {
-        display: inline-block;
-        margin-right: 10px;
-    }
-</style>
-
+                                    
+           
 <div class="form-group">
     <label for="in_list" style="margin-right: 10px;">In List:</label>
     <div class="form-check form-check-inline">
@@ -452,6 +456,7 @@
 </div>
 
 <div class="form-group">
+  <div>
     <label for="in_create" style="margin-right: 10px;">In Create:</label>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="in_create" id="in_create_yes" value="yes">
@@ -461,9 +466,10 @@
         <input class="form-check-input" type="radio" name="in_create" id="in_create_no" value="no">
         <label class="form-check-label" for="in_create_no">No</label>
     </div>
-</div>
+
 <div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
     Specify whether the field should be shown in the create form for adding new records.
+</div>
 </div>
 
 <div class="form-group">
@@ -480,7 +486,7 @@
 <div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
     Specify whether the field should be shown in the detail view of a specific record.
 </div>
-
+  </div>
 <div class="form-group">
     <label for="in_edit" style="margin-right: 10px;">In Edit:</label>
     <div class="form-check form-check-inline">
@@ -495,12 +501,12 @@
 <div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
     Specify whether the field should be shown in the edit form for modifying existing records.
 </div>
-
+  
+  
 
          
            
-         
-            <div class="form-group">
+<div class="form-group">
     <div style="display: flex; align-items: center;">
         <label for="field-max-limit" style="margin-right: 10px;">Max Limit:</label>
         <input type="number" class="form-control" id="field-max-limit" name="field-max-limit" style="width: 150px;">
@@ -556,12 +562,7 @@
       <span style="font-size: 12px; color: #999; margin-left: 10px;">Choose the type of indexing for the field.</span></div>
    
 </div>
-<div>
-    <label for="foreign_key" style="font-weight: bold; margin-left: 10px;">Foreign Key:</label>
-    <input type="text" name="foreign_key" id="foreign_key" style="margin-left: 10px;">
-    <div>
-    <span style="font-size: 12px; color: #999; margin-left: 10px;">Enter the foreign key value for the field.</span></div>
-</div>
+
 
 <div>
     <label for="validation_rules" style="font-weight: bold; margin-left: 10px;">Additional Validation Rules:</label>
@@ -571,13 +572,14 @@
 </div>
 
 
-            <div class="modal-footer custom-modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="Savefield" name="Savefield">Save Field</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+                    <div class="modal-footer custom-modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="Savefield" name="Savefield">Save Field</button>
+                </div>
+ </div>         
+  </div>
+ </div>
 
               
            
@@ -694,6 +696,10 @@ $('#Savefield').click(function(e) {
   var maxLimit = $('#field-max-limit').val();
   var minLimit = $('#field-min-limit').val();
   var defaultValue = $('#field-default-value').val();
+  var nullable = $('#nullable').prop('checked');
+  var unique = $('#unique').prop('checked');
+  var indexing = $('#indexing').val();
+  var validationRules = $('#validation_rules').val();
 
   // Check if the dbcName field is empty
   if (DBCName === '') {
@@ -729,7 +735,13 @@ $('#Savefield').click(function(e) {
     inShow: inShow,
     maxLimit: maxLimit,
     minLimit: minLimit,
-    defaultValue: defaultValue
+    defaultValue: defaultValue,
+    nullable :nullable,
+    unique : unique ,
+    indexing: indexing,
+    validationRules :validationRules
+
+
   };
 
   // Add or update the field object in the array
@@ -760,8 +772,8 @@ $('#Savefield').click(function(e) {
 '<td>' + field.inShow + '</td>' +
 '<td>' + field.maxLimit + '</td>' +
 '<td>' + field.minLimit + '</td>' +
-'<td>' + field.defaultValue + '</td>' +
-'<td>' +
+'<td>' + field.defaultValue + '</td>' +'<td>' + field.nullable + '</td>' +'<td>' + field.unique+ '</td>' +'<td>' + field.indexing + '</td>' +'<td>' + field.validationRules + '</td>' 
++'<td>' +
 '<button  type="button" class="btn btn-warning btn-sm edit"  data-index="' + index + '">Edit</button>' + '</td>' +
 '<td>' +
 '<button type="button" class="btn btn-dark btn-sm delete"  data-index="' + index + '">Delete</button>' + '</td>' +
@@ -809,6 +821,10 @@ $('input[name="inShow"]').prop('checked', false);
 $('#field-max-limit').val('');
 $('#field-min-limit').val('');
 $('#field-default-value').val('');
+$('#nullable').prop('checked', false);
+$('#unique').prop('checked', false);
+$('#validationRules').val('');
+$('#indexing').val('');
 });
 
   
@@ -858,7 +874,7 @@ function generateTableHtml() {
       '<td>' + field.maxLimit + '</td>' +
       '<td>' + field.minLimit + '</td>' +
       '<td>' + field.defaultValue + '</td>' +
-      '<td>' +
+      '<td>' +'<td>' + field.nullable + '</td>' +'<td>' + field.unique+ '</td>' +'<td>' + field.indexing + '</td>' +'<td>' + field.validationRules + '</td>'+
       '<button  type="button" class="btn btn-warning btn-sm edit"  data-index="' + index + '">Edit</button>' +   '</td>' +
       '<td>' +
       '<button type="button" class="btn btn-dark btn-sm delete"  data-index="' + index + '">Delete</button>' +  '</td>' +
@@ -887,6 +903,10 @@ $('#savedFields').on('click', '.edit', function() {
     $('#field-max-limit').val(fields[index].maxLimit);
     $('#field-min-limit').val(fields[index].minLimit);
     $('#field-default-value').val(fields[index].defaultValue);
+    $('#unique').val(fields[index].unique);
+    $('#indexing').val(fields[index].indexing);
+    $('#validationRules').val(fields[index].validationRules);
+    $('#nullable').val(fields[index].nullable);
     // Show the modal
     $('#myModal').modal('show');
 
@@ -920,24 +940,44 @@ var entriesPerPage = $('#entries-per-page').val();
 var orderBy = $('#order-by').val();
 var orderdirection = $('#order-direction').val();
   var hasErrors = false;
-// Check if the table exists
-$.ajax({
-  url: '/check-table-exists',
+  
+  $.ajax({
+  url: '/check-entities-exist',
   method: 'POST',
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   },
-  data: { tableName: tableName },
+  data: {
+    tableName: tableName,
+    controllerName: controllerName,
+    modelName: modelName,
+    viewName: viewName
+  },
   success: function(response) {
-   
-    if ( tableName.trim() === '') {
- handleEmptyTableNameError();
-    } else if (response.exists) {
+    if (tableName.trim() === '') {
+      handleEmptyTableNameError();
+    } else if (response.tableExists) {
       handleTableExistsError();
+    } else if (controllerName.trim() === '') {
+      handleEmptyControllerNameError();
+    } else if (response.controllerExists) {
+      handleControllerExistsError();
+    } else if (modelName.trim() === '') {
+      handleEmptyModelNameError();
+    } else if (response.modelExists) {
+      handleModelExistsError();
+    } else if (viewName.trim() === '') {
+      handleEmptyViewNameError();
+    } else if (response.viewExists) {
+      handleViewExistsError();
     } else {
       $('#table-name').removeClass('is-invalid');
+      $('#controller-name').removeClass('is-invalid');
+      $('#model-name').removeClass('is-invalid');
+      $('#viewName').removeClass('is-invalid');
       hasErrors = false;
 
+      // Generate CRUD files
       var data = {
         fields: fields,
         tableName: tableName,
@@ -945,12 +985,12 @@ $.ajax({
         tableModel: modelName,
         tableView: viewName,
         viewType: viewType,
-        entriesPerPage : entriesPerPage,
+        entriesPerPage: entriesPerPage,
         orderBy: orderBy,
         orderdirection: orderdirection,
-         _token: $('meta[name="csrf-token"]').attr('content') // get CSRF token from the meta tag
+        _token: $('meta[name="csrf-token"]').attr('content')
       };
-   console.log(data);
+
       // Send the data to the server to generate CRUD files
       $.ajax({
         type: 'POST',
@@ -960,21 +1000,19 @@ $.ajax({
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(response) {
-      
+          // Handle success
         },
         error: function(xhr, status, error) {
-          console.log('Error in second AJAX call:', error);
-          console.error("An error occurred while generating the files: ", error);
-          var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while generating the files. Please try again later.';
-          $('#error-message').text(errorMessage);
+          // Handle error
         }
       });
     }
   },
   error: function(xhr, status, error) {
-
+    // Handle error
   }
 });
+
 
 function handleTableExistsError() {
   $('#table-name').addClass('is-invalid');
@@ -988,6 +1026,44 @@ function handleEmptyTableNameError() {
   $('#table-name').addClass('is-invalid');
   $('#table-name').siblings('.invalid-feedback').text('Table name is empty, enter a valid table name!');
   $('#table-name').siblings('.error-label').text('Error:');
+
+  hasErrors = true;
+}
+function handleControllerExistsError() {
+  $('#controller-name').addClass('is-invalid');
+  $('#controller-name').siblings('.invalid-feedback').text('Controller already exists, enter another valid Controller name!');
+  $('#controller-name').siblings('.error-label').text('Error:');
+}
+function handleEmptyControllerNameError() {
+  $('#controller-name').addClass('is-invalid');
+  $('#controller-name').siblings('.invalid-feedback').text('Controller name is empty, enter a valid Controller name!');
+  $('#controller-name').siblings('.error-label').text('Error:');
+
+  hasErrors = true;
+}
+
+function handleModelExistsError() {
+  $('#model-name').addClass('is-invalid');
+  $('#model-name').siblings('.invalid-feedback').text('Model already exists, enter another valid Model name!');
+  $('#model-name').siblings('.error-label').text('Error:');
+}
+function handleEmptyModelNameError() {
+  $('#model-name').addClass('is-invalid');
+  $('#model-name').siblings('.invalid-feedback').text('Model name is empty, enter a valid Model name!');
+  $('#model-name').siblings('.error-label').text('Error:');
+
+  hasErrors = true;
+}
+
+function handleViewExistsError() {
+  $('#viewName').addClass('is-invalid');
+  $('#viewName').siblings('.invalid-feedback').text('View already exists, enter another valid View name!');
+  $('#viewName').siblings('.error-label').text('Error:');
+}
+function handleEmptyViewNameError() {
+  $('#viewName').addClass('is-invalid');
+  $('#viewName').siblings('.invalid-feedback').text('View name is empty, enter a valid view name!');
+  $('#viewName').siblings('.error-label').text('Error:');
 
   hasErrors = true;
 }

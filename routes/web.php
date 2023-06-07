@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\editTableController;
 use App\Http\Controllers\ColonneController;
-use App\Http\Controllers\Table88eeeController;
+
 
 
 
@@ -136,11 +136,7 @@ Route::group(['middleware' => 'guest'] , function(){
 
 
 
-    Route::get('/table/{table}/{view}', [Table88eeeController::class,'store']);
-     Route::get('/table/{table}/{view}', [Table88eeeController::class,'index']);
-   Route::post('/table/{table}/{view}', [Table88eeeController::class,'store']);
-    Route::delete('/data/{id}', [Table88eeeController::class, 'deleteData']);
-    Route::post('/update-row/{id}', [Table88eeeController::class, 'updateRow'])->name('update.row');
+ 
 
 
 
@@ -155,7 +151,14 @@ Route::group(['middleware' => 'guest'] , function(){
 
 
 
-Route::post('/check-table-exists', '\\App\\Http\\Controllers\\tablefilesController@checkTableExists');
+Route::post('/check-entities-exist', '\\App\\Http\\Controllers\\tablefilesController@checkEntitiesExist');
 
+Route::post('/check-entitiescol-exist', '\\App\\Http\\Controllers\\editTableController@checkEntitiescolExist');
 
+//use App\Http\Controllers\cc6Controller;
 
+//Route::get('/table/{table}/{view}', [cc6Controller::class, 'store']);
+//Route::get('/table/{table}/{view}', [cc6Controller::class, 'index']);
+//Route::post('/table/{table}/{view}', [cc6Controller::class, 'store']);
+//Route::delete('/data/{id}', [cc6Controller::class, 'deleteData']);
+//Route::post('/update-row/{id}', [cc6Controller::class, 'updateRow'])->name('update.row');

@@ -20,20 +20,18 @@
         font-weight: bold;
         font-size: 1.2rem;
       }
-      <style>
+      </style>
+    <style>
         .dark-theme {
   background-color: #1c1c1c;
   color: #f2f2f2;
 }
-.card {
-  background-color: #323232;
-  color: #f2f2f2;
-}
+
 
 
 
 label.col-form-label {
-  color: #000000;
+  color: #ffffff;
 }
 .form-control {
   background-color: #4d4d4d;
@@ -65,16 +63,16 @@ label.col-form-label {
     </style>
 @extends('layouts.app')
     </header>
-<body lass="img js-fullheight" style="background-image: url(LoginpageRessources/images/bg.jpg);">
+<body lass="img js-fullheight" style="background-image: url(LoginpageRessources/images/header-bg.jpg);">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            
 
-                <div class="card-body">
+              
                 <div  class="py-56">
-                    <img src="{{ asset('logo.png') }}" style="height:180px;">
+                   
                   </div>
                     
                     <form id="form1" method="POST" action="{{ route('register') }}">
@@ -214,7 +212,7 @@ label.col-form-label {
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4 d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary" id="submit-btn">
+                                <button type="submit"  id="submit-btn"style="margin-right: 10px; text-decoration: none; color: #ffffff; background-color: #FFA500; padding: 10px 20px; font-size: 18px; border-radius: 5px;">
                                     {{ __('Register and start new project !') }}
                                 </button>
                             </div>

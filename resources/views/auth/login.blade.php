@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
@@ -21,14 +20,14 @@
   
 	</head>
    
-    <body class="img js-fullheight" style="background-image: url(LoginpageRessources/images/bg.jpg);">
+    <body class="img js-fullheight" style="background-image: url(LoginpageRessources/images/header-bg.jpg);">
 	@section('content')
 		<div class="container">
 			
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
-		      	<h3 class="mb-4 text-center">Have an account?</h3>
+		      	<h2 class="mb-4 text-center">Have an account?</h2>
                   <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -64,6 +63,7 @@
                 @enderror
             </div>
         </div>
+        
         <div class="row mb-3">
     <div class="col-md-6">
         <div class="form-check">

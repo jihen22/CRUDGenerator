@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Console\Tablescommands;
-
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Console\Command;
 
 class Generatemodelcontfiles extends Command
@@ -29,9 +29,11 @@ class Generatemodelcontfiles extends Command
       
         $controllerName = $this->option('controller') ?: ucfirst(camel_case($tableName)) . 'Controller';
     
+    
         // Generate the controller
         $this->call('generate:controller', [
             'name' =>  $controllerName,
+            'model'=>$modelName,
         ]);
     
         // Generate the model with columns
@@ -39,9 +41,12 @@ class Generatemodelcontfiles extends Command
             'table' =>$tableName,
             'model'=>$modelName ,
         ]);
-       
-    
+
         $this->info('Model and controller generated successfully!');
+
+        
+    
+       
     }
     
 }

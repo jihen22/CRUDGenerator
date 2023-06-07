@@ -1,13 +1,13 @@
 @extends('layouts.app')
-
+<body lass="img js-fullheight" style="background-image: url(LoginpageRessources/images/header-bg.jpg);">
 @section('content')
 <div class="container" >
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+         
+                <div >{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
+               
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
@@ -57,9 +57,10 @@
                             </div>
                         </div>
                     </form>
-                </div>
+              
             </div>
         </div>
     </div>
-</div>
+
 @endsection
+</body>

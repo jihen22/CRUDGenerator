@@ -8,21 +8,20 @@ use Illuminate\Support\Str;
 
 class GenerateController extends Command
 {
-    protected $signature = 'generate:controller {name} {fields?}';
+    protected $signature = 'generate:controller {name} {model}{fields?}';
 
     protected $description = 'Generate a new controller from a stub file';
 
     public function handle()
     {
-        $name = $this->argument('name');
-        $modelName = lcfirst($name);
+        $controllerName = $this->argument('name') . "Controller";
+      
+        $modelName = $this->argument('model');
+      
         
-        $controllerName = ucfirst($modelName) . "Controller";
 
        
-        $modelNamePlural = Str::plural(lcfirst($modelName)); //products
-        $viewFolder = strtolower($modelNamePlural);
-        $routePrefix = strtolower($modelNamePlural);
+       
 
         // Get the fields from the argument and split them into an array
         $fields = $this->argument('fields') ? explode(',', $this->argument('fields')) : [];
@@ -48,9 +47,8 @@ class GenerateController extends Command
         ], [
             $modelName,
             $controllerName,
-            $modelNamePlural,
-            $viewFolder,
-            $routePrefix,
+           
+          
             $fieldSetters
         ], $stubContent);
 
