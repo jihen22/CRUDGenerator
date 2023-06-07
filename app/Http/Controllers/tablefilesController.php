@@ -9,6 +9,8 @@ use App\Field;
 use App\Table;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\View;
 
 
 
@@ -31,6 +33,7 @@ class tablefilesController extends Controller{
         $validator = Validator::make($request->all(), [
             'tableName' => 'required|max:255',
             'tableModel' => 'required|max:255',
+            'viewType' => 'required|max:255',
             'tableController' => 'required|max:255',
             'tableView' => 'required|max:255',
             'fields' => 'required|array|min:1',
@@ -61,6 +64,7 @@ class tablefilesController extends Controller{
             'model_name' => $modelName,
             'controller_name' => $controllerName, 
             'view_name' => $viewName,
+            'view_type' => $viewType,
             'entriesPerPage' => $entriesPerPage,
             'orderBy' => $orderBy,
             'orderdirection' => $orderdirection,
@@ -82,6 +86,10 @@ class tablefilesController extends Controller{
                         'max' => $field['maxLimit'],
                         'min' => $field['minLimit'],
                         'default_value' => $field['defaultValue'],
+                        'indexing' => $field['indexing'],
+                        'nullable' => $field['nullable'],
+                        'validationRules' => $field['validationRules'],
+                        'unique' => $field['unique'],
                     ];
                 }
         
@@ -104,13 +112,7 @@ class tablefilesController extends Controller{
                     '--viewType'=>$viewType ,
                     '--fields' => implode(',', $fieldsOption),
                 ];
-          
-               
-                
-               
-            
-        
-                Artisan::call('create:table', $options);
+              Artisan::call('create:table', $options);
         
                 return response()->json(['success' => true]);
             }
@@ -126,14 +128,67 @@ class tablefilesController extends Controller{
     return view('edittable')->with('table', $table)->with('fields', $fields);
 }
 
-public function checkTableExists(Request $request)
+
+public function checkColumn(Request $request)
+{
+    // Retrieve the table name and column name from the request
+    $tableName = $request->input('table_name');
+    $columnName = $request->input('column_name');
+
+    // Perform the logic to check if the column exists in the table
+    // You can use your preferred database query builder or ORM to perform the check
+
+    // Example logic using Laravel's Schema Builder
+    $tableExists = \Schema::hasColumn($tableName, $columnName);
+
+    // Return a JSON response indicating whether the column exists or not
+    return response()->json([
+        'exists' => $tableExists
+    ]);
+}
+
+
+
+
+public function checkEntitiesExist(Request $request)
 {
     $tableName = $request->input('tableName');
+    $controllerName = $request->input('controllerName');
+    
+    $modelName = $request->input('modelName');
+    $viewName = $request->input('viewName');
 
-    $exists = Schema::hasTable($tableName);
+    // Check if table exists
+    $tableExists = Schema::hasTable($tableName);
+    
+  // Check if controller file exists
+  $controllerExists = File::exists(app_path('Http/Controllers/' . $controllerName . 'Controller.php'));
 
-    return response()->json(['exists' => $exists]);
+  // Check if model file exists
+
+  $modelExists = File::exists(app_path('Models/'.$modelName . '.php'));
+
+
+ 
+// Construct the view path
+
+$viewPath = base_path('resources/views/' . str_replace('.', '/', $viewName) . '.blade.php');
+
+// Check if the view exists
+$viewExists = file_exists($viewPath);
+
+  
+
+    // Return the response
+    return response()->json([
+        'tableExists' => $tableExists,
+        'controllerExists' => $controllerExists,
+        'modelExists' => $modelExists,
+        'viewExists' => $viewExists,
+    ]);
 }
+
+
 
        
     }

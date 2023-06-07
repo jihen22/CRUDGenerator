@@ -19,6 +19,7 @@ class Table extends Model
         'model_name',
         'controller_name',
         'view_name',
+        'view_type',
         'entriesPerPage',
         'orderBy',
         'orderdirection'

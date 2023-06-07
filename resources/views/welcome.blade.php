@@ -21,7 +21,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top">CRUD generator Laravel</a>
+                <a class="navbar-brand" href="#page-top"> <img src="{{ asset('logo.png') }}" alt="Logo" style="width: 260px; height: auto;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -39,19 +39,23 @@
         </nav>
         <!-- Masthead-->
         <header class="masthead">
-            <div class="container">
-                <div class="masthead-subheading">Welcome to our CRUD generator !</div>
-                <div class="">Create, read, update, and delete data in your database. Whether you're a developer, a data analyst, or a business owner, our app is designed to help you manage your data with ease. So go ahead, create a new record, update an existing one, or delete an old entry. We hope our app makes your work simpler and more efficient.</div>
-                <a class="btn btn-primary btn-xl " href="{{ route('register') }}">Start Project</a>
-<a class="btn btn-secondary btn-xl " href="#about">Know More</a>
-            </div>
+            <div class="container"><div class="first-img__text"><h1 class="first-img__heading">Welcome to our CRUD generator !</h1><div class="first-img__description"><div><span class="first-img__words">Create, read, update, and delete data in your database. Whether you're a developer, a data analyst, or a business owner, our app is designed to help you manage your data with ease. </span></div><div><span>So go ahead, create a new record, update an existing one, or delete an old entry. We hope our app makes your work simpler and more efficient.</span></div>
+               
+                <div class=""></div>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+    <a style="margin-right: 10px; text-decoration: none; color: #ffffff; background-color: #FFA500; padding: 10px 20px; font-size: 18px; border-radius: 5px;" href="{{ route('register') }}">Start Project</a>
+    <a style="text-decoration: none; color: #ffffff; background-color: #6c757d; padding: 10px 20px; font-size: 18px; border-radius: 5px;" href="#about">Know More</a>
+</div>
+
+
+
         </header>
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"> Our services</h2>
-                    <h3 class="section-subheading text-muted">Developers can automate the processes of creating, reading, updating, and deleting data, saving them time and efficiency.</h3>
+                    <h3 class=" text-muted">Developers can automate the processes of creating, reading, updating, and deleting data, saving them time and efficiency.</h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -82,62 +86,72 @@
             </div>
         </section>
        
-        <!-- About-->
         <section class="page-section" id="about">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">About</h2>
-                    <h3 class="section-subheading text-muted">Welcome to our CRUD GENERATOR LARAVE project! The purpose of this project is to provide developers with a tool that can generate code for CRUD (Create, Read, Update, Delete) operations in Laravel applications. With this generator, developers can save time and increase productivity by automating the tedious task of writing boilerplate code.</h3>
-                </div>
-                <ul class="timeline">
-                    <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                
-                                <h4 class="subheading">Technology Stack</h4>
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">This CRUD generator is built using Laravel, a popular PHP framework for web application development. It also uses several Laravel packages and libraries, including the Illuminate database library for database operations, the Blade templating engine for generating code templates, and the Faker package for generating fake data.</p></div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>Features</h4>
-</div>
-                                <h6 class="subheading">Support for multiple database types</h6>
-                                <h6 class="subheading">Customizable templates</h6>
-                                <h6 class="subheading">Easy-to-use interface</h6>
-                            </div>
-                        
-                    </li>
-                    <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="..." /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>Benefits</h4>
-                               
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">
-                                <h6>Increased productivity<h6>
-                                With this tool, developers can generate CRUD code in minutes, rather than hours or days, freeing up time to work on more complex tasks.
-<h6>Reduced development time<h6>
-     The generator eliminates the need to write repetitive code, allowing developers to focus on building more complex functionality.
-<h6>Improved code quality<h6> 
-    The generator produces clean, well-organized code that adheres to Laravel best practices, reducing the risk of errors and making code easier to maintain.</p></div>
-                        </div>
-                    </li>
-                  
-        </section>
-      
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-heading text-uppercase">About </h2>
+      <h3 class="section-subheading text-muted">Welcome to our CRUD GENERATOR LARAVE project! The purpose of this project is to provide developers with a tool that can generate code for CRUD (Create, Read, Update, Delete) operations in Laravel applications. With this generator, developers can save time and increase productivity by automating the tedious task of writing boilerplate code.</h3>
+    </div>
+    <ul class="timeline">
+      <li>
+        <div class="timeline-image">
+          <img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." />
+        </div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4 class="subheading">Technology Stack</h4>
+          </div>
+          <div class="timeline-body">
+            <p class="text-muted">This CRUD generator is built using Laravel, a popular PHP framework for web application development. It also uses several Laravel packages and libraries, including the Illuminate database library for database operations, the Blade templating engine for generating code templates, and the Faker package for generating fake data.</p>
+          </div>
+        </div>
+      </li>
+      <li class="timeline-inverted">
+        <div class="timeline-image">
+          <img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." />
+        </div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4>Features</h4>
+          </div>
+          <div class="timeline-body">
+            <h6 class="subheading">Support for multiple database types</h6>
+            <h6 class="subheading">Customizable templates</h6>
+            <h6 class="subheading">Easy-to-use interface</h6>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="timeline-image">
+          <img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="..." />
+        </div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4>Benefits</h4>
+          </div>
+          <div class="timeline-body">
+            <p class="text-muted">
+              <h6>Increased productivity</h6>
+              With this tool, developers can generate CRUD code in minutes, rather than hours or days, freeing up time to work on more complex tasks.
+              <h6>Reduced development time</h6>
+              The generator eliminates the need to write repetitive code, allowing developers to focus on building more complex functionality.
+              <h6>Improved code quality</h6>
+              The generator produces clean, well-organized code that adheres to Laravel best practices, reducing the risk of errors and making code easier to maintain.
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
  
    
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
+                    <div class="col-lg-6 text-lg-start">Copyright &copy; CRUD GENERATOR LARAVEL 2022-2023</div>
                    
                     <div class="col-lg-4 text-lg-end">
                         <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>

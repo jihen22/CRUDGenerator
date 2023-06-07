@@ -161,6 +161,33 @@ public function showAddColumnForm()
 {
     return View::make('edittable');
 } 
+public function checkEntitiesExist(Request $request)
+{
+    // Get table name and column name from the request
+$tableName = $request->input('table_name');
+$columnName = $request->input('column_name');
+$modelName = $request->input('model_name');
+// Check if the table exists
+if (!Schema::hasTable($tableName)) {
+    return response()->json(['table_exists' => false]);
+}
+
+// Check if the column exists in the table
+if (Schema::hasColumn($tableName, $columnName)) {
+    return response()->json(['table_exists' => true, 'column_exists' => true]);
+}
+
+// Check if model file exists
+
+$modelExists = File::exists(app_path('Models/' . $modelName . '.php'));
+
+return response()->json([
+    'table_exists' => true,
+    'column_exists' => false,
+    'model_exists' => $modelExists
+]);
+
+}
 
 
 }
