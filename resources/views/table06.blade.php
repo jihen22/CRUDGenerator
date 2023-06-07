@@ -36,13 +36,12 @@
 
 </head>
 
-</head>
-
-<style>
 
 
+<style> 
 
- .flex-container {
+
+.flex-container {
 	display: flex;
 }
 
@@ -74,60 +73,46 @@
   margin-bottom: 20px;
 }
 
-    .card {
-        margin-bottom: 20px;
-    }
-
-    .card-img-top {
-        height: 180px;
-        width: 100%;
-        display: block;
-    }
-
-    .card-title {
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-
-    .card-text {
-        margin-bottom: 5px;
-    }
-
-    .btn {
-        margin-top: 10px;
-    }
-
-    .custom-button {
-  width: 200px;
-  height: 40px;
-  /* Ajoutez d'autres styles personnalisés ici */
+.arrow-icon {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #000;
+  font-size: 24px;
 }
-</style>
-    
+
+.arrow-icon i {
+  margin-right: 5px;
+}
+
+.custom-title {
+    font-family: "NomDeLaPolice", sans-serif;
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+
+}
+
+
+
+</style>     
    
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
-<div id="app" class="warpper">
+	<div id="app" class="warpper">
 	@include('admin.partials.topbar')
 	<div id="layoutSidenav" class="flex-container">
 
+      
 
+<div class="content-warper" id="monDiv" style="">
+<a href="{{ route('admin.dashboard') }}" class="arrow-icon">
+  <i class="fas fa-arrow-left"></i>
+</a>
 
-    <div class="content-warper" id="monDiv" style="">
-	<div class="content-header">
-		<div class="container-fluid p-0">
-			<div class ="row mb-2">
-				<div class="col-sm-6">
-					<h1 class="m-0 text-drak" style="">Add Fields to Your Card </h1>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="content-header">
+</div>
+
 
     
-
-   
-
-
     
 	     <div class="container-fluide p-0">
            <div class="card card-default">
@@ -135,39 +120,60 @@
 
             <div class="card-body">
 
+      
+              <table id="mytable" class="table table-bordred table-striped">
+              
+    <thead>
+        <tr>
+            <th>Select</th>
+            
+            @if ($showEditButton)
+                <th>Edit</th>
+                @endif
+                <th>delete</th>
+            
+                @foreach ($columns as $column)
+             @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
+                 <th>{{ $column }}</th>
+                  @endif
+            @endforeach
 
-
-
-
-            <div class="row" id="card-container">
-    @foreach ($data as $row)
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    @foreach ($visibleColumns as $column)
-                        <p class="card-text">{{ $column }}: {{ $row->$column }}</p>
-                    @endforeach
-
-                    <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($data as $row)
+            <tr data-row-id="{{ $row->id }}">
+                <td><input type="checkbox" class="checkthis" /></td>
+                
+                @if ($showEditButton)
+                    <td>
+                        <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
                             <span class="fas fa-edit"></span>
                         </button>
-                        <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
+                    </td>
+                @endif
+
+                <td>
+                  <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
                    <span class="fas fa-trash-alt"></span>
                     </button>
-                </div>
-            </div>
-        </div>
-    @endforeach
-</div>
+                  </td>
+                
+                @foreach ($columns as $column)
+                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
+                        <td>{{ $row->{$column} }}</td>
+                    @endif
+                @endforeach
+            </tr>
+        @endforeach
+    </tbody>
 
 
 
 
-<button type="button" id="ajouter" class="btn btn-primary custom-button" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
-
-
+<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">Ajouter des données</h4>
@@ -178,7 +184,7 @@
             <form id="addDataForm">
                 <div class="modal-body">
                     @foreach ($columns as $column)
-                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
+                        @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
                             <div class="form-group">
                                 <label for="{{ $column }}">{{ $column }}:</label>
                                 <input type="text" class="form-control" id="{{ $column }}" name="{{ $column }}" required>
@@ -186,14 +192,18 @@
                         @endif
                     @endforeach
                 </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Ajouter</button>
-                    </div>
-                </form>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
+
+
+   
 
 <script>
 
@@ -234,45 +244,21 @@ form.addEventListener('submit', (event) => {
     // Récupérer les données saisies dans le formulaire
     const data = {};
     @foreach ($columns as $column)
-    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
+        @if (!in_array($column, $hiddenColumns))
             data['{{ $column }}'] = $('#{{ $column }}').val();
         @endif
     @endforeach
 
     // Effectuer une requête AJAX vers le controller Laravel
-    // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
-        url:'/card/{table}/{view}',
+        url:'/table/{table}/{view}',
         method: "POST",
         data: { data: data, _token: "{{ csrf_token() }}" },
         success: function(response) {
             // En cas de succès, afficher un message de confirmation
             console.log(response);
-            
-            // Créer une nouvelle carte avec les données du formulaire
-            const newCard = `
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            @foreach ($visibleColumns as $column)
-                                <p class="card-text">{{ $column }}: ${data['{{ $column }}']}</p>
-                            @endforeach
+                      location.reload();
 
-                            <button type="button" class="btn btn-primary edit-btn" data-row-id="${response.id}">
-                                <span class="fas fa-edit"></span>
-                            </button>
-                            <button type="button" class="btn btn-danger delete-btn" data-row-id="${response.id}">
-                                <span class="fas fa-trash-alt"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Ajouter la nouvelle carte à la div "card-container"
-            $('.card-container').append(newCard);
-          // Rafraîchir automatiquement la page
-          location.reload();
         },
         error: function(xhr) {
             // En cas d'erreur, afficher un message d'erreur
@@ -280,26 +266,50 @@ form.addEventListener('submit', (event) => {
         }
     });
 
+    // Créer une nouvelle ligne dans le corps du tableau
+    const tableBody = document.querySelector('tbody');
+    const newRow = tableBody.insertRow();
+
+    // Ajouter les cellules à la nouvelle ligne
+    const selectCell = newRow.insertCell();
+        const editCell = newRow.insertCell();
+        const deleteCell = newRow.insertCell();
+        const dataCells = [];
+
+
+    @foreach ($columns as $column)
+        @if (!in_array($column, $hiddenColumns))
+            dataCells.push(newRow.insertCell());
+        @endif
+    @endforeach
+
+    selectCell.innerHTML = '<input type="checkbox" class="checkthis" />';
+
+// Ajouter les boutons d'action d'édition et de suppression aux cellules correspondantes
+editCell.innerHTML = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"><span class="fas fa-edit"></span></button>';
+deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}"><span class="fas fa-trash-alt"></span></button>';
+
+    @foreach ($columns as $column)
+        @if (!in_array($column, $hiddenColumns))
+            dataCells.shift().textContent = data['{{ $column }}'];
+        @endif
+    @endforeach
+
     // Réinitialiser les champs de saisie
     form.reset();
 
     // Fermer le modal
     $('#myModal').modal('hide');
 });
+
 </script>
 
-
-
-
-<!-- Modal for editing row data -->
 <div id="edit-modal" class="modal">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-        <h4 class="modal-title custom-align" id="Heading">Edit Your Detail</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Edit Your Detail</h4>
       </div>
       <div class="modal-body">
         <form id="edit-form">
@@ -310,25 +320,23 @@ form.addEventListener('submit', (event) => {
           <!-- dynamically generate input fields for editable columns -->
           
           @foreach ($columns as $column)
-    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $editableColumns))
-        <div class="form-group">
-            <label for="{{ $column }}">{{ $column }}</label>
-            <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
-        </div>
-    @endif
-@endforeach
-          <button type="submit" class="btn btn-primary">Save Changes</button>
+            @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $editableColumns))
+              <div class="form-group">
+                <label for="{{ $column }}">{{ $column }}</label>
+                <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
+              </div>
+            @endif
+          @endforeach
+          
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
 
 
 <script>
@@ -375,49 +383,75 @@ form.addEventListener('submit', (event) => {
 
 
 
+
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this row?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-    $(document).ready(function() {
-        // Gérer le clic sur le bouton de suppression
-        $('.delete-btn').click(function() {
-            var rowId = $(this).data('row-id');
+  $(document).ready(function() {
+    // Gérer le clic sur le bouton de suppression
+    $('.delete-btn').click(function() {
+      var rowId = $(this).data('row-id');
 
-            // Afficher la boîte de dialogue `prompt`
-            var confirmation = prompt('Are you sure you want to delete this row? Enter "yes" to confirm.');
+      // Ouvrir la boîte de dialogue de confirmation
+      $('#confirmDeleteModal').modal('show');
 
-            // Vérifier la réponse de l'utilisateur
-            if (confirmation === 'yes') {
-                // Supprimer la ligne en utilisant une requête AJAX
-                $.ajax({
-                    type: 'DELETE',
-                    url: '/data/' + rowId,
-                    data: { _token: '{{ csrf_token() }}' },
-                    success: function(response) {
-                        // Supprimer la ligne du tableau
-                        $('tr[data-row-id="' + rowId + '"]').remove();
+      // Gérer le clic sur le bouton de confirmation de suppression
+      $('#confirmDeleteBtn').click(function() {
+        // Fermer la boîte de dialogue de confirmation
+        $('#confirmDeleteModal').modal('hide');
 
-                        // Supprimer la carte correspondante de la div card-container
-                        $('#card-container').find('.card[data-row-id="' + rowId + '"]').parent().remove();
+        // Supprimer la ligne en utilisant une requête AJAX
+        $.ajax({
+          type: 'DELETE',
+          url: '/data/' + rowId,
+          data: { _token: '{{ csrf_token() }}' },
+          success: function(response) {
+            // Supprimer la ligne du tableau
+            $('tr[data-row-id="' + rowId + '"]').remove();
 
-                        // Actualiser la page
-                        location.reload();
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        alert('Error: ' + textStatus + ' - ' + errorThrown);
-                    }
-                });
-            }
+
+
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert('Error: ' + textStatus + ' - ' + errorThrown);
+          }
         });
+      });
     });
+  });
 </script>
- 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="{{asset('Dashboardassets/js/scripts.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="{{asset('Dashboardassets/assets/demo/chart-area-demo.js')}}"></script>
-<script src="{{asset('Dashboardassets/assets/demo/chart-bar-demo.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-<script src="{{asset('Dashboardassets/js/datatables-simple-demo.js')}}"></script>
 
 
-</body>
+
+
+    </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="{{asset('Dashboardassets/js/scripts.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="{{asset('Dashboardassets/assets/demo/chart-area-demo.js')}}"></script>
+        <script src="{{asset('Dashboardassets/assets/demo/chart-bar-demo.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="{{asset('Dashboardassets/js/datatables-simple-demo.js')}}"></script>
+       
+       
+    </body>
 </html>
