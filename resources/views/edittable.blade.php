@@ -179,6 +179,11 @@ div.row.mb-2 {
                 <label for="table_name">Table name</label>
                 <input type="text" name="table_name" id="table_name" class="form-control" required>
             </div>
+            <div class="form-group">
+                <label for="model_name">model name</label>
+                <input type="text" name="model_name" id="model_name" class="form-control" required>
+            </div>
+
 
            
 
@@ -299,4 +304,3 @@ div.row.mb-2 {
    
                                 </body>
                                 </html>
-

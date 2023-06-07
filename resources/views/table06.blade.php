@@ -38,7 +38,10 @@
 
 
 
-<style> .flex-container {
+<style> 
+
+
+.flex-container {
 	display: flex;
 }
 
@@ -70,6 +73,24 @@
   margin-bottom: 20px;
 }
 
+.arrow-icon {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #000;
+  font-size: 24px;
+}
+
+.arrow-icon i {
+  margin-right: 5px;
+}
+
+.custom-title {
+    font-family: "NomDeLaPolice", sans-serif;
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+
+}
 
 
 
@@ -79,20 +100,19 @@
 	<div id="app" class="warpper">
 	@include('admin.partials.topbar')
 	<div id="layoutSidenav" class="flex-container">
-       @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
 
-
+      
 
 <div class="content-warper" id="monDiv" style="">
-	<div class="content-header">
-		<div class="container-fluid p-0">
-			<div class ="row mb-2">
-				<div class="col-sm-6">
-					<h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
-                </div>
-            </div>
-        </div>
-    </div>
+<a href="{{ route('admin.dashboard') }}" class="arrow-icon">
+  <i class="fas fa-arrow-left"></i>
+</a>
+
+<div class="content-header">
+</div>
+
+
+    
     
 	     <div class="container-fluide p-0">
            <div class="card card-default">
@@ -105,7 +125,7 @@
               
     <thead>
         <tr>
-            <th>Actions</th>
+            <th>Select</th>
             
             @if ($showEditButton)
                 <th>Edit</th>
@@ -152,9 +172,8 @@
 
 
 <button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">Ajouter des données</h4>
@@ -165,7 +184,7 @@
             <form id="addDataForm">
                 <div class="modal-body">
                     @foreach ($columns as $column)
-                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
+                        @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
                             <div class="form-group">
                                 <label for="{{ $column }}">{{ $column }}:</label>
                                 <input type="text" class="form-control" id="{{ $column }}" name="{{ $column }}" required>
@@ -173,14 +192,15 @@
                         @endif
                     @endforeach
                 </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Ajouter</button>
-                    </div>
-                </form>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
 
 
    
@@ -237,6 +257,8 @@ form.addEventListener('submit', (event) => {
         success: function(response) {
             // En cas de succès, afficher un message de confirmation
             console.log(response);
+                      location.reload();
+
         },
         error: function(xhr) {
             // En cas d'erreur, afficher un message d'erreur
@@ -282,15 +304,12 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 
 </script>
 
-<!-- Modal for editing row data -->
 <div id="edit-modal" class="modal">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-        <h4 class="modal-title custom-align" id="Heading">Edit Your Detail</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Edit Your Detail</h4>
       </div>
       <div class="modal-body">
         <form id="edit-form">
@@ -301,19 +320,24 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
           <!-- dynamically generate input fields for editable columns -->
           
           @foreach ($columns as $column)
-    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $editableColumns))
-        <div class="form-group">
-            <label for="{{ $column }}">{{ $column }}</label>
-            <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
-        </div>
-    @endif
-@endforeach
-          <button type="submit" class="btn btn-primary">Save Changes</button>
+            @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $editableColumns))
+              <div class="form-group">
+                <label for="{{ $column }}">{{ $column }}</label>
+                <input type="text" name="{{ $column }}" id="{{ $column }}" class="form-control">
+              </div>
+            @endif
+          @endforeach
+          
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+
 
 <script>
   $(document).ready(function() {
@@ -360,17 +384,40 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 
 
 
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this row?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   $(document).ready(function() {
     // Gérer le clic sur le bouton de suppression
     $('.delete-btn').click(function() {
       var rowId = $(this).data('row-id');
 
-      // Afficher la boîte de dialogue `prompt`
-      var confirmation = prompt('Are you sure you want to delete this row? Enter "yes" to confirm.');
+      // Ouvrir la boîte de dialogue de confirmation
+      $('#confirmDeleteModal').modal('show');
 
-      // Vérifier la réponse de l'utilisateur
-      if (confirmation === 'yes') {
+      // Gérer le clic sur le bouton de confirmation de suppression
+      $('#confirmDeleteBtn').click(function() {
+        // Fermer la boîte de dialogue de confirmation
+        $('#confirmDeleteModal').modal('hide');
+
         // Supprimer la ligne en utilisant une requête AJAX
         $.ajax({
           type: 'DELETE',
@@ -379,12 +426,15 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
           success: function(response) {
             // Supprimer la ligne du tableau
             $('tr[data-row-id="' + rowId + '"]').remove();
+
+
+
           },
           error: function(jqXHR, textStatus, errorThrown) {
             alert('Error: ' + textStatus + ' - ' + errorThrown);
           }
         });
-      }
+      });
     });
   });
 </script>

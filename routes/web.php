@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\editTableController;
 use App\Http\Controllers\ColonneController;
 use App\Http\Controllers\Table001Controller;
+use App\Http\Controllers\CardController;
+use App\Http\Controllers\ListController;
+
+
 
 
 
@@ -159,3 +163,11 @@ Route::post('/check-table-exists', '\\App\\Http\\Controllers\\tablefilesControll
 
 
 
+Route::get('/card/{table}/{view}', [CardController::class,'index']);
+Route::delete('/data/{id}', [CardController::class, 'deleteData']);
+Route::post('/update-row/{id}', [CardController::class, 'updateRow'])->name('update.row');
+Route::post('/card/{table}/{view}', [CardController::class,'store']);
+
+
+
+Route::get('/{table}/{view}', [ListController::class, 'index']);

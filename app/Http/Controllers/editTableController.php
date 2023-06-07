@@ -29,8 +29,12 @@ class editTableController extends Controller
     
     public function add(Request $request)
     {
+        
+
         // Récupérer les données du formulaire
         $tableName = $request->input('table_name');
+        $modelName = $request->input('model_name');
+       
         $fieldType = $request->input('field_type');
         $databaseColumnName = $request->input('database_column_name');
         $validation = "test";
@@ -53,9 +57,8 @@ if (Schema::hasTable($tableName)) {
         $table->$fieldType($databaseColumnName)->nullable()->default(null);
     });
 
-      // Mettre à jour le modèle correspondant
-      $modelClassName = (Str::camel($tableName)); // Remplacez camel_case par Str::camel si vous utilisez Laravel 6 ou supérieur
-      $modelFilePath = app_path("{$modelClassName}.php");
+     
+      $modelFilePath = app_path("{$modelName}.php");
   
       // Vérifier si le fichier du modèle existe
       if (file_exists($modelFilePath)) {
@@ -81,13 +84,13 @@ if (Schema::hasTable($tableName)) {
 
     
      // Delete the existing model file if it exists
-     $modelPath = app_path("Models/$tableName.php");
+     $modelPath = app_path("Models/$modelName.php");
      if (File::exists($modelPath)) {
          File::delete($modelPath);
      }
 
      // Generate the new model file with updated columns
-     $this->generateModelFile($tableName);
+     $this->generateModelFile($tableName,$modelName);
 
 
 
@@ -124,7 +127,7 @@ if (Schema::hasTable($tableName)) {
     }
     
     // Helper function to generate the model file with updated columns
-    private function generateModelFile($tableName)
+    private function generateModelFile($tableName ,$modelName )
     {
         $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
 
@@ -141,14 +144,14 @@ if (Schema::hasTable($tableName)) {
 
         use Illuminate\Database\Eloquent\Model;
 
-        class $tableName extends Model
+        class $modelName extends Model
         {
             protected \$table = '$tableName';
             protected \$fillable = ['$fillable'];
         }
         EOT;
 
-        $modelPath = app_path("Models/$tableName.php");
+        $modelPath = app_path("Models/$modelName.php");
         file_put_contents($modelPath, $model);
     }
 
@@ -161,8 +164,5 @@ public function showAddColumnForm()
 
 
 }
-
-
-
 
 

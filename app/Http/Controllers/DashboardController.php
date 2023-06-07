@@ -43,41 +43,100 @@ class DashboardController extends Controller
         //]
    // );
 //}
-
 public function telecharger($table)
 {
-    $nom_fichier = $table . 'Controller.php';
-    $chemin = 'app/Http/Controllers/' . $nom_fichier;
+    // Récupérer les noms des fichiers à partir de la table "tablelist"
+    $tablelist = DB::table('tableslist')->where('name', $table)->first();
 
-    return response()->download(
-        base_path($chemin),
-        $nom_fichier,
-        [
-            'Content-Type' => 'text/plain',
-            'Content-Disposition' => 'attachment; filename=' . $nom_fichier,
-        ]
-    );
+    if (!$tablelist) {
+        // La table demandée n'existe pas dans la table "tablelist"
+        return response()->json(['error' => 'La table demandée n\'existe pas.']);
+    }
+
+    // Récupérer les noms des fichiers à partir de la table "tablelist"
+    $controllerName = $tablelist->controller_name ;
+    
+    $viewName = $tablelist->view_name;
+    $modelName = $tablelist->model_name;
+
+    // Définir les chemins relatifs des fichiers
+    $cheminController = base_path('app/Http/Controllers/' . $controllerName . 'Controller.php');
+    $cheminModel = base_path('app/Models/' . $modelName . '.php');
+    $cheminView = base_path('resources/views/' . $viewName . '.blade.php');
+
+
+    // Vérifier si les fichiers existent
+    if (!file_exists($cheminController)) {
+        return response()->json(['error' => 'Le fichier du contrôleur n\'existe pas.']);
+    }
+    
+    if (!file_exists($cheminModel)) {
+        return response()->json(['error' => 'Le fichier du modèle n\'existe pas.']);
+    }
+    
+    if (!file_exists($cheminView)) {
+        return response()->json(['error' => 'Le fichier de la vue n\'existe pas.']);
+    }
+    
+
+    // Lire le contenu des fichiers
+    $controllerContent = file_get_contents($cheminController);
+    $modelContent = file_get_contents($cheminModel);
+    $viewContent = file_get_contents($cheminView);
+
+    // Générer le contenu du fichier texte
+    $content = "Controller Name: " . $controllerName . "\n";
+    $content .= "Model Name: " . $modelName . "\n";
+    $content .= "View Name: " . $viewName . "\n\n";
+    $content .= "Controller Content:\n" . $controllerContent . "\n\n";
+    $content .= "Model Content:\n" . $modelContent . "\n\n";
+    $content .= "View Content:\n" . $viewContent . "\n";
+
+    // Générer un nom de fichier unique
+    $filename = $table . '_info.txt';
+
+    // Télécharger le fichier texte
+    return response($content)
+        ->header('Content-Type', 'text/plain')
+        ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
 }
+
+
 
 public function supprimerTable($table)
 {
     // Supprimer la table
     DB::statement('DROP TABLE '.$table);
 
+
+     // Récupérer les noms des fichiers à partir de la table "tablelist"
+     $tablelist = DB::table('tableslist')->where('name', $table)->first();
+
+     if (!$tablelist) {
+         // La table demandée n'existe pas dans la table "tablelist"
+         return response()->json(['error' => 'La table demandée n\'existe pas.']);
+     }
+ 
+     // Récupérer les noms des fichiers à partir de la table "tablelist"
+     $controllerName = $tablelist->controller_name ;
+     
+     $viewName = $tablelist->view_name;
+     $modelName = $tablelist->model_name;
+
     // Supprimer le modèle
-    $model_file = app_path('Models/'.$table.'.php');
+    $model_file = app_path('Models/'.$modelName.'.php');
     if (file_exists($model_file)) {
         unlink($model_file);
     }
 
     // Supprimer le contrôleur
-    $controller_file = app_path('Http/Controllers/'.$table.'Controller.php');
+    $controller_file = app_path('Http/Controllers/'.$controllerName.'Controller.php');
     if (file_exists($controller_file)) {
         unlink($controller_file);
     }
 
     // Supprimer les vues
-    $views_directory = resource_path('views/'.$table);
+    $views_directory = resource_path('views/'.$viewName.'.blade.php');
     if (file_exists($views_directory)) {
         $files = glob($views_directory.'/*'); 
         foreach($files as $file){ 
