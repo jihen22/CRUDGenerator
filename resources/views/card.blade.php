@@ -143,7 +143,7 @@
 		<div class="container-fluid p-0">
 			<div class ="row mb-2">
 				<div class="col-sm-6">
-                <h1 class="m-0 text-drak text-right custom-title">Add Fields to Your Table</h1>
+                <h1 class="m-0 text-drak text-right custom-title">Add Fields to Your Card</h1>
                 </div>
             </div>
         </div>
@@ -189,7 +189,7 @@
 
 
 
-<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
+<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add to {{ $table }}</button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -267,7 +267,7 @@ form.addEventListener('submit', (event) => {
     // Effectuer une requête AJAX vers le controller Laravel
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
-        url:'/card/{table}/{view}',
+        url:'/table/{table}/{view}',
         method: "POST",
         data: { data: data, _token: "{{ csrf_token() }}" },
         success: function(response) {

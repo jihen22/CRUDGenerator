@@ -26,11 +26,11 @@ use Illuminate\Support\Facades\View;
 
 class editTableController extends Controller
 {
-    
+     
     public function add(Request $request)
     {
         
-
+        
         // Récupérer les données du formulaire
         $tableName = $request->input('table_name');
         $modelName = $request->input('model_name');
@@ -161,7 +161,7 @@ public function showAddColumnForm()
 {
     return View::make('edittable');
 } 
-public function checkEntitiesExist(Request $request)
+public function checkEntitiescolExist(Request $request)
 {
     // Get table name and column name from the request
 $tableName = $request->input('table_name');
@@ -188,7 +188,6 @@ return response()->json([
 ]);
 
 }
-
 
 }
 

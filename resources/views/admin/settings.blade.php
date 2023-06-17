@@ -67,9 +67,21 @@
   margin-bottom: 20px;
 }
 .content-header h1 {
-  padding: 42px 57px;
-  display: inline-block;
+  padding: 12px 27px;
+  
+  font-size: 40px;
+  margin-left: 90px
 }
+.content-warper {
+        display: flex;
+       
+    }
+
+    .content-header {
+        margin-right: 60px;
+        
+    }
+
 
 	</style>
 
@@ -90,15 +102,11 @@
 
 
 
-<div class="content-warper" id="monDiv" style="">
-	<div class="content-header">
-		<div class="container-fluid p-0">
-			<div class ="row mb-2">
-				<div class="col-sm-6">
-					
-                </div>
-            </div>
-        </div>
+
+       <div class="content-warper" id="monDiv" style="">
+	
+       <div class="content-header">
+        <h1 class="m-0 text-dark">Edit Project</h1>
     </div>
       <section class="content">
 	     <div class="container-fluide p-0">

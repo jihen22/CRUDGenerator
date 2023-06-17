@@ -63,13 +63,22 @@
   padding: 20px;
 }
 
-.content-header {
-  margin-bottom: 20px;
-}
 .content-header h1 {
-  padding: 42px 57px;
-  display: inline-block;
+  padding: 12px 27px;
+  
+  font-size: 40px;
+  margin-left: 90px
 }
+.content-warper {
+        display: flex;
+       
+    }
+
+    .content-header {
+        margin-right: 60px;
+        
+    }
+
 
 </style>
 		  
@@ -83,21 +92,20 @@
        @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
 
        
-<div class="content-warper" id="monDiv" style="">
-
-       <div class="content-header" >
-        <div class="container-fluid p-0">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-               
+       <div class="content-warper" id="monDiv" style="">
+	<div class="content-header">
+			<div class ="row mb-2">
+				<div class="col-sm-6">
+			
+<h1 class="m-0 text-drak" style="">Change Username </h1>
+             
                 </div>
-            </div>    
-        </div>
-        </div>
-
-        <section class="content">
-            <div class="container-fluid p-0">
-                <div class="card card-default">
+            </div>
+     
+    </div>
+      <section class="content">
+	     <div class="container-fluide p-0">
+           <div class="card card-default">
                 <div class="card-body">     
                     <div class="row">
                   <div class="col-md-6 offset-md-3">

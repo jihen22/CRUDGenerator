@@ -147,6 +147,9 @@ div.row.mb-2 {
   margin: 0.5rem 0;
 }
 
+
+
+
 </style>
 
 
@@ -157,17 +160,22 @@ div.row.mb-2 {
     @include('admin.partials.topbar')
     <div id="layoutSidenav" class="flex-container">
         @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
+         
         <div class="content-warper" id="monDiv" style="">
-            <div class="content-header">
-                <div class="container-fluid p-0">
-                    <div class="row mb-2">
-
-                    </div>
+	<div class="content-header">
+		
+			<div class ="row mb-2">
+				<div class="col-sm-6">
+			
+<h1 class="m-0 text-drak" style="">Add column </h1>
+             
                 </div>
-            </div>
-
-            <div class="container-fluide p-0">
-                <div class="card card-default">
+          
+        </div>
+    </div>
+      <section class="content">
+	     <div class="container-fluide p-0">
+           <div class="card card-default">
                     <div class="card-body">
                         <form method="POST" action="{{ route('add-column.store') }}">
                             @csrf
@@ -328,82 +336,6 @@ div.row.mb-2 {
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-=======
-    
-         <div class="container-fluide p-0">
-           <div class="card card-default">
-
-
-            <div class="card-body">
-
-        <form method="POST" action="{{ route('add-column.store') }}">
-            @csrf
-
-            <div class="form-group">
-                <label for="table_name">Table name</label>
-                <input type="text" name="table_name" id="table_name" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="model_name">model name</label>
-                <input type="text" name="model_name" id="model_name" class="form-control" required>
-            </div>
-
-
-           
-
-            <div class="form-group">
-                <label for="field_type">Field type</label>
-                <select name="field_type" id="field_type" class="form-control" required>
-                    <option value="string">string</option>
-                    <option value="integer">integer</option>
-                    <option value="float">float</option>
-                    <option value="date">Date</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="database_column_name">Column name in the database</label>
-                <input type="text" name="database_column_name" id="database_column_name" class="form-control" required>
-            </div>
-
-            <div class="form-group" >
-           <label for="Validation">Validation</label>
-            <select id="Validation" name="Validation" >
-             <option value="Required" >Required</option>
-             <option value="Optionnal" >optionnal</option>
-             <option value="Required/Unique">Required/unique</option>
-             </select>
-         </div>
-                 
-            <div class="form-group">
-                <label for="visual_title">Visual Title </label>
-                <input type="text" name="visual_title" id="visual_title" class="form-control">
-            </div>
-
-      
-
-            <div class="form-inline">
-    <label> In List: </label>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_list" id="in_list_yes" value="yes">
-        <label class="form-check-label" for="in_list_yes">Yes</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_list" id="in_list_no" value="no">
-        <label class="form-check-label" for="in_list_no">No</label>
-    </div>
-
-    <label> In Create: </label>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_create" id="in_create_yes" value="yes">
-        <label class="form-check-label" for="in_create_yes">Yes</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_create" id="in_create_no" value="no">
-        <label class="form-check-label" for="in_create_no">No</label>
-    </div>
->>>>>>> 6b8696334e74a3eff8a474a71bd9462665c84054
 </div>
 
 @include('admin.partials.footer')

@@ -58,6 +58,7 @@ public function telecharger($table)
     
     $viewName = $tablelist->view_name;
     $modelName = $tablelist->model_name;
+    
 
     // Définir les chemins relatifs des fichiers
     $cheminController = base_path('app/Http/Controllers/' . $controllerName . 'Controller.php');

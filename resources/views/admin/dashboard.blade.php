@@ -168,7 +168,7 @@ $tables = DB::select("SHOW TABLES WHERE Tables_in_" . env('DB_DATABASE') . " NOT
                    <td><a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" >{{ $table->{'Tables_in_' . env('DB_DATABASE')} }}</a></td>
 </td>
                     <td>
-                 <a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} . '/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" class="btn btn-info"><i class="fas fa-eye"></i> See</a>
+                 <a href="{{ url('/' . $table->{'Tables_in_' . env('DB_DATABASE')} . '/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" class="btn btn-info"><i class="fas fa-eye"></i> See</a>
                  <a href="{{ route('telecharger_controller', ['table' => $table->{'Tables_in_' . env('DB_DATABASE')}]) }}" class="btn btn-secondary" download>
                  <i class="fas fa-download"></i> download
                  </a>

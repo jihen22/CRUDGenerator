@@ -136,6 +136,7 @@
             <tr>
                 <th>Column name</th>
                 <th>Delete Column</th>
+                <th>Update Column</th>
             </tr>
         </thead>
         <tbody>
@@ -151,6 +152,14 @@
     </button>
 </form>
         </td>
+        <td>
+        <a href="{{ route('update-column', ['table' => $table, 'column' => $column]) }}" class="btn btn-primary update-btn">
+    <span class="fas fa-edit"></span>
+</a>
+
+
+                </td>
+
     </tr>
 @endforeach
         </tbody>

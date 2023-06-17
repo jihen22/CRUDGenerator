@@ -73,6 +73,18 @@
   padding: 42px 57px;
   display: inline-block;
 }
+.content-header h1 {
+  padding: 12px 27px;
+  
+  font-size: 40px;
+
+}
+.content-warper {
+        display: flex;
+       
+    }
+
+   
 	</style>
 
         
@@ -94,13 +106,15 @@
 
 <div class="content-warper" id="monDiv" style="">
 	<div class="content-header">
-		<div class="container-fluid p-0">
+	
 			<div class ="row mb-2">
 				<div class="col-sm-6">
-				
+			
+<h1 class="m-0 text-drak" style="">Change Password </h1>
+             
                 </div>
             </div>
-        </div>
+       
     </div>
       <section class="content">
 	     <div class="container-fluide p-0">

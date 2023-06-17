@@ -18,14 +18,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
        
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-		
+    <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+    
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -42,23 +42,23 @@
 
 
 .flex-container {
-	display: flex;
+  display: flex;
 }
 
 .content-warper {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 #monDiv {
-	min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
-	margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
-	margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
-	width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
+  min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
+  margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
+  margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
+  width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
 }
 
 .small-sidebar {
-	width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
+  width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
 }
 .container-fluide {
     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
@@ -97,9 +97,9 @@
 </style>     
    
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
-	<div id="app" class="warpper">
-	@include('admin.partials.topbar')
-	<div id="layoutSidenav" class="flex-container">
+  <div id="app" class="warpper">
+  @include('admin.partials.topbar')
+  <div id="layoutSidenav" class="flex-container">
 
       
 
@@ -108,13 +108,28 @@
   <i class="fas fa-arrow-left"></i>
 </a>
 
+<script>
+$(document).ready(function() {
+    var table = $('#mytable').DataTable({
+        // Vos autres options DataTables ici
+
+        info: true
+    });
+});
+</script>
+
+				<div class="col-sm-6">
+					<h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
+                </div>
+        
+
 <div class="content-header">
 </div>
 
 
     
     
-	     <div class="container-fluide p-0">
+       <div class="container-fluide p-0">
            <div class="card card-default">
 
 
@@ -171,7 +186,7 @@
 
 
 
-<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
+<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">add to {{ $table }}</button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -251,7 +266,7 @@ form.addEventListener('submit', (event) => {
 
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
-        url:'/table/{table}/{view}',
+        url:'/{table}/{view}',
         method: "POST",
         data: { data: data, _token: "{{ csrf_token() }}" },
         success: function(response) {
@@ -363,7 +378,7 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 
       $.ajax({
         type: 'POST',
-        url: '/update-row/' + rowId,
+        url: '/' + rowId,
         data: formData,
         success: function(response) {
           // Mettre à jour les données de la ligne dans le tableau
@@ -421,7 +436,7 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
         // Supprimer la ligne en utilisant une requête AJAX
         $.ajax({
           type: 'DELETE',
-          url: '/data/' + rowId,
+          url: '/'+ rowId,
           data: { _token: '{{ csrf_token() }}' },
           success: function(response) {
             // Supprimer la ligne du tableau

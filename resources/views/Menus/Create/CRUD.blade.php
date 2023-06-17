@@ -874,7 +874,7 @@ function generateTableHtml() {
       '<td>' + field.maxLimit + '</td>' +
       '<td>' + field.minLimit + '</td>' +
       '<td>' + field.defaultValue + '</td>' +
-      '<td>' +'<td>' + field.nullable + '</td>' +'<td>' + field.unique+ '</td>' +'<td>' + field.indexing + '</td>' +'<td>' + field.validationRules + '</td>'+
+      '<td>' + field.nullable + '</td>' +'<td>' + field.unique+ '</td>' +'<td>' + field.indexing + '</td>' +'<td>' + field.validationRules + '</td>'+
       '<button  type="button" class="btn btn-warning btn-sm edit"  data-index="' + index + '">Edit</button>' +   '</td>' +
       '<td>' +
       '<button type="button" class="btn btn-dark btn-sm delete"  data-index="' + index + '">Delete</button>' +  '</td>' +

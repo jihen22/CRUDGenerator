@@ -18,18 +18,20 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\editTableController;
 use App\Http\Controllers\ColonneController;
 
-use App\Http\Controllers\Table001Controller;
-use App\Http\Controllers\CardController;
-use App\Http\Controllers\ListController;
+
+//use App\Http\Controllers\CardController;
+//use App\Http\Controllers\ListController;
+
+use App\Http\Controllers\controller1Controller;
+use App\Http\Controllers\Table0005Controller;
+use App\Http\Controllers\EditcolonneController;
 
 
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> 89725eafb34f4e3e2741e8916a8d0d77cfe82e7b
+
 
 
 Route::get('/', function () {
@@ -164,18 +166,39 @@ Route::post('/check-entities-exist', '\\App\\Http\\Controllers\\tablefilesContro
 
 Route::post('/check-entitiescol-exist', '\\App\\Http\\Controllers\\editTableController@checkEntitiescolExist');
 
-//use App\Http\Controllers\cc6Controller;
-
-//Route::get('/table/{table}/{view}', [cc6Controller::class, 'store']);
-//Route::get('/table/{table}/{view}', [cc6Controller::class, 'index']);
-//Route::post('/table/{table}/{view}', [cc6Controller::class, 'store']);
-//Route::delete('/data/{id}', [cc6Controller::class, 'deleteData']);
-//Route::post('/update-row/{id}', [cc6Controller::class, 'updateRow'])->name('update.row');
-Route::get('/card/{table}/{view}', [CardController::class,'index']);
-Route::delete('/data/{id}', [CardController::class, 'deleteData']);
-Route::post('/update-row/{id}', [CardController::class, 'updateRow'])->name('update.row');
-Route::post('/card/{table}/{view}', [CardController::class,'store']);
 
 
 
-Route::get('/{table}/{view}', [ListController::class, 'index']);
+//Route::get('/card/{table}/{view}', [CardController::class,'index']);
+//Route::delete('/data/{id}', [CardController::class, 'deleteData']);
+//Route::post('/update-row/{id}', [CardController::class, 'updateRow'])->name('update.row');
+//Route::post('/card/{table}/{view}', [CardController::class,'store']);
+
+
+
+//Route::get('/{table}/{view}', [ListController::class, 'index']);
+
+
+Route::get('/table015/{table}/{view}', [controller1Controller::class,'index']);
+Route::delete('/table015/{id}', [controller1Controller::class, 'deleteData']);
+Route::post('/table015/{id}', [controller1Controller::class, 'updateRow'])->name('update.row');
+Route::post('/table015/{table}/{view}', [controller1Controller::class,'store']);
+
+Route::get('/{table}/{view}', [Table0005Controller::class,'index']);
+Route::delete('/{id}', [Table0005Controller::class, 'deleteData']);
+Route::post('/{id}', [Table0005Controller::class, 'updateRow'])->name('update.row');
+Route::post('/{table}/{view}', [Table0005Controller::class,'store']);
+
+
+//Route::get('/formulaire', 'NomDuController@afficherFormulaire')->name('formulaire');
+//Route::post('/formulaire', 'NomDuController@traiterFormulaire')->name('traiter_formulaire');
+
+
+
+Route::get('/get/{table}/{column}/update', [EditcolonneController::class, 'editColumn'])->name('update-column');;
+Route::post('/column/{table}/{column}/update', [EditcolonneController::class, 'updateColumn'])->name('column.edit');
+
+
+
+
+

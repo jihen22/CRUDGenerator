@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\table001;
+use App\Models\table008;
 
 use App\Table;
 use App\Field;
@@ -89,7 +89,7 @@ class CardController extends Controller
 public function deleteData($id)
 {
     // Trouver la ligne de données à supprimer
-    $data = table001::find($id);
+    $data = table008::find($id);
 
     // Vérifier si la ligne de données existe
     if (!$data) {
@@ -108,7 +108,7 @@ public function deleteData($id)
 public function updateRow(Request $request, $id)
 {
  // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
- $row = table001::find($id);
+ $row = table008::find($id);
 
  // Vérifier si la ligne a été trouvée
  if ($row) {
@@ -121,7 +121,7 @@ public function updateRow(Request $request, $id)
    // Mettre à jour les attributs de la ligne avec les données du formulaire
    foreach ($input as $column => $value) {
      // Vérifier si la colonne existe avant de la mettre à jour
-     if (Schema::hasColumn('table001', $column)) {
+     if (Schema::hasColumn('table008', $column)) {
        $row->{$column} = $value;
      }
    }
@@ -143,7 +143,7 @@ public function store(Request $request)
     $data = $request->input('data');
     
     // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-    table001::create($data);
+    table01::create($data);
     
     // Retourner une réponse JSON pour confirmer l'enregistrement des données
     return response()->json(['success' => true]);
