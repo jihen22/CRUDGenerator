@@ -3,7 +3,7 @@
             
             <a class="navbar-brand ps-3" href="{{'/dashboard'}}">
      
-    ADVANCED CRUD GENERATOR LARAVEL
+    CRUD GENERATOR LARAVEL
 </a>
 
             <!-- Sidebar Toggle-->

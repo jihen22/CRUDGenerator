@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class Generatemodelcontfiles extends Command
 {
-    protected $signature = 'generate:crud {table : The name of the table} {--model= : The name of the model} {--controller= : The name of the controller} ';
+    protected $signature = 'generate:crud {table : The name of the table} {--model= : The name of the model} {--controller= : The name of the controller} {--viewType= : The view type}';
 
     /**
      * The console command description.
@@ -25,7 +25,8 @@ class Generatemodelcontfiles extends Command
         $tableName = $this->argument('table');
         $modelName = $this->option('model') ?: ucfirst(camel_case($tableName));
         
-       
+ 
+        $viewType = $this->option('viewType');
       
         $controllerName = $this->option('controller') ?: ucfirst(camel_case($tableName)) . 'Controller';
     
@@ -34,6 +35,7 @@ class Generatemodelcontfiles extends Command
         $this->call('generate:controller', [
             'name' =>  $controllerName,
             'model'=>$modelName,
+            '--viewType'=>$viewType,
         ]);
     
         // Generate the model with columns

@@ -19,6 +19,67 @@
     <link rel="stylesheet" href="{{asset('buttons/css/style.css')}}">
   
 	</head>
+    
+<style>
+      .form-group {
+        margin-bottom: 2rem;
+      }
+      .form-group label {
+        font-weight: bold;
+      }
+      .card {
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .card-header {
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #dee2e6;
+        padding: 1.5rem;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      </style>
+    <style>
+        .dark-theme {
+  background-color: #1c1c1c;
+  color: #f2f2f2;
+}
+
+
+
+
+label.col-form-label {
+  color: #ffffff;
+}
+.form-control {
+
+  
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+.form-control:focus {
+  background-color: #696969;
+  color: #f2f2f2;
+}
+.logo-image {
+  height: 180px;
+  width: 180px;
+}
+</style>
+    </style>
    
     <body class="img js-fullheight" style="background-image: url(LoginpageRessources/images/header-bg.jpg);">
 	@section('content')
@@ -34,7 +95,7 @@
         <div class="row mb-3">
            
             <div class="col-md-6">
-                <input id="username" type="username" class="form-control @error('username') is-invalid @enderror
+                <input id="username" type="username" class=" @error('username') is-invalid @enderror
                 @error('email') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus  style="width: 200%;" placeholder="Email Address or Username">
 
                 @error('username')
@@ -54,7 +115,7 @@
          
 
             <div class="col-md-6">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"  style="width: 200%;" placeholder="Password">
+                <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"  style="width: 200%;" placeholder="Password">
 
                 @error('password')
                     <span class="invalid-feedback" role="alert">
