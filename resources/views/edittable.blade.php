@@ -230,8 +230,8 @@ div.row.mb-2 {
                             </div>
 
                             <div class="form-group">
-                                <label for="Validation">Validation</label>
-                                <select id="Validation" name="Validation">
+                                <label for="validation">Validation</label>
+                                <select id="validation" name="validation">
                                     <option value="Required">Required</option>
                                     <option value="Optional">Optional</option>
                                     <option value="Required/Unique">Required/Unique</option>
@@ -294,15 +294,24 @@ div.row.mb-2 {
                                     <label for="max">Max Limit:</label>
                                     <input type="number" id="max" name="max" placeholder="Enter max limit">
                                 </div>
-                                <div style="margin-right: 10px;">
-                                    <label for="min">Min Limit:</label>
-                                    <input type="number" id="min" name="min" placeholder="Enter min limit">
-                                </div>
-                                <div>
-                                    <label for="default_value">Default value:</label>
-                                    <input type="number" id="default_value" name="default_value" placeholder="Enter default value">
-                                </div>
-                            </div>
+                               
+                                <div class="form-group">
+<div>
+        <label for="field-default-value" style="margin-right: 10px;">Default value:</label>
+        <select class="form-control" id="field-default-value" name="field-default-value" style="width: 150px;">
+            <option value="None">None</option>
+            <option value="NULL">NULL</option>
+            <option value="CURRENT_TIMESTAMP">CURRENT_TIMESTAMP</option>
+            <option value="As defined:">As defined:</option>
+            
+        </select>
+    </div>
+    <div id="custom-value-container"></div>
+</div>
+    <div>
+        <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Set a default value for the field.</span>
+    </div>
+</div>
 
                             <div>
                                 <label for="nullable">Nullable:</label>
@@ -337,10 +346,65 @@ div.row.mb-2 {
         </div>
     </div>
 </div>
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Column has been added successfully.
+      </div>
+    </div>
+  </div>
+</div>
+
 
 @include('admin.partials.footer')
                                 </body>
+                                <script>
+  @if (session('success'))
+    $(document).ready(function() {
+      $('#successModal').modal('show');
+    });
+  @endif
+</script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Get the select element
+var selectElement = document.getElementById("field-default-value");
+
+// Function to handle the select change event
+function handleSelectChange() {
+    var selectedValue = selectElement.value;
+    var customValueContainer = document.getElementById("custom-value-container");
+
+    // Remove any existing input field
+    while (customValueContainer.firstChild) {
+        customValueContainer.firstChild.remove();
+    }
+
+    // Check if "As defined" option is selected
+    if (selectedValue === "As defined:") {
+        // Create the input field element
+        var inputField = document.createElement("input");
+        inputField.type = "text";
+        inputField.name = "custom-value";
+        inputField.placeholder = "Enter a custom value";
+
+        // Append the input field to the container
+        customValueContainer.appendChild(inputField);
+    }
+}
+
+// Add event listener to the select element
+selectElement.addEventListener("change", handleSelectChange);
+
+    </script>
 <script>
 $(document).ready(function() {
   $('form').submit(function(event) {
@@ -402,26 +466,28 @@ $(document).ready(function() {
         model_field: modelField
       },
       success: function(response) {
-  if (errors.length === 0) {
-    if (!response.table_exists) {
-      // Display the error message for table not existing
-      handleExistError($('#table_name'), 'Table does not exist!');
-    } else if (response.column_exists) {
-      handleExistError($('#database_column_name'), 'Column name already exists in the table!');
-    } else if (response.model_exists) {
-      handleExistError($('#model_name'), 'Model field already exists!');
-    } else {
-      // Table exists, submit the form if all checks pass
-      $('form').unbind('submit').submit();
-    }
-  } else {
-    // Display all errors simultaneously
-    for (var i = 0; i < errors.length; i++) {
-      handleEmptyNameError(errors[i].element, errors[i].message);
-    }
-  }
-}
-      ,
+        if (errors.length === 0) {
+          if (!response.table_exists) {
+            // Display the error message for table not existing
+            handleExistError($('#table_name'), 'Table does not exist!');
+          } 
+          if (response.column_exists) {
+            handleExistError($('#database_column_name'), 'Column name already exists in the table!');
+          } 
+          if (!response.model_exists) {
+            handleExistError($('#model_name'), 'Incorrect Model name!');
+          }
+          if (response.table_exists && !response.column_exists && response.model_exists) {
+            // Table exists, submit the form if all checks pass
+            $('form').unbind('submit').submit();
+          }
+        } else {
+          // Display all errors simultaneously
+          for (var i = 0; i < errors.length; i++) {
+            handleEmptyNameError(errors[i].element, errors[i].message);
+          }
+        }
+      },
       error: function() {
         // Handle error case
         console.log('Error occurred during AJAX request');

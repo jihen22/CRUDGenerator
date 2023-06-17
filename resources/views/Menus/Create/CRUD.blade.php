@@ -37,6 +37,7 @@
              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.css">
                <!-- Sweetalert-->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.js"></script>
+       
         <style>
      .checkbox-group {
         display: flex;
@@ -59,7 +60,7 @@
 
     .card {
         margin: 0 auto;
-        max-width: 1000px;
+        max-width: 1100px;
         border: 1px solid #ccc;
         border-radius: 0.5rem;
         padding: 1rem;
@@ -204,7 +205,7 @@
     }
 
     .table {
-        font-size: 14px;
+        font-size: 11px;
         padding: 10px;
         border-collapse: collapse;
         border: 1px solid #ddd;
@@ -246,6 +247,27 @@
     .form-check-inline {
         display: inline-block;
         margin-right: 10px;
+    }
+      /* Hide the default arrow */
+      select.form-control {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    /* Add a custom arrow */
+    select.form-control:after {
+        content: "";
+        background-image: url("path/to/arrow-icon.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
     }
 </style>
 
@@ -304,10 +326,6 @@
     <select id="view_type" name="view_type" class="form-control">
         <option value="card">Card View</option>
         <option value="list">List View</option>
-        <option value="Grid">Grid View</option>
-        <option value="gantt">Gantt Chart View</option>
-        <option value="Map">Map View</option>
-        <option value="Tree">Tree View</option>
         <option value="Table"> Table View</option>
         <!-- Add more options for other view types if needed -->
     </select>
@@ -341,7 +359,7 @@
                                         <th scope="col">In Edit</th>
  
                                         <th scope="col">Max</th>
-                                        <th scope="col">Min</th>
+                                        
                                         <th scope="col">Default Value</th>
                                         <th scope="col">Nullable</th>
                                         <th scope="col">Unique</th>
@@ -516,25 +534,25 @@
     </div>
 </div>
 
-<div class="form-group">
-    <div style="display: flex; align-items: center;">
-        <label for="field-min-limit" style="font-weight: bold; margin-right: 10px;">Min Limit:</label>
-        <input type="number" class="form-control" id="field-min-limit" name="field-min-limit" style="width: 150px;">
-    </div>
-    <div>
-        <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Specify the minimum limit or length of the field if applicable.</span>
-    </div>
-</div>
+
 
 <div class="form-group">
     <div style="display: flex; align-items: center;">
         <label for="field-default-value" style="margin-right: 10px;">Default value:</label>
-        <input type="number" class="form-control" id="field-default-value" name="field-default-value"  style="width: 150px;">
+        <select class="form-control" id="field-default-value" name="field-default-value" style="width: 150px;">
+            <option value="None">None</option>
+            <option value="NULL">NULL</option>
+            <option value="As defined:">As defined:</option>
+            <option value="CURRENT_TIMESTAMP">CURRENT_TIMESTAMP</option>
+        </select>
     </div>
+    <div id="custom-value-container"></div>
+
     <div>
         <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Set a default value for the field.</span>
     </div>
 </div>
+
 
 
             <div style="display: flex; align-items: center;">
@@ -672,7 +690,37 @@
 
   <!-- Sweetalert-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.js"></script>
-  
+  <script>
+    // Get the select element
+var selectElement = document.getElementById("field-default-value");
+
+// Function to handle the select change event
+function handleSelectChange() {
+    var selectedValue = selectElement.value;
+    var customValueContainer = document.getElementById("custom-value-container");
+
+    // Remove any existing input field
+    while (customValueContainer.firstChild) {
+        customValueContainer.firstChild.remove();
+    }
+
+    // Check if "As defined" option is selected
+    if (selectedValue === "As defined:") {
+        // Create the input field element
+        var inputField = document.createElement("input");
+        inputField.type = "text";
+        inputField.name = "custom-value";
+        inputField.placeholder = "Enter a custom value";
+
+        // Append the input field to the container
+        customValueContainer.appendChild(inputField);
+    }
+}
+
+// Add event listener to the select element
+selectElement.addEventListener("change", handleSelectChange);
+
+    </script>
 <script>
   var viewName = $('#viewName').val();
 console.log(viewName);
@@ -694,7 +742,7 @@ $('#Savefield').click(function(e) {
   var visualTitle = $('#VisualTitle').val().trim();
 
   var maxLimit = $('#field-max-limit').val();
-  var minLimit = $('#field-min-limit').val();
+
   var defaultValue = $('#field-default-value').val();
   var nullable = $('#nullable').prop('checked');
   var unique = $('#unique').prop('checked');
@@ -734,7 +782,6 @@ $('#Savefield').click(function(e) {
     inEdit: inEdit,
     inShow: inShow,
     maxLimit: maxLimit,
-    minLimit: minLimit,
     defaultValue: defaultValue,
     nullable :nullable,
     unique : unique ,
@@ -771,7 +818,6 @@ $('#Savefield').click(function(e) {
       '<td>' + field.inEdit + '</td>' +
 '<td>' + field.inShow + '</td>' +
 '<td>' + field.maxLimit + '</td>' +
-'<td>' + field.minLimit + '</td>' +
 '<td>' + field.defaultValue + '</td>' +'<td>' + field.nullable + '</td>' +'<td>' + field.unique+ '</td>' +'<td>' + field.indexing + '</td>' +'<td>' + field.validationRules + '</td>' 
 +'<td>' +
 '<button  type="button" class="btn btn-warning btn-sm edit"  data-index="' + index + '">Edit</button>' + '</td>' +
@@ -819,7 +865,7 @@ $('input[name="inCreate"]').prop('checked', false);
 $('input[name="inEdit"]').prop('checked', false);
 $('input[name="inShow"]').prop('checked', false);
 $('#field-max-limit').val('');
-$('#field-min-limit').val('');
+
 $('#field-default-value').val('');
 $('#nullable').prop('checked', false);
 $('#unique').prop('checked', false);
@@ -872,7 +918,6 @@ function generateTableHtml() {
       '<td>' + field.inEdit + '</td>' +
       '<td>' + field.inShow + '</td>' +
       '<td>' + field.maxLimit + '</td>' +
-      '<td>' + field.minLimit + '</td>' +
       '<td>' + field.defaultValue + '</td>' +
       '<td>' + field.nullable + '</td>' +'<td>' + field.unique+ '</td>' +'<td>' + field.indexing + '</td>' +'<td>' + field.validationRules + '</td>'+
       '<button  type="button" class="btn btn-warning btn-sm edit"  data-index="' + index + '">Edit</button>' +   '</td>' +
@@ -901,7 +946,6 @@ $('#savedFields').on('click', '.edit', function() {
     $('#inedit').val(fields[index].inEdit);
     $('#inshow').val(fields[index].inShow);
     $('#field-max-limit').val(fields[index].maxLimit);
-    $('#field-min-limit').val(fields[index].minLimit);
     $('#field-default-value').val(fields[index].defaultValue);
     $('#unique').val(fields[index].unique);
     $('#indexing').val(fields[index].indexing);

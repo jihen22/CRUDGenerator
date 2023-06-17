@@ -25,13 +25,16 @@ class ColonneController extends Controller
             Schema::table($table, function ($table) use ($columnName) {
                 $table->dropColumn($columnName);
             });
-
-            return response()->json(['message' => 'Colonne supprimée avec succès']);
+    
+            return response()->json(null, 204); // Return an empty response with a 204 status code
         } catch (\Exception $e) {
             return response()->json(['error' => 'Une erreur s\'est produite lors de la suppression de la colonne.'], 500);
         }
     }
+<<<<<<< HEAD
    
+=======
+>>>>>>> 94e316163310a07be0035a370700443a245fb32a
     
 
 

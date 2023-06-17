@@ -70,28 +70,34 @@ class tablefilesController extends Controller{
             'orderdirection' => $orderdirection,
         ]);
     
-            //Save fields in fields table
-                $fieldsData = [];
-                foreach ($fields as $field) {
-                    $fieldsData[] = [
-                        'table_id' => $table->id,
-                        'field_type' => $field['field_type'],
-                        'database_column_name' => $field['DBCName'],
-                        'validation' => $field['validation'],
-                        'visual_title' => $field['visualTitle'],
-                        'in_list' => $field['inList'],
-                        'in_create' => $field['inCreate'],
-                        'in_edit' => $field['inEdit'],
-                        'in_show' => $field['inShow'],
-                        'max' => $field['maxLimit'],
-                        'min' => $field['minLimit'],
-                        'default_value' => $field['defaultValue'],
-                        'indexing' => $field['indexing'],
-                        'nullable' => $field['nullable'],
-                        'validationRules' => $field['validationRules'],
-                        'unique' => $field['unique'],
-                    ];
-                }
+          // Save fields in fields table
+$fieldsData = [];
+foreach ($fields as $field) {
+    $inList = ($field['inList'] === 'Yes') ? 1 : 0;
+    $inCreate = ($field['inCreate'] === 'Yes') ? 1 : 0;
+    $inEdit = ($field['inEdit'] === 'Yes') ? 1 : 0;
+    $inShow = ($field['inShow'] === 'Yes') ? 1 : 0;
+    $unique = ($field['unique'] === 'true') ? 1 : 0;
+    $nullable= ($field['nullable'] === 'true') ? 1 : 0;
+    $fieldsData[] = [
+        'table_id' => $table->id,
+        'field_type' => $field['field_type'],
+        'database_column_name' => $field['DBCName'],
+        'validation' => $field['validation'],
+        'visual_title' => $field['visualTitle'],
+        'in_list' => $inList,
+        'in_create' => $inCreate,
+        'in_edit' => $inEdit,
+        'in_show' => $inShow,
+        'max' => $field['maxLimit'],
+        'default_value' => $field['defaultValue'],
+        'indexing' => $field['indexing'],
+        'nullable' => $nullable,
+        'validationRules' => $field['validationRules'],
+        'unique' => $unique,
+    ];
+}
+
         
                 Field::insert($fieldsData);
         

@@ -166,6 +166,18 @@ Route::post('/check-entities-exist', '\\App\\Http\\Controllers\\tablefilesContro
 
 Route::post('/check-entitiescol-exist', '\\App\\Http\\Controllers\\editTableController@checkEntitiescolExist');
 
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\controller11Controller;
+
+Route::get('/table/{table}/{view}', [controller11Controller::class, 'store']);
+Route::get('/table/{table}/{view}', [controller11Controller::class, 'index']);
+Route::post('/table/{table}/{view}', [controller11Controller::class, 'store']);
+Route::delete('/data/{id}', [controller11Controller::class, 'deleteData']);
+Route::post('/update-row/{id}', [controller11Controller::class, 'updateRow'])->name('update.row');
+
+
+>>>>>>> 94e316163310a07be0035a370700443a245fb32a
 
 
 

@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\{{modelName}};
+use App\Models\model11;
+use App\Table;
+use App\Field;
 
 
 
 
-class {{controllerName}} extends Controller
+class controller11Controller extends Controller
 {
     
     
@@ -94,7 +96,7 @@ return view($view, compact('table', 'data', 'columns', 'nameproject', 'visibleCo
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-{{modelName}}::create($data);
+model11::create($data);
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
@@ -103,7 +105,7 @@ return view($view, compact('table', 'data', 'columns', 'nameproject', 'visibleCo
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
-       $data = {{modelName}}::find($id);
+       $data = model11::find($id);
 
        
     
@@ -124,7 +126,7 @@ return view($view, compact('table', 'data', 'columns', 'nameproject', 'visibleCo
    public function updateRow(Request $request, $id)
    {
      // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
-     $row = {{modelName}}::find($id);
+     $row = model11::find($id);
    
      // Vérifier si la ligne a été trouvée
      if ($row) {
@@ -137,7 +139,7 @@ return view($view, compact('table', 'data', 'columns', 'nameproject', 'visibleCo
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('{{modelName}}', $column)) {
+         if (Schema::hasColumn('model11', $column)) {
            $row->{$column} = $value;
          }
        }

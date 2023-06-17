@@ -50,6 +50,7 @@ class CreateTable extends Command
             'table' => $table,
             '--model' => $this->option('model'),
             '--controller' => $this->option('controller'),
+            '--viewType' => $this->option('viewType'),
         ]);
      
         $this->info('Migration, Model and Controller generated successfully!');

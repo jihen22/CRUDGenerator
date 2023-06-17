@@ -29,24 +29,30 @@ class editTableController extends Controller
      
     public function add(Request $request)
     {
+<<<<<<< HEAD
         
         
+=======
+       
+>>>>>>> 94e316163310a07be0035a370700443a245fb32a
         // Récupérer les données du formulaire
         $tableName = $request->input('table_name');
         $modelName = $request->input('model_name');
-       
         $fieldType = $request->input('field_type');
         $databaseColumnName = $request->input('database_column_name');
-        $validation = "test";
+        $validation = $request->input('validation');
         $visualTitle = $request->input('visual_title');
         $inList = $request->input('in_list') ? 1 : 0;
         $inCreate = $request->input('in_create') ? 1 : 0;
         $inShow = $request->input('in_show') ? 1 : 0;
         $inEdit = $request->input('in_edit') ? 1 : 0;
         $max = $request->input('max');
-        $min = $request->input('min');
-     
+      
         $defaultValue = $request->input('default_value');
+        $indexing = $request->input('indexing');
+        $nullable = $request->input('nullable')? 1 : 0;
+        $validationRules = $request->input('validation_rules');
+        $unique = $request->input('unique')? 1 : 0;
 
 
 
@@ -113,8 +119,12 @@ if (Schema::hasTable($tableName)) {
                 'in_show' => $inShow,
                 'in_edit' => $inEdit,
                 'max' => $max,
-                'min' => $min ,
+               
                 'default_value' => $defaultValue,
+                'nullable' => $nullable,
+                'validationRules' => $validationRules,
+                'indexing' => $indexing,
+                'unique' => $unique,
                 
             ];
           
@@ -163,31 +173,35 @@ public function showAddColumnForm()
 } 
 public function checkEntitiescolExist(Request $request)
 {
-    // Get table name and column name from the request
-$tableName = $request->input('table_name');
-$columnName = $request->input('column_name');
-$modelName = $request->input('model_name');
-// Check if the table exists
-if (!Schema::hasTable($tableName)) {
-    return response()->json(['table_exists' => false]);
+    // Get table name, column name, and model name from the request
+    $tableName = $request->input('table_name');
+    $columnName = $request->input('column_name');
+    $modelName = $request->input('model_field');
+
+    // Check if the table exists
+    if (!Schema::hasTable($tableName)) {
+        return response()->json(['table_exists' => false]);
+    }
+
+    // Check if the column exists in the table
+    if (Schema::hasColumn($tableName, $columnName)) {
+        return response()->json(['table_exists' => true, 'column_exists' => true]);
+    }
+
+    // Check if the model exists in the tableslist table
+    $modelExists = DB::table('tableslist')->where('model_name', $modelName)->exists();
+
+    if (!$modelExists) {
+        return response()->json(['model_exists' => false, 'error' => "The model '$modelName' is incorrect."]);
+    }
+
+    return response()->json([
+        'table_exists' => true,
+        'column_exists' => false,
+        'model_exists' => true
+    ]);
 }
 
-// Check if the column exists in the table
-if (Schema::hasColumn($tableName, $columnName)) {
-    return response()->json(['table_exists' => true, 'column_exists' => true]);
-}
-
-// Check if model file exists
-
-$modelExists = File::exists(app_path('Models/' . $modelName . '.php'));
-
-return response()->json([
-    'table_exists' => true,
-    'column_exists' => false,
-    'model_exists' => $modelExists
-]);
-
-}
 
 }
 
