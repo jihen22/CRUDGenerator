@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Schema\Builder;
+use Illuminate\Database\Schema\Blueprint;
+
 
 use App\Models\table001;
 
@@ -27,7 +29,6 @@ public function editColumn($table, $column)
     return view('editcolonne', compact('table', 'column'));
 }
 
-
 public function updateColumn(Request $request, $table, $column)
 {
     // Valider les données du formulaire
@@ -39,7 +40,6 @@ public function updateColumn(Request $request, $table, $column)
         'in_show' => 'required',
         'in_edit' => 'required',
         'max' => 'nullable|numeric',
-        'min' => 'nullable|numeric',
         'default_value' => 'nullable|numeric',
     ]);
 
@@ -61,6 +61,15 @@ public function updateColumn(Request $request, $table, $column)
         abort(404);
     }
 
+    $newColumnName = $validatedData['database_column_name'];
+
+    // Vérifier si la nouvelle colonne n'existe pas déjà dans la table
+    if (!Schema::hasColumn($table, $newColumnName)) {
+        // Exécuter la requête ALTER TABLE avec la méthode DB::statement()
+        DB::statement("ALTER TABLE `$table` CHANGE `$column` `$newColumnName` VARCHAR(255)");
+    
+    }
+
     // Mettre à jour les valeurs du champ avec les données du formulaire
     $field->database_column_name = $validatedData['database_column_name'];
     $field->visual_title = $validatedData['visual_title'];
@@ -69,7 +78,6 @@ public function updateColumn(Request $request, $table, $column)
     $field->in_show = $validatedData['in_show'];
     $field->in_edit = $validatedData['in_edit'];
     $field->max = $validatedData['max'];
-    $field->min = $validatedData['min'];
     $field->default_value = $validatedData['default_value'];
 
     // Enregistrer les modifications dans la base de données
@@ -78,5 +86,6 @@ public function updateColumn(Request $request, $table, $column)
     // Redirection vers la page précédente avec un message flash de succès
     return redirect()->back()->with('success', 'Column updated successfully!');
 }
+
 }
 

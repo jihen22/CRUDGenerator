@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\model11;
+use App\Models\Employé;
 use App\Table;
 use App\Field;
 
 
 
 
-class controller11Controller extends Controller
+class EmployéController extends Controller
 {
     
     
@@ -96,7 +96,7 @@ return view($view, compact('table', 'data', 'columns', 'nameproject', 'visibleCo
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-model11::create($data);
+Employé::create($data);
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
@@ -105,7 +105,7 @@ model11::create($data);
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
-       $data = model11::find($id);
+       $data = Employé::find($id);
 
        
     
@@ -126,7 +126,7 @@ model11::create($data);
    public function updateRow(Request $request, $id)
    {
      // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
-     $row = model11::find($id);
+     $row = Employé::find($id);
    
      // Vérifier si la ligne a été trouvée
      if ($row) {
@@ -139,7 +139,7 @@ model11::create($data);
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('model11', $column)) {
+         if (Schema::hasColumn('Employé', $column)) {
            $row->{$column} = $value;
          }
        }

@@ -31,10 +31,7 @@ class ColonneController extends Controller
             return response()->json(['error' => 'Une erreur s\'est produite lors de la suppression de la colonne.'], 500);
         }
     }
-<<<<<<< HEAD
    
-=======
->>>>>>> 94e316163310a07be0035a370700443a245fb32a
     
 
 

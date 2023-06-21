@@ -29,12 +29,8 @@ class editTableController extends Controller
      
     public function add(Request $request)
     {
-<<<<<<< HEAD
         
         
-=======
-       
->>>>>>> 94e316163310a07be0035a370700443a245fb32a
         // Récupérer les données du formulaire
         $tableName = $request->input('table_name');
         $modelName = $request->input('model_name');

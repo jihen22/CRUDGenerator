@@ -23,8 +23,9 @@ use App\Http\Controllers\ColonneController;
 //use App\Http\Controllers\ListController;
 
 use App\Http\Controllers\controller1Controller;
-use App\Http\Controllers\Table0005Controller;
+
 use App\Http\Controllers\EditcolonneController;
+use App\Http\Controllers\ProductsController;
 
 
 
@@ -166,18 +167,6 @@ Route::post('/check-entities-exist', '\\App\\Http\\Controllers\\tablefilesContro
 
 Route::post('/check-entitiescol-exist', '\\App\\Http\\Controllers\\editTableController@checkEntitiescolExist');
 
-<<<<<<< HEAD
-=======
-use App\Http\Controllers\controller11Controller;
-
-Route::get('/table/{table}/{view}', [controller11Controller::class, 'store']);
-Route::get('/table/{table}/{view}', [controller11Controller::class, 'index']);
-Route::post('/table/{table}/{view}', [controller11Controller::class, 'store']);
-Route::delete('/data/{id}', [controller11Controller::class, 'deleteData']);
-Route::post('/update-row/{id}', [controller11Controller::class, 'updateRow'])->name('update.row');
-
-
->>>>>>> 94e316163310a07be0035a370700443a245fb32a
 
 
 
@@ -191,15 +180,14 @@ Route::post('/update-row/{id}', [controller11Controller::class, 'updateRow'])->n
 //Route::get('/{table}/{view}', [ListController::class, 'index']);
 
 
-Route::get('/table015/{table}/{view}', [controller1Controller::class,'index']);
-Route::delete('/table015/{id}', [controller1Controller::class, 'deleteData']);
-Route::post('/table015/{id}', [controller1Controller::class, 'updateRow'])->name('update.row');
-Route::post('/table015/{table}/{view}', [controller1Controller::class,'store']);
 
-Route::get('/{table}/{view}', [Table0005Controller::class,'index']);
-Route::delete('/{id}', [Table0005Controller::class, 'deleteData']);
-Route::post('/{id}', [Table0005Controller::class, 'updateRow'])->name('update.row');
-Route::post('/{table}/{view}', [Table0005Controller::class,'store']);
+
+
+Route::get('/{table}/{view}', [ProductsController::class,'index']);
+Route::delete('/{id}', [ProductsController::class, 'deleteData']);
+Route::post('/{id}', [ProductsController::class, 'updateRow'])->name('update.row');
+Route::post('/{table}/{view}', [ProductsController::class,'store']);
+
 
 
 //Route::get('/formulaire', 'NomDuController@afficherFormulaire')->name('formulaire');
