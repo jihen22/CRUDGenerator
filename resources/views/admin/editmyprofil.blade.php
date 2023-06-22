@@ -48,7 +48,7 @@
 #monDiv {
 	min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
 	margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
-	margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
+	margin-left: 100px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
 	width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
 }
 

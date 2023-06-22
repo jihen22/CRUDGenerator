@@ -23,7 +23,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                         <h1>
-                        <div class="sb-sidenav-menu-heading">My project</div>
+                        <div class="sb-sidenav-menu-heading"></div>
                         
                       
 </h1>
