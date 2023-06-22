@@ -174,21 +174,27 @@ div.row.mb-2 {
     @csrf
                           
                         
-                           
-                         
+                    
+
 
                             <div class="form-group">
-                                <label for="database_column_name">Database column Name</label>
-                                <input type="text" name="database_column_name" id="database_column_name" class="form-control"  placeholder="Enter column name in the database">
-                                <div class="invalid-feedback">Column name field is required!</div>
-                            </div>
+                <label for="DBCName"style=" margin-left: 10px;">Database Column Name:</label>
+                <input type="text" style="margin-left: 10px;"class="form-control" name="database_column_name" id="database_column_name" placeholder="Enter DBC Name">
+               <div> <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;"> Enter a suitable name for the database column. </span></div>
+                <div class="invalid-feedback"></div>
+            </div>
 
-                         
-                            <div class="form-group">
-                                <label for="visual_title">Visual Title</label>
-                                <input type="text" name="visual_title" id="visual_title" class="form-control" placeholder="Enter visual title">
-                            </div>
-                            <div class="form-group">
+            <div class="form-group">
+                <label for="VisualTitle"style=" margin-left: 10px;">Visual Title</label>
+                <input style=" margin-left: 10px;" type="text" class="form-control" name="visual_title" id="visual_title" placeholder="Enter Visual title">
+               <div> <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Enter a visual title for the field, which will be displayed on the form or in the user interface.</span></div>
+            </div>
+
+
+
+         
+            <div class="form-group">
+
     <label for="in_list" style="margin-right: 10px;">In List:</label>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="in_list" id="in_list_yes" value="yes">
@@ -257,7 +263,7 @@ div.row.mb-2 {
 <div class="form-group">
     <div style="display: flex; align-items: center;">
         <label for="field-max-limit" style="margin-right: 10px;">Max Limit:</label>
-        <input type="number" class="form-control" id="field-max-limit" name="field-max-limit" style="width: 150px;">
+        <input type="number" class="form-control"  id="max" name="max" style="width: 150px;">
     </div>
     <div>
         <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Specify the maximum limit or length of the field if applicable (e.g., maximum number of characters).</span>
@@ -269,7 +275,7 @@ div.row.mb-2 {
 <div class="form-group">
     <div style="display: flex; align-items: center;">
         <label for="field-default-value" style="margin-right: 10px;">Default value:</label>
-        <select class="form-control" id="field-default-value" name="field-default-value" style="width: 150px;">
+        <select class="form-control" id="default_value" name="default_value" style="width: 150px;">
             <option value="None">None</option>
             <option value="NULL">NULL</option>
             <option value="As defined:">As defined:</option>

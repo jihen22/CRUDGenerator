@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Schema\Builder;
 use Illuminate\Database\Schema\Blueprint;
-
+use Illuminate\Support\Facades\File;
 
 use App\Models\table001;
 
@@ -40,7 +40,7 @@ public function updateColumn(Request $request, $table, $column)
         'in_show' => 'required',
         'in_edit' => 'required',
         'max' => 'nullable|numeric',
-        'default_value' => 'nullable|numeric',
+        'default_value' => 'nullable',
     ]);
 
     // Récupérer les informations de la table à partir de TableList
@@ -68,7 +68,48 @@ public function updateColumn(Request $request, $table, $column)
         // Exécuter la requête ALTER TABLE avec la méthode DB::statement()
         DB::statement("ALTER TABLE `$table` CHANGE `$column` `$newColumnName` VARCHAR(255)");
     
+;
     }
+
+
+    $modelName = $tableInfo->model_name;
+
+         
+    $modelFilePath = app_path("{$modelName}.php");
+  
+    // Vérifier si le fichier du modèle existe
+    if (file_exists($modelFilePath)) {
+        $modelContent = file_get_contents($modelFilePath);
+
+        // Vérifier si la colonne est déjà ajoutée dans le modèle
+        if (strpos($modelContent, "'{$newColumnName}'") !== false) {
+            // La colonne est déjà ajoutée dans le modèle, vous pouvez gérer cette situation selon vos besoins
+            return;
+        }
+
+        // Ajouter la nouvelle colonne comme attribut fillable dans le modèle
+        $fillablePattern = "/protected\s+\$fillable\s+=\s+\[[^\]]+\];/i";
+        $fillableReplacement = "\$0\n    '{$newColumnName}',";
+        $updatedModelContent = preg_replace($fillablePattern, $fillableReplacement, $modelContent);
+
+        // Mettre à jour le fichier du modèle avec le contenu modifié
+        file_put_contents($modelFilePath, $updatedModelContent);
+    }
+
+
+
+
+  
+   // Delete the existing model file if it exists
+   $modelPath = app_path("Models/$modelName.php");
+   if (File::exists($modelPath)) {
+       File::delete($modelPath);
+   }
+
+   // Generate the new model file with updated columns
+   $this->generateModelFile($table,$modelName);
+
+
 
     // Mettre à jour les valeurs du champ avec les données du formulaire
     $field->database_column_name = $validatedData['database_column_name'];
@@ -86,6 +127,39 @@ public function updateColumn(Request $request, $table, $column)
     // Redirection vers la page précédente avec un message flash de succès
     return redirect()->back()->with('success', 'Column updated successfully!');
 }
+
+
+
+  // Helper function to generate the model file with updated columns
+  private function generateModelFile($table ,$modelName )
+  {
+      $columns = DB::getSchemaBuilder()->getColumnListing($table);
+
+
+      // Exclude default columns
+      $excludeColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
+      $fillableColumns = array_diff($columns, $excludeColumns);
+      $fillable = implode("', '", $fillableColumns);
+
+      $model = <<<EOT
+      <?php
+
+      namespace App\Models;
+
+      use Illuminate\Database\Eloquent\Model;
+
+      class $modelName extends Model
+      {
+          protected \$table = '$table';
+          protected \$fillable = ['$fillable'];
+      }
+      EOT;
+
+      $modelPath = app_path("Models/$modelName.php");
+      file_put_contents($modelPath, $model);
+  }
+
+
 
 }
 

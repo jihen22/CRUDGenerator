@@ -167,6 +167,8 @@ public function showAddColumnForm()
 {
     return View::make('edittable');
 } 
+
+
 public function checkEntitiescolExist(Request $request)
 {
     // Get table name, column name, and model name from the request
