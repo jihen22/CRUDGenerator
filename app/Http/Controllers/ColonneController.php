@@ -5,17 +5,22 @@ use Illuminate\Support\Facades\Schema;
 
 use App\Field;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ColonneController extends Controller
 {
     public function showColumns($table)
     {
+
+        $user = Auth::user();
+        $nameproject = $user->nameproject; 
+
         $hiddenColumns = ['created_at', 'updated_at', 'remember_token'];
     
         $columns = Schema::getColumnListing($table);
         $visibleColumns = array_diff($columns, $hiddenColumns);
     
-        return view('colonne', compact('table', 'visibleColumns'));
+        return view('colonne', compact('table', 'visibleColumns','nameproject'));
     }
 
 

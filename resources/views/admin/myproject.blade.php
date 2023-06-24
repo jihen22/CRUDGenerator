@@ -41,27 +41,32 @@
 
 
         
-          <style> .flex-container {
-	display: flex;
+          <style>
+
+
+          .flex-container {
+  display: flex;
 }
 
 .content-warper {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
+
 #monDiv {
-	min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
-	margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
-	margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
-	width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
+  min-height: calc(100vh - 60px);
+  margin-right: 70px;
+  margin-left: 100px;
+  width: calc(100% - 80px);
 }
 
 .small-sidebar {
-	width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
+  width: 70px;
 }
+
 .container-fluide {
-    margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
+  margin-bottom: 50px;
 }
 
 .content {
@@ -72,12 +77,11 @@
 .content-header {
   margin-bottom: 20px;
 }
+
 .content-header h1 {
   padding: 42px 57px;
   display: inline-block;
 }
-
-	
 
      
 
