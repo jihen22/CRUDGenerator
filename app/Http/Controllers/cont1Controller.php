@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\Products;
-
+use App\Models\model1;
 use App\Table;
 use App\Field;
 
 
-class ProductsController extends Controller
+
+
+class cont1Controller extends Controller
 {
     
     
@@ -49,7 +50,7 @@ if ($fieldListRows->isNotEmpty()) {
     $editableColumns = []; 
     $createtableColumns = [];
 
-    $hiddenColumns = [ 'created_at', 'updated_at', 'remember_token'];
+    $hiddenColumns = ['id', 'created_at', 'updated_at', 'remember_token'];
 
 
     foreach ($fieldListRows as $row) {
@@ -95,7 +96,7 @@ return view($view, compact('table', 'data', 'columns', 'nameproject', 'visibleCo
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-Products::create($data);
+model1::create($data);
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
@@ -104,7 +105,7 @@ Products::create($data);
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
-       $data = Products::find($id);
+       $data = model1::find($id);
 
        
     
@@ -125,7 +126,7 @@ Products::create($data);
    public function updateRow(Request $request, $id)
    {
      // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
-     $row = Products::find($id);
+     $row = model1::find($id);
    
      // Vérifier si la ligne a été trouvée
      if ($row) {
@@ -138,7 +139,7 @@ Products::create($data);
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('Products', $column)) {
+         if (Schema::hasColumn('{{modelName}}', $column)) {
            $row->{$column} = $value;
          }
        }

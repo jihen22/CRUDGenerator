@@ -275,7 +275,7 @@
     
 </head>
 
-<body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
+<body class="sidebar-mini  sidebar-collapse" style="height: auto;" >
   <div id="app" class="warpper">
       @include('admin.partials.topbar')
          <div id="layoutSidenav" class="flex-container">
@@ -664,27 +664,7 @@
               
 </body> 
 
-   <!-- <script> 
- // document.getElementById("submit").addEventListener("click", function() {
-  //  // Get all the input fields
-   // const  FeildType= document.getElementById("FeildType").value;
-   // const DBCName = document.getElementById("DBCName").value;
-    //const Visualtitle = document.getElementById("VisualTitle").value;
-    //const Validation = document.getElementById("Validation").value;
-   // const Visibility = document.getElementById("Visibility").value;
-    //const Max = document.getElementById("set-max-limit").value;
-    //const Min = document.getElementById("set-min-limit").value;
-    //const Defaultvalue = document.getElementById("set-default-value").value;
-  
 
-    // Validate the input fields
-    //if (DBCName  === '' ||Visualtitle === '' ) {
-     // alert('Please fill all the required fields.');
-    //  return;
-  
-   // }
- // });
-</script> -->
  <!-- jQuery -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -1158,6 +1138,6 @@ function handleEmptyViewNameError() {
 
 
 
-@include('admin.partials.footer')
+
 
 </html>              

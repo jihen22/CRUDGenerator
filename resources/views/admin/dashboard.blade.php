@@ -163,22 +163,33 @@ $tables = DB::select("SHOW TABLES WHERE Tables_in_" . env('DB_DATABASE') . " NOT
             </tr>
         </thead>
         <tbody>
-            @foreach($tables as $table)
-                <tr>
-                   <td><a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" >{{ $table->{'Tables_in_' . env('DB_DATABASE')} }}</a></td>
-</td>
-                    <td>
-                 <a href="{{ url('/' . $table->{'Tables_in_' . env('DB_DATABASE')} . '/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}" class="btn btn-info"><i class="fas fa-eye"></i> See</a>
-                 <a href="{{ route('telecharger_controller', ['table' => $table->{'Tables_in_' . env('DB_DATABASE')}]) }}" class="btn btn-secondary" download>
-                 <i class="fas fa-download"></i> download
-                 </a>
-                 <a href="{{ route('supprimer_table', ['table' => $table->{'Tables_in_' . env('DB_DATABASE')}]) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette table?')"><i class="fas fa-trash"></i> delete</a>
+        @foreach($tables as $table)
+            <tr>
+                <td>
+                    <a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}">
+                        {{ $table->{'Tables_in_' . env('DB_DATABASE')} }}
+                    </a>
+                </td>
+                <td>
+                    @php
+                        $tableName = $table->{'Tables_in_' . env('DB_DATABASE')};
+                        $tablesList = DB::table('tableslist')->where('name', $tableName)->first();
+                        $viewName = ($tablesList) ? $tablesList->view_name : null;
+                    @endphp
 
-                   </td>
-
-                </tr>
-            @endforeach
-        </tbody>
+                    <a href="{{ url('/' . $tableName . '/' . $viewName) }}" class="btn btn-info">
+                        <i class="fas fa-eye"></i> See
+                    </a>
+                    <a href="{{ route('telecharger_controller', ['table' => $tableName]) }}" class="btn btn-secondary" download>
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                    <a href="{{ route('supprimer_table', ['table' => $tableName]) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette table?')">
+                        <i class="fas fa-trash"></i> Delete
+                    </a>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
     </table>
 </div>
 
@@ -223,6 +234,8 @@ $tables = DB::select("SHOW TABLES WHERE Tables_in_" . env('DB_DATABASE') . " NOT
 </div>
 </div>
 </div>
+
+
 <script>
 		document.getElementById("createCrudTable").addEventListener("click", function() {
 			window.location.href = "/CRUD";

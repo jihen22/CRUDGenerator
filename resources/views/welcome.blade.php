@@ -21,7 +21,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"> <img src="{{ asset('logo.png') }}" alt="Logo" style="width: 260px; height: auto;"></a>
+                <a class="navbar-brand" href="#page-top"> <a class="navbar-brand ps-3" href="{{'/dashboard'}}">CRUD GENERATOR LARAVEL</a> </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -43,7 +43,7 @@
                
                 <div class=""></div>
                 <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
-    <a style="margin-right: 10px; text-decoration: none; color: #ffffff; background-color: #FFA500; padding: 10px 20px; font-size: 18px; border-radius: 5px;" href="{{ route('register') }}">Start Project</a>
+    <a style="margin-right: 10px; text-decoration: none; color: #ffffff; background-color: #FFA500; padding: 10px 20px; font-size: 18px; border-radius: 5px;" href="{{ route('register') }}">Register</a>
     <a style="text-decoration: none; color: #ffffff; background-color: #6c757d; padding: 10px 20px; font-size: 18px; border-radius: 5px;" href="#about">Know More</a>
 </div>
 
@@ -54,8 +54,8 @@
         <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase"> Our services</h2>
-                    <h3 class=" text-muted">Developers can automate the processes of creating, reading, updating, and deleting data, saving them time and efficiency.</h3>
+                    <h4 class="section-heading text-uppercase"> Our services</h4>
+                    <h5 class=" text-muted">Developers can automate the processes of creating, reading, updating, and deleting data, saving them time and efficiency.</h5>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -63,7 +63,7 @@
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Database Migration Generation</h4>
+                        <h5 class="my-3">Database Migration Generation</h5>
                         <p class="text-muted">  Taking in the description of the database (table name , models , vues and columns ) and generating the necessary migration files to create the database schema</p>
                     </div>
                     <div class="col-md-4">
@@ -71,7 +71,7 @@
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">CRUD Code Generation Service</h4>
+                        <h5 class="my-3">CRUD Code Generation Service</h5>
                         <p class="text-muted"> This service would take in the database schema and user preferences for the display (tables, lists,etc.) and generate the necessary Laravel models, controllers, and routes to perform CRUD operations on the database. </p>
                     </div>
                     <div class="col-md-4">
@@ -79,7 +79,7 @@
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">View Template Generation Service</h4>
+                        <h5 class="my-3">View Template Generation Service</h5>
                         <p class="text-muted">This service would take in the user preferences for the display and generate the necessary view templates using Laravel's Blade templating engine. The service could generate templates for tables, lists, cards, and any other preferred display format, and could also include pagination, filtering, and sorting functionality based on user preferences.</p>
                     </div>
                 </div>
@@ -89,9 +89,10 @@
         <section class="page-section" id="about">
   <div class="container">
     <div class="text-center">
-      <h2 class="section-heading text-uppercase">About </h2>
-      <h3 class="section-subheading text-muted">Welcome to our CRUD GENERATOR LARAVE project! The purpose of this project is to provide developers with a tool that can generate code for CRUD (Create, Read, Update, Delete) operations in Laravel applications. With this generator, developers can save time and increase productivity by automating the tedious task of writing boilerplate code.</h3>
+      <h4 class="section-heading text-uppercase">About </h4>
+      <h5 class="section-subheading text-muted">Welcome to our CRUD GENERATOR LARAVE project! The purpose of this project is to provide developers with a tool that can generate code for CRUD (Create, Read, Update, Delete) operations in Laravel applications. With this generator, developers can save time and increase productivity by automating the tedious task of writing boilerplate code.</h5>
     </div>
+    <div>
     <ul class="timeline">
       <li>
         <div class="timeline-image">
@@ -102,7 +103,7 @@
             <h4 class="subheading">Technology Stack</h4>
           </div>
           <div class="timeline-body">
-            <p class="text-muted">This CRUD generator is built using Laravel, a popular PHP framework for web application development. It also uses several Laravel packages and libraries, including the Illuminate database library for database operations, the Blade templating engine for generating code templates, and the Faker package for generating fake data.</p>
+            <p class="text-muted">The CRUD Generator Laravel app is a powerful tool designed to revolutionize the way developers create and manage CRUD operations in their Laravel applications. By leveraging advanced code generation techniques, this app streamlines the process of building robust and efficient systems. With just a few clicks, developers can effortlessly generate complete and customizable code for creating, reading, updating, and deleting data entities. This app not only saves valuable time but also ensures consistency and reduces the chances of errors by automating the creation of boilerplate code. Experience a new level of productivity and efficiency with the CRUD Generator Laravel app, empowering developers to focus on the core functionality of their applications while effortlessly handling the repetitive aspects of coding.</p>
           </div>
         </div>
       </li>
@@ -144,22 +145,87 @@
     </ul>
   </div>
 </section>
-
- 
-   
-        <!-- Footer-->
-        <footer class="footer py-4">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 text-lg-start">Copyright &copy; CRUD GENERATOR LARAVEL 2022-2023</div>
-                   
-                    <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+<footer class="footer py-4 bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 style ="width: 500px; text-align: justify; text-align-last: left;">CRUD Generator LARAVEL</h5>
+                        <p style="color: white; width: 500px; text-align: justify; text-align-last: left;">
+                            The CRUD Generator Laravel app automates the creation and management of CRUD operations in Laravel applications. It saves time by generating customizable code for handling data entities. With a few clicks, developers can generate code for CRUD operations, enhancing productivity and reducing errors. The app allows developers to focus on core functionality while efficiently handling routine coding tasks.
+                        </p>
                     </div>
                 </div>
             </div>
-        </footer>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#!">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#!">Contact</a></li>
+                            <!-- Add more quick links as needed -->
+                        </ul>
+                        <h5>Follow Us</h5>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook fa-lg"></i></a>
+                            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-lg"></i></a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram fa-lg"></i></a>
+                            <!-- Add more social media icons and links as needed -->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Legal</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#!">Privacy Policy</a></li>
+                            <li><a href="#!">Terms of Use</a></li>
+                            <!-- Add more legal links as needed -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<style>
+/* Custom CSS for the footer */
+.footer {
+    background-color: #000000;
+}
+.social-icons {
+margin-top: 10px;
+}
+
+.social-icons a {
+margin-right: 10px;
+color: #ffff00;
+}
+
+.social-icons a:hover {
+color: #007bff;
+}
+
+.footer h5 {
+color: #FFD700;
+margin-bottom: 15px;
+}
+
+.footer ul li a {
+color: #ffffff;
+text-decoration: none;
+}
+
+.footer ul li a:hover {
+color: #007bff;
+}
+
+.footer .sb-sidenav-footer {
+color: #ffffff;
+}
+</style>
         
         <script>
   document.getElementById("submit").addEventListener("click", function() {

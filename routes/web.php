@@ -19,8 +19,7 @@ use App\Http\Controllers\editTableController;
 use App\Http\Controllers\ColonneController;
 
 
-//use App\Http\Controllers\CardController;
-//use App\Http\Controllers\ListController;
+
 
 use App\Http\Controllers\controller1Controller;
 
@@ -170,35 +169,19 @@ Route::post('/check-entitiescol-exist', '\\App\\Http\\Controllers\\editTableCont
 
 
 
-//Route::get('/card/{table}/{view}', [CardController::class,'index']);
-//Route::delete('/data/{id}', [CardController::class, 'deleteData']);
-//Route::post('/update-row/{id}', [CardController::class, 'updateRow'])->name('update.row');
-//Route::post('/card/{table}/{view}', [CardController::class,'store']);
-
-
-
-//Route::get('/{table}/{view}', [ListController::class, 'index']);
-
-
-
-
-
-Route::get('/{table}/{view}', [ProductsController::class,'index']);
-Route::delete('/{id}', [ProductsController::class, 'deleteData']);
-Route::post('/{id}', [ProductsController::class, 'updateRow'])->name('update.row');
-Route::post('/{table}/{view}', [ProductsController::class,'store']);
-
-
-
-//Route::get('/formulaire', 'NomDuController@afficherFormulaire')->name('formulaire');
-//Route::post('/formulaire', 'NomDuController@traiterFormulaire')->name('traiter_formulaire');
-
 
 
 Route::get('/get/{table}/{column}/update', [EditcolonneController::class, 'editColumn'])->name('update-column');;
 Route::post('/column/{table}/{column}/update', [EditcolonneController::class, 'updateColumn'])->name('column.edit');
 
+use App\Http\Controllers\cont1Controller;
 
+Route::get('/{table}/{view}', [cont1Controller::class, 'index']);
+Route::delete('/{id}', [cont1Controller::class, 'deleteData']);
+Route::post('/{id}', [cont1Controller::class, 'updateRow'])->name('update.row');
+Route::post('/{table}/{view}', [cont1Controller::class, 'store']);use App\Http\Controllers\cont2Controller;
 
-
-
+Route::get('/{table}/{view}', [cont2Controller::class, 'index']);
+Route::delete('/{id}', [cont2Controller::class, 'deleteData']);
+Route::post('/{id}', [cont2Controller::class, 'updateRow'])->name('update.row');
+Route::post('/{table}/{view}', [cont2Controller::class, 'store']);
