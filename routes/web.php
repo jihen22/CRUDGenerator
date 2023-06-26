@@ -19,8 +19,12 @@ use App\Http\Controllers\editTableController;
 use App\Http\Controllers\ColonneController;
 
 
+<<<<<<< HEAD
 //use App\Http\Controllers\CardController;
 use App\Http\Controllers\ListController;
+=======
+
+>>>>>>> 2ffb5ecd71bd878d96ad6e83e4e99a9d7e808dd6
 
 use App\Http\Controllers\controller1Controller;
 
@@ -171,6 +175,7 @@ Route::post('/check-entitiescol-exist', '\\App\\Http\\Controllers\\editTableCont
 
 
 
+<<<<<<< HEAD
 //Route::get('/card/{table}/{view}', [CardController::class,'index']);
 //Route::delete('/data/{id}', [CardController::class, 'deleteData']);
 //Route::post('/update-row/{id}', [CardController::class, 'updateRow'])->name('update.row');
@@ -201,12 +206,21 @@ Route::post('/table258/{table}/{view}', [ProductsController::class,'store']);
 //Route::get('/formulaire', 'NomDuController@afficherFormulaire')->name('formulaire');
 //Route::post('/formulaire', 'NomDuController@traiterFormulaire')->name('traiter_formulaire');
 
+=======
+>>>>>>> 2ffb5ecd71bd878d96ad6e83e4e99a9d7e808dd6
 
 
 Route::get('/get/{table}/{column}/update', [EditcolonneController::class, 'editColumn'])->name('update-column');;
 Route::post('/column/{table}/{column}/update', [EditcolonneController::class, 'updateColumn'])->name('column.edit');
 
+use App\Http\Controllers\cont1Controller;
 
+Route::get('/{table}/{view}', [cont1Controller::class, 'index']);
+Route::delete('/{id}', [cont1Controller::class, 'deleteData']);
+Route::post('/{id}', [cont1Controller::class, 'updateRow'])->name('update.row');
+Route::post('/{table}/{view}', [cont1Controller::class, 'store']);use App\Http\Controllers\cont2Controller;
 
-
-
+Route::get('/{table}/{view}', [cont2Controller::class, 'index']);
+Route::delete('/{id}', [cont2Controller::class, 'deleteData']);
+Route::post('/{id}', [cont2Controller::class, 'updateRow'])->name('update.row');
+Route::post('/{table}/{view}', [cont2Controller::class, 'store']);

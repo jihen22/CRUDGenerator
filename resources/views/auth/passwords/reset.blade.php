@@ -1,6 +1,76 @@
 @extends('layouts.app')
 <body lass="img js-fullheight" style="background-image: url(LoginpageRessources/images/header-bg.jpg);">
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('LoginpageRessources/css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+</head>
+
+<style>
+    .form-group {
+        margin-bottom: 2rem;
+    }
+    .form-group label {
+        font-weight: bold;
+    }
+    .card {
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .card-header {
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #dee2e6;
+        padding: 1.5rem;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    /* New CSS */
+    .form-control {
+        height: 40px;
+        font-size: 14px;
+    }
+    .social .btn {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    .social .btn i {
+        margin-right: 5px;
+    }
+    .social .btn-github {
+        background-color: #333;
+        color: #fff;
+    }
+    .social .btn-facebook {
+        background-color: #3b5998;
+        color: #fff;
+    }
+    .social .btn-google {
+        background-color: #dd4b39;
+        color: #fff;
+    }
+</style>
+
+<body class="img js-fullheight" style="background-image: url(LoginpageRessources/images/header-bg.jpg);">
+@extends('layouts.app')
+
 @section('content')
+@section('content')
+<style>
+    body {
+        background-color: #222;
+        color: #fff;
+    }
+</style>
+
 <div class="container" >
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -61,6 +131,15 @@
             </div>
         </div>
     </div>
+@endsection
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
 
 @endsection
 </body>

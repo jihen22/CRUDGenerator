@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Tablescommands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
+
 class CreateRoutesCommand extends Command
 {
     /**
@@ -12,7 +13,7 @@ class CreateRoutesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'create:routes {table : Table name} {--controller= : Controller name}{--model= : Model name}';
+    protected $signature = 'create:routes {table : Table name} {--controller= : Controller name}';
 
     /**
      * The console command description.
@@ -29,30 +30,22 @@ class CreateRoutesCommand extends Command
     public function handle()
     {
         $table = $this->argument('table');
-        $controller = $this->option('controller') ?: ucfirst($table).'Controller';
-        $model = $this->option('model');
-  
-        $controller_path = app_path('Http/Controllers/'.$controller.'.php');
+        $controller = $this->option('controller');
+
+        $controller_path = app_path('Http/Controllers/'.$controller.'Controller.php');
 
         if (!File::exists($controller_path)) {
             $this->error('Controller '.$controller.' does not exist!');
             return;
         }
 
-        $model_path = app_path('Models/'.$model.'.php');
-        if (!File::exists($model_path)) {
-            $this->error('Model '.$model.' does not exist!');
-            return;
-        }
-
-        $useStatement = "use App\\Http\\Controllers\\{$controller};\n";
+        $useStatement = "use App\\Http\\Controllers\\{$controller}Controller;\n";
 
         $routeDefinitions = [
-            "Route::get('/table/{table}/{view}', [{$controller}::class, 'store']);",
-            "Route::get('/table/{table}/{view}', [{$controller}::class, 'index']);",
-            "Route::post('/table/{table}/{view}', [{$controller}::class, 'store']);",
-            "Route::delete('/data/{id}', [{$controller}::class, 'deleteData']);",
-            "Route::post('/update-row/{id}', [{$controller}::class, 'updateRow'])->name('update.row');",
+            "Route::get('/{table}/{view}', [{$controller}Controller::class, 'index']);",
+            "Route::delete('/{id}', [{$controller}Controller::class, 'deleteData']);",
+            "Route::post('/{id}', [{$controller}Controller::class, 'updateRow'])->name('update.row');",
+            "Route::post('/{table}/{view}', [{$controller}Controller::class, 'store']);",
         ];
 
         $webRouteFile = base_path('routes/web.php');

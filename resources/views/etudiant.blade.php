@@ -136,11 +136,22 @@
 
    
 <div class="content-warper" id="monDiv" style="">
+<<<<<<<< HEAD:resources/views/etudiant.blade.php
 <div class="content-header">
 <div class="container-fluid p-0">
 <div class ="row mb-2">
 <div class="col-sm-6">
 <h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
+========
+<a href="{{ route('admin.dashboard') }}" class="arrow-icon">
+  <i class="fas fa-arrow-left"></i>
+</a>
+	<div class="content-header">
+		<div class="container-fluid p-0">
+			<div class ="row mb-2">
+				<div class="col-sm-6">
+                <h1 class="m-0 text-drak text-right custom-title">Add Fields to Your Table</h1>
+>>>>>>>> 2ffb5ecd71bd878d96ad6e83e4e99a9d7e808dd6:resources/views/vn2.blade.php
                 </div>
             </div>
         </div>
@@ -149,12 +160,20 @@
     
 
    
+<<<<<<<< HEAD:resources/views/etudiant.blade.php
     <div class="container-fluide p-0">
+========
+
+
+    
+	     <div class="container-fluide p-0">
+>>>>>>>> 2ffb5ecd71bd878d96ad6e83e4e99a9d7e808dd6:resources/views/vn2.blade.php
            <div class="card card-default">
 
 
             <div class="card-body">
 
+<<<<<<<< HEAD:resources/views/etudiant.blade.php
      
               <table id="mytable" class="table table-bordred table-striped">
              
@@ -207,6 +226,35 @@
 
 
 <button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
+========
+
+
+
+
+            <div class="row" id="card-container">
+    @foreach ($data as $row)
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    @foreach ($visibleColumns as $column)
+                        <p class="card-text">{{ $column }}: {{ $row->$column }}</p>
+                    @endforeach
+
+                    <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
+                            <span class="fas fa-edit"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
+                   <span class="fas fa-trash-alt"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
+
+
+
+>>>>>>>> 2ffb5ecd71bd878d96ad6e83e4e99a9d7e808dd6:resources/views/vn2.blade.php
 
 <button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -221,7 +269,11 @@
             <form id="addDataForm">
                 <div class="modal-body">
                     @foreach ($columns as $column)
+<<<<<<<< HEAD:resources/views/etudiant.blade.php
                     @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
+========
+                        @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
+>>>>>>>> 2ffb5ecd71bd878d96ad6e83e4e99a9d7e808dd6:resources/views/vn2.blade.php
                             <div class="form-group">
                                 <label for="{{ $column }}">{{ $column }}:</label>
                                 <input type="text" class="form-control" id="{{ $column }}" name="{{ $column }}" required>
@@ -229,12 +281,20 @@
                         @endif
                     @endforeach
                 </div>
+<<<<<<<< HEAD:resources/views/etudiant.blade.php
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                         <button type="submit" class="btn btn-primary">Ajouter</button>
                     </div>
                 </form>
             </div>
+========
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+>>>>>>>> 2ffb5ecd71bd878d96ad6e83e4e99a9d7e808dd6:resources/views/vn2.blade.php
         </div>
     </div>
 </div>

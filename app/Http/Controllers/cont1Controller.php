@@ -6,14 +6,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+<<<<<<< HEAD:app/Http/Controllers/ProductsController.php
+use Illuminate\Support\Facades\View;
+use App\Models\Products;
+
+=======
 
 use App\Models\model1;
-
+>>>>>>> 2ffb5ecd71bd878d96ad6e83e4e99a9d7e808dd6:app/Http/Controllers/cont1Controller.php
 use App\Table;
 use App\Field;
 
 
-class controller1Controller extends Controller
+
+
+class cont1Controller extends Controller
 {
     
     
@@ -138,7 +145,7 @@ model1::create($data);
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('model1', $column)) {
+         if (Schema::hasColumn('{{modelName}}', $column)) {
            $row->{$column} = $value;
          }
        }
@@ -152,6 +159,9 @@ model1::create($data);
        // Gérer le cas où la ligne n'a pas été trouvée
        return response()->json(['error' => 'La ligne correspondante n\'a pas été trouvée']);
      }
+
+     
+
    }
    
 

@@ -42,7 +42,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Tablescommands\CreateTableView::class,
         \App\Console\Tablescommands\GenerateController::class,
        \App\Console\Tablescommands\MakeModelWithColumnsCommand::class,
-      \App\Console\Commands\CreateRoutesCommand::class,
+      \App\Console\Tablescommands\CreateRoutesCommand::class,
     ];
    
 }

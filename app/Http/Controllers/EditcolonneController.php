@@ -42,6 +42,12 @@ public function updateColumn(Request $request, $table, $column)
         'max' => 'nullable|numeric',
         'default_value' => 'nullable',
     ]);
+     // Convert 'in_list', 'in_create', 'in_show', and 'in_edit' to 1 or 0
+     $inList = $validatedData['in_list'] == 'yes' ? 1 : 0;
+     $inCreate = $validatedData['in_create'] == 'yes' ? 1 : 0;
+     $inShow = $validatedData['in_show'] == 'yes' ? 1 : 0;
+     $inEdit = $validatedData['in_edit'] == 'yes' ? 1 : 0;
+ 
 
     // Récupérer les informations de la table à partir de TableList
     $tableInfo = Table::where('name', $table)->first();
@@ -114,10 +120,10 @@ public function updateColumn(Request $request, $table, $column)
     // Mettre à jour les valeurs du champ avec les données du formulaire
     $field->database_column_name = $validatedData['database_column_name'];
     $field->visual_title = $validatedData['visual_title'];
-    $field->in_list = $validatedData['in_list'];
-    $field->in_create = $validatedData['in_create'];
-    $field->in_show = $validatedData['in_show'];
-    $field->in_edit = $validatedData['in_edit'];
+    $field->in_list = $inList;
+    $field->in_create = $inCreate;
+    $field->in_show = $inShow;
+    $field->in_edit = $inEdit;
     $field->max = $validatedData['max'];
     $field->default_value = $validatedData['default_value'];
 
