@@ -136,13 +136,6 @@
 
    
 <div class="content-warper" id="monDiv" style="">
-<<<<<<< HEAD
-<div class="content-header">
-<div class="container-fluid p-0">
-<div class ="row mb-2">
-<div class="col-sm-6">
-<h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
-=======
 <a href="{{ route('admin.dashboard') }}" class="arrow-icon">
   <i class="fas fa-arrow-left"></i>
 </a>
@@ -151,7 +144,6 @@
 			<div class ="row mb-2">
 				<div class="col-sm-6">
                 <h1 class="m-0 text-drak text-right custom-title">Add Fields to Your Table</h1>
->>>>>>> 94e316163310a07be0035a370700443a245fb32a
                 </div>
             </div>
         </div>
@@ -160,73 +152,15 @@
     
 
    
-<<<<<<< HEAD
-    <div class="container-fluide p-0">
-=======
 
 
     
 	     <div class="container-fluide p-0">
->>>>>>> 94e316163310a07be0035a370700443a245fb32a
            <div class="card card-default">
 
 
             <div class="card-body">
 
-<<<<<<< HEAD
-     
-              <table id="mytable" class="table table-bordred table-striped">
-             
-    <thead>
-        <tr>
-            <th>Actions</th>
-           
-            @if ($showEditButton)
-                <th>Edit</th>
-                @endif
-                <th>delete</th>
-           
-                @foreach ($columns as $column)
-             @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
-                 <th>{{ $column }}</th>
-                  @endif
-            @endforeach
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($data as $row)
-            <tr data-row-id="{{ $row->id }}">
-                <td><input type="checkbox" class="checkthis" /></td>
-               
-                @if ($showEditButton)
-                    <td>
-                        <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
-                            <span class="fas fa-edit"></span>
-                        </button>
-                    </td>
-                @endif
-
-                <td>
-                  <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
-                   <span class="fas fa-trash-alt"></span>
-                    </button>
-                  </td>
-               
-                @foreach ($columns as $column)
-                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
-                        <td>{{ $row->{$column} }}</td>
-                    @endif
-                @endforeach
-            </tr>
-        @endforeach
-    </tbody>
-
-
-
-
-<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
-=======
 
 
 
@@ -254,7 +188,6 @@
 
 
 
->>>>>>> 94e316163310a07be0035a370700443a245fb32a
 
 <button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -269,11 +202,7 @@
             <form id="addDataForm">
                 <div class="modal-body">
                     @foreach ($columns as $column)
-<<<<<<< HEAD
-                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
-=======
                         @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
->>>>>>> 94e316163310a07be0035a370700443a245fb32a
                             <div class="form-group">
                                 <label for="{{ $column }}">{{ $column }}:</label>
                                 <input type="text" class="form-control" id="{{ $column }}" name="{{ $column }}" required>
@@ -281,20 +210,11 @@
                         @endif
                     @endforeach
                 </div>
-<<<<<<< HEAD
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Ajouter</button>
-                    </div>
-                </form>
-            </div>
-=======
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                     <button type="submit" class="btn btn-primary">Ajouter</button>
                 </div>
             </form>
->>>>>>> 94e316163310a07be0035a370700443a245fb32a
         </div>
     </div>
 </div>

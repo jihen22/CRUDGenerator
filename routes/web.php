@@ -20,12 +20,13 @@ use App\Http\Controllers\ColonneController;
 
 
 //use App\Http\Controllers\CardController;
-//use App\Http\Controllers\ListController;
+use App\Http\Controllers\ListController;
 
 use App\Http\Controllers\controller1Controller;
 
 use App\Http\Controllers\EditcolonneController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\Table4Controller;
 
 
 
@@ -177,16 +178,23 @@ Route::post('/check-entitiescol-exist', '\\App\\Http\\Controllers\\editTableCont
 
 
 
-//Route::get('/{table}/{view}', [ListController::class, 'index']);
+Route::get('/{table}/{view}/table', [ListController::class, 'show']);
 
 
 
 
 
 Route::get('/{table}/{view}', [ProductsController::class,'index']);
-Route::delete('/{id}', [ProductsController::class, 'deleteData']);
-Route::post('/{id}', [ProductsController::class, 'updateRow'])->name('update.row');
-Route::post('/{table}/{view}', [ProductsController::class,'store']);
+Route::delete('/up/{id}', [ProductsController::class, 'deleteData']);
+Route::post('/update-row1/{id}', [ProductsController::class, 'updateRow'])->name('update.row');
+Route::post('/table258/{table}/{view}', [ProductsController::class,'store']);
+
+
+//Route::get('/{table}/{view}', [Table4Controller::class,'index']);
+//Route::delete('/{id}', [Table4Controller::class, 'deleteData']);
+//Route::post('/update-row/{id}', [Table4Controller::class, 'updateRow'])->name('update.row');
+//Route::post('/{table}/{view}', [Table4Controller::class,'store']);
+
 
 
 

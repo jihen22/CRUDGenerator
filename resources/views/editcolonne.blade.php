@@ -197,11 +197,11 @@ div.row.mb-2 {
 
     <label for="in_list" style="margin-right: 10px;">In List:</label>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_list" id="in_list_yes" value="yes">
+        <input class="form-check-input" type="radio" name="in_list" id="in_list_yes" value="1">
         <label class="form-check-label" for="in_list_yes">Yes</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_list" id="in_list_no" value="no">
+        <input class="form-check-input" type="radio" name="in_list" id="in_list_no" value="0">
         <label class="form-check-label" for="in_list_no">No</label>
     </div>
 </div>
@@ -213,11 +213,11 @@ div.row.mb-2 {
   <div>
     <label for="in_create" style="margin-right: 10px;">In Create:</label>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_create" id="in_create_yes" value="yes">
+        <input class="form-check-input" type="radio" name="in_create" id="in_create_yes" value="1">
         <label class="form-check-label" for="in_create_yes">Yes</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_create" id="in_create_no" value="no">
+        <input class="form-check-input" type="radio" name="in_create" id="in_create_no" value="0">
         <label class="form-check-label" for="in_create_no">No</label>
     </div>
 
@@ -229,11 +229,11 @@ div.row.mb-2 {
 <div class="form-group">
     <label for="in_show" style="margin-right: 10px;">In Show:</label>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_show" id="in_show_yes" value="yes">
+        <input class="form-check-input" type="radio" name="in_show" id="in_show_yes" value="1">
         <label class="form-check-label" for="in_show_yes">Yes</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_show" id="in_show_no" value="no">
+        <input class="form-check-input" type="radio" name="in_show" id="in_show_no" value="0">
         <label class="form-check-label" for="in_show_no">No</label>
     </div>
 </div>
@@ -244,11 +244,11 @@ div.row.mb-2 {
 <div class="form-group">
     <label for="in_edit" style="margin-right: 10px;">In Edit:</label>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_edit" id="in_edit_yes" value="yes">
+        <input class="form-check-input" type="radio" name="in_edit" id="in_edit_yes" value="1">
         <label class="form-check-label" for="in_edit_yes">Yes</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="in_edit" id="in_edit_no" value="no">
+        <input class="form-check-input" type="radio" name="in_edit" id="in_edit_no" value="0">
         <label class="form-check-label" for="in_edit_no">No</label>
     </div>
 </div>

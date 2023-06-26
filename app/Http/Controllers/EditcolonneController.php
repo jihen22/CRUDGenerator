@@ -26,7 +26,7 @@ public function editColumn($table, $column)
     $user = Auth::user();
     $nameproject = $user->nameproject; 
 
-    return view('editcolonne', compact('table', 'column'));
+    return view('editcolonne', compact('table', 'column','nameproject'));
 }
 
 public function updateColumn(Request $request, $table, $column)

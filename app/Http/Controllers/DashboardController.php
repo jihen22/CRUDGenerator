@@ -120,8 +120,7 @@ public function supprimerTable($table)
  
      // Récupérer les noms des fichiers à partir de la table "tablelist"
      $controllerName = $tablelist->controller_name ;
-     
-     $viewName = $tablelist->view_name;
+    $viewName = $tablelist->view_name;
      $modelName = $tablelist->model_name;
 
     // Supprimer le modèle

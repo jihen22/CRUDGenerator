@@ -28,6 +28,8 @@
     
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.5.0/js/bootstrap.min.js"></script>
+
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
           <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="mon-script.js"></script>
@@ -92,7 +94,15 @@
 
 }
 
+.padded-table {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
 
+    #ajouter {
+        margin-top: 4px;
+        margin-bottom: 8px;
+    }
 
 </style>     
    
@@ -115,6 +125,9 @@ $(document).ready(function() {
 
         info: true
     });
+
+   
+
 });
 </script>
 
@@ -136,7 +149,7 @@ $(document).ready(function() {
             <div class="card-body">
 
       
-              <table id="mytable" class="table table-bordred table-striped">
+              <table id="mytable" class="table table-bordred table-striped padded-table">
               
     <thead>
         <tr>
@@ -145,7 +158,7 @@ $(document).ready(function() {
             @if ($showEditButton)
                 <th>Edit</th>
                 @endif
-                <th>delete</th>
+                <th>Delete</th>
             
                 @foreach ($columns as $column)
              @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
@@ -266,7 +279,7 @@ form.addEventListener('submit', (event) => {
 
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
-        url:'/{table}/{view}',
+        url:'/table258/{table}/{view}',
         method: "POST",
         data: { data: data, _token: "{{ csrf_token() }}" },
         success: function(response) {
@@ -378,7 +391,7 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 
       $.ajax({
         type: 'POST',
-        url: '/' + rowId,
+        url: '/update-row1/' + rowId,
         data: formData,
         success: function(response) {
           // Mettre à jour les données de la ligne dans le tableau
@@ -436,7 +449,7 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
         // Supprimer la ligne en utilisant une requête AJAX
         $.ajax({
           type: 'DELETE',
-          url: '/'+ rowId,
+          url: '/up/'+ rowId,
           data: { _token: '{{ csrf_token() }}' },
           success: function(response) {
             // Supprimer la ligne du tableau

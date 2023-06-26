@@ -132,25 +132,15 @@
 	@include('admin.partials.topbar')
 	<div id="layoutSidenav" class="flex-container">
 
- 
-
 
 
    
 <div class="content-warper" id="monDiv" style="">
-<a href="{{ route('admin.dashboard') }}" class="arrow-icon">
-  <i class="fas fa-arrow-left"></i>
-</a>
-
-
-
-
-
-	<div class="content-header">
-		<div class="container-fluid p-0">
-			<div class ="row mb-2">
-				<div class="col-sm-6">
-                <h1 class="m-0 text-drak text-right custom-title">Add Fields to Your Table</h1>
+<div class="content-header">
+<div class="container-fluid p-0">
+<div class ="row mb-2">
+<div class="col-sm-6">
+<h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
                 </div>
             </div>
         </div>
@@ -159,42 +149,64 @@
     
 
    
-
-
-    
-	     <div class="container-fluide p-0">
+    <div class="container-fluide p-0">
            <div class="card card-default">
 
 
             <div class="card-body">
 
+     
+              <table id="mytable" class="table table-bordred table-striped">
+             
+    <thead>
+        <tr>
+            <th>Actions</th>
+           
+            @if ($showEditButton)
+                <th>Edit</th>
+                @endif
+                <th>delete</th>
+           
+                @foreach ($columns as $column)
+             @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
+                 <th>{{ $column }}</th>
+                  @endif
+            @endforeach
 
-
-
-
-            <div class="row" id="card-container">
-    @foreach ($data as $row)
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    @foreach ($visibleColumns as $column)
-                        <p class="card-text">{{ $column }}: {{ $row->$column }}</p>
-                    @endforeach
-
-                    <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($data as $row)
+            <tr data-row-id="{{ $row->id }}">
+                <td><input type="checkbox" class="checkthis" /></td>
+               
+                @if ($showEditButton)
+                    <td>
+                        <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
                             <span class="fas fa-edit"></span>
                         </button>
-                        <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
+                    </td>
+                @endif
+
+                <td>
+                  <button type="button" class="btn btn-danger delete-btn" data-row-id="{{ $row->id }}">
                    <span class="fas fa-trash-alt"></span>
                     </button>
-                </div>
-            </div>
-        </div>
-    @endforeach
-</div>
+                  </td>
+               
+                @foreach ($columns as $column)
+                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
+                        <td>{{ $row->{$column} }}</td>
+                    @endif
+                @endforeach
+            </tr>
+        @endforeach
+    </tbody>
 
 
 
+
+<button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
 
 <button type="button" id="ajouter" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter à {{ $table }}</button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -209,7 +221,7 @@
             <form id="addDataForm">
                 <div class="modal-body">
                     @foreach ($columns as $column)
-                        @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
+                    @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $createtableColumns))
                             <div class="form-group">
                                 <label for="{{ $column }}">{{ $column }}:</label>
                                 <input type="text" class="form-control" id="{{ $column }}" name="{{ $column }}" required>
@@ -217,11 +229,12 @@
                         @endif
                     @endforeach
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -274,7 +287,7 @@ form.addEventListener('submit', (event) => {
     // Effectuer une requête AJAX vers le controller Laravel
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
-        url:'/{table}/{view}',
+        url:'/table/{table}/{view}',
         method: "POST",
         data: { data: data, _token: "{{ csrf_token() }}" },
         success: function(response) {
@@ -395,7 +408,7 @@ form.addEventListener('submit', (event) => {
         success: function(response) {
           // Mettre à jour les données de la ligne dans le tableau
           // Vous pouvez effectuer cette mise à jour en utilisant AJAX ou simplement recharger la page
-        
+          location.reload();
         },
         error: function(jqXHR, textStatus, errorThrown) {
           alert('Error: ' + textStatus + ' - ' + errorThrown);
@@ -447,7 +460,7 @@ form.addEventListener('submit', (event) => {
         // Supprimer la ligne en utilisant une requête AJAX
         $.ajax({
           type: 'DELETE',
-          url: '/' + rowId,
+          url: '/data/' + rowId,
           data: { _token: '{{ csrf_token() }}' },
           success: function(response) {
             // Supprimer la ligne du tableau

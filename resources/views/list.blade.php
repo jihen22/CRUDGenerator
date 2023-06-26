@@ -34,142 +34,56 @@
 
 
 
+
 </head>
 
 </head>
 
 <style>
-    .card {
-        margin: 0 auto;
-        max-width: 1000px;
-        border: 1px solid #ccc;
-        border-radius: 0.5rem;
-        padding: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
+  
 
-    .flex-container {
-        display: flex;
+    .banners {
+        background-color: #f5f5f5;
+        padding: 10px;
+        text-align: center;
     }
-
-    .content-wrapper {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #monDiv {
-        min-height: calc(100vh - 60px);
-        margin-right: 70px;
-        margin-left: 50px;
-        width: calc(100% - 80px);
-    }
-
-    .small-sidebar {
-        width: 70px;
-    }
-
-    .container-fluid {
-        margin-bottom: 50px;
-    }
-
-    .content {
-        max-height: 500px;
-        padding: 20px;
-        background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        border-radius: 0.5rem;
-        overflow: auto;
-    }
-
-    .content-header {
-        margin-bottom: 20px;
-    }
-
-    .content-header h1 {
-        padding: 42px 57px;
-        display: inline-block;
-        font-size: 28px;
+    
+    .banner-content {
         color: #333;
+        font-size: 15px;
+        margin-bottom: 2px;
     }
 
-    label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    input[type="text"],
-    select {
-        padding: 8px 10px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        font-size: 16px;
+    .table {
         width: 100%;
+        border-collapse: collapse;
         margin-bottom: 10px;
     }
-
-    select option {
-        font-size: 14px;
+    
+    .table th,
+    .table td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd;
     }
-
-    .form-group:last-child {
-        margin-bottom: 0;
-    }
-
-    .form-group button {
-        background-color: #007bff;
-        border: none;
+    
+    .table th {
+        background-color: #ffdf7e;
         color: #fff;
-        font-size: 16px;
         font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 3px;
-        cursor: pointer;
     }
 
-    .form-group button:hover {
-        background-color: #0069d9;
-    }
 
-    @media (max-width: 767px) {
-        #monDiv {
-            margin-right: 0;
-            margin-left: 0;
-            width: 100%;
-        }
-
-        .small-sidebar {
-            display: none;
-        }
-    }
-
-    section.content {
-  min-height: 1000px;
-} 
-
-div.row.mb-2 {
-  margin: 0.5rem 0;
-}
-.arrow-icon {
-  display: inline-block;
-  margin-top: 20px;
-  text-decoration: none;
-  color: #000;
-  font-size: 24px;
+  
+.icon-text {
+  margin-left: 5px; /* Ajoutez la valeur souhaitée pour l'espace entre l'icône et le texte */
 }
 
-.arrow-icon i {
-  margin-right: 5px;
+.banner-content .fas {
+  font-size: 20px; /* Ajustez la taille de l'icône selon vos besoins */
+  color: #ffdf7e; /* Changez la couleur de l'icône selon vos préférences */
 }
 
-.custom-title {
-        color: #000;
-        font-size: 24px;
-        margin-top: 20px;
-        text-align: right;
-    }
 
 </style>
 
@@ -183,56 +97,60 @@ div.row.mb-2 {
 
   
 
-<div class="content-warper" id="monDiv" style="">
-<a href="{{ route('admin.dashboard') }}" class="arrow-icon">
-  <i class="fas fa-arrow-left"></i>
+<div class="content-warper" id="monDiv"  style="margin-top: 20px; margin-left: auto; margin-right: auto;">
+
 </a>
 
 
 <div class="content-header">
-</di>
-
-
-   
+<div class="banners">
+        <!-- Contenu de la bannière -->
+        <div class="banner-content">
+            <!-- Votre paragraphe ici -->
+            <p class="banner-content"><i class="fas fa-info-circle"></i> <span class="icon-text">These fields provide basic information about each record, including its identifier, creation and update timestamps, and important flags related to field visibility and data constraints.</span></p>
+        </div>
+    </div>
     
-
             <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-            <thead>
-        <tr>
-            <th>Column Name</th>
-            <th>Field Type</th>
-            <th>Validation</th>
-            <th>Visual Title</th>
-            <th>In List</th>
-            <th>In Create</th>
-            <th>In Edit</th>
-            <th>In Show</th>
-            <th>Max</th>
-            <th>Min</th>
-            <th>Default Value</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($fieldListRows as $field)
-        <tr>
-            <td>{{ $field->database_column_name }}</td>
-            <td>{{ $field->field_type }}</td>
-            <td>{{ $field->validation }}</td>
-            <td>{{ $field->visual_title }}</td>
-            <td>{{ $field->in_list }}</td>
-            <td>{{ $field->in_create }}</td>
-            <td>{{ $field->in_edit }}</td>
-            <td>{{ $field->in_show }}</td>
-            <td>{{ $field->max }}</td>
-            <td>{{ $field->min }}</td>
-            <td>{{ $field->default_value }}</td>
-        </tr>
-        @endforeach
-    </tbody>
+                <div class="table-responsive">
+                <table class="table table-bordered table-striped table-yellow">
+                        <thead>
+                            <tr>
+                                <th>Column Name</th>
+                                <th>Field Type</th>
+                                <th>Validation</th>
+                                <th>Visual Title</th>
+                                <th>Max</th>
+                                <th>Default Value</th>
+                                <th>Date of creation</th>
+                                <th>Date of updating</th>
+                                <th>Indexing</th>
+                                <th>Validation Rules</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($fieldListRows as $field)
+                            <tr>
+                                <td>{{ $field->database_column_name }}</td>
+                                <td>{{ $field->field_type }}</td>
+                                <td>{{ $field->validation }}</td>
+                                <td>{{ $field->visual_title }}</td>
+                                <td>{{ $field->max }}</td>
+                                <td>{{ $field->default_value }}</td>
+                                <td>{{ $field->created_at }}</td>
+                                <td>{{ $field->updated_at }}</td>
+                                <td>{{ $field->indexing }}</td>
+                                <td>{{ $field->validationRules }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-</table>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('Dashboardassets/js/scripts.js')}}"></script>
