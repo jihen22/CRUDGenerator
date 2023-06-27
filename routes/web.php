@@ -203,7 +203,6 @@ Route::get('/table66list/{table}/{view}/', [ListController::class, 'show']);
 
 Route::get('/get/{table}/{column}/update', [EditcolonneController::class, 'editColumn'])->name('update-column');;
 Route::post('/column/{table}/{column}/update', [EditcolonneController::class, 'updateColumn'])->name('column.edit');
-<<<<<<< HEAD
 
 
 
@@ -222,5 +221,3 @@ Route::get('/Table666/{table}/{view}', [Table666Controller::class, 'index']);
 Route::delete('/{id}', [Table666Controller::class, 'deleteData']);
 Route::post('/{id}', [Table666Controller::class, 'updateRow'])->name('update.row');
 Route::post('/{table}/{view}', [Table666Controller::class, 'store']);
-=======
->>>>>>> 3ff49c72c00318e53a3b8b9dd38154aeea5747b1

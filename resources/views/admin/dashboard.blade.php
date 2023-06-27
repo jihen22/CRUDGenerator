@@ -141,7 +141,6 @@
                     <td>
                       <a href="{{ url('/table/' . $table->{'Tables_in_' . env('DB_DATABASE')} ) }}">
                         {{ $table->{'Tables_in_' . env('DB_DATABASE')} }}
-<<<<<<< HEAD
                     </a>
                 </td>
                 <td>
@@ -154,18 +153,6 @@
                     @endphp
 
                     <a href="{{ url('/'. $controllerName . '/' . $tableName . '/' . $viewName) }}" class="btn btn-info">
-=======
-                      </a>
-                    </td>
-                    <td>
-                      @php
-                      $tableName = $table->{'Tables_in_' . env('DB_DATABASE')};
-                      $tablesList = DB::table('tableslist')->where('name', $tableName)->first();
-                      $viewName = ($tablesList) ? $tablesList->view_name : null;
-                      @endphp
-
-                      <a href="{{ url('/' . $tableName . '/' . $viewName) }}" class="btn btn-info">
->>>>>>> 3ff49c72c00318e53a3b8b9dd38154aeea5747b1
                         <i class="fas fa-eye"></i> See
                       </a>
                       <a href="{{ route('telecharger_controller', ['table' => $tableName]) }}" class="btn btn-secondary" download>

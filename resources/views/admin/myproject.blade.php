@@ -84,6 +84,10 @@
 }
 
      
+#projectTable {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
 
 
 
@@ -135,7 +139,7 @@
                           <label for="projectName" class="form-label">Project Name</label>
                           <input type="text" class="form-control" id="projectName" required>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                           <label for="Laravelversion" class="form-label">Laravel version</label>
                           <select class="form-select" id="Laravelversion" required>
                             <option selected disabled value="">version</option>
@@ -189,9 +193,9 @@
                 <th scope="col">Project Name</th>
                 <th scope="col" width="">Language</th>
                 <th scope="col" width="">Date Format</th>
-                <th scope="col" width="130" class="text-center">Laravel version</th>
-                <th scope="col" width="160">Date of Creation</th>
-                <th scope="col"></th>
+                <th scope="col" width="" >Laravel version</th>
+                <th scope="col" width="">Date of Creation</th>
+                <th scope="col">Edit project</th>
             </tr>
         </thead>
         <tbody id="projectTableBody">
