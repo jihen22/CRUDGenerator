@@ -58,6 +58,7 @@ class CreateTable extends Command
         Artisan::call('create:routes', [
             'table' => $table,
             '--controller' => $this->option('controller'),
+            '--viewType' => $this->option('viewType'),
       
         ]);
 

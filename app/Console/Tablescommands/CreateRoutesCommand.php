@@ -5,7 +5,6 @@ namespace App\Console\Tablescommands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
-
 class CreateRoutesCommand extends Command
 {
     /**
@@ -13,7 +12,7 @@ class CreateRoutesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'create:routes {table : Table name} {--controller= : Controller name}';
+    protected $signature = 'create:routes {table : Table name} {--controller= : Controller name} {--viewType= : View type}';
 
     /**
      * The console command description.
@@ -31,7 +30,7 @@ class CreateRoutesCommand extends Command
     {
         $table = $this->argument('table');
         $controller = $this->option('controller');
-
+        $viewType = $this->option('viewType');
         $controller_path = app_path('Http/Controllers/'.$controller.'Controller.php');
 
         if (!File::exists($controller_path)) {
@@ -41,12 +40,16 @@ class CreateRoutesCommand extends Command
 
         $useStatement = "use App\\Http\\Controllers\\{$controller}Controller;\n";
 
-        $routeDefinitions = [
-            "Route::get('/{table}/{view}', [{$controller}Controller::class, 'index']);",
-            "Route::delete('/{id}', [{$controller}Controller::class, 'deleteData']);",
-            "Route::post('/{id}', [{$controller}Controller::class, 'updateRow'])->name('update.row');",
-            "Route::post('/{table}/{view}', [{$controller}Controller::class, 'store']);",
-        ];
+        $routeDefinitions = [];
+
+        if ($viewType === 'card' || $viewType === 'table') {
+            $routeDefinitions[] = "Route::get('/{$controller}/{table}/{view}', [{$controller}Controller::class, 'index']);";
+            $routeDefinitions[] = "Route::delete('/{$controller}/{id}', [{$controller}Controller::class, 'deleteData']);";
+            $routeDefinitions[] = "Route::post('/{$controller}/{id}', [{$controller}Controller::class, 'updateRow'])->name('update.row');";
+            $routeDefinitions[] = "Route::post('/{$controller}/{table}/{view}', [{$controller}Controller::class, 'store']);";
+        } else {
+            $routeDefinitions[] = "Route::get('/{$table}list/{table}/{view}', [{$controller}Controller::class, 'show']);";
+        }
 
         $webRouteFile = base_path('routes/web.php');
         $webRouteContents = file_get_contents($webRouteFile);

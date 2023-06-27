@@ -15,7 +15,16 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-        
+       <style>
+        .fade {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.fade.fade-in {
+    opacity: 1;
+}</style>
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -50,101 +59,142 @@
 
 
         </header>
-        <!-- Services-->
-        <section class="page-section" id="services">
-            <div class="container">
-                <div class="text-center">
-                    <h4 class="section-heading text-uppercase"> Our services</h4>
-                    <h5 class=" text-muted">Developers can automate the processes of creating, reading, updating, and deleting data, saving them time and efficiency.</h5>
-                </div>
-                <div class="row text-center">
-                    <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h5 class="my-3">Database Migration Generation</h5>
-                        <p class="text-muted">  Taking in the description of the database (table name , models , vues and columns ) and generating the necessary migration files to create the database schema</p>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h5 class="my-3">CRUD Code Generation Service</h5>
-                        <p class="text-muted"> This service would take in the database schema and user preferences for the display (tables, lists,etc.) and generate the necessary Laravel models, controllers, and routes to perform CRUD operations on the database. </p>
-                    </div>
-                    <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h5 class="my-3">View Template Generation Service</h5>
-                        <p class="text-muted">This service would take in the user preferences for the display and generate the necessary view templates using Laravel's Blade templating engine. The service could generate templates for tables, lists, cards, and any other preferred display format, and could also include pagination, filtering, and sorting functionality based on user preferences.</p>
+   <!-- Services-->
+<section class="page-section" id="services">
+    <div class="container">
+        <div class="text-center" style="margin-top: -50px;">
+            <h2 class="section-heading text-uppercase">Our Services</h2>
+            <h5 class="text-muted">Empowering developers with efficient automation for data management.</h5>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-16">
+                <div class="card fade" style="margin-bottom: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+                    <div class="card-body">
+                        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            <span class="fa-stack fa-4x">
+                                <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fas fa-database fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <h5 class="card-title">Database Migration Generation</h5>
+                        <p class="card-text">Effortlessly generate migration files for your database schema based on table descriptions, models, views, and columns.</p>
+                        <div style="margin-top: 20px;">
+                            <!-- Place for displaying an image -->
+                            <img src="{{ asset('LoginpageRessources/migration.png') }}" alt="Image" style="max-width: 70%; height: auto; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-       
-        <section class="page-section" id="about">
-  <div class="container">
-    <div class="text-center">
-      <h4 class="section-heading text-uppercase">About </h4>
-      <h5 class="section-subheading text-muted">Welcome to our CRUD GENERATOR LARAVE project! The purpose of this project is to provide developers with a tool that can generate code for CRUD (Create, Read, Update, Delete) operations in Laravel applications. With this generator, developers can save time and increase productivity by automating the tedious task of writing boilerplate code.</h5>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-16">
+                <div class="card fade" style="margin-bottom: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+                    <div class="card-body">
+                        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            <span class="fa-stack fa-4x">
+                                <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fas fa-file-code fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <h5 class="card-title">View Template Generation Service</h5>
+                        <p class="card-text">Create visually stunning view templates using Laravel's Blade templating engine. Customize displays for tables, lists, cards, and more, including pagination, filtering, and sorting functionalities.</p>
+                        <div style="margin-top: 20px;">
+                            <!-- Place for displaying an image -->
+                            <img src="{{ asset('LoginpageRessources/tableview.png') }}" alt="Image" style="max-width: 80%; height: auto; ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-16">
+                <div class="card fade" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+                    <div class="card-body">
+                        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            <span class="fa-stack fa-4x">
+                                <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fas fa-code fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <h5 class="card-title">CRUD Code Generation Service</h5>
+                        <p class="card-text">Generate Laravel models, controllers, and routes effortlessly based on your database schema and desired display preferences. Simplify CRUD operations on your database.</p>
+                        <div style="margin-top: 20px;">
+                            <!-- Place for displaying an image -->
+                            <img src="{{ asset('LoginpageRessources/crud.png') }}" alt="Image" style="max-width: 70%; height: auto; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-    <ul class="timeline">
-      <li>
-        <div class="timeline-image">
-          <img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." />
-        </div>
-        <div class="timeline-panel">
-          <div class="timeline-heading">
-            <h4 class="subheading">Technology Stack</h4>
+</section>
+<section class="page-section" id="about">
+  <div class="container">
+    <div class="text-center" style="margin-top: -180px;">
+      <h2 class="section-heading text-uppercase" style="font-family: Arial, sans-serif; font-weight: bold; margint">About</h2>
+      <h5 class="section-subheading text-muted" style="font-family: Arial, sans-serif;">Our CRUD operations generator app aims to empower developers with an exceptional tool for generating CRUD (Create, Read, Update, Delete) code in Laravel applications, significantly saving valuable time and exponentially increasing productivity.</h5>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="feature">
+          <div class="feature-icon">
+           
           </div>
-          <div class="timeline-body">
-            <p class="text-muted">The CRUD Generator Laravel app is a powerful tool designed to revolutionize the way developers create and manage CRUD operations in their Laravel applications. By leveraging advanced code generation techniques, this app streamlines the process of building robust and efficient systems. With just a few clicks, developers can effortlessly generate complete and customizable code for creating, reading, updating, and deleting data entities. This app not only saves valuable time but also ensures consistency and reduces the chances of errors by automating the creation of boilerplate code. Experience a new level of productivity and efficiency with the CRUD Generator Laravel app, empowering developers to focus on the core functionality of their applications while effortlessly handling the repetitive aspects of coding.</p>
-          </div>
-        </div>
-      </li>
-      <li class="timeline-inverted">
-        <div class="timeline-image">
-          <img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." />
-        </div>
-        <div class="timeline-panel">
-          <div class="timeline-heading">
-            <h4>Features</h4>
-          </div>
-          <div class="timeline-body">
-            <h6 class="subheading">Support for multiple database types</h6>
-            <h6 class="subheading">Customizable templates</h6>
-            <h6 class="subheading">Easy-to-use interface</h6>
+          <div class="feature-content">
+            <h4 class="subheading" style="font-family: Arial, sans-serif; font-weight: bold;">  <i class="fas fa-cogs" style="color: #ff8a65;"></i>Technology Stack</h4>
+            <p class="card-text">The CRUD Generator Laravel app is designed to transform the way developers create and manage CRUD operations in Laravel applications. With its advanced code generation techniques, this app streamlines the process of building robust and highly efficient systems. Experience an unparalleled level of productivity and efficiency while seamlessly focusing on the core functionality of your applications.</p>
           </div>
         </div>
-      </li>
-      <li>
-        <div class="timeline-image">
-          <img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="..." />
-        </div>
-        <div class="timeline-panel">
-          <div class="timeline-heading">
-            <h4>Benefits</h4>
+      </div>
+      <div class="col-md-4">
+        <div class="feature">
+          <div class="feature-icon">
+           
           </div>
-          <div class="timeline-body">
-            <p class="text-muted">
-              <h6>Increased productivity</h6>
-              With this tool, developers can generate CRUD code in minutes, rather than hours or days, freeing up time to work on more complex tasks.
-              <h6>Reduced development time</h6>
-              The generator eliminates the need to write repetitive code, allowing developers to focus on building more complex functionality.
-              <h6>Improved code quality</h6>
-              The generator produces clean, well-organized code that adheres to Laravel best practices, reducing the risk of errors and making code easier to maintain.
-            </p>
+          <div class="feature-content">
+            <h4 style="font-family: Arial, sans-serif; font-weight: bold;">  <i class="fas fa-magic" style="color: #64b5f6;"></i> Features</h4>
+            <ul style="font-family: Arial, sans-serif;">
+              <li>
+                <h6 style="font-weight: bold;">CRUD code generation</h6>
+              </li>
+              <li>
+                <h6 style="font-weight: bold;">Customizable templates</h6>
+              </li>
+              <li>
+                <h6 style="font-weight: bold;">Intuitively designed interface</h6>
+              </li>
+            </ul>
           </div>
         </div>
-      </li>
-    </ul>
+      </div>
+      <div class="col-md-4">
+        <div class="feature">
+          <div class="feature-icon">
+            
+          </div>
+          <div class="feature-content">
+            <h4 style="font-family: Arial, sans-serif; font-weight: bold;"> <i class="fas fa-rocket" style="color: #81c784;"></i>Benefits</h4>
+            <ul>
+              <li>
+                <h6 style="font-weight: bold;">Skyrocketed productivity</h6>
+                <p class="card-text">Effortlessly generate CRUD code in a matter of minutes, liberating precious time for tackling more intricate tasks.</p>
+              </li>
+              <li>
+                <h6 style="font-weight: bold;">Drastically reduced development time</h6>
+                <p class="card-text">Eliminate the tedium of repetitive code writing and wholeheartedly concentrate on crafting advanced functionality.</p>
+              </li>
+              <li>
+                <h6 style="font-weight: bold;">Elevated code quality</h6>
+                <p class="card-text">Create impeccable, meticulously organized code that adheres to Laravel best practices, substantially reducing errors and greatly enhancing maintainability.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
 <footer class="footer py-4 bg-dark">
     <div class="container">
         <div class="row">
@@ -244,4 +294,20 @@ color: #ffffff;
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
+    <script> window.addEventListener('scroll', fadeInElements);
+
+function fadeInElements() {
+    var fadeElements = document.querySelectorAll('.fade');
+  
+    for (var i = 0; i < fadeElements.length; i++) {
+        var element = fadeElements[i];
+        var position = element.getBoundingClientRect().top;
+        var windowHeight = window.innerHeight;
+      
+        if (position < windowHeight - 100) {
+            element.classList.add('fade-in');
+        }
+    }
+}
+</script>
 </html>
