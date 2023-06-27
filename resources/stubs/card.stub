@@ -18,14 +18,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
        
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-		
+<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -43,23 +43,23 @@
 
 
  .flex-container {
-	display: flex;
+display: flex;
 }
 
 .content-warper {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
+flex: 1;
+display: flex;
+flex-direction: column;
 }
 #monDiv {
-	min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
-	margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
-	margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
-	width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
+min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
+margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
+margin-left: 50px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
+width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
 }
 
 .small-sidebar {
-	width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
+width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
 }
 .container-fluide {
     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
@@ -125,12 +125,12 @@
 
 
 </style>
-    
+   
    
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
 <div id="app" class="warpper">
-	@include('admin.partials.topbar')
-	<div id="layoutSidenav" class="flex-container">
+@include('admin.partials.topbar')
+<div id="layoutSidenav" class="flex-container">
 
 
 
@@ -139,23 +139,23 @@
 <a href="{{ route('admin.dashboard') }}" class="arrow-icon">
   <i class="fas fa-arrow-left"></i>
 </a>
-	<div class="content-header">
-		<div class="container-fluid p-0">
-			<div class ="row mb-2">
-				<div class="col-sm-6">
+<div class="content-header">
+<div class="container-fluid p-0">
+<div class ="row mb-2">
+<div class="col-sm-6">
                 <h1 class="m-0 text-drak text-right custom-title">Add Fields to Your Table</h1>
                 </div>
             </div>
         </div>
     </div>
 
-    
+   
 
    
 
 
-    
-	     <div class="container-fluide p-0">
+   
+    <div class="container-fluide p-0">
            <div class="card card-default">
 
 
@@ -267,13 +267,13 @@ form.addEventListener('submit', (event) => {
     // Effectuer une requête AJAX vers le controller Laravel
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
-        url:'/table/{table}/{view}',
+        url:'/' + '{{controllerName}}' + '/{table}/{view}',
         method: "POST",
         data: { data: data, _token: "{{ csrf_token() }}" },
         success: function(response) {
             // En cas de succès, afficher un message de confirmation
             console.log(response);
-            
+           
             // Créer une nouvelle carte avec les données du formulaire
             const newCard = `
                 <div class="col-sm-4">
@@ -332,7 +332,7 @@ form.addEventListener('submit', (event) => {
           <input type="hidden" name="row_id" id="edit-row-id">
 
           <!-- dynamically generate input fields for editable columns -->
-          
+         
           @foreach ($columns as $column)
             @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $editableColumns))
               <div class="form-group">
@@ -341,7 +341,7 @@ form.addEventListener('submit', (event) => {
               </div>
             @endif
           @endforeach
-          
+         
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Save Changes</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -365,10 +365,10 @@ form.addEventListener('submit', (event) => {
     $('.edit-btn').click(function() {
       var rowId = $(this).data('row-id');
       $('#edit-row-id').val(rowId); // Récupérer l'identifiant de la ligne et le stocker dans le champ masqué
-      
+     
       // Pré-remplir les champs de saisie du modal avec les données de la ligne correspondante
       // Vous pouvez utiliser AJAX ici pour récupérer les données du serveur si nécessaire
-      
+     
       // Afficher le modal de modification
       $('#edit-modal').modal('show');
     });
@@ -383,7 +383,7 @@ form.addEventListener('submit', (event) => {
 
       $.ajax({
         type: 'POST',
-        url: '/update-row/' + rowId,
+        url: '/' + '{{controllerName}}' + '/'+ rowId,
         data: formData,
         success: function(response) {
           // Mettre à jour les données de la ligne dans le tableau
@@ -440,7 +440,7 @@ form.addEventListener('submit', (event) => {
         // Supprimer la ligne en utilisant une requête AJAX
         $.ajax({
           type: 'DELETE',
-          url: '/data/' + rowId,
+          url: '/' + '{{controllerName}}' + '/' + rowId,
           data: { _token: '{{ csrf_token() }}' },
           success: function(response) {
             // Supprimer la ligne du tableau

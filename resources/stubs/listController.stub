@@ -21,7 +21,7 @@ class ListController extends Controller
    
 
 
-public function index(Request $request, $table, $view)
+public function show(Request $request, $table, $view)
  
 {
     
@@ -47,7 +47,7 @@ $data = DB::table($table)->get();
             abort(404);
         }
     // Récupérer les informations des colonnes depuis la relation avec FieldList
-    $fieldListRows = Field::select('field_type', 'database_column_name', 'validation', 'visual_title', 'in_list', 'in_create', 'in_edit', 'in_show', 'max', 'min', 'default_value')
+    $fieldListRows = Field::select('field_type', 'database_column_name', 'validation', 'visual_title', 'max', 'default_value','created_at','updated_at','indexing','validationRules')
     ->where('table_id', $tableInfo->id)
     ->whereIn('database_column_name', $columns)
     ->get();
@@ -59,5 +59,3 @@ $data = DB::table($table)->get();
 
 
 }
-    
-

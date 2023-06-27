@@ -79,16 +79,9 @@ class CreateTableView extends Command
         switch ($viewType) {
             case 'card':
                 return resource_path('stubs/card.stub');
-                case 'calendar':
-                    return resource_path('stubs/calendar.stub');
+              
             case 'list':
                 return resource_path('stubs/list.stub');
-            case 'map':
-                return resource_path('stubs/map.stub');
-            case 'tree':
-                return resource_path('stubs/tree.stub');
-            case 'grid':
-                return resource_path('stubs/grid.stub');
             default:
                 return resource_path('stubs/table.stub');
         }

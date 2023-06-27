@@ -173,12 +173,3 @@ Route::post('/check-entitiescol-exist', '\\App\\Http\\Controllers\\editTableCont
 
 Route::get('/get/{table}/{column}/update', [EditcolonneController::class, 'editColumn'])->name('update-column');;
 Route::post('/column/{table}/{column}/update', [EditcolonneController::class, 'updateColumn'])->name('column.edit');
-
-use App\Http\Controllers\controllllllllllllllerController;
-
-Route::get('/controllllllllllllller/{table}/{view}', [controllllllllllllllerController::class, 'index']);
-Route::delete('/controllllllllllllller/{id}', [controllllllllllllllerController::class, 'deleteData']);
-Route::post('/controllllllllllllller/{id}', [controllllllllllllllerController::class, 'updateRow'])->name('update.row');
-Route::post('/controllllllllllllller/{table}/{view}', [controllllllllllllllerController::class, 'store']);use App\Http\Controllers\controller08Controller;
-
-Route::get('/table08list/{table}/{view}', [controller08Controller::class, 'show']);
