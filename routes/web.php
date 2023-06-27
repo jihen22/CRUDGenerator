@@ -208,16 +208,16 @@ Route::post('/column/{table}/{column}/update', [EditcolonneController::class, 'u
 
 use App\Http\Controllers\Table585Controller;
 
-Route::get('/{table}/{view}', [Table585Controller::class, 'index']);
-Route::delete('/data/{id}', [Table585Controller::class, 'deleteData']);
-Route::post('/update-row/{id}', [Table585Controller::class, 'updateRow'])->name('update.row');
-Route::post('/table88/{table}/{view}', [Table585Controller::class, 'store']);
+Route::get('/Table585/{table}/{view}', [Table585Controller::class, 'index']);
+Route::delete('/data1/{id}', [Table585Controller::class, 'deleteData']);
+Route::post('/data/{id}', [Table585Controller::class, 'updateRow'])->name('update.row');
+Route::post('/table7/{table}/{view}', [Table585Controller::class, 'store']);
 
 
 
-//use App\Http\Controllers\Table666Controller;
+use App\Http\Controllers\Table666Controller;
 
-//Route::get('/{table}/{view}', [Table666Controller::class, 'index']);
-//Route::delete('/date/{id}', [Table666Controller::class, 'deleteData']);
-//Route::post('/update-row/{id}', [Table666Controller::class, 'updateRow'])->name('update.row');
-//Route::post('/table88/{table}/{view}', [Table666Controller::class, 'store']);
+Route::get('/Table666/{table}/{view}', [Table666Controller::class, 'index']);
+Route::delete('/{id}', [Table666Controller::class, 'deleteData']);
+Route::post('/{id}', [Table666Controller::class, 'updateRow'])->name('update.row');
+Route::post('/{table}/{view}', [Table666Controller::class, 'store']);

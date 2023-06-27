@@ -12,7 +12,7 @@ class CreateTableView extends Command
      *
      * @var string
      */
-    protected $signature = 'make:view {view : The name of the table view to create}{--viewType : The type of the table view to create}';
+    protected $signature = 'make:view {view : The name of the table view to create} {--type= : The type of the table view to create} {--controller= : The name of the controller}';
 
     /**
      * The console command description.
@@ -29,22 +29,31 @@ class CreateTableView extends Command
     public function handle()
     {
         $name = $this->argument('view');
-       
-        $viewType = $this->option('viewType');
-      
+        $viewType = $this->option('type');
+        $controllerName = $this->option('controller');
+    
+        // ...
+    
         $file = $this->viewPath($name);
-
+    
         if ($this->alreadyExists($file)) {
             $this->error('View already exists!');
             return false;
         }
-
+    
         $stub = $this->getStub($viewType);
-        $code = str_replace('{{table}}', $stub, file_get_contents($stub));
-        File::put($file, $code);
-
+        $code = file_get_contents($stub);
+    
+        // Remplacer les variables dans la stub
+        $code = str_replace('{{table}}', $stub, $code);
+        $controllerContent = str_replace('{{controllerName}}', $controllerName, $code);
+        File::put($file, $controllerContent);
+    
         $this->info('View created successfully.');
     }
+      
+
+
 
     /**
      * Get the path to the view file.

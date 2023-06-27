@@ -267,7 +267,7 @@ form.addEventListener('submit', (event) => {
     // Effectuer une requête AJAX vers le controller Laravel
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
-        url:'/table/{table}/{view}',
+        url:'/' + '{{controllerName}}' + '/{table}/{view}',
         method: "POST",
         data: { data: data, _token: "{{ csrf_token() }}" },
         success: function(response) {
@@ -383,7 +383,7 @@ form.addEventListener('submit', (event) => {
 
       $.ajax({
         type: 'POST',
-        url: '/update-row/' + rowId,
+        url: '/' + '{{controllerName}}' + '/'+ rowId,
         data: formData,
         success: function(response) {
           // Mettre à jour les données de la ligne dans le tableau
@@ -440,7 +440,7 @@ form.addEventListener('submit', (event) => {
         // Supprimer la ligne en utilisant une requête AJAX
         $.ajax({
           type: 'DELETE',
-          url: '/data/' + rowId,
+          url: '/' + '{{controllerName}}' + '/' + rowId,
           data: { _token: '{{ csrf_token() }}' },
           success: function(response) {
             // Supprimer la ligne du tableau

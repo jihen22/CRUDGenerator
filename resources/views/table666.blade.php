@@ -92,6 +92,14 @@
 
 }
 
+#mytable {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+#ajouter {
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
 
 
 </style>     
@@ -266,7 +274,7 @@ form.addEventListener('submit', (event) => {
 
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
-        url:'/table88/{table}/{view}',
+        url:'/{table}/{view}',
         method: "POST",
         data: { data: data, _token: "{{ csrf_token() }}" },
         success: function(response) {
@@ -378,7 +386,7 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 
       $.ajax({
         type: 'POST',
-        url: '/update-row/' + rowId,
+        url: '/' + rowId,
         data: formData,
         success: function(response) {
           // Mettre à jour les données de la ligne dans le tableau
@@ -435,8 +443,8 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 
         // Supprimer la ligne en utilisant une requête AJAX
         $.ajax({
-          type: 'delete',
-          url: '/data/'+ rowId,
+          type: 'DELETE',
+          url: '/'+ rowId,
           data: { _token: '{{ csrf_token() }}' },
           success: function(response) {
             // Supprimer la ligne du tableau
