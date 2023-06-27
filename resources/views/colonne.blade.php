@@ -292,7 +292,7 @@ document.getElementById('addColumnForm').addEventListener('submit', function(eve
 
 </script>
 
-@include('admin.partials.footer')
+
 </body>
 
 <html>

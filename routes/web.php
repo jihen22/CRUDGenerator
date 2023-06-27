@@ -174,14 +174,11 @@ Route::post('/check-entitiescol-exist', '\\App\\Http\\Controllers\\editTableCont
 Route::get('/get/{table}/{column}/update', [EditcolonneController::class, 'editColumn'])->name('update-column');;
 Route::post('/column/{table}/{column}/update', [EditcolonneController::class, 'updateColumn'])->name('column.edit');
 
-use App\Http\Controllers\cont1Controller;
+use App\Http\Controllers\controllllllllllllllerController;
 
-Route::get('/{table}/{view}', [cont1Controller::class, 'index']);
-Route::delete('/{id}', [cont1Controller::class, 'deleteData']);
-Route::post('/{id}', [cont1Controller::class, 'updateRow'])->name('update.row');
-Route::post('/{table}/{view}', [cont1Controller::class, 'store']);use App\Http\Controllers\cont2Controller;
+Route::get('/controllllllllllllller/{table}/{view}', [controllllllllllllllerController::class, 'index']);
+Route::delete('/controllllllllllllller/{id}', [controllllllllllllllerController::class, 'deleteData']);
+Route::post('/controllllllllllllller/{id}', [controllllllllllllllerController::class, 'updateRow'])->name('update.row');
+Route::post('/controllllllllllllller/{table}/{view}', [controllllllllllllllerController::class, 'store']);use App\Http\Controllers\controller08Controller;
 
-Route::get('/{table}/{view}', [cont2Controller::class, 'index']);
-Route::delete('/{id}', [cont2Controller::class, 'deleteData']);
-Route::post('/{id}', [cont2Controller::class, 'updateRow'])->name('update.row');
-Route::post('/{table}/{view}', [cont2Controller::class, 'store']);
+Route::get('/table08list/{table}/{view}', [controller08Controller::class, 'show']);
