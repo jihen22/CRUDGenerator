@@ -136,16 +136,12 @@ public function supprimerTable($table)
     }
 
     // Supprimer les vues
-    $views_directory = resource_path('views/'.$viewName.'.blade.php');
-    if (file_exists($views_directory)) {
-        $files = glob($views_directory.'/*'); 
-        foreach($files as $file){ 
-            if(is_file($file)) {
-                unlink($file);
-            }
-        }
-        rmdir($views_directory);
+    $file_path = resource_path('views/'.$viewName.'.blade.php');
+
+    if (file_exists($file_path)) {
+        unlink($file_path);
     }
+    
 
     // Supprimer la migration
     $migration_file = database_path('migrations/*_create_'.$table.'_table.php');

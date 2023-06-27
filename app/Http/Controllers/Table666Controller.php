@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\mm2;
+use App\Models\Table666;
 use App\Table;
 use App\Field;
 
 
 
 
-class cont2Controller extends Controller
+class Table666Controller extends Controller
 {
     
     
@@ -96,7 +96,7 @@ return view($view, compact('table', 'data', 'columns', 'nameproject', 'visibleCo
         $data = $request->get('data');
     
         // Enregistrer les données dans la base de données en utilisant le modèle Eloquent User
-mm2::create($data);
+Table666::create($data);
     
         // Retourner une réponse JSON pour confirmer l'enregistrement des données
         return response()->json(['success' => true]);
@@ -105,7 +105,7 @@ mm2::create($data);
     public function deleteData($id)
     {
         //Trouver la ligne de données à supprimer
-       $data = mm2::find($id);
+       $data = Table666::find($id);
 
        
     
@@ -126,7 +126,7 @@ mm2::create($data);
    public function updateRow(Request $request, $id)
    {
      // Récupérer la ligne correspondante dans la base de données en utilisant l'identifiant
-     $row = mm2::find($id);
+     $row = Table666::find($id);
    
      // Vérifier si la ligne a été trouvée
      if ($row) {
@@ -139,7 +139,7 @@ mm2::create($data);
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('mm2', $column)) {
+         if (Schema::hasColumn('Table666', $column)) {
            $row->{$column} = $value;
          }
        }
