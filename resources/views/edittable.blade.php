@@ -243,59 +243,92 @@ div.row.mb-2 {
                                 <input type="text" name="visual_title" id="visual_title" class="form-control" placeholder="Enter visual title">
                             </div>
 
-                            <div class="form-inline">
-                                <label> In List: </label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="in_list" id="in_list_yes" value="yes">
-                                    <label class="form-check-label" for="in_list_yes">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="in_list" id="in_list_no" value="no">
-                                    <label class="form-check-label" for="in_list_no">No</label>
-                                </div>
+         
+                            <div class="form-group">
 
-                                <label> In Create: </label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="in_create" id="in_create_yes" value="yes">
-                                    <label class="form-check-label" for="in_create_yes">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="in_create" id="in_create_no" value="no">
-                                    <label class="form-check-label" for="in_create_no">No</label>
-                                </div>
-                            </div>
+<label for="in_list" style="margin-right: 10px;">In List:</label>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="in_list" id="in_list_yes" value="1">
+    <label class="form-check-label" for="in_list_yes">Yes</label>
+</div>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="in_list" id="in_list_no" value="0">
+    <label class="form-check-label" for="in_list_no">No</label>
+</div>
+</div>
+<div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
+Specify whether the field should be shown in the list view of the table (e.g., table listing all records).
+</div>
 
-                            <div class="form-inline">
-                                <label> In Show: </label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="in_show" id="in_show_yes" value="yes">
-                                    <label class="form-check-label" for="in_show_yes">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="in_show" id="in_show_no" value="no">
-                                    <label class="form-check-label" for="in_show_no">No</label>
-                                </div>
+<div class="form-group">
+<div>
+<label for="in_create" style="margin-right: 10px;">In Create:</label>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="in_create" id="in_create_yes" value="1">
+    <label class="form-check-label" for="in_create_yes">Yes</label>
+</div>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="in_create" id="in_create_no" value="0">
+    <label class="form-check-label" for="in_create_no">No</label>
+</div>
 
-                                <label> In Edit: </label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="in_edit" id="in_edit_yes" value="yes">
-                                    <label class="form-check-label" for="in_edit_yes">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="in_edit" id="in_edit_no" value="no">
-                                    <label class="form-check-label" for="in_edit_no">No</label>
-                                </div>
-                            </div>
+<div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
+Specify whether the field should be shown in the create form for adding new records.
+</div>
+</div>
+
+<div class="form-group">
+<label for="in_show" style="margin-right: 10px;">In Show:</label>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="in_show" id="in_show_yes" value="1">
+    <label class="form-check-label" for="in_show_yes">Yes</label>
+</div>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="in_show" id="in_show_no" value="0">
+    <label class="form-check-label" for="in_show_no">No</label>
+</div>
+</div>
+<div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
+Specify whether the field should be shown in the detail view of a specific record.
+</div>
+</div>
+<div class="form-group">
+<label for="in_edit" style="margin-right: 10px;">In Edit:</label>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="in_edit" id="in_edit_yes" value="1">
+    <label class="form-check-label" for="in_edit_yes">Yes</label>
+</div>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="in_edit" id="in_edit_no" value="0">
+    <label class="form-check-label" for="in_edit_no">No</label>
+</div>
+</div>
+<div class="description" style="font-size: 12px; color: #FFC107; margin-left: 10px;">
+Specify whether the field should be shown in the edit form for modifying existing records.
+</div>
+
+
+
+     
+       
+
+
+
 
                             <h4 id="addFeildModalLabel">Additional Settings</h4>
 
-                            <div style="display: flex;">
-                                <div style="margin-right: 10px;">
-                                    <label for="max">Max Limit:</label>
-                                    <input type="number" id="max" name="max" placeholder="Enter max limit">
-                                </div>
+                            <div class="form-group">
+<div style="display: flex; align-items: center;">
+    <label for="field-max-limit" style="margin-right: 10px;">Max Limit:</label>
+    <input type="number" class="form-control"  id="max" name="max" style="width: 150px;">
+</div>
+<div>
+    <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Specify the maximum limit or length of the field if applicable (e.g., maximum number of characters).</span>
+</div>
+</div>
+
                                
-                                <div class="form-group">
+<div class="form-group">
 <div>
         <label for="field-default-value" style="margin-right: 10px;">Default value:</label>
         <select class="form-control" id="field-default-value" name="field-default-value" style="width: 150px;">

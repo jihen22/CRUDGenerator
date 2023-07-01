@@ -143,7 +143,7 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
 <div class="container-fluid p-0">
 <div class ="row mb-2">
 <div class="col-sm-6">
-                <h1 class="m-0 text-drak text-right custom-title">Add Fields to Your Table</h1>
+                <h1 class="m-0 text-drak text-right custom-title">Add Fields to Your Card</h1>
                 </div>
             </div>
         </div>
@@ -211,8 +211,8 @@ width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latéra
                     @endforeach
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
         </div>
@@ -383,7 +383,7 @@ form.addEventListener('submit', (event) => {
 
       $.ajax({
         type: 'POST',
-        url: '/' + '{{controllerName}}' + '/'+ rowId,
+        url: '/' + '{{controllerName}}' + '/up/'+ rowId,
         data: formData,
         success: function(response) {
           // Mettre à jour les données de la ligne dans le tableau

@@ -32,7 +32,7 @@ class MakeModelWithColumnsCommand extends Command
 
         use Illuminate\Database\Eloquent\Model;
 
-        class $table extends Model
+        class $model extends Model
         {
             protected \$table = '$table';
             protected \$fillable = ['$fillable'];

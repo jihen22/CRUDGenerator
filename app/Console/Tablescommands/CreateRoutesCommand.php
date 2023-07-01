@@ -42,13 +42,13 @@ class CreateRoutesCommand extends Command
 
         $routeDefinitions = [];
 
-        if ($viewType === 'card' || $viewType === 'table') {
+        if ($viewType === 'card' || $viewType === 'Table') {
             $routeDefinitions[] = "Route::get('/{$controller}/{table}/{view}', [{$controller}Controller::class, 'index']);";
             $routeDefinitions[] = "Route::delete('/{$controller}/{id}', [{$controller}Controller::class, 'deleteData']);";
-            $routeDefinitions[] = "Route::post('/{$controller}/{id}', [{$controller}Controller::class, 'updateRow'])->name('update.row');";
+            $routeDefinitions[] = "Route::post('/{$controller}/up/{id}', [{$controller}Controller::class, 'updateRow'])->name('update.row');";
             $routeDefinitions[] = "Route::post('/{$controller}/{table}/{view}', [{$controller}Controller::class, 'store']);";
         } else {
-            $routeDefinitions[] = "Route::get('/{$table}list/{table}/{view}', [{$controller}Controller::class, 'show']);";
+            $routeDefinitions[] = "Route::get('/{$controller}/{table}/{view}', [{$controller}Controller::class, 'show']);";
         }
 
         $webRouteFile = base_path('routes/web.php');

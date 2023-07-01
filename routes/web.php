@@ -153,7 +153,7 @@ Route::group(['middleware' => 'guest'] , function(){
 
 
     Route::get('/table/{table}', [ColonneController::class, 'showColumns'])->name('table.columns');
-    Route::delete('/table/{table}/column/{columnName}', [ColonneController::class, 'deleteColumn'])->name('column.delete');
+    Route::delete('/table/{table}/column/{column}', [ColonneController::class, 'deleteColumn'])->name('column.delete');
 
 
 
@@ -205,19 +205,22 @@ Route::get('/get/{table}/{column}/update', [EditcolonneController::class, 'editC
 Route::post('/column/{table}/{column}/update', [EditcolonneController::class, 'updateColumn'])->name('column.edit');
 
 
+use App\Http\Controllers\EmployéController;
 
-use App\Http\Controllers\Table585Controller;
+Route::get('/Employé/{table}/{view}', [EmployéController::class, 'index']);
+Route::delete('/Employé/{id}', [EmployéController::class, 'deleteData']);
+Route::post('/Employé/up/{id}', [EmployéController::class, 'updateRow'])->name('update.row');
+Route::post('/Employé/{table}/{view}', [EmployéController::class, 'store']);use App\Http\Controllers\ProductcontController;
 
-Route::get('/Table585/{table}/{view}', [Table585Controller::class, 'index']);
-Route::delete('/data1/{id}', [Table585Controller::class, 'deleteData']);
-Route::post('/data/{id}', [Table585Controller::class, 'updateRow'])->name('update.row');
-Route::post('/table7/{table}/{view}', [Table585Controller::class, 'store']);
+Route::get('/Productcont/{table}/{view}', [ProductcontController::class, 'index']);
+Route::delete('/Productcont/{id}', [ProductcontController::class, 'deleteData']);
+Route::post('/Productcont/up/{id}', [ProductcontController::class, 'updateRow'])->name('update.row');
+Route::post('/Productcont/{table}/{view}', [ProductcontController::class, 'store']);
 
 
 
-use App\Http\Controllers\Table666Controller;
 
-Route::get('/Table666/{table}/{view}', [Table666Controller::class, 'index']);
-Route::delete('/{id}', [Table666Controller::class, 'deleteData']);
-Route::post('/{id}', [Table666Controller::class, 'updateRow'])->name('update.row');
-Route::post('/{table}/{view}', [Table666Controller::class, 'store']);
+use App\Http\Controllers\UsersController;
+
+// Route pour afficher tous les utilisateurs
+Route::get('/Users/users/user', [UsersController::class, 'index']);

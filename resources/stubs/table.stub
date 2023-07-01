@@ -216,8 +216,8 @@ $(document).ready(function() {
                     @endforeach
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
         </div>
@@ -274,7 +274,7 @@ form.addEventListener('submit', (event) => {
 
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
-        url:''/' + '{{controllerName}}' + '/{table}/{view}',
+        url:'/' + '{{controllerName}}' + '/{table}/{view}',
         method: "POST",
         data: { data: data, _token: "{{ csrf_token() }}" },
         success: function(response) {
@@ -386,12 +386,12 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 
       $.ajax({
         type: 'POST',
-        url: '/' + '{{controllerName}}' + '/' + rowId,
+        url: '/' + '{{controllerName}}' + '/up/' + rowId,
         data: formData,
         success: function(response) {
           // Mettre à jour les données de la ligne dans le tableau
           // Vous pouvez effectuer cette mise à jour en utilisant AJAX ou simplement recharger la page
-         
+         location.reload();
         },
         error: function(jqXHR, textStatus, errorThrown) {
           alert('Error: ' + textStatus + ' - ' + errorThrown);
@@ -477,9 +477,5 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
        
        
     </body>
-<<<<<<< HEAD
 </html>
 
-=======
-</html>
->>>>>>> 3ff49c72c00318e53a3b8b9dd38154aeea5747b1

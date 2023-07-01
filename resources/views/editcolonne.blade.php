@@ -30,8 +30,59 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        
+          <!-- Add the SweetAlert library -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
         <script src="mon-script.js"></script>
+         <!-- Add a custom script for confirmation and messages -->
+  <script>
+    $(document).ready(function() {
+      // Handle form submission
+      $("form").on("submit", function(event) {
+        event.preventDefault();
+
+        // Show a confirmation swal pop-up
+        Swal.fire({
+          title: "Are you sure?",
+          text: "Do you want to update the column?",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, update it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Proceed with form submission
+            event.target.submit();
+          }
+        });
+      });
+
+      // Check for success or error message in the URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const successMessage = urlParams.get("success");
+      const errorMessage = urlParams.get("error");
+
+      // Show success message if available
+      if (successMessage) {
+        Swal.fire({
+          title: "Success",
+          text: successMessage,
+          icon: "success",
+        });
+      }
+
+      // Show error message if available
+      if (errorMessage) {
+        Swal.fire({
+          title: "Error",
+          text: errorMessage,
+          icon: "error",
+        });
+      }
+    });
+  </script>
+
  
         <style>
     .card {
@@ -272,23 +323,25 @@ div.row.mb-2 {
 
 
 
+
+
 <div class="form-group">
-    <div style="display: flex; align-items: center;">
+<div>
         <label for="field-default-value" style="margin-right: 10px;">Default value:</label>
         <select class="form-control" id="default_value" name="default_value" style="width: 150px;">
             <option value="None">None</option>
             <option value="NULL">NULL</option>
-            <option value="As defined:">As defined:</option>
             <option value="CURRENT_TIMESTAMP">CURRENT_TIMESTAMP</option>
+            <option value="As defined:">As defined:</option>
+            
         </select>
     </div>
     <div id="custom-value-container"></div>
-
+</div>
     <div>
         <span class="description" style="font-size: 12px; color: #999; margin-left: 10px;">Set a default value for the field.</span>
     </div>
 </div>
-
 
                             <button type="submit" class="btn btn-primary">Update column</button>
                         </form>
@@ -298,8 +351,8 @@ div.row.mb-2 {
         </div>
     </div>
 </div>
-
-@include('admin.partials.footer')
+ <!-- Add the SweetAlert container -->
+ <div id="swal-container"></div>
                                
 
 </script>

@@ -10,6 +10,7 @@ use App\Field;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -163,11 +164,13 @@ if (Schema::hasTable($tableName)) {
 
 
     
-public function showAddColumnForm()
-{
-    return View::make('edittable');
-} 
-
+    public function showAddColumnForm()
+    {
+        $user = Auth::user();
+        $nameproject = $user->nameproject;
+    
+        return view('edittable', compact('nameproject'));
+    }
 
 public function checkEntitiescolExist(Request $request)
 {

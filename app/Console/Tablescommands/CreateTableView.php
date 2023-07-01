@@ -12,7 +12,7 @@ class CreateTableView extends Command
      *
      * @var string
      */
-    protected $signature = 'make:view {view : The name of the table view to create} {--type= : The type of the table view to create} {--controller= : The name of the controller}';
+    protected $signature = 'make:view {view : The name of the table view to create} {--viewType= : The type of the table view to create} {--controller= : The name of the controller}';
 
     /**
      * The console command description.
@@ -29,7 +29,7 @@ class CreateTableView extends Command
     public function handle()
     {
         $name = $this->argument('view');
-        $viewType = $this->option('type');
+        $viewType = $this->option('viewType');
         $controllerName = $this->option('controller');
     
         // ...

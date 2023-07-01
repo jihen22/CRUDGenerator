@@ -139,7 +139,7 @@ return view($view, compact('table', 'data', 'columns', 'nameproject', 'visibleCo
        // Mettre à jour les attributs de la ligne avec les données du formulaire
        foreach ($input as $column => $value) {
          // Vérifier si la colonne existe avant de la mettre à jour
-         if (Schema::hasColumn('{{modelName}}', $column)) {
+         if (Schema::hasColumn('{{tableName}}', $column)) {
            $row->{$column} = $value;
          }
        }

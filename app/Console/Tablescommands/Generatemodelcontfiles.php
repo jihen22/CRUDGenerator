@@ -34,6 +34,7 @@ class Generatemodelcontfiles extends Command
         // Generate the controller
         $this->call('generate:controller', [
             'name' =>  $controllerName,
+            'table'=>$tableName ,
             'model'=>$modelName,
             '--viewType'=>$viewType,
         ]);

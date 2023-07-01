@@ -22,8 +22,8 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                        <h1>
-                        <div class="sb-sidenav-menu-heading"></div>
+                        <h1> 
+                        <div class="sb-sidenav-menu-heading">{{ $nameproject }}</div>
                         
                       
 </h1>

@@ -25,7 +25,7 @@
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-    
+   
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -38,7 +38,7 @@
 
 
 
-<style> 
+<style>
 
 
 .flex-container {
@@ -102,14 +102,14 @@
 }
 
 
-</style>     
+</style>    
    
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
   <div id="app" class="warpper">
   @include('admin.partials.topbar')
   <div id="layoutSidenav" class="flex-container">
 
-      
+     
 
 <div class="content-warper" id="monDiv" style="">
 <a href="{{ route('admin.dashboard') }}" class="arrow-icon">
@@ -129,32 +129,32 @@ $(document).ready(function() {
         <div class="col-sm-6">
           <h1 class="m-0 text-drak" style="">Add Fields to Your Table </h1>
                 </div>
-        
+       
 
 <div class="content-header">
 </div>
 
 
-    
-    
+   
+   
        <div class="container-fluide p-0">
            <div class="card card-default">
 
 
             <div class="card-body">
 
-      
+     
               <table id="mytable" class="table table-bordred table-striped">
-              
+             
     <thead>
         <tr>
             <th>Select</th>
-            
+           
             @if ($showEditButton)
                 <th>Edit</th>
                 @endif
                 <th>delete</th>
-            
+           
                 @foreach ($columns as $column)
              @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
                  <th>{{ $column }}</th>
@@ -167,7 +167,7 @@ $(document).ready(function() {
         @foreach ($data as $row)
             <tr data-row-id="{{ $row->id }}">
                 <td><input type="checkbox" class="checkthis" /></td>
-                
+               
                 @if ($showEditButton)
                     <td>
                         <button type="button" class="btn btn-primary edit-btn" data-row-id="{{ $row->id }}">
@@ -181,7 +181,7 @@ $(document).ready(function() {
                    <span class="fas fa-trash-alt"></span>
                     </button>
                   </td>
-                
+               
                 @foreach ($columns as $column)
                     @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns))
                         <td>{{ $row->{$column} }}</td>
@@ -274,7 +274,7 @@ form.addEventListener('submit', (event) => {
 
     // Effectuer une requête AJAX vers le controller Laravel
     $.ajax({
-        url:'/{table}/{view}',
+        url:'/' + 'Productcont' + '/{table}/{view}',
         method: "POST",
         data: { data: data, _token: "{{ csrf_token() }}" },
         success: function(response) {
@@ -341,7 +341,7 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
           <input type="hidden" name="row_id" id="edit-row-id">
 
           <!-- dynamically generate input fields for editable columns -->
-          
+         
           @foreach ($columns as $column)
             @if (in_array($column, $visibleColumns) && !in_array($column, $hiddenColumns) && in_array($column, $editableColumns))
               <div class="form-group">
@@ -350,7 +350,7 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
               </div>
             @endif
           @endforeach
-          
+         
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Save Changes</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -368,10 +368,10 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
     $('.edit-btn').click(function() {
       var rowId = $(this).data('row-id');
       $('#edit-row-id').val(rowId); // Récupérer l'identifiant de la ligne et le stocker dans le champ masqué
-      
+     
       // Pré-remplir les champs de saisie du modal avec les données de la ligne correspondante
       // Vous pouvez utiliser AJAX ici pour récupérer les données du serveur si nécessaire
-      
+     
       // Afficher le modal de modification
       $('#edit-modal').modal('show');
     });
@@ -386,12 +386,12 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
 
       $.ajax({
         type: 'POST',
-        url: '/' + rowId,
+        url: '/' + 'Productcont' + '/up/' + rowId,
         data: formData,
         success: function(response) {
           // Mettre à jour les données de la ligne dans le tableau
           // Vous pouvez effectuer cette mise à jour en utilisant AJAX ou simplement recharger la page
-         
+          location.reload();
         },
         error: function(jqXHR, textStatus, errorThrown) {
           alert('Error: ' + textStatus + ' - ' + errorThrown);
@@ -444,7 +444,7 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
         // Supprimer la ligne en utilisant une requête AJAX
         $.ajax({
           type: 'DELETE',
-          url: '/'+ rowId,
+        url: '/' + 'Productcont' + '/' + rowId,
           data: { _token: '{{ csrf_token() }}' },
           success: function(response) {
             // Supprimer la ligne du tableau
@@ -478,3 +478,4 @@ deleteCell.innerHTML = '<button type="button" class="btn btn-danger delete-btn" 
        
     </body>
 </html>
+

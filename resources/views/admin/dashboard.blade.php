@@ -205,8 +205,6 @@
               </div>
             </div>
 
-            <footer class="py-4 bg-light mt-auto">
-              <div class="container-fluid px-4">
 
               </div>
             </footer>
@@ -226,7 +224,6 @@
     });
   </script>
 
-  @include('admin.partials.footer')
 </body>
 
 </html>

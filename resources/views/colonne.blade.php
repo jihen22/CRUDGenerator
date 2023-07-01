@@ -18,18 +18,20 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
        
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('Dashboardassets/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-		
+        <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+        
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="mon-script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 
@@ -38,23 +40,23 @@
 
 
 <style> .flex-container {
-	display: flex;
+    display: flex;
 }
 
 .content-warper {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 #monDiv {
-	min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
-	margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
-	margin-left: 100px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
-	width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
+    min-height: calc(100vh - 60px); /* Calculer la hauteur minimale pour éviter le recouvrement de la barre de navigation */
+    margin-right: 70px; /* Ajouter une marge à droite pour s'ajuster à côté de la barre latérale */
+    margin-left: 100px; /* Ajouter une marge à gauche pour rapprocher le div de la barre latérale */
+    width: calc(100% - 80px); /* Ajuster la largeur pour qu'elle s'ajuste à la largeur restante de l'espace disponible à gauche de la barre latérale */
 }
 
 .small-sidebar {
-	width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
+    width: 70px; /* Spécifier une largeur fixe pour l'élément de la barre latérale */
 }
 .container-fluide {
     margin-bottom: 50px; /* Ajouter une marge en bas pour rapprocher la carte du contenu suivant */
@@ -99,25 +101,25 @@
 </style>     
    
 <body class="sidebar-mini sidebar-closed sidebar-collapse" style="height: auto;" >
-	<div id="app" class="warpper">
-	@include('admin.partials.topbar')
-	<div id="layoutSidenav" class="flex-container">
+    <div id="app" class="warpper">
+    @include('admin.partials.topbar')
+    <div id="layoutSidenav" class="flex-container">
        @include('admin.partials.sidebar', ['sidebarClass' => 'small-sidebar'])
 
 
 
 <div class="content-warper" id="monDiv" style="">
-	<div class="content-header">
-		<div class="container-fluid p-0">
-			<div class ="row mb-2">
-				<div class="col-sm-6">
-				
+    <div class="content-header">
+        <div class="container-fluid p-0">
+            <div class ="row mb-2">
+                <div class="col-sm-6">
+                
                 </div>
             </div>
         </div>
     </div>
     
-	     <div class="container-fluide p-0">
+         <div class="container-fluide p-0">
            <div class="card card-default">
 
 
@@ -144,7 +146,7 @@
     <tr>
         <td>{{ $column }}</td>
         <td>
-        <form action="{{ route('column.delete', ['table' => $table, 'columnName' => $column]) }}" method="POST">
+        <form action="{{ route('column.delete', ['table' => $table, 'column' => $column]) }}" method="POST">
     @csrf
     @method('DELETE')
     <button type="submit" class="btn btn-danger delete-btn" data-column="{{ $column }}">
@@ -249,34 +251,62 @@ document.getElementById('addColumnForm').addEventListener('submit', function(eve
 });
 </script>
 <script>
-    $(document).ready(function() {
-        var columnToDelete = null;
-        var tableToDeleteFrom = null;
+  $(document).ready(function() {
+    var columnToDelete = null;
+    var tableToDeleteFrom = null;
 
-        $('.delete-btn').click(function() {
-            console.log("Delete button clicked");
-            columnToDelete = $(this).data('column');
-            tableToDeleteFrom = '{{ $table }}'; // Add this line to retrieve the tableName value
-            $('#deleteModal').modal('show');
-        });
+    $('.delete-btn').click(function() {
+      console.log("Delete button clicked");
+      columnToDelete = $(this).data('column');
+      tableToDeleteFrom = '{{ $table }}'; // Add this line to retrieve the tableName value
 
-        // Bind the AJAX call to the confirm button
-        $('#confirmDelete').click(function() {
-            console.log("confirmDelete button clicked");
-            if (columnToDelete && tableToDeleteFrom) {
-                $('#deleteModal').modal('hide'); // Hide the modal before making the AJAX call
-                $('#successModal').modal('show'); // Show the success modal
-                $.ajax({
-                    url: '/table/' + tableToDeleteFrom + '/column/' + columnToDelete + '/delete',
-                    type: 'DELETE',
-                    success: function(response) {
-                        location.reload();
-                    }
-                });
-            }
-        });
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteColumn();
+        }
+      });
     });
+
+    function deleteColumn() {
+      console.log("Delete confirmed");
+      if (columnToDelete && tableToDeleteFrom) {
+        Swal.fire({
+          title: 'The column has been deleted.',
+          allowOutsideClick: false,
+          onBeforeOpen: () => {
+            Swal.showLoading();
+          }
+        });
+
+        $.ajax({
+          url: '/table/' + tableToDeleteFrom + '/column/' + columnToDelete + '/delete',
+          type: 'DELETE',
+          success: function(response) {
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'The column has been deleted.',
+              icon: 'success'
+            }).then(() => {
+              location.reload();
+            });
+          },
+          error: function(xhr, status, error) {
+           
+          }
+        });
+      }
+    }
+  });
 </script>
+
 
 
 

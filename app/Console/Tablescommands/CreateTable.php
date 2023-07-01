@@ -57,8 +57,8 @@ class CreateTable extends Command
         
         Artisan::call('create:routes', [
             'table' => $table,
+            '--viewType' =>$this->option('viewType'),
             '--controller' => $this->option('controller'),
-            '--viewType' => $this->option('viewType'),
       
         ]);
 
@@ -67,6 +67,7 @@ class CreateTable extends Command
         Artisan::call('make:view', [
             'view' => $this->option('view'),
             '--viewType' => $this->option('viewType'),
+            '--controller' => $this->option('controller'),
         ]);
         
        
@@ -123,26 +124,72 @@ class CreateTable extends Command
     }
     protected function buildColumns(array $columns)
     {
-        
-          $columnStatements = array_map(function ($column) {
-            $method = "{$column['type']}('{$column['name']}')";
+        $tableColumns = '';
     
-            return sprintf("%s%s", str_repeat(' ', 12), "\$table->{$method};");
-        }, array_filter($columns, function ($column) {
-            return isset($column['name']) && isset($column['type']);
-        }));
-          // Add id column
-          $columnStatements[] = sprintf("%s%s", str_repeat(' ', 12), '$table->id();');
-      
+        foreach ($columns as $column) {
+            $name = $column['name'];
+            $type = $column['type'];
+    
+            $field = \DB::table('fieldslist4')->where('database_column_name', $name)->first();
+    
+            if ($field) {
+                $columnStatement = $this->buildColumnStatement($field, $name, $type);
+                $tableColumns .= str_repeat(' ', 12) . '$table->' . $columnStatement . ";\n";
+            } else {
+                $method = "{$type}('{$name}')";
+                $tableColumns .= sprintf("%s%s", str_repeat(' ', 12), '$table->' . $method . ";\n");
+            }
+        }
+    
+        // Add id column
+        $tableColumns .= sprintf("%s%s", str_repeat(' ', 12), '$table->id();') . "\n";
     
         // Add remember_token column
-        $columnStatements[] = sprintf("%s%s", str_repeat(' ', 12), '$table->rememberToken();');
+        $tableColumns .= sprintf("%s%s", str_repeat(' ', 12), '$table->rememberToken();') . "\n";
     
-        // Add created_at column // Add updated_at column
-        $columnStatements[] = sprintf("%s%s", str_repeat(' ', 12), '$table->timestamps();');
+        // Add created_at and updated_at columns
+        $tableColumns .= sprintf("%s%s", str_repeat(' ', 12), '$table->timestamps();') . "\n";
     
-        return implode("\n", $columnStatements);
+        return $tableColumns;
     }
+    
+    
+    protected function buildColumnStatement($field, $name, $type)
+    {
+        $method = "{$type}('{$name}')";
+    
+        if ($field->nullable) {
+            $method .= '->nullable()';
+        }
+    
+        if ($field->validation === 'Optional') {
+            $method .= '->optional()';
+        } elseif ($field->validation === 'Required/Unique') {
+            $method .= '->unique()';
+        } elseif ($field->validation === 'Required') {
+            $method .= '->required()';
+        }
+    
+        if ($field->validationRules) {
+            $method .= "->validate(['{$field->validationRules}'])";
+        }
+    
+        if ($field->default_value) {
+            $method .= "->default('{$field->default_value}')";
+        }
+    
+        // Add length if it exists
+        if ($field->max) {
+            $method .= "->length({$field->max})";
+        }
+    
+        // Add any additional field definitions you have in the "fieldslist" table
+    
+        return $method;
+    }
+    
+    
+    
     
     protected function setPrimaryKey()
     {
@@ -152,5 +199,3 @@ class CreateTable extends Command
     
     
 }
-
-
