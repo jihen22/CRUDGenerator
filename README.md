@@ -62,10 +62,10 @@ Once installed and running, navigate to http://localhost:8000 to access the CRUD
 
 ## Screenshots
 
-##Contributing
+## Contributing
 Contributions are welcome! If you would like to contribute, please fork the repository and submit a pull request. Feel free to open issues if you encounter any problems.
 
-##License
+## License
 This project is open-sourced software licensed under the MIT license.
 
 
