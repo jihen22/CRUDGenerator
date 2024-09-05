@@ -35,30 +35,27 @@ The platform simplifies the process of managing database entities and is designe
 2. Navigate to the project directory:
    ```bash
    cd crud-operations-generator
-3.Install dependencies using Composer:
+3. Install dependencies using Composer:
     ```bash
     composer install
 4. Create a .env file by copying .env.example:
    ```bash
    cp .env.example .env
 
-5.Generate an application key:
+5. Generate an application key:
    ```bash
     php artisan key:generate
 6. Set up your database in the .env file:
     ```bash
      DB_DATABASE=your_database_name
-DB_USERNAME=your_database_user
-DB_PASSWORD=your_database_password
-
-
-6.Run the migrations to set up database tables:
-
-  ```bash
-php artisan migrate
+     DB_USERNAME=your_database_user
+     DB_PASSWORD=your_database_password
+7. Run the migrations to set up database tables:
+     ```bash
+     php artisan migrate
 7. Serve the application locally:
-  ```bash
-php artisan serve
+     ```bash
+      php artisan serve
 
 ## Usage
 Once installed and running, navigate to http://localhost:8000 to access the CRUD operations generator. The platform will guide you through creating and managing database tables, generating forms, and handling data validation.
