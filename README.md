@@ -61,6 +61,11 @@ The platform simplifies the process of managing database entities and is designe
 Once installed and running, navigate to http://localhost:8000 to access the CRUD operations generator. The platform will guide you through creating and managing database tables, generating forms, and handling data validation.
 
 ## Screenshots
+![Home Page](\homepage.png)
+![Login](jihen22/CRUDGenerator/screenshots/login.png)
+![Create Table page](jihen22/CRUDGenerator/screenshots/createtable.png)
+![Adjust Fields!](jihen22/CRUDGenerator/screenshots/addfield.png)
+
 
 ## Contributing
 Contributions are welcome! If you would like to contribute, please fork the repository and submit a pull request. Feel free to open issues if you encounter any problems.
