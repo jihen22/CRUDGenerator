@@ -63,7 +63,7 @@ Once installed and running, navigate to http://localhost:8000 to access the CRUD
 ## Screenshots
 ![Home Page](\homepage.png)
 ![Login](jihen22/CRUDGenerator/screenshots/login.png)
-![Create Table page](jihen22/CRUDGenerator/screenshots/createtable.png)
+![Create Table page](screenshots/createtable.png)
 ![Adjust Fields!](jihen22/CRUDGenerator/screenshots/addfield.png)
 
 
